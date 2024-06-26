@@ -5,6 +5,8 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 val ktor_version="2.3.12"
+val koinVersion = "3.5.0"
+val koinComposeVersion = "1.1.0"
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -75,6 +77,10 @@ kotlin {
             implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
             implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
             implementation("io.ktor:ktor-client-okhttp:$ktor_version")
+
+            //dependency injection
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

@@ -13,6 +13,8 @@ androidx-test-junit = "1.1.5"
 compose-plugin = "1.6.10"
 junit = "4.13.2"
 kmongoCoroutine = "5.1.0"
+koinComposeVersion = "1.1.0"
+koinVersion = "3.5.0"
 kotlin = "2.0.0"
 kotlinxSerializationJson = "1.6.3"
 ktor = "2.3.11"
@@ -21,6 +23,8 @@ uiDesktop = "1.6.8"
 
 [libraries]
 kmongo-coroutine = { module = "org.litote.kmongo:kmongo-coroutine", version.ref = "kmongoCoroutine" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComposeVersion" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
