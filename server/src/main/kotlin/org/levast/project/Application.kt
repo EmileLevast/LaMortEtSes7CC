@@ -4,6 +4,8 @@ import ApiableItem
 import Arme
 import Armure
 import Bouclier
+import ENDPOINT_MAJ_CARACS_JOUEUR
+import ENDPOINT_RECHERCHE_STRICTE
 import Equipe
 import Greeting
 import Joueur
@@ -13,6 +15,10 @@ import Sort
 import Special
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.LoggerContext
+import collectionsApiableItem
+import com.mongodb.MongoBulkWriteException
+import getCollectionElements
+import getCollectionElementsAsString
 import io.ktor.http.ContentDisposition
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
@@ -34,16 +40,18 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.logging.KtorSimpleLogger
 import network.AnythingItemDTO
+import org.litote.kmongo.eq
+import org.litote.kmongo.setValue
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.FileNotFoundException
 
 val unmutableListApiItemDefinition = listOf(Arme(),Armure(),Monster(),Bouclier(),Sort(),Special(),Joueur(), Equipe())
 
+val logger = KtorSimpleLogger("logger")
 
 fun main() {
 
-    val logger = KtorSimpleLogger("logger")
 
     (LoggerFactory.getILoggerFactory() as LoggerContext).getLogger("org.mongodb.driver").level = Level.WARN
 
@@ -216,5 +224,52 @@ fun Application.module() {
                 }
             }
         }
+    }
+}
+
+
+/**
+ * This function return the object deducing his type
+ */
+private suspend fun getApiableElementAccordingToType(
+    call: ApplicationCall,
+    itapiable: ApiableItem
+) = when (itapiable) {
+    //TODO ajouter une ligne dans le when quand on ajoute un table dans la bdd
+
+    is Arme -> {
+        call.receive<Arme>()
+    }
+
+    is Monster -> {
+        call.receive<Monster>()
+    }
+
+    is Armure -> {
+        call.receive<Armure>()
+    }
+
+    is Bouclier -> {
+        call.receive<Bouclier>()
+    }
+
+    is Sort -> {
+        call.receive<Sort>()
+    }
+
+    is Special -> {
+        call.receive<Special>()
+    }
+
+    is Joueur -> {
+        call.receive<Joueur>()
+    }
+
+    is Equipe -> {
+        call.receive<Equipe>()
+    }
+
+    else -> {
+        call.receive<Armure>()
     }
 }
