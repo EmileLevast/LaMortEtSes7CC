@@ -239,6 +239,8 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         }
     }
 
+    fun downloadImageWithName(imageName: String) = imageDownloader.downloadImageWithName(imageName)
+
 }
 
 
