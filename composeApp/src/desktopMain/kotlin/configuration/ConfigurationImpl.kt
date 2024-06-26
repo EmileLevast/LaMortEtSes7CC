@@ -24,7 +24,7 @@ class ConfigurationImpl() : IConfiguration {
         loadFileProperties()
     }
 
-    fun loadFileProperties(){
+    private fun loadFileProperties(){
         runBlocking {
             coroutineScope {
                 properties = AppProperties(Res.readBytes("files/urlserver").decodeToString())
