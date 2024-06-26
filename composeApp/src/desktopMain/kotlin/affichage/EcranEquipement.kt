@@ -126,7 +126,7 @@ fun layoutListItem(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.h5,
-                                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
+                                fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
                                 color = Color.Black
                             )
                             Text(
@@ -142,7 +142,7 @@ fun layoutListItem(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.h5,
-                                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
+                                fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
                                 color = Color.White
                             )
                         }

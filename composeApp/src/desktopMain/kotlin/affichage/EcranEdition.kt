@@ -204,7 +204,7 @@ fun layoutEdition(
                 Text(
                     text = message!!, color = Color.White,
                     style = MaterialTheme.typography.h5,
-                    fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
+                    fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
                 )
             }
         }

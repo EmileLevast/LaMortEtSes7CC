@@ -40,7 +40,7 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
                 text = equipement.nomComplet.ifBlank { equipement.nom },
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h2,
-                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
+                fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
                 color = Color.Black
             )
 

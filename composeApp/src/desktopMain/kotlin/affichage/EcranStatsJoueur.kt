@@ -45,7 +45,7 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             text = actuelJoueur.nomComplet.ifBlank { actuelJoueur.nom },
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h4,
-            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
+            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
         Image(
             bitmap = actuelJoueur.getImage(apiApp),
@@ -61,13 +61,13 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             text = "Niveau : ${actuelJoueur.niveau}",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
+            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
         Text(
             text = "Defense : " + deparseDefense(actuelJoueur.caracOrigin.defense),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
+            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
 
         //pour chacune des caracteristiques cites dans cette liste on affiche un layout
@@ -170,7 +170,7 @@ fun LayoutUneCarac(
             text = "$nomCarac($originCarac)",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
+            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
         TextField(modifier = Modifier.weight(2f),
 
@@ -191,7 +191,7 @@ fun LayoutUneCarac(
             Text(
                 "+",
                 color = Color.White,
-                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
+                fontFamily = FontFamily(Font(graphicsConsts.fontCard))
             )
         }
         FloatingActionButton(modifier = Modifier.weight(1f), backgroundColor = Color.Black,
@@ -207,7 +207,7 @@ fun LayoutUneCarac(
             Text(
                 "-",
                 color = Color.White,
-                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
+                fontFamily = FontFamily(Font(graphicsConsts.fontCard))
             )
         }
     }
