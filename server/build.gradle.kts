@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.ktor.ktor.server.netty)
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.call.logging)
+    implementation(libs.kmongo.coroutine)
 
 
 }
