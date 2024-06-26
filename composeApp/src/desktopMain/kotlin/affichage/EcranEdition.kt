@@ -16,14 +16,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
+import lamortetses7cc.composeapp.generated.resources.Res
 import network.ApiApp
 import org.koin.compose.koinInject
+import org.jetbrains.compose.resources.Font
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -202,7 +204,7 @@ fun layoutEdition(
                 Text(
                     text = message!!, color = Color.White,
                     style = MaterialTheme.typography.h5,
-                    fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard)),
+                    fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
                 )
             }
         }

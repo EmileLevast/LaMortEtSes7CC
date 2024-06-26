@@ -19,12 +19,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import deparseDefense
 import getIntOrZeroOrNull
+import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
+import lamortetses7cc.composeapp.generated.resources.Res
 import network.ApiApp
+import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 import kotlin.reflect.KMutableProperty1
 
@@ -43,7 +45,7 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             text = actuelJoueur.nomComplet.ifBlank { actuelJoueur.nom },
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h4,
-            fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard))
+            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
         )
         Image(
             bitmap = actuelJoueur.getImage(apiApp),
@@ -59,13 +61,13 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             text = "Niveau : ${actuelJoueur.niveau}",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard))
+            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
         )
         Text(
             text = "Defense : " + deparseDefense(actuelJoueur.caracOrigin.defense),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard))
+            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
         )
 
         //pour chacune des caracteristiques cites dans cette liste on affiche un layout
@@ -168,7 +170,7 @@ fun LayoutUneCarac(
             text = "$nomCarac($originCarac)",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard))
+            fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
         )
         TextField(modifier = Modifier.weight(2f),
 
@@ -189,7 +191,7 @@ fun LayoutUneCarac(
             Text(
                 "+",
                 color = Color.White,
-                fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard))
+                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
             )
         }
         FloatingActionButton(modifier = Modifier.weight(1f), backgroundColor = Color.Black,
@@ -205,7 +207,7 @@ fun LayoutUneCarac(
             Text(
                 "-",
                 color = Color.White,
-                fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard))
+                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps))
             )
         }
     }

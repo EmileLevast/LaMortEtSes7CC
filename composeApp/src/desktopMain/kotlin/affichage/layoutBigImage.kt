@@ -12,10 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
+import lamortetses7cc.composeapp.generated.resources.Res
 import network.ApiApp
+import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 
 @Composable
@@ -38,7 +40,7 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
                 text = equipement.nomComplet.ifBlank { equipement.nom },
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h2,
-                fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard)),
+                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
                 color = Color.Black
             )
 

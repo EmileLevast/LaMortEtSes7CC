@@ -23,11 +23,13 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
+import lamortetses7cc.composeapp.generated.resources.Res
 import network.ApiApp
+import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 
 
@@ -124,7 +126,7 @@ fun layoutListItem(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.h5,
-                                fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard)),
+                                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
                                 color = Color.Black
                             )
                             Text(
@@ -140,7 +142,7 @@ fun layoutListItem(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.h5,
-                                fontFamily = FontFamily(Font(resource = graphicsConsts.fontCard)),
+                                fontFamily = FontFamily(Font(Res.font.OptimusPrinceps)),
                                 color = Color.White
                             )
                         }
