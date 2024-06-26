@@ -1,13 +1,10 @@
-package org.levast.project.configuration
+package configuration
 
-import configuration.AppProperties
 import kotlinx.serialization.json.Json
 import java.io.File
 
 
-class Configuration() {
-
-
+class ConfigurationImpl() : IConfiguration {
 
     private val PROPERTY_FILE_NAME ="properties.json"
 
@@ -18,5 +15,5 @@ class Configuration() {
         properties = Json.decodeFromString<AppProperties>(resourcesDir.resolve(PROPERTY_FILE_NAME).readText())
     }
 
-    fun getEndpointServer() = "http://${properties.serverUrl}"
+    override fun getEndpointServer() = "http://${properties.serverUrl}"
 }

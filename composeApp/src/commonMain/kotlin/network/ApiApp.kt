@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.toComposeImageBitmap
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.useResource
 import configuration.Configuration
+import configuration.IConfiguration
 import extractDecouvertesListFromEquipe
 import extractEquipementsListFromJoueur
 import io.ktor.client.*
@@ -38,7 +39,7 @@ import java.net.URL
 import javax.imageio.ImageIO
 
 
-class ApiApp(val config: Configuration) {
+class ApiApp(val config: IConfiguration) {
 
     private var imageBackground: ImageBitmap? = null
 
