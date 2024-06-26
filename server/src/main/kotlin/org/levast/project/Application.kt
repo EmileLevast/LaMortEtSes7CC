@@ -1,7 +1,16 @@
 package org.levast.project
 
+import ApiableItem
+import Arme
+import Armure
+import Bouclier
+import Equipe
 import Greeting
+import Joueur
+import Monster
 import SERVER_PORT
+import Sort
+import Special
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.LoggerContext
 import io.ktor.http.ContentDisposition
@@ -28,6 +37,9 @@ import org.slf4j.LoggerFactory
 import unmutableListApiItemDefinition
 import java.io.File
 import java.io.FileNotFoundException
+
+val unmutableListApiItemDefinition = listOf(Arme(),Armure(),Monster(),Bouclier(),Sort(),Special(),Joueur(), Equipe())
+
 
 fun main() {
 

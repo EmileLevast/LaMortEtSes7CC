@@ -55,5 +55,4 @@ android {
     }
 }
 dependencies {
-    implementation(project(":composeApp"))
 }
