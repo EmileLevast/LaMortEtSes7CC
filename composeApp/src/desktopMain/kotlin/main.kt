@@ -35,14 +35,14 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = "LaMortEtSes7CC",
     ) {
-        App()
+        AppDesktop()
     }
 }
 
 
 @Composable
 @Preview
-fun App() {
+fun AppDesktop() {
 
     KoinContext{
 
