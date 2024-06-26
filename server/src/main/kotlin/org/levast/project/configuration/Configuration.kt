@@ -1,6 +1,6 @@
-package configuration
+package org.levast.project.configuration
 
-import kotlinx.serialization.decodeFromString
+import configuration.AppProperties
 import kotlinx.serialization.json.Json
 import java.io.File
 
