@@ -1,5 +1,6 @@
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 class Joueur(

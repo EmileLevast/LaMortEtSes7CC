@@ -17,6 +17,7 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.LoggerContext
 import collectionsApiableItem
 import com.mongodb.MongoBulkWriteException
+import createCollectionTables
 import getCollectionElements
 import getCollectionElementsAsString
 import io.ktor.http.ContentDisposition
@@ -54,6 +55,8 @@ fun main() {
 
 
     (LoggerFactory.getILoggerFactory() as LoggerContext).getLogger("org.mongodb.driver").level = Level.WARN
+
+    createCollectionTables()
 
 
     embeddedServer(Netty, port = SERVER_PORT, host = "0.0.0.0", module = Application::module)
@@ -156,7 +159,7 @@ fun Application.module() {
                 }
                 post("/"+ itapiable.updateForApi) {
                     logger.debug("post en cours")
-                    val elementToUpdate:ApiableItem = getApiableElementAccordingToType(call, itapiable)
+                    val elementToUpdate:ApiableItem = call.receive<ApiableItem>()
 
                     val resInsert = collectionsApiableItem[itapiable.nameForApi]!!.updateOneById(elementToUpdate._id,elementToUpdate)
 
