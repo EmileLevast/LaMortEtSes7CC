@@ -4,19 +4,11 @@ import io.ktor.server.application.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.levast.project.unmutableListApiItemDefinition
-import org.litote.kmongo.KMongo
 import org.litote.kmongo.coroutine.CoroutineCollection
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.eq
 import org.litote.kmongo.reactivestreams.KMongo
 import org.litote.kmongo.regex
-import kotlin.reflect.full.createInstance
-
-//val monsterList = mutableListOf<Monster>(
-//    Monster("Carcasse",11),
-//    Monster("Chauve-soiries",7),
-//    Monster("Rat",8)
-//)
 
 val client = KMongo.createClient().coroutine
 val database = client.getDatabase("JDRProd")
@@ -25,7 +17,7 @@ val collectionsApiableItem:MutableMap<String,CoroutineCollection<out ApiableItem
 
 fun createCollectionTables(){
     unmutableListApiItemDefinition.forEach {
-        collectionsApiableItem[it.nameForApi!!] = database.getCollection(it.nameForApi)
+        collectionsApiableItem[it.nameForApi!!] = database.getCollection(it.nameForApi!!)
     }
 }
 
