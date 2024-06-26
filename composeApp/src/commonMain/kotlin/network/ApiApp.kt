@@ -22,7 +22,7 @@ import extractDecouvertesListFromEquipe
 import extractEquipementsListFromJoueur
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.engine.okhttp.*
+import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -44,7 +44,7 @@ class ApiApp(val config: IConfiguration) {
 
     val endpoint get() = config.getEndpointServer()
 
-    private val jsonClient = HttpClient(OkHttp) {
+    private val jsonClient = HttpClient(CIO) {
         install(ContentNegotiation) {
             json()
         }

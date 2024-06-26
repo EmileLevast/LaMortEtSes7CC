@@ -70,6 +70,11 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation("io.ktor:ktor-client-core:$ktor_version")
             implementation("io.ktor:ktor-client-cio:$ktor_version")
+
+            //Library to make call to the api DarkSoul
+            implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+            implementation("io.ktor:ktor-client-okhttp:$ktor_version")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
