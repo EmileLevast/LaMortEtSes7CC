@@ -1,11 +1,16 @@
 import affichage.GraphicConstantsFullGrid
-import configuration.Configuration
+import configuration.ConfigurationImpl
+import configuration.IConfiguration
+import configuration.ImageDownloaderImpl
+import io.ktor.serialization.Configuration
 import network.ApiApp
+import network.IImageDownloader
 import org.koin.dsl.module
 
 val appModule = module {
-    single {Configuration()}
-    single { ApiApp(get()) }
+    single {ConfigurationImpl() as IConfiguration}
+    single {ImageDownloaderImpl(get()) as IImageDownloader}
+    single { ApiApp(get(),get()) }
 
     //grahic element
     single { GraphicConstantsFullGrid() }

@@ -241,6 +241,9 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
 
     fun downloadImageWithName(imageName: String) = imageDownloader.downloadImageWithName(imageName)
 
+    fun getUrlImageWithFileName(fileName: String) = "$endpoint/images/$fileName"
+    fun downloadBackgroundImage(urlImageWithFileName: String) = imageDownloader.downloadBackgroundImage(urlImageWithFileName)
+
 }
 
 
