@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.useResource
-import configuration.Configuration
 import configuration.IConfiguration
 import extractDecouvertesListFromEquipe
 import extractEquipementsListFromJoueur
