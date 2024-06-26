@@ -13,10 +13,6 @@ import Joueur
 import Monster
 import Sort
 import Special
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.toComposeImageBitmap
-import androidx.compose.ui.res.loadImageBitmap
-import androidx.compose.ui.res.useResource
 import configuration.IConfiguration
 import extractDecouvertesListFromEquipe
 import extractEquipementsListFromJoueur
@@ -27,20 +23,11 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import io.ktor.util.logging.*
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import org.jetbrains.skia.Image
 import unmutableListApiItemDefinition
-import java.io.ByteArrayOutputStream
-import java.net.HttpURLConnection
-import java.net.URL
-import javax.imageio.ImageIO
 
 
-class ApiApp(val config: IConfiguration) {
-
-    private var imageBackground: ImageBitmap? = null
+class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) {
 
     val endpoint get() = config.getEndpointServer()
 
@@ -226,45 +213,6 @@ class ApiApp(val config: IConfiguration) {
             return it.status == HttpStatusCode.OK
         }
     }
-
-    private fun loadNetworkImage(link: String, format: String): ImageBitmap {
-        val url = URL(link)
-        val connection = url.openConnection() as HttpURLConnection
-        connection.connect()
-
-        val inputStream = connection.inputStream
-        val bufferedImage = ImageIO.read(inputStream)
-
-        val stream = ByteArrayOutputStream()
-        ImageIO.write(bufferedImage, format, stream)
-        val byteArray = stream.toByteArray()
-
-        return Image.makeFromEncoded(byteArray).toComposeImageBitmap()
-    }
-
-    fun downloadBackgroundImage(urlImage: String): ImageBitmap {
-        return if (imageBackground == null) {
-            val format = urlImage.substring(urlImage.lastIndexOf(".") + 1)
-            loadNetworkImage(urlImage, format)
-        } else {
-            imageBackground!!
-        }
-    }
-
-    private fun downloadImageWithUrl(urlImage: String): ImageBitmap {
-        val format = urlImage.substring(urlImage.lastIndexOf(".") + 1)
-        return loadNetworkImage(urlImage, format)
-    }
-
-    fun downloadImageWithName(imageNameWithExtension: String): ImageBitmap {
-        return try {
-            downloadImageWithUrl(getUrlImageWithFileName(imageNameWithExtension))
-        } catch (e: Exception) {
-            useResource("UnknownImage.jpg") { loadImageBitmap(it) }
-        }
-    }
-
-    fun getUrlImageWithFileName(fileName: String) = "$endpoint/images/$fileName"
 
     suspend fun insertItem(itemSelected:ApiableItem):Boolean{
         jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
