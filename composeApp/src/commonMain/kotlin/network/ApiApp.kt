@@ -205,7 +205,7 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     /**
      * pour mettre à jour les stats d'un joueur
      */
-    suspend fun updateJoueur(joueurToUpdate: ApiableItem): Boolean {
+    suspend fun updateJoueur(joueurToUpdate: Joueur): Boolean {
         jsonClient.post(endpoint + "/" + joueurToUpdate.nameForApi + "/$ENDPOINT_MAJ_CARACS_JOUEUR") {
             contentType(ContentType.Application.Json)
             setBody(joueurToUpdate)
