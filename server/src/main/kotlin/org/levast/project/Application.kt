@@ -159,7 +159,7 @@ fun Application.module() {
                 }
                 post("/"+ itapiable.updateForApi) {
                     logger.debug("post en cours")
-                    val elementToUpdate:ApiableItem = call.receive<ApiableItem>()
+                    val elementToUpdate:ApiableItem = getApiableElementAccordingToType(call, itapiable)
 
                     val resInsert = collectionsApiableItem[itapiable.nameForApi]!!.updateOneById(elementToUpdate._id,elementToUpdate)
 
