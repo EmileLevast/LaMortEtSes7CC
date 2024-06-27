@@ -7,7 +7,6 @@ import Bouclier
 import ENDPOINT_MAJ_CARACS_JOUEUR
 import ENDPOINT_RECHERCHE_STRICTE
 import Equipe
-import Greeting
 import Joueur
 import Monster
 import SERVER_PORT
@@ -36,10 +35,13 @@ import io.ktor.server.plugins.compression.Compression
 import io.ktor.server.plugins.compression.gzip
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
+import io.ktor.server.request.httpMethod
 import io.ktor.server.request.receive
+import io.ktor.server.request.receiveText
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.logging.KtorSimpleLogger
+import kotlinx.coroutines.runBlocking
 import network.AnythingItemDTO
 import org.litote.kmongo.eq
 import org.litote.kmongo.setValue
@@ -69,11 +71,13 @@ fun Application.module() {
     }
     install(CallLogging) {
         level = org.slf4j.event.Level.INFO
+
     }
     install(CORS) {
         allowMethod(HttpMethod.Get)
         allowMethod(HttpMethod.Post)
         allowMethod(HttpMethod.Delete)
+        allowMethod(HttpMethod.Put)
         anyHost()
     }
     install(Compression) {
@@ -82,7 +86,7 @@ fun Application.module() {
     routing {
         get("/") {
             call.respondText(
-                this::class.java.classLoader.getResource("index.html")!!.readText(),
+                this::class.java.classLoader?.getResource("index.html")!!.readText(),
                 ContentType.Text.Html
             )
         }
@@ -159,7 +163,8 @@ fun Application.module() {
                 }
                 post("/"+ itapiable.updateForApi) {
                     logger.debug("post en cours")
-                    val elementToUpdate:ApiableItem = getApiableElementAccordingToType(call, itapiable)
+
+                    val elementToUpdate:ApiableItem = call.receive()
 
                     val resInsert = collectionsApiableItem[itapiable.nameForApi]!!.updateOneById(elementToUpdate._id,elementToUpdate)
 
@@ -202,7 +207,9 @@ fun Application.module() {
                     file.writeText(stringFileCSV)
                     call.response.header(
                         HttpHeaders.ContentDisposition,
-                        ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName, "${filename}")
+                        ContentDisposition.Attachment.withParameter(ContentDisposition.Parameters.FileName,
+                            filename
+                        )
                             .toString()
                     )
                     call.respondFile(file)
