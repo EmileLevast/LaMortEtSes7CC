@@ -20,6 +20,11 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -35,6 +40,11 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         install(ContentNegotiation) {
             json()
         }
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.ALL
+        }
+
     }
 
     suspend fun searchAnything(nomSearched: String, strict: Boolean = false): List<IListItem> {
@@ -215,11 +225,20 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     }
 
     suspend fun insertItem(itemSelected:ApiableItem):Boolean{
-        jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
-            contentType(ContentType.Application.Json)
-            setBody(itemSelected)
-        }.let{
-            return it.status== HttpStatusCode.OK
+        if(itemSelected is Special){
+            jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
+                contentType(ContentType.Application.Json)
+                setBody(itemSelected)
+            }.let{
+                return it.status== HttpStatusCode.OK
+            }
+        }else{
+            jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
+                contentType(ContentType.Application.Json)
+                setBody(itemSelected)
+            }.let{
+                return it.status== HttpStatusCode.OK
+            }
         }
     }
 

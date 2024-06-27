@@ -72,6 +72,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation("io.ktor:ktor-client-core:$ktor_version")
             implementation("io.ktor:ktor-client-cio:$ktor_version")
+            implementation("io.ktor:ktor-client-logging:$ktor_version")
 
             //Library to make call to the api DarkSoul
             implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")

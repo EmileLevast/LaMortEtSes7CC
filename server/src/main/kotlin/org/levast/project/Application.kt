@@ -42,6 +42,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.logging.KtorSimpleLogger
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.Json
 import network.AnythingItemDTO
 import org.litote.kmongo.eq
 import org.litote.kmongo.setValue
@@ -164,7 +165,7 @@ fun Application.module() {
                 post("/"+ itapiable.updateForApi) {
                     logger.debug("post en cours")
 
-                    val elementToUpdate:ApiableItem = call.receive()
+                    val elementToUpdate:ApiableItem = getApiableElementAccordingToType(call, itapiable)
 
                     val resInsert = collectionsApiableItem[itapiable.nameForApi]!!.updateOneById(elementToUpdate._id,elementToUpdate)
 
