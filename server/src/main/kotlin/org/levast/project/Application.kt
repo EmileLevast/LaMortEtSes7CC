@@ -165,7 +165,7 @@ fun Application.module() {
                 post("/"+ itapiable.updateForApi) {
                     logger.debug("post en cours")
 
-                    val elementToUpdate:ApiableItem = getApiableElementAccordingToType(call, itapiable)
+                    val elementToUpdate:ApiableItem = call.receive()
 
                     val resInsert = collectionsApiableItem[itapiable.nameForApi]!!.updateOneById(elementToUpdate._id,elementToUpdate)
 
@@ -177,7 +177,7 @@ fun Application.module() {
                 }
                 post("/"+ itapiable.insertForApi) {
                     logger.debug("insert en cours")
-                    val elementToInsert:ApiableItem = getApiableElementAccordingToType(call, itapiable)
+                    val elementToInsert:ApiableItem = call.receive()
 
                     //S'il y'a déjà un élément avec cet identifiant là, on insère pas, faut supprimer avant
                     val resInsert =  if(collectionsApiableItem[itapiable.nameForApi]!!.countDocuments(ApiableItem::_id eq elementToInsert._id) < 1){

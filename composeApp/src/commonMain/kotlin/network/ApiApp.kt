@@ -225,21 +225,12 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     }
 
     suspend fun insertItem(itemSelected:ApiableItem):Boolean{
-        if(itemSelected is Special){
             jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
                 contentType(ContentType.Application.Json)
                 setBody(itemSelected)
             }.let{
                 return it.status== HttpStatusCode.OK
             }
-        }else{
-            jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
-                contentType(ContentType.Application.Json)
-                setBody(itemSelected)
-            }.let{
-                return it.status== HttpStatusCode.OK
-            }
-        }
     }
 
     suspend fun updateItem(itemSelected:ApiableItem):Boolean{

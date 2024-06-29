@@ -1,9 +1,10 @@
+val kmongoVersion = "5.1.0"
+
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
     application
     kotlin("plugin.serialization") version "2.0.0"
-
 }
 
 group = "org.levast.project"
@@ -21,7 +22,8 @@ dependencies {
     implementation(project(":composeApp"))
     testImplementation(libs.ktor.server.tests)
     testImplementation(libs.kotlin.test.junit)
-    implementation(libs.kotlinx.serialization.json)
+    implementation("org.litote.kmongo:kmongo-coroutine-serialization:$kmongoVersion")
+
 
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.server.content.negotiation)
