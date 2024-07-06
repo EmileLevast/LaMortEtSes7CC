@@ -70,11 +70,7 @@ fun layoutListItem(
     ) {
         items(equipementsAfficher) { equipement ->
             Card(
-                modifier = if (isDetailedModeOn) {
-                    Modifier.fillMaxHeight().clickable { showBigElement(equipement) }
-                } else {
-                    Modifier.fillMaxHeight()
-                },
+                modifier = Modifier.fillMaxHeight().clickable { showBigElement(equipement) },
                 backgroundColor = equipement.color,
                 elevation = graphicsConsts.cardElevation
             ) {
