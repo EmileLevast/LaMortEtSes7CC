@@ -25,8 +25,10 @@ import deparseDefense
 import getIntOrZeroOrNull
 import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
 import org.jetbrains.compose.resources.Font
+import org.jetbrains.compose.resources.imageResource
 import org.koin.compose.koinInject
 import kotlin.reflect.KMutableProperty1
 
@@ -48,7 +50,7 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
         Image(
-            bitmap = actuelJoueur.getImage(apiApp),
+            bitmap = actuelJoueur.getImage(apiApp)?: imageResource(Res.drawable.UnknownImage),
             contentDescription = "avatar",
             contentScale = ContentScale.Fit,            // crop the image if it's not a square
             modifier = Modifier

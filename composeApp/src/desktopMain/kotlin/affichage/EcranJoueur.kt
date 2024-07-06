@@ -24,7 +24,10 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
+import org.jetbrains.compose.resources.imageResource
 import org.koin.compose.koinInject
 
 @Composable
@@ -95,7 +98,7 @@ fun nameAndIconPlayer(joueur: Joueur) {
 
     Row {
         Image(
-            painter = CustomPainterIcon(joueur.getImage(apiApp)),
+            painter = CustomPainterIcon(joueur.getImage(apiApp)?: imageResource(Res.drawable.UnknownImage)),
             contentDescription = "avatar",
             contentScale = ContentScale.Fit,            // crop the image if it's not a square
             modifier = Modifier.height(columnHeightDp)

@@ -16,8 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
 import org.jetbrains.compose.resources.Font
+import org.jetbrains.compose.resources.imageResource
 import org.koin.compose.koinInject
 
 @Composable
@@ -25,12 +27,12 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
     val apiApp = koinInject<ApiApp>()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
-    val imageToShow = equipement.getImage(apiApp)
+    val imageToShow = equipement.getImage(apiApp)?: imageResource(Res.drawable.UnknownImage)
     Row(Modifier.clickable(onClick = onClick).fillMaxSize()) {
         Image(
             modifier = Modifier.fillMaxHeight(),
             contentScale = ContentScale.Fit,
-            bitmap = imageToShow,
+            bitmap = imageToShow ,
             contentDescription = null,
         )
 

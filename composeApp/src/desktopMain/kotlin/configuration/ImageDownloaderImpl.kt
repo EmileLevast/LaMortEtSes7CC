@@ -4,7 +4,10 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.useResource
+import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.IImageDownloader
+import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.skia.Image
 import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
@@ -46,11 +49,11 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
         return loadNetworkImage(urlImage, format)
     }
 
-    override fun downloadImageWithName(imageNameWithExtension: String): ImageBitmap {
+    override fun downloadImageWithName(imageNameWithExtension: String): ImageBitmap? {
         return try {
             downloadImageWithUrl(getUrlImageWithFileName(imageNameWithExtension))
         } catch (e: Exception) {
-            useResource("UnknownImage.jpg") { loadImageBitmap(it) }
+            null
         }
     }
 

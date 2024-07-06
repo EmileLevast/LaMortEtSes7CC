@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
 import org.jetbrains.compose.resources.Font
+import org.jetbrains.compose.resources.imageResource
 import org.koin.compose.koinInject
 
 
@@ -95,7 +97,7 @@ fun layoutListItem(
                                     // Set column height using the LayoutCoordinates
                                     columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
                                 },
-                                painter = CustomPainterCard(imageBackground, equipement.getImage(apiApp)),
+                                painter = CustomPainterCard(imageBackground, equipement.getImage(apiApp) ?: imageResource(Res.drawable.UnknownImage)),
                                 contentDescription = null,
                             )
                         }

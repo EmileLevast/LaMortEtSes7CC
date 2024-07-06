@@ -21,7 +21,7 @@ enum class EffectType(val shortname:String, val symbol:String){
 }
 
 //une map qui contient toutes les images déjà téléchargées
-val mapImagesDownload = mutableMapOf<String,ImageBitmap>()
+val mapImagesDownload = mutableMapOf<String,ImageBitmap?>()
 
 fun convertEffectTypeStatsToString(statsToConvert:Map<EffectType,String> ) :String {
     val listMapDefense = StringBuilder()

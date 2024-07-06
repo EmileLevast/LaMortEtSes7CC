@@ -18,6 +18,6 @@ interface IListItem {
 
     fun getBackgroundBorder():String
 
-    fun getImage(apiApp: ApiApp):ImageBitmap
+    fun getImage(apiApp: ApiApp): ImageBitmap?
 }
 

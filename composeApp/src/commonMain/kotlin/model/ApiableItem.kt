@@ -294,7 +294,7 @@ sealed class ApiableItem() : IListItem {
 
     override fun getBackgroundBorder(): String = "border$nameForApi.svg"
 
-    final override fun getImage(apiApp: ApiApp): ImageBitmap {
+    final override fun getImage(apiApp: ApiApp): ImageBitmap? {
         var image = mapImagesDownload[imageName]
         //si on a pas trouvé l'image dans les images téléchargées
         if(image == null){
