@@ -5,10 +5,14 @@ import CHAR_SEP_EQUIPEMENT
 import Equipe
 import IListItem
 import Joueur
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -80,67 +84,77 @@ fun layoutEdition(
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Button(onClick = {
-                    backClick(true)
-                }) {
-                    Text("Retour")
-                }
 
+                Box (Modifier.fillMaxWidth()){
+
+                    Row(horizontalArrangement = Arrangement.Start) {
+                        Button(onClick = {
+                            backClick(true)
+                        }) {
+                            Text("Retour")
+                        }
+                    }
+
+                    Row(Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.Center) {
+                        Button(onClick = {
+                            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
+                            coroutineScope.launch(Dispatchers.IO) {
+                                val res = apiApp.updateItem(itemParsed)
+                                withContext(Dispatchers.Default) {
+                                    message = if (res) {
+                                        "${itemParsed.nom} updated"
+                                    } else {
+                                        "${itemParsed.nom} - erreur mise à jour"
+                                    }
+                                }
+                            }
+                        }) {
+                            Text("Update")
+                        }
+                        Button(onClick = {
+                            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
+                            coroutineScope.launch(Dispatchers.IO) {
+                                val res = apiApp.insertItem(itemParsed)
+                                withContext(Dispatchers.Default) {
+                                    message = if (res) {
+                                        "${itemParsed.nom} insere"
+                                    } else {
+                                        "${itemParsed.nom} - erreur insertion"
+                                    }
+                                }
+                            }
+                        }) {
+                            Text("Save")
+                        }
+                        Button(onClick = {
+                            openAlertDialogDeletion = true
+                        }) {
+                            Text("Delete")
+                        }
+                    }
+                }
 
                 //Pour chaque règle de formatage
-                parsingRulesAttributs.forEachIndexed { index, parsingRules ->
-
-                    if (listAttributs.size > index) {
-                        TextField(
-                            value = listAttributs[index],
-                            onValueChange = { listAttributs[index] = it },
-                            label = { Text(parsingRules) }
-                        )
-                    } else {
-                        TextField(
-                            value = "ERROR - NO VALUE",
-                            onValueChange = { },
-                        )
-                    }
-
-                }
-                Row{
-                    Button(onClick = {
-                        val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
-                        coroutineScope.launch(Dispatchers.IO) {
-                            val res = apiApp.updateItem(itemParsed)
-                            withContext(Dispatchers.Default) {
-                                message = if (res) {
-                                    "${itemParsed.nom} updated"
-                                } else {
-                                    "${itemParsed.nom} - erreur mise à jour"
-                                }
-                            }
+                LazyColumn(
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    itemsIndexed(parsingRulesAttributs) { index, parsingRules ->
+                        if (listAttributs.size > index) {
+                            TextField(
+                                value = listAttributs[index],
+                                onValueChange = { listAttributs[index] = it },
+                                label = { Text(parsingRules) }
+                            )
+                        } else {
+                            TextField(
+                                value = "ERROR - NO VALUE",
+                                onValueChange = { },
+                            )
                         }
-                    }) {
-                        Text("Update")
-                    }
-                    Button(onClick = {
-                        val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
-                        coroutineScope.launch(Dispatchers.IO) {
-                            val res = apiApp.insertItem(itemParsed)
-                            withContext(Dispatchers.Default) {
-                                message = if (res) {
-                                    "${itemParsed.nom} insere"
-                                } else {
-                                    "${itemParsed.nom} - erreur insertion"
-                                }
-                            }
-                        }
-                    }) {
-                        Text("Save")
-                    }
-                    Button(onClick = {
-                        openAlertDialogDeletion = true
-                    }) {
-                        Text("Delete")
                     }
                 }
+
 
             }
             Column(
@@ -174,7 +188,9 @@ fun layoutEdition(
                 layoutListeSelectables(
                     Modifier,
                     listeJoueurs,
-                    { joueur -> (joueur as Joueur).getAllEquipmentAsList().contains(itemToEdit.nom) },
+                    { joueur ->
+                        (joueur as Joueur).getAllEquipmentAsList().contains(itemToEdit.nom)
+                    },
                     { isSelect, joueur ->
                         val joueurToUpdate = joueur as? Joueur
                         if (joueurToUpdate != null) {
@@ -198,7 +214,7 @@ fun layoutEdition(
         if (show && message != null) {
             Card(
                 Modifier.padding(30.dp).align(Alignment.CenterStart),
-                backgroundColor = if(message!!.contains("erreur")) Color.Red else Color.DarkGray,
+                backgroundColor = if (message!!.contains("erreur")) Color.Red else Color.DarkGray,
                 shape = RoundedCornerShape(3.dp)
             ) {
                 Text(
@@ -208,10 +224,10 @@ fun layoutEdition(
                 )
             }
         }
-        if(openAlertDialogDeletion){
+        if (openAlertDialogDeletion) {
             AlertDialog(
-                title = {Text("Supprimer l'élément")},
-                onDismissRequest = {openAlertDialogDeletion = false},
+                title = { Text("Supprimer l'élément") },
+                onDismissRequest = { openAlertDialogDeletion = false },
                 confirmButton = {
                     TextButton(
                         onClick = {
@@ -261,7 +277,7 @@ fun layoutListeSelectables(
         verticalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace),
         horizontalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace),
 
-    ) {
+        ) {
         items(listSelectables) {
             Card(
                 Modifier.width(IntrinsicSize.Min),
