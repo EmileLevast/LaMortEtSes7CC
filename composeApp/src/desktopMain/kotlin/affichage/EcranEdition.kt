@@ -136,6 +136,7 @@ fun layoutEdition(
 
                 //Pour chaque règle de formatage
                 LazyColumn(
+                    Modifier.fillMaxHeight(),
                     verticalArrangement = Arrangement.SpaceEvenly,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
