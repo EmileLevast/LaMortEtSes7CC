@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.Dispatchers
@@ -34,32 +34,44 @@ import org.koin.core.context.startKoin
 
 fun main() = application {
 
-    //val icon = painterResource("icon_dark_soul.ico")
 
     startKoin {
         modules(appModule)
     }
 
-    Window(onCloseRequest = ::exitApplication, title = "La mort et ses 7 Couvre-chefs" ) {
-        AppDesktop()
+    KoinContext {
+        AppDesktop(::exitApplication)
     }
 }
 
 
 @Composable
 @Preview
-fun AppDesktop() {
+fun AppDesktop(onExit: () -> Unit) {
 
-    KoinContext{
+    val (isInAdminMode, switchAdminMode) = remember { mutableStateOf<Boolean?>(null) }
 
-        MainWindow()
+    Window(onCloseRequest = onExit, title = "La mort et ses 7 Couvre-chefs") {
+        MenuBar {
+            if (isInAdminMode != null) {
+                Menu("Mode", mnemonic = 'M') {
+                    if (isInAdminMode) {
+                        Item("Vers utilisateur", onClick = { switchAdminMode(false) })
+                    } else {
+                        Item("Vers Admin", onClick = { switchAdminMode(true) })
+                    }
+                }
+            }
+        }
+        MainWindow(isInAdminMode, switchAdminMode)
+
     }
 
 
 }
 
 @Composable
-fun MainWindow() {
+fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
     val apiApp = koinInject<ApiApp>()
 
 
@@ -67,7 +79,6 @@ fun MainWindow() {
 
     val (selectEquipe, setSelectEquipe) = remember { mutableStateOf<Equipe?>(null) }
     val (bitmapBackground, updateBitmapBackground) = remember { mutableStateOf<ImageBitmap?>(null) }
-    val  (isInAdminMode, switchAdminMode) =  remember { mutableStateOf<Boolean?>(null) }
 
     val (equipes, setEquipes) = remember { mutableStateOf<List<Equipe>>(emptyList()) }
 
@@ -76,24 +87,27 @@ fun MainWindow() {
         coroutineScope.launch {
             setEquipes(apiApp.searchEquipe(".*") ?: listOf())
             updateBitmapBackground(withContext(Dispatchers.IO) {//dans un thread à part on maj toute l'equipe
-                apiApp.downloadBackgroundImage(apiApp.getUrlImageWithFileName(IMAGENAME_CARD_BACKGROUND))
+                apiApp.downloadBackgroundImage(
+                    apiApp.getUrlImageWithFileName(
+                        IMAGENAME_CARD_BACKGROUND
+                    )
+                )
             })
         }
     }
 
     //Si on est pas encore decide d'ouvrir l'appli en mode admin ou non
-    if(isInAdminMode==null){
+    if (isInAdminMode == null) {
         layoutModeSelection {
             switchAdminMode(it)
         }
-    }else if (isInAdminMode){//si le mode admin est selectionne
+    } else if (isInAdminMode) {//si le mode admin est selectionne
         layoutAdmin(bitmapBackground)
-    }
-    else{
+    } else {
         //si la liste d'equipe est vide alors on affiche les equipes
-        if(selectEquipe == null){
-            LayoutEquipe(equipes){setSelectEquipe(it)}
-        }else{
+        if (selectEquipe == null) {
+            LayoutEquipe(equipes) { setSelectEquipe(it) }
+        } else {
             WindowJoueurs(selectEquipe, bitmapBackground)
         }
     }
@@ -103,8 +117,9 @@ fun MainWindow() {
 
 
 @Composable
-fun WindowJoueurs(equipeRecherche:Equipe,
-                  bitmapBackground: ImageBitmap?,
+fun WindowJoueurs(
+    equipeRecherche: Equipe,
+    bitmapBackground: ImageBitmap?,
 ) {
     val apiApp = koinInject<ApiApp>()
 
@@ -124,14 +139,17 @@ fun WindowJoueurs(equipeRecherche:Equipe,
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
 
     LaunchedEffect(justClickedJoueur, equipeRecherche) {
-        selectedJoueur = justClickedJoueur // dans tous les cas on change le joueur actuel par celui sélectionné
+        selectedJoueur =
+            justClickedJoueur // dans tous les cas on change le joueur actuel par celui sélectionné
         loading = true
-        val updatedAllJoueurs = withContext(Dispatchers.IO) {//dans un thread à part on maj tous les joueurs
-            apiApp.searchAllJoueur(equipeRecherche.getMembreEquipe())
-        }
+        val updatedAllJoueurs =
+            withContext(Dispatchers.IO) {//dans un thread à part on maj tous les joueurs
+                apiApp.searchAllJoueur(equipeRecherche.getMembreEquipe())
+            }
         setJoueurs(updatedAllJoueurs)//on mets à jour tous les joueurs
         //on remet le joueur actuel a jour avec celui qui a ete selectionne
-        selectedJoueur = updatedAllJoueurs.find { it._id == justClickedJoueur._id } ?: justClickedJoueur
+        selectedJoueur =
+            updatedAllJoueurs.find { it._id == justClickedJoueur._id } ?: justClickedJoueur
         val updatedEquipments = withContext(Dispatchers.IO) {
             apiApp.searchAllEquipementJoueur(selectedJoueur)//on met a jour tout ses equipements
         }
@@ -141,12 +159,14 @@ fun WindowJoueurs(equipeRecherche:Equipe,
 
     LaunchedEffect(triggerDecouverte) {
         loading = true
-        val updatedEquipes = withContext(Dispatchers.IO) {//dans un thread à part on maj toute l'equipe
-            apiApp.searchEquipe(equipeRecherche.nom)
-        }
+        val updatedEquipes =
+            withContext(Dispatchers.IO) {//dans un thread à part on maj toute l'equipe
+                apiApp.searchEquipe(equipeRecherche.nom)
+            }
         val updatedDecouvertes =
             withContext(Dispatchers.IO) {//dans un thread à part on recherche toutes les decouvertes de l'equipe
-                apiApp.searchAllDecouvertesEquipe(updatedEquipes?.first() ?: equipeRecherche)
+
+                apiApp.searchAllDecouvertesEquipe(updatedEquipes?.firstOrNull() ?: equipeRecherche)
             }
 
         setDecouvertesEquipe(updatedDecouvertes)//on les mets sur l'ecran
@@ -181,7 +201,6 @@ fun WindowJoueurs(equipeRecherche:Equipe,
         coroutineScope.launch {
 
 
-
             setJoueurs(withContext(Dispatchers.IO) {
                 apiApp.searchAllJoueur(equipeRecherche.getMembreEquipe())
             })
@@ -192,7 +211,12 @@ fun WindowJoueurs(equipeRecherche:Equipe,
 
 
         Column {
-            layoutJoueur(selectedJoueur, onSelectedJoueurChange, onSelectedDecouvertesEquipes, joueurs)
+            layoutJoueur(
+                selectedJoueur,
+                onSelectedJoueurChange,
+                onSelectedDecouvertesEquipes,
+                joueurs
+            )
             Row {
                 if (decouvertesEquipe != null) {
                     layoutListItem(
