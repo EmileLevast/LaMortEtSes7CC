@@ -297,7 +297,7 @@ sealed class ApiableItem() : IListItem {
     final override fun getImage(apiApp: ApiApp): ImageBitmap? {
         var image = mapImagesDownload[imageName]
         //si on a pas trouvé l'image dans les images téléchargées
-        if(image == null){
+        if(image == null && !mapImagesDownload.contains(imageName)){
             image = apiApp.downloadImageWithName(imageName).apply { mapImagesDownload[imageName] = this }
         }
 
