@@ -11,6 +11,7 @@ import Equipe
 import IListItem
 import Joueur
 import Monster
+import QUERY_PARAMETER_NOM
 import Sort
 import Special
 import configuration.IConfiguration
@@ -49,27 +50,34 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
 
     suspend fun searchAnything(nomSearched: String, strict: Boolean = false): List<IListItem> {
         try {
-            return  deserializeAnythingItemDTO(searchAnythingStringEncoded(nomSearched, strict))
+            return deserializeAnythingItemDTO(searchAnythingStringEncoded(nomSearched, strict))
         } catch (e: Exception) {
             println(" ${e.stackTraceToString()} Erreur de connexion au réseau lors de la récupération d'équipement")
             return listOf()
         }
     }
 
-    suspend fun searchAnythingStringEncoded(nomSearched: String, strict: Boolean): List<AnythingItemDTO> {
+    private suspend fun searchAnythingStringEncoded(
+        nomSearched: String,
+        strict: Boolean
+    ): List<AnythingItemDTO> {
 
-        jsonClient.get(endpoint + "/$ENDPOINT_RECHERCHE_TOUT" + "/${nomSearched}") {
-                url {
-                    parameters.append(ENDPOINT_RECHERCHE_STRICTE, strict.toString())
-                }
+        jsonClient.get("$endpoint/$ENDPOINT_RECHERCHE_TOUT") {
+            url {
+                parameters.append(ENDPOINT_RECHERCHE_STRICTE, strict.toString())
+                parameters.append(QUERY_PARAMETER_NOM, nomSearched)
+            }
         }.let {
             return if (it.status != HttpStatusCode.NoContent) it.body<List<AnythingItemDTO>>() else listOf()
         }
     }
 
-    suspend fun searchEverything(searchedNames: List<String>, strict:Boolean = false) : List<IListItem> {
+    suspend fun searchEverything(
+        searchedNames: List<String>,
+        strict: Boolean = false
+    ): List<IListItem> {
         try {
-            return  deserializeAnythingItemDTO(searchEverythingStringEncoded(searchedNames))
+            return deserializeAnythingItemDTO(searchEverythingStringEncoded(searchedNames))
         } catch (e: Exception) {
             println(" ${e.stackTraceToString()} Erreur de connexion au réseau lors de la récupération d'équipement")
 
@@ -77,86 +85,58 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         }
     }
 
-    fun deserializeAnythingItemDTO(listAnythingItem : List<AnythingItemDTO>): List<IListItem>{
+    fun deserializeAnythingItemDTO(listAnythingItem: List<AnythingItemDTO>): List<IListItem> {
         val listItemsFound = mutableListOf<IListItem>()
-        for(anythingItem in listAnythingItem){
+        for (anythingItem in listAnythingItem) {
 
-            if(anythingItem.itemContent!= null && anythingItem.typeItem != null){
+            if (anythingItem.itemContent != null && anythingItem.typeItem != null) {
                 // Créer une instance de la classe
-                val itemClasseReify: ApiableItem? = unmutableListApiItemDefinition.find { it.nameForApi == anythingItem.typeItem }
+                val itemClasseReify: ApiableItem? =
+                    unmutableListApiItemDefinition.find { it.nameForApi == anythingItem.typeItem }
 
                 //TODO ajouter ici les nouvelles tables a deserialiser
-                listItemsFound.add(when(itemClasseReify){
-                    is Arme -> Json.decodeFromString<Arme>(anythingItem.itemContent!!)
-                    is Armure -> Json.decodeFromString<Armure>(anythingItem.itemContent!!)
-                    is Monster -> Json.decodeFromString<Monster>(anythingItem.itemContent!!)
-                    is Bouclier -> Json.decodeFromString<Bouclier>(anythingItem.itemContent!!)
-                    is Sort -> Json.decodeFromString<Sort>(anythingItem.itemContent!!)
-                    is Special -> Json.decodeFromString<Special>(anythingItem.itemContent!!)
-                    is Joueur -> Json.decodeFromString<Joueur>(anythingItem.itemContent!!)
-                    is Equipe -> Json.decodeFromString<Equipe>(anythingItem.itemContent!!)
-                    else-> throw IllegalArgumentException("Impossible de deserialiser l'objet json recu, il ne fait pas parti des elements connus")
-                })
+                listItemsFound.add(
+                    when (itemClasseReify) {
+                        is Arme -> Json.decodeFromString<Arme>(anythingItem.itemContent!!)
+                        is Armure -> Json.decodeFromString<Armure>(anythingItem.itemContent!!)
+                        is Monster -> Json.decodeFromString<Monster>(anythingItem.itemContent!!)
+                        is Bouclier -> Json.decodeFromString<Bouclier>(anythingItem.itemContent!!)
+                        is Sort -> Json.decodeFromString<Sort>(anythingItem.itemContent!!)
+                        is Special -> Json.decodeFromString<Special>(anythingItem.itemContent!!)
+                        is Joueur -> Json.decodeFromString<Joueur>(anythingItem.itemContent!!)
+                        is Equipe -> Json.decodeFromString<Equipe>(anythingItem.itemContent!!)
+                        else -> throw IllegalArgumentException("Impossible de deserialiser l'objet json recu, il ne fait pas parti des elements connus")
+                    }
+                )
             }
         }
-        return  listItemsFound
+        return listItemsFound
     }
 
-    suspend fun searchEverythingStringEncoded(searchedNames:List<String>) : List<AnythingItemDTO> {
+    suspend fun searchEverythingStringEncoded(searchedNames: List<String>): List<AnythingItemDTO> {
 
-        jsonClient.put("$endpoint/$ENDPOINT_RECHERCHE_TOUT"){
+        jsonClient.put("$endpoint/$ENDPOINT_RECHERCHE_TOUT") {
             contentType(ContentType.Application.Json)
             setBody(searchedNames)
-        }.let{
+        }.let {
             return if (it.status != HttpStatusCode.NoContent) it.body<List<AnythingItemDTO>>() else listOf()
-        }
-    }
-
-    suspend fun searchArme(nomSearched: String): List<Arme>? {
-        jsonClient.get(endpoint + "/" + Arme().namePrecisForApi + "/${nomSearched}").let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<Arme>>() else null
-        }
-    }
-
-    suspend fun searchArmure(nomSearched: String): List<Armure>? {
-        jsonClient.get(endpoint + "/" + Armure().namePrecisForApi + "/${nomSearched}").let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<Armure>>() else null
-        }
-    }
-
-    suspend fun searchBouclier(nomSearched: String): List<Bouclier>? {
-        jsonClient.get(endpoint + "/" + Bouclier().namePrecisForApi + "/${nomSearched}").let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<Bouclier>>() else null
-        }
-    }
-
-    suspend fun searchSort(nomSearched: String): List<Sort>? {
-        jsonClient.get(endpoint + "/" + Sort().namePrecisForApi + "/${nomSearched}").let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<Sort>>() else null
-        }
-    }
-
-    suspend fun searchSpecial(nomSearched: String): List<Special>? {
-        jsonClient.get(endpoint + "/" + Special().namePrecisForApi + "/${nomSearched}").let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<Special>>() else null
-        }
-    }
-
-    suspend fun searchMonster(nomSearched: String): List<Monster>? {
-        jsonClient.get(endpoint + "/" + Monster().namePrecisForApi + "/${nomSearched}").let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<Monster>>() else null
         }
     }
 
     suspend fun searchJoueur(nomSearched: String): List<Joueur>? {
 
         try {
-            jsonClient.get(endpoint + "/" + Joueur().nameForApi + "/${nomSearched}").let {
+            jsonClient.get(endpoint + "/" + Joueur().nameForApi) {
+                url {
+                    parameters.append(QUERY_PARAMETER_NOM, nomSearched)
+                }
+            }.let {
                 return if (it.status != HttpStatusCode.NoContent) it.body<List<Joueur>>() else null
             }
         } catch (e: Exception) {
-            println(" Erreur de connexion au réseau lors de la récupération des joueurs :\n " +
-                    e.stackTraceToString()
+            println(
+                " Erreur de connexion au réseau lors de la récupération des joueurs :\n " +
+                        e.stackTraceToString()
             )
 
             return listOf()
@@ -179,12 +159,17 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     suspend fun searchEquipe(nomSearched: String): List<Equipe>? {
 
         try {
-            jsonClient.get(endpoint + "/" + Equipe().nameForApi + "/${nomSearched}").let {
+            jsonClient.get(endpoint + "/" + Equipe().nameForApi) {
+                url {
+                    parameters.append(QUERY_PARAMETER_NOM, nomSearched)
+                }
+            }.let {
                 return if (it.status != HttpStatusCode.NoContent) it.body<List<Equipe>>() else null
             }
         } catch (e: Exception) {
-            println(" Erreur de connexion au réseau lors de la récupération des equipes :\n " +
-                    e.stackTraceToString()
+            println(
+                " Erreur de connexion au réseau lors de la récupération des equipes :\n " +
+                        e.stackTraceToString()
             )
             return listOf()
         }
@@ -205,7 +190,7 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         extractDecouvertesListFromEquipe(equipe).let {
             if (it.isNotEmpty()) {
                 //pour chacun des équipements on cherche dans chacune des tables mais on recupere que le premier trouvé
-                listDecouvertes.addAll(searchEverything(it,true))
+                listDecouvertes.addAll(searchEverything(it, true))
             }
         }
         return listDecouvertes
@@ -224,35 +209,39 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         }
     }
 
-    suspend fun insertItem(itemSelected:ApiableItem):Boolean{
-            jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.insertForApi}"){
-                contentType(ContentType.Application.Json)
-                setBody(itemSelected)
-            }.let{
-                return it.status== HttpStatusCode.OK
-            }
-    }
-
-    suspend fun updateItem(itemSelected:ApiableItem):Boolean{
-        jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.updateForApi}"){
+    suspend fun insertItem(itemSelected: ApiableItem): Boolean {
+        jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.insertForApi}") {
             contentType(ContentType.Application.Json)
             setBody(itemSelected)
-        }.let{
-            return it.status== HttpStatusCode.OK
+        }.let {
+            return it.status == HttpStatusCode.OK
         }
     }
 
-    suspend fun deleteItem(itemSelected:ApiableItem):Boolean{
-        jsonClient.post(endpoint +"/"+ itemSelected.nameForApi+"/${itemSelected.deleteForApi}/${itemSelected.nom}"){
-        }.let{
-            return it.status== HttpStatusCode.OK
+    suspend fun updateItem(itemSelected: ApiableItem): Boolean {
+        jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.updateForApi}") {
+            contentType(ContentType.Application.Json)
+            setBody(itemSelected)
+        }.let {
+            return it.status == HttpStatusCode.OK
+        }
+    }
+
+    suspend fun deleteItem(itemSelected: ApiableItem): Boolean {
+        jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.deleteForApi}") {
+            url {
+                parameters.append(QUERY_PARAMETER_NOM, itemSelected.nom)
+            }
+        }.let {
+            return it.status == HttpStatusCode.OK
         }
     }
 
     fun downloadImageWithName(imageName: String) = imageDownloader.downloadImageWithName(imageName)
 
     fun getUrlImageWithFileName(fileName: String) = "$endpoint/images/$fileName"
-    fun downloadBackgroundImage(urlImageWithFileName: String) = imageDownloader.downloadBackgroundImage(urlImageWithFileName)
+    fun downloadBackgroundImage(urlImageWithFileName: String) =
+        imageDownloader.downloadBackgroundImage(urlImageWithFileName)
 
 }
 

@@ -6,6 +6,7 @@ val unmutableListApiItemDefinition = listOf(Arme(),Armure(),Monster(),Bouclier()
 
 const val CHAR_SEP_EQUIPEMENT = "|"
 const val ENDPOINT_RECHERCHE_STRICTE = "precis"
+const val QUERY_PARAMETER_NOM = "nom"
 const val ENDPOINT_RECHERCHE_TOUT = "all"
 const val ENDPOINT_MAJ_CARACS_JOUEUR = "maj_caracs_joueur"
 const val BALISE_SIMPLE_RULES = "[SIMPLE]"

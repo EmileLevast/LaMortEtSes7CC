@@ -31,7 +31,6 @@ import network.ApiApp
 import org.koin.compose.koinInject
 import org.jetbrains.compose.resources.Font
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun layoutEdition(
     itemToEdit: IListItem,

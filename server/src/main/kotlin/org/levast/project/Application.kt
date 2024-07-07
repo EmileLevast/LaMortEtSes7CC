@@ -9,6 +9,7 @@ import ENDPOINT_RECHERCHE_STRICTE
 import Equipe
 import Joueur
 import Monster
+import QUERY_PARAMETER_NOM
 import SERVER_PORT
 import Sort
 import Special
@@ -115,8 +116,8 @@ fun Application.module() {
                 }
                 call.respond(listItemsFound.ifEmpty { HttpStatusCode.NoContent })
             }
-            get("/{nom}") {
-                val nom = call.parameters["nom"] ?: ""
+            get {
+                val nom = call.request.queryParameters[QUERY_PARAMETER_NOM] ?: ""
                 val rechercheStricte:Boolean = call.request.queryParameters[ENDPOINT_RECHERCHE_STRICTE] == "true"
                 val listItemsFound = mutableListOf<AnythingItemDTO>()
                 //Pour chaque element on regarde s'il y'en a un qui matche le nom demandé
@@ -132,13 +133,13 @@ fun Application.module() {
         }
         unmutableListApiItemDefinition.forEach { itapiable ->
             route("/"+itapiable.nameForApi!!){
-                get("/{nom}") {
-                    val nom = call.parameters["nom"] ?: ""
+                get {
+                    val nom = call.request.queryParameters[QUERY_PARAMETER_NOM] ?: ""
                     val itemsFound = getCollectionElements(itapiable,nom)
                     call.respond(itemsFound.ifEmpty { HttpStatusCode.NoContent })
                 }
-                get("/$ENDPOINT_RECHERCHE_STRICTE/{nom}") {
-                    val nom = call.parameters["nom"] ?: ""
+                get("/$ENDPOINT_RECHERCHE_STRICTE") {
+                    val nom = call.request.queryParameters[QUERY_PARAMETER_NOM] ?: ""
                     val itemsFound = getCollectionElements(itapiable,nom,true)
                     call.respond(itemsFound.ifEmpty { HttpStatusCode.NoContent })
                 }
@@ -190,8 +191,8 @@ fun Application.module() {
                         call.respond(HttpStatusCode.ExpectationFailed)
                     }
                 }
-                post("/"+ itapiable.deleteForApi+"/{nom}"){
-                    val nom = call.parameters["nom"] ?: "inconnu"
+                post("/"+ itapiable.deleteForApi){
+                    val nom = call.request.queryParameters[QUERY_PARAMETER_NOM] ?: ""
                     if(collectionsApiableItem[itapiable.nameForApi]!!.deleteOne(ApiableItem::nom eq nom).wasAcknowledged()){
                         call.respond(HttpStatusCode.OK)
                     }else{
