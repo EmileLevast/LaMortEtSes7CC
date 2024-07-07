@@ -127,7 +127,7 @@ fun LayoutCaracSpecificProp(
     ) { oldValue, newValue ->
         concernedCarac.set(
             concernedJoueur.caracActuel,
-            if (oldValue == "0" && newValue.isNotBlank() && newValue.last() == '0') {
+            if (oldValue == "0" && newValue.isNotBlank() && newValue.last() == '0' && newValue.length == 1) {
                 newValue.first().toString().getIntOrZeroOrNull() ?: oldValue.toInt()
             } else {
                 newValue.getIntOrZeroOrNull() ?: oldValue.toInt()
