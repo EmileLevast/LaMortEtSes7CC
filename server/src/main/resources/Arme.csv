@@ -1,0 +1,435 @@
+Nom;Seuils;Coups critiques ;Maximum Energie ;Contraintes ;FAJ Max ;Poids ;Capacite speciale ;nom complet 
+rapiere;|1/2=>Ph:0
+|3=>Ph:3
+|4/5/6=>Ph:6
+;6=>Ph:12;3;Niveau Minimum:3;9;2;Parade ×1;Rapière
+epee ebrechee;|1/2=>Ph:0
+|3/4=>Ph:2
+|5/6=>Ph:4
+;4=>Ph:4;3;;5;1;;épée ébréchée
+epee courte;|1/2=>Ph:0
+|3/4=>Ph:3
+|5/6=>Ph:6
+;6=>Ph:9;2;Force Minimum:3;6;1;;épée courte
+epee longue;|1=>Ph:0
+|2/3=>Ph:4
+|4/5/6=>Ph:8
+;;3;Force Minimum:5;10;2;Si équipée les roulades subissent un malus de -2.;épée longue
+epee barbelee;|1/2=>Ph:0
+|3=>Ph:4
+|4/5/6=>Ph:8
+;3=>Ph:8;3;Défense Ph. Minimum:4;16;3;Saigne 5+ => 4;épée barbelée
+cimeterre;|6=>Ph:0
+|2/3/4=>Ph:4
+|5=>Ph:8
+;6=>Ph:12;3;Niveau Minimum:5;10;1;Saigne 5+ => 3;
+epee lourde;|1/2/3=>Ph:0
+|4/5=>Ph:5
+|6=>Ph:10
+;5/6=>Ph:10;4;Force Minimum:8;12;2;Chaque frappe requiert à minima 3 d'énergies;épée lourde
+epee perche;|1=>Ph:0
+|2/3=>Ph:3
+|4/5=>Ph:6
+|6=>Ph:9
+;;5;Force Minimum:6;9;2;Perche : L’épée s’agrandit magiquement pour atteindre son adversaire, sa portée est ~5m;épée perche
+epee traversante;|1/2=>Ph:0
+|3=>Ph:4
+|4/5/6=>Ph:8
+;;2;Force Minimum:3;7;0;Traversante : cette épée traverse les alliés sans leur causer de dégâts, elle est assez grande pour frapper un ennemi derrière un allié.;épée traversante
+epee du chevalier noir;|1/2=>Ph:0
+|3/4=>Ph:6
+|5=>Ph:12
+|6=>Ph:18
+;peut relancer tous les dés une fois par frappe;5;Force Minimum:10;16;5;;épée du chevalier noir
+epee ebrechee crenelee;|1/2=>Ph:0
+|3/4=>Ph:2
+|5/6=>Ph:4
+;4=>Ph:4;3;;5;1;Eventreur 4;épée ébréchée crénelée
+torche febrile;|1/2=>F:0
+|3/4/5/6=>F:1
+;6=>F:2;1;;4;1;;Torche fébrile
+fouet court;|1/2/3=>Ph:0
+|4/5/6=>Ph:4
+;2/3=>Ph:2;2;;6;1;Chaire à nue => relance le moins bon dé de la frappe.;
+laniere de feu;|1/2=>F:0
+|3/4/5=>F:4
+|6=>F:8
+;6=>F:16;1;;6;0;Portee ~5m, Si le FFC > 4 alors la cible est tiree vers le joueur. La main de pyromancie doit etre equipee pour utiliser cette arme;lanière de feu
+poignard brise;|1/2/3=>Ph:0
+|4/5/6=>Ph:1
+;6=>Ph:2;2;;4;1;;poignard brisé
+poignard dent de rat;|1=>Ph:0
+|2/3/4=>Ph:2
+|5=>Ph:4
+|6=>Ph:8
+;5=>Ph:6;2;Niveau Minimum:4;6;1;Toxine 4+ => 2;
+percemaille brulant;|1=>Ph:0|F:0
+|2=>Ph:2|F:1
+|3/4/5/6=>Ph:4|F:2
+;6=>Ph:8|F:4;2;Niveau Minimum:4;7;1;Pour un coût de 1 énergie supplémentaire (avant le jet de dé) la frappe ignore l'armure de l'équipement;
+ceste en cuir;|1=>Ph:0
+|2/3/4=>Ph:1
+|5=>Ph:2
+|6=>Ph:3
+;;2;Niveau Minimum:4;4;0;Peut parer : Energie 1, Seuil de parade 5+;
+ceste en cuir leste;|1=>Ph:0
+|2/3/4=>Ph:1
+|5/6=>Ph:2
+;;2;Niveau Minimum:4;4;1;Peut parer : Energie 1, Seuil de parade 4+;
+poignard surinant;|1=>Ph:0
+|2/3/4=>Ph:2
+|5=>Ph:4
+|6=>Ph:8
+;5=>Ph:8;2;Niveau Minimum:4;6;1;Acheveur : tuer un ennemi avec un coup critique regenere 3 pvs;
+poignard crante;|1=>Ph:0
+|2/3/4=>Ph:3
+|5=>Ph:6
+|6=>Ph:9
+;6=>Ph:15;2;Niveau Minimum:4;6;1;Lame enfoncée: Une seule fois par frappe, avant de résoudre la défense, si la puissance de la frappe > 0 alors on peut ajouter de l’énergie dans la frappe et lancer les dés supplémentaires associés.;
+poignard crochet venimeux;|1=>Ph:0
+|2/3/4=>Ph:2
+|5=>Ph:4
+|6=>Ph:8
+;Venin 5+=>4 (non cumulable à l'autre effet venin);3;Niveau Minimum:4;6;1;Venin 5+ => 3;
+serre de volucre anthropophage;|1/2/3/4=>Ph:0
+|5=>Ph:5|Ma:2
+|6=>Ph:12
+;Ignore l'armure naturelle;3;Intelligence Minimum:8;13;2;;
+arbalete grossiere;;;2;Force Minimum:2;0;2;Nécessite les 2 mains
+Ajoute +4 dégâts physiques aux carreaux.;
+couteau de lancer;|1/2=>Ph:0
+|3/4/5=>Ph:1
+|6=>Ph:3
+;;1;Force Minimum:1;5;0;Pas besoin d'équiper;
+arbalete a repercussion;;;1;Force Minimum:4|Intelligence Minimum:6;0;0;Cette arbalète tire 3 carreaux simultanément: A chaque frappe avec cette arme. Vous pouvez faire 2 frappes supplémentaires, en reprenant le même nombre de dés, sans dépenser d’énergie supplémentaire. Impossible que ces frappes frappent 2x la même cible  (les carreaux partent dans des directions différentes).
+Ajoute +3 dégâts physiques aux carreaux.;
+fleche empennee;|1/2=>Ph:0
+|3/4/5=>Ph:3
+|6=>Ph:6
+;;0;;0;0;;
+carreau simple;|1/2=>Ph:0
+|3/4/5=>Ph:2
+|6=>Ph:4
+;;0;;0;0;;
+fleche simple;|1/2/3=>Ph:0
+|4/5/6=>Ph:2
+;;0;;0;0;;
+arc;;;2;Force Minimum:2;0;1;Ajoute +2 dégâts physique aux flèches;
+sarbacane nanosinophile;;;1;;0;0;;
+flechette toxique;|1=>Ph:0
+|2/3/4/5/6=>Ph:1
+;;0;;0;0;Toxine 1+ => 4.;
+bombe incendiaire;|1/2/3/4=>F:0
+|5=>F:5
+|6=>F:10
+;5=>F:10;2;Force Minimum:1;0;1;Pas besoin d'équiper;
+spear;|1/2/3=>Ph:0
+|4/5/6=>Ph:4
+;6=>Ph:8;3;Force Minimum:4;7;3;;
+winged spear;|1/2/3=>Ph:0
+|4/5/6=>Ph:6
+;6=>Ph:12;3;Niveau Minimum:6;8;1;;
+lance de gobelin;|1/2/3=>Ph:0
+|4/5/6=>Ph:5
+;6=>Ph:10;3;Force Minimum:5;7;2;Toxine 2+ => 1;
+fleau;|1/2/3/4=>Ph:0
+|5/6=>Ph:9
+;;5;Force Minimum:5;17;3;Écacheur: ( si degat de la frappe >0 & si la cible bloque avec un bouclier ) Si la cible ne réussi pas à bloquer tous les dégâts  alors son bouclier est détruit.;
+masse d arme;|1/2/3/4=>Ph:0
+|5=>Ph:6
+|6=>Ph:9
+;5=>Ph:9;5;Force Minimum:4;13;2;Saigne 6+=>2;
+marteau du taureau;|1/2/3=>Ph:0
+|4/5=>Ph:8
+|6=>Ph:12
+;;4;Niveau Minimum:6;10;2;Ecrasement: Si la frappe blesse alors le poids de l’armure ennemie est ajoutée aux degats physiques.
+Taurin : A chaque "écrasement" L'armure physique de l'équipement (pas le bouclier) de la cible diminue de 1 jusqu'à 0. Elle alors détruite et n'est plus utilisable. La vie de l'armure se régénère au feu mais ne se reconstruit pas si elle a été détruite.  ;
+hache rouillee;|1/2/3/4=>Ph:0
+|5/6=>Ph:7
+;4=>Ph:7;3;Force Minimum:5;13;2;;
+labrys gobeline;|1/2/3/4=>Ph:0
+|5/6=>Ph:6
+;4=>Ph:6;3;Force Minimum:5;13;2;Backswing:Si portée à deux mains et que le coup a un FCC inférieur ou égal à 0, alors tous les dés des prochaines frappes de ce tour sont augmentés de 1. Toxine 3+ => 2  ;
+torche;|1/2=>F:0
+|3/4/5/6=>F:2
+;6=>F:4;1;;4;1;;
+epee acide;|1=>Po:0
+|2/3=>Po:3
+|4/5/6=>Po:6
+;;3;Force Minimum:5;7;2;;
+pioche;|1/2/3=>Ph:0
+|4/5/6=>Ph:5
+;3=>Ph:5;3;Force Minimum:3;7;2;Foreur : la force de l'arme passe à 10 lorsque la cible est faite de pierre ;
+vomi acide;|1=>Po:0
+|2/3/4/5=>Po:8
+|6=>Po:12
+;;2;Force Minimum:1;10;0;Toxine 1+ => 2. Devore 3+;
+croc poison;|1=>Ph:0
+|2/3/4/5=>Ph:2
+|6=>Ph:6
+;Toxine 5+ => 5;2;Force Minimum:1;15;0;Toxine 5+ => 4;
+croc acide;|1=>Ph:0
+|2/3/4/5=>Ph:1
+|6=>Ph:6
+;4/5=>Ph:4;2;Force Minimum:1;15;0;Devore 5+;
+coups de sabots;|1/2/3=>Ph:0
+|4/5=>Ph:4
+|6=>Ph:8
+;4/5=>Ph:16;2;;16;0;;
+morsure venimeuse;|1/2/3=>Ph:0
+|4/5=>Ph:4
+|6=>Ph:8
+;;2;;8;0;Venin 3+=>5;
+charge catoblepas;|1/2=>Ph:0
+|3/4/5/6=>Ph:6
+;;3;;20;0;;
+croc fauglir;|1/2=>Ph:0
+|3/4=>Ph:6
+|5/6=>Ph:12
+;;4;Force Minimum:1;15;0;Saigne 3+ => 4;
+drain de magie;|1=>Ma:0
+|2/3/4/5=>Ma:8
+|6=>Ma:12
+;;2;Force Minimum:1;10;0;;
+epee droite;|1=>Ph:0
+|2/3/4=>Ph:3
+|5/6=>Ph:6
+;4=>Ph:6;4;Force Minimum:2;7;1;;
+os coupant;|1/2=>Ph:0
+|3/4/5/6=>Ph:1
+;6=>Ph:2;2;;4;1;-1 sur le dé;
+ronce de jais;|1/2=>Ph:0
+|3/4/5=>Ph:4
+|6=>Ph:8
+;4/5=>Ph:6;2;;10;0;Saigne 3+ => 4;
+canine de fauve;|1/2=>Ph:0
+|3/4/5/6=>Ph:1
+;6=>Ph:2;2;;4;1;saignement 3+ => 1;
+ichgul;|1/2=>Ph:0
+|3/4/5=>Ph:6
+|6=>Ph:12
+;;3;Vie Minimum:22;12;3;Lorsqu'une frappe a un FFC superieur à 0 mais ne fait aucun dégâts (compte aussi pour les roulades, mais pas pour les blocages ni les parades) alors l'ennemi subit autant de frappe de ronces de jais que la valeur du FFC, l'ennemi ne doit pas se défendre face à ces attaques (blocage, roulade...). 
+Compte comme arme double si utilisé avec Echgul.;
+echgul;|1/2=>Ph:0
+|3/4/5=>Ph:6
+|6=>Ph:12
+;;3;Vie Minimum:22;12;3;Lorsqu'une frappe fait de degats à 0 mais ne fait aucune blessure (compte aussi pour les roulades, mais pas pour les blocages ni les parades) alors l'ennemi subit autant de frappe de ronces de jais que la valeur du moins bon dé, l'ennemi ne doit pas se défendre face à ces attaques (blocage, roulade...).
+Compte comme arme double si utilisée avec Ichgul ;
+krameur;|1=>F:0
+|2/3/4=>F:2
+|5=>F:4
+|6=>F:6
+;Ajouter un dé supplémentaire à la frappe;1;Intelligence Minimum:6;0;5;C'est un tuyau relié à 1 grosse bonbonne, actionner le tuyau libère une flamme de 1 m de portée.
+Reserve de Fuel initiale = 10.
+Il faut dépenser une énergie pour frapper avec cette arme, ensuite le joueur détermine combien d'unité de fuel il dépense dans la frappe et cela représente le nombre dés à lancer dans la frappe. Il faut soustraire ce nombre d'unité de fuel à la réserve initiale de l'arme.
+On ne peut pas dépenser plus d'unité de fuel qu'il en reste dans la réserve. La réserve n'est pas régénérée au feu, il faut en trouver dans le jeu.;
+surin ensorcele;|1=>Ph:0
+|2/3/4=>Ph:2
+|5=>Ph:4
+|6=>Ph:8
+;5=>Ph:8;2;Intelligence Minimum:4;8;0;Peut voler jusqu'à sa cible. Le lanceur peut guider le surin avec les yeux tant qu'il garde le surin en visuel, sinon celui-ci tombe inerte et doit être ramassé.;
+croc chien enrage;|1=>Ph:0
+|2/3/4/5=>Ph:4
+|6=>Ph:6
+;;2;Force Minimum:1;15;0;;
+griffes morphvoreur;|1/2=>Ph:0
+|3/4=>Ph:6
+|5=>Ph:9
+|6=>Ph:12
+;;4;;15;0;Peut effectuer une parade avec une énergie avec un seuil de parade à 2+.;
+massue minotaurine;|1/2/3/4=>Ph:0
+|5=>Ph:9
+|6=>Ph:12
+;;15;Force Minimum:13
+Intelligence Minimum : 3;20;4;Impossible de bloquer ou de parer un coup de cette massue.
+Si la cible subit des dégâts elle est sonnée et passe l'entièreté de son prochain tour.;
+epee large;|1/2=>Ph:0
+|3/4=>Ph:4
+|5/6=>Ph:8
+;;4;Force Minimum:4;8;2;;
+zweihander;|1/2=>Ph:0
+|3/4/5/6=>Ph:17
+;6=>Ph:34;9;Force Minimum:14;34;3;Chaque frappe requiert à minima 3 d'énergies.;
+epee lourde a deux mains;|1/2/3=>Ph:0
+|4/5=>Ph:7
+|6=>Ph:14
+;5/6=>Ph:14;5;Force Minimum:10;26;3;+1 au meilleur dé lors d'une frappe à 2 mains;
+epee a deux mains;|1/2/3=>Ph:0
+|4/5=>Ph:5
+|6=>Ph:10
+;3=>Ph:5;5;Force Minimum:6;19;2;+1 au moins bon dé lors d'une frappe à 2 mains;
+crochet d araneide geante;|1=>Ph:0
+|2/3=>Ph:2
+|4/5=>Ph:4
+|6=>Ph:8
+;;3;Niveau Minimum:2;5;0;Venin 4+ => 3
+Si le compteur de poison de la cible dépasse 6 après un coup de venin alors la cible passe son prochain tour.;
+faucille gobeline;|1/2=>Ph:0
+|3/4/5=>Ph:4
+|6=>Ph:6
+;;2;Niveau Minimum:9;9;0;Eventreur 3
+Utilisée en arme double la faucille inflige 5 dégâts de poison imédiatement.;
+hache;|1/2/3=>Ph:0
+|4/5/6=>Ph:6
+;6=>Ph:12;3;Force Minimum:7;16;2;;
+fleche de mauvaise facture;|1/2/3=>Ph:0
+|4/5/6=>Ph:1
+;;0;;0;0;;
+epee ebrechee effilee;|1/2=>Ph:0
+|3/4=>Ph:2
+|5/6=>Ph:4
+;Saigne +5 => 3;3;;5;1;;
+epee a double tranchant;|1/2=>Ph:0
+|3/4=>Ph:3
+|5/6=>Ph:7
+;6=>Ph:10;3;Force Minimum:10;13;4;Si vous blessez votre ennemi vous récupérez les pvs enlevés. Si vous tuez votre ennemi vous perdez les pvs enlevés.;
+uchigatana;|1=>Ph:0
+|2/3=>Ph:4
+|4/5=>Ph:6
+|6=>Ph:10
+;6=>Ph:11;3;Niveau Minimum:8;21;1;Saigne 7+ => 10
+Seppuku : le joueur se présente dos à l'ennemi et se transperce le ventre pour atteindre l'ennemi derrière lui. Il subit la frappe lui-même et il ajoute un dé 7 à sa frappe pour résoudre la frappe pour l'ennemi;
+hachette double maudite;|1/2=>Ph:0
+|3/4/5/6=>Ph:6
+;6=>Ph:12|2pv en moins pour le porteur;4;Humanite Minimum:4;10;1;Polydextrie :avoir 2 de ces hachettes en ambidextrie ajoute 2 dégâts magiques aux dégâts totaux des frappes.;
+dague;|1=>Ph:0
+|2/3/4/5=>Ph:1
+|6=>Ph:2
+;6=>Ph:9;2;;6;1;Backstab +1;
+dague aiguisee;|1=>Ph:0
+|2/3/4/5=>Ph:1
+|6=>Ph:2
+;6=>Ph:9;2;Niveau Minimum:3;6;1;Backstab +1. Saigne +3 => 2;
+longue dague ciselee;|1/2=>Ph:0
+|3/4/5/6=>Ph:4
+;5/6=>Ph:9;3;Niveau Minimum:5;8;1;Parade +1;
+dague crenelee;|1=>Ph:0
+|2/3/4/5=>Ph:1
+|6=>Ph:2
+;6=>Ph:9;2;Niveau Minimum:2;6;1;Backstab +1. Eventreur 2;
+longue dague crenelee;|1/2=>Ph:0
+|3/4/5/6=>Ph:4
+;6=>Ph:9;2;Niveau Minimum:6;8;1;Parade +1. Eventreur 3;
+longue dague equilibree;|1/2=>Ph:0
+|3/4/5/6=>Ph:4
+;5=>Ph:6|6=>Ph:9|;3;Niveau Minimum:5;9;1;Parade +1;
+longue dague;|1/2=>Ph:0
+|3/4/5/6=>Ph:4
+;6=>Ph:9;3;Niveau Minimum:3;8;1;Parade +1;
+epee inegide;|1/2=>Ph:0
+|3/4=>Ph:3
+|5/6=>Ph:6
+;;2;Force Minimum:3;12;1;Inégide : Il est impossible de bloquer une frappe de cet épée avec un bouclier (la défense ajoutée par le bouclier n'est pas prise en compte).;
+coups de corne;|1/2=>Ph:0
+|3/4/5=>Ph:3
+|6=>Ph:8
+;4/5=>Ph:14;2;;13;0;;
+main nue;|1/2/3=>Ph:0
+|4/5/6=>Ph:1
+;6=>Ph:2;2;;100;1;-1 au degat total de la frappe
+;
+etreinte de cerefroi;|1/2/3=>Ph:0
+|4/5=>Ph:2|Ma:3
+|6=>Ph:2|Ma:5
+;;2;;16;0;gelé : la cible est gelée. Elle est complètement paralysée jusqu'à la fin du prochain tour du MJ. Elle ne dispose ensuite plus que d'une action par tour jusqu'à ce qu'elle trouve un moyen de se réchauffer.;
+stylet rituel inique;|1=>Ph:0|Ma:0
+|2/3/4/5=>Ph:1|Ma:2
+|6=>Ph:2|Ma:4
+;4/5=>Ph:2|Ma:4;2;Intelligence Minimum:7;5;1;Backstab +1. Ajoute +1 au dés pour résoudre l'effet d'un anneau inique, si porté.;
+coup de griffes;|1/2/3=>Ph:0
+|4=>Ph:9
+|5/6=>Ph:11
+;;4;Force Minimum:1;20;0;;
+coup de tentacule;|1=>Ph:0
+|2=>Ph:2
+|3/4=>Ph:4
+|5=>Ph:6
+|6=>Ph:10
+;;2;;15;0;Agit comme une arme de portee 3m;
+poing de troll;|1/2/3/4=>Ph:0
+|5=>Ph:9
+|6=>Ph:13
+;;4;Force Minimum:1;30;0;Si le poing du troll frappe le sol (un joueur fait une roulade) alors tous les êtres vivants dans un rayon de 1m sont bousculés. chacun jette 1D20 sur 8+ ils tiennent debout, sinon ils tombent.;
+stylet necrophore;|1=>Ph:0|Ma:0
+|2/3/4/5=>Po:1|Ma:4
+|6=>Po:2|Ma:5
+;4/5=>Po:1|Ma:5;2;Intelligence Minimum:7;6;1;Backstab +1.
+Ajoute +1 dégât Magique, à chaque frappe, par ennemis tués, se réinitialise au feu.;
+marteau de forge;|1/2/3=>Ph:0
+|4/5=>Ph:7
+|6=>Ph:10
+;;3;Niveau Minimum:4;8;3;Ecrasement: Si la cible est blessee, le poids de l’armure ennemie est ajoutée aux degats physiques.;
+vortex;|6=>Ph:0
+|2/3/4=>Ph:5
+|5=>Ph:6
+;6=>Ph:13;3;Niveau Minimum:6;9;0;portailleuse : lorsqu'une cible est blessée par vortex, l'agresseur jette 1D20, si > Pv cible, alors celle-ci est téléportée 5 min dans le futur. ;
+fourche;|1/2/3/4=>Ph:0
+|5/6=>Ph:6
+;4=>Ph:6;2;Force Minimum:3;12;1;Brochette : lorsque la cible est blessée, si la force de l'agresseur >= poid de la cible, alors il peut projeter la cible (1D20 pour la précision entre ce que l'agresseur veut et la réalite) à 2m maximum.;
+lycanthrache;|1/2/3=>Ph:0
+|4/5=>Ph:7
+|6=>Ph:9
+;6=>Ph:13;4;Force Minimum:8;20;3;Lorsqu'un être vivant meurt avec cette hache sur 4+(1D4) il renaît en loup sauvage humanoïde (stat d'un loup mais sur 2 pattes) au tour d'après.
+S'il s'agit d'un joueur, au début de son tour il doit jeter 1D20+son intelligence et faire 22+ pour avoir le controle du loup sinon c'est le MJ qui le contrôle;
+fleche de corbeaux;|1=>Ph:0
+|2/3/4=>Ph:5
+|5/6=>Ph:7
+;;0;;0;0;La plume de corbeaux est enchantee, la flèche vole tout droit sans jamais subir la gravité. (permet de tirer très loin);
+arc d if noir;;;4;Force Minimum:5;0;1;Le porteur peut effectuer des frappes de précision avec +3 sur son D20.;
+nekrotine;|1/2/3=>Ma:0
+|4/5/6=>Ma:8|F:8|Po:8
+;;1;Intelligence Minimum:7;1;3;Tire un trait sombre magique tout droit, ne subit pas la gravité, dans une gerbe de ténèbres nécrotique au premier impact.
+Il faut susurrer le nom de la cible à nekrotine, sans quoi elle manque toujours sa cible.
+Si la cible subit au moins une blessure alors elle subit en plus 1D20 moins son nombre d'humanité en blessure directement, si la cible en meurt alors elle disparaît dans une vision terrible où sa peau laisse place à sa chaire, puis à ses os puis à de la poussière, ses âmes sont perdues et elle ne peut d'aucune manière être ressuscitée.;
+pique de glace d heleade;|1/2/3=>Ph:0
+|4/5=>Ph:3|Ma:2
+|6=>Ph:4|Ma:3
+;coup précis possible avec bonus +2;2;;14;0;gelant : les degats magiques sont dus au froid du pique de glace, si le joueur dispose de solution face au froid, il ne subit pas les degats magiques.
+Long : les piques de glaces que projette une héléade peuvent aller jusqu'à 15m
+refroidissant : à chaque blessure le joueur disposera d'une énergie de moins à son prochain tour.;
+morsure buveuse;|1=>Ph:0
+|2/3/4=>Ph:3
+|5/6=>Ph:4
+;les points de vie gagnés par buveuse sont doublés.;2;;5;0;Saignement 5+=>3
+buveuse : les blessures faites par saignement sont récupérés en points de vie;
+hache double tranchant;|1/2/3=>Ph:0
+|4/5/6=>Ph:8
+;6=>Ph:12;3;Force Minimum:7;20;3;Il s'agit d'une hache démonique, d'une intelligence 5, et parfois des mains noires aux longs doigts crochus sortent de la lame pour caresser le porteur ou la cible.
+Si la hache blesse sa cible, alors le joueur peut déclencher l'effet suivant : la cible doit faire une lutte d'intelligence contre la hache, si la cible perds alors les mains noires de la hache caresse la cible à des endroits sensibles, la cible est alors séduite et ne peut pas frapper directement le porteur à son prochain tour, de plus elle dévoile son corps de manière à se faire frapper plus facilement et donne un bonus de +1 aux prochaines frappes de précisions ayant lieu dans ce tour du joueur (cumulable sur plusieurs frappes).
+En revanche si la cible gagne la lutte, alors les mains caressent le porteur et celui-ci ne peut plus frapper la cible ce tour-ci.;LANDMVRKS
+etau de troll;|1=>Ph:0
+|2/3/4=>Ph:8
+|5=>Ph:9
+|6=>Ph:15
+;;2;Force Minimum:1;30;0;Nécessaire d'attraper le joueur pour utiliser l'etau de troll.
+Pour une action le troll peut essayer d'attraper un joueur. Celui-ci peut l'eviter par une roulade (+2 pour la roulade, car le geste est lent mais le MJ ne dis pas ce qu'il va se passer il annonce juste le geste du troll).
+Si le troll attrape le joueur ensuite il tape frenetiquement le joueur 3x contre l'objet solide le plus proche. Le joueur est coincé, il ne peut utiliser aucun item de son inventaire (les passifs, les anneaux et talismans fonctionnent toujours mais pas ce qui nécessite un geste d'activation comme des sorts, des braises, des humanites);
+charge de trollon;|1/2=>Ph:0
+|3/4/5=>Ph:7
+|6=>Ph:10
+;;3;Force Minimum:1;30;0;Utiliser la charge de trollon coûte les 2 actions.
+Le trollon cible un ennemi et lui bondit dessus avec tout son poids. La roulade subit un malus de -6 pour la fulgurance.
+Si la cible est blessée alors elle est jetée au sol et lâche tout ce qu'elle tenait.
+Il peut ensuite enchainer la cible avec des frappes mains nues sur lesquelles les roulades subissent un malus de -15.;
+lourde masse d arme;|1/2/3/4=>Ph:0
+|5=>Ph:10
+|6=>Ph:12
+;;5;Force Minimum:7;25;2;Saigne 5+=>4;
+morsure brulante;|1/2/3=>Ph:0
+|4/5=>F:3|Ph:3
+|6=>F:6|Ph:4
+;;2;;8;0;;
+branche longue;|1/2=>Ph:0
+|3/4/5=>Ph:1
+|6=>Ph:2
+;;2;;4;1;-1 sur le dé;
+branche de huorn;|1=>Ph:0
+|2=>Ph:2
+|3/4=>Ph:4
+|5=>Ph:6
+|6=>Ph:7
+;;2;;15;0;La branche peut s'allonger jusqu'à 10m instantanément.
+Possibilité d'une frappe de précision :
+15+ la cible est soulevée à 2m du sol, pendue par les pieds
+10+ la cible est enserrée avec une force de 15 (nécessite une lutte de force pour se libérer)
+8+ la cible est bousculée, lutte de force à 10, la victime chute par terre si elle perds, et perds une action au prochain tour.;

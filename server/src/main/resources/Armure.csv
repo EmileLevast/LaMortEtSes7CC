@@ -1,0 +1,46 @@
+Nom;Defense ;Contraintes ;Poids ;Capacite speciale ;nom complet 
+armure de cuir de carcasse;Ph:4;Force Minimum:1;1;;
+armure de maille calcinee;Ph:5|F:4;Force Minimum:4;2;Si le joueur est blessé par des dégâts de feu au corps à corps, alors l’attaquant subit 4 de degat de feu.;
+armure maudite;Ph:6|Ma:6;Force Minimum:1;2;A chaque tour ou le joueur porte l’armure il doit jeter un dé. Si le résultat de son dé plus son intelligence ne dépasse pas 10 alors :le joueur passe sous le contrôle du MJ jusqu’à ce qu’il meurt.;
+armure rapiecee du taureau;Ph:6|Ma:5;Force Minimum:8;3;A chaque fois que le porteur subit des degats de magie sans être blessé, alors il regagne les degats de magie subit en point de vie.;
+armure de maille;Ph:9;Force Minimum:4;2;;
+armure de carcasse;Ph:6;Force Minimum:3;3;;
+armure de clerc d elite;Ph:1|Ma:4|Po:3;Niveau Minimum:3;1;;
+cape de bretteur;Ph:3|Ma:5;Intelligence Minimum:4;0;lors d’une esquive, si la roulade rate alors la cape tire le porteur en arrière, celui-ci prend les dégâts de la frappe mais n’est pas considéré en coup critique. De plus il perd une action à se relever à son prochain tour.
+Peut se porter au-dessus d'une armure.;
+armure lourde de carcasse;Ph:8;Force Minimum:4;4;;
+robe d aruspice;Ph:10|Ma:7|F:4;Intelligence Minimum:7;1;;
+armure d oswald;Ph:16|F:3;Force Minimum:9;4;;
+plastron de clerc;Ph:10|Ma:thaumaturge;Force Minimum:6;4;Thaumaturge : lorsque le porteur équipe une main spirituelle: défense magique = Intelligence/2.Pour un maximum de 7.;
+armure lourde du taureau;Ph:10|Ma:11;Force Minimum:9;5;A chaque fois que le porteur subit des degats de magie sans être blessé, alors il regagne les degats de magie subit en point de vie.;
+armure de chevalier;Ph:11;Force Minimum:6;4;;
+sarau du vil bandit;Ph:4|F:1;Force Minimum:2;0;Si le porteur est un voleur le seuil de réussite de backstabs est diminué de 2 , sinon de 1.;
+plastron de clerc beni;Ph:10|Ma:thaumaturge;Intelligence Minimum:10;4;Thaumaturge : lorsque le porteur équipe une main spirituelle: défense magique = Intelligence. Pour un maximum de 16.;
+sarau tisse;Ph:4|F:1;Force Minimum:2;0;Si le porteur est un voleur le seuil de réussite de la course est diminué de 2 , sinon de 1.;
+armure de taureau;Ph:8|Ma:8;Force Minimum:9;4;A chaque fois que le porteur subit des degats de magie sans être blessé, alors il regagne les degats de magie subit en point de vie.;
+armure de chevalier noir;Ph:15|F:10;Force Minimum:8;4;Diminue de 1 FFC les attaques en coups critiques.;
+armure de cuir en lambeaux;Ph:3;Force Minimum:1;1;;
+tunique dechiree;Ph:1;;0;;
+ailes de volucre anthropophage;Ma:5|Po:1|F:-3;Intelligence Minimum:5;-1;Eclamé:Lors d’une chute le joueur peut planer. Cela réduit toutes les chutes à 15m max et permet d’avancer de 1m horizontalement par mètre  de chute. ;
+guenilles du sournois;Ph:2|Po:6;;0;Lorsqu’un coup vous blesse, vous pouvez vous faire passer pour mort en dépensant votre énergie restante. Les ennemis d’une intelligence 0 ne vous frapperont pas. Cela dure tant que vous ne faites absolument rien. Vous relever coûte 1 action.;
+tunique du sournois;Ma:3|Po:3;;1;Thuriféraire : lors de l’utilisation  de la marque sombre, conserver les âmes sur 4+;
+armure cuir taillee;Ph:5|F:4;Force Minimum:1;1;Le porteur ne peut pas être pris pour cible d’un backstab;
+cuir de gobelin;Ph:3|Po:3;Force Minimum:1;1;Pue terriblement. Les tentatives pour se déplacer discrètement ont un malus de 1;
+cuirasse de gobelin;Ph:5|Po:3;Force Minimum:3;2;Pue terriblement. Les tentatives pour se déplacer discrètement ont un malus de 1;
+lourde cotte de gobelin;Ph:7|Po:2|F:3;Force Minimum:6;4;Pue terriblement. Les tentatives pour se déplacer discrètement ont un malus de 1;
+peau de loup;Ph:1|Po:3|Ma:2;Niveau Minimum:4;0;Camoufle entièrement le visage derrière les crocs et les mâchoires du loup effrayant : le porteur n'est pas reconnaissable par les PNJ et cause une peur tacite.;
+robe de pyrobelin;F:10|Po:3|Ma:-1  ;Niveau Minimum:9;1;Protege du froid peu importe la temperature exterieure.;
+robe de zairzan;Ph:2|F:10|Po:3|Ma:-2 ;Niveau Minimum:9;1;Bulle de feu protectrice : Après une frappe, et avant de résoudre la défense, le porteur peut dépenser 1 énergie : cela annule tous les dégâts physique de la frappe.;robe de zaïrzan
+armure de roncieres de jais;Ph:10|F:12|Ma:12|Po:12;Intelligence Minimum:7;3;a chaque fois qu'un ennemi attaque avec une arme de courte portee (lame de ~20 cm: dague, couteau, poignard...) l'ennemi subit 1 frappe de 1 énergie de ronce de jais, fonctionne même si le porteur n'a plus d'énergie.;
+tablier ignifuge;Ph:1|Po:1|F:10;;0;Les tentatives de backstab bénéficie de +1 au dé contre le porteur;
+chapeau d ôm;F:3|Po:-1|Ma:14|Ph:1;Intelligence Minimum:10;0;On peut y cacher des objets (y compris vivants mais ils peuvent alors attaquer le chapeau de l'intérieur et prendre les autres éléments dans le chapeau) à l'infini, comme le sac de Mary poppins.;
+robe de scin;F:2|Po:-1|Ma:6|Ph:4  ;Niveau Minimum:10;2;Permet au porteur de lancer des sorts de magie et nécromancie par les yeux, sans équiper de bâton.;robe de scîn
+pourpoint de scopula;Ph:1|Po:9|F:-3;Intelligence Minimum:8;-1;Si le porteur a les deux mains vides et qu'il pèse 0, alors il peut retrousser les bras dans ses manches et utiliser les poils d'araneides qui garnissent sa robe pour gravir n'importe quelle surface sans jets de dés.;
+cape petromorphe usee;Ph:2|Po:1;;0;Lorsque le porteur s'asseois en s'enveloppant de la cape et ne fait aucune action pendant 1 tour complet alors de loin il ressemble totalement à un rocher.;
+justaucorp tisse;Ph:4|Po:3;Force Minimum:1;0;Si le porteur est un voleur le seuil de réussite de roulades est diminuée de 1.;
+justaucorp du vil bandit;Ph:3|Po:4;Force Minimum:1;0;Si le porteur est un voleur il bénéficie d’une énergie gratuite pour faire des roulades. (Il peut donc faire des roulades en dépensant 1 énergie uniquement);
+cape de pelerin;Ph:1|Ma:2|F:1;;0;Martyre : lorsque le porteur meurt il conserve une humanité s'il en avait une.;
+armure de plumes de jais;Ph:6|F:6|Ma:15|Po:15;Intelligence Minimum:8;-1;Les plumes en plaque d'armure, sont animées d'une vivre propre : toutes les frappes de précisions et backstab subissent un malus de -5 à l'encontre du porteur.;
+houppelande mephistophelique;Ph:1|Ma:7|F:-2;Intelligence Minimum:4;0;Si le porteur a du sang de vampire dans les veines alors pour un coût de 2 actions, et jette 1D6. Si le résultat < au poid du porteur alors il peut s'élancer sur ~20m dans la direction de son choix en ignorant la gravité. La gravité reprend effet à la fin de cette action.;
+encephale de demon;Ph:-3|Po:4|Ma:15 ;Intelligence Minimum:3;0;lorsque le porteur voit un être mourir (vivant ou mort) Demon donne une vision d'une partie ou l'entièreté de ses souvenirs. Plus l'être est intelligent plus les souvenirs sont complexes et flous.
+De plus a chaque fois que le joueur touche un PNJ (par l'intermédiaire d'une arme fonctionne aussi), la voix de Demon lui recite une fois toutes les stats de l'ennemi. ;

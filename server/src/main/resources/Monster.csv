@@ -1,0 +1,207 @@
+Nom;Vie;Force ;Defense ;Intelligence ;Energie ;Drops ;Ames ;Capacite speciale ;nom complet 
+guerrier gobelin;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+homme damne de sulath;50;1:1|2:1|3:1;Ma:-15|F:-15;0;3;humanite:2;350;Lorsqu'il frappe leurs armes voient leur dégâts physiques transformés en dégâts magiques.;Damne de sulath
+pyrobelin;30;1:1|2:2|3:2;Ph:3|Po:3|Ma:5;9;4;anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de pyrobelin, brise braisee:5|humanite:6;175;;
+lampadophore gobelin;22;1:2|2:4|3:5;Ph:3|Po:3|F:1;2;3;cuir de gobelin:3|torche:4|longue dague:4|humanite:6;120;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+garde gobelin;20;1:1|2:2|3:4;Ph:4|Po:3;1;3;lourde cotte de gobelin:3|labrys gobeline:4|humanite:6;120;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+gobelours;35;1:3|2:5|3:7;Ph:5|Po:3|F:1|Ma:-3;3;3;armure de chevalier:3|fleau:4|humanite:6;160;Implacable : Tant qu'ils ont une énergie ils peuvent jeter un dé lorsqu'ils subissent une frappe (résoudre ce dé comme une frappe à 1 energie), ils réduisent les degats totaux de la frappe reçus par les degats totaux de leur frappe. S'ils font plus de degats que leur adversaire alors celui-ci subit la différence des dégâts et ne peut pas se défendre. Ensuite le gobelours jette 1D20 sur 8+ il conserve son énergie.;
+cuisinier gobelin;20;1:2|2:4|3:6;Ph:6|Po:1;1;3;cuir de gobelin:3|2x poignard crante:4|humanite:6;115;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+svinerfblin;30;1:1|2:2;Ph:4|Po:2;2;3;tunique dechiree:3|pioche:4|humanite:5;60;Sont habitués à être esclave, ils pleurent et geignent quand ils se prennent un coup. Ne frappe que si leur maître l'exige.;
+dragon rampant;100;1:5|2:7|3:10;Ph:20|Po:30|F:2|Ma:-15;1;5;vomi acide:0;1600;Tunnel : fuit la lumière, déboule soudainement sur les joueurs, très difficile à surprendre.;
+humain nu;15;1:1|2:2;Ph:2;2;2;1 humanite:4|2 humanites:5;90;;
+lombric de pierre;4;1:1|2:1;Ph:5|F:-1;0;2;croc acide:0;10;;
+fauglir;50;1:5|2:6|3:7;Ph:10|Ma:4;2;3;croc fauglir:0|humanite:4;120;Max FPS: avec ses muliples yeux rouges il voit beaucoup plus d'images qu'un humain et nous sommes au ralenti pour lui. Il peut anticiper les coups, s'il subit une frappe de 2 dés il peut effectuer un bond pour éviter la frappe (roulade avec bonus de 3), s'il il subit une frappe de 3 dés ou plus il a un bonus de 4 sur la roulade.
+Max FPS attaque: il voit où les joueurs vont atterrir avec leur roulade, si le joueur ne dépasse pas 15+ sur la roulade, alors le fauglir peut le rattraper et continuer à le mordre.;
+rat;5;1:1|2:2;Ph:2|Po:4;0;2;croc poison:0|humanite:4;20;;
+catoblepas;30;3:4;Ph:5;0;3;1 humanite:5|2 huamites:6;60;Regard délétère: Leur tête traîne jusqu'à terre, si un personnage croise leur regard d'une manière ou d'une autre la mort est instantanée. Charge : si un catoblépas charge un joueur il inflige une frappe de charge catoblépas avec 3 énergie. Monture : parcours 1 distance ;Catoblépas
+fshire;60;1:3|2:3|3:3;Ma:1|F:8|Po:-4|Ph:2;7;3;coups de sabots:0|1 humanite:5|2 huamites:6;150;Vol : peut voler. Monture : parcours 1 distance ;
+serpent aile;17;1:3|2:3|3:3;Po:11|F:-2|Ph:4;1;2;morsure venimeuse:0;125;Vol : peut frapper pendant son action de mouvement.Vif: peut virevolter pour éviter les coups (équivalent d�une roulade avec 1 dé);Serpent ailé
+armure vivante;30;1:4|2:5|3:6;Po:15|F:9|Ph:13|Ma:-3;0;3;epee barbelee:5|Armure de chevalier(non equipee mais droppable):6;145;Inconsistent: coups critiques impossible contre l'armure vivante;
+krun;13;1:1|2:2|3:3;Ph:3|Po:3;1;2;peau de loup:3|lance de gobelin:4|humanite:5;95;Amical: Si un de ses alliés proche va subir une frappe, sur 4+ il se jette devant et prends le coup.;
+zairzan;70;1:1|2:2|3:4;Ph:3|Po:5|F:5|Ma:10;16;6;anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de zairzan:5|javelots de feu:5|2 Humanite:6;1500;;zaïrzan
+scin;60;1:3|2:4|3:7;Ph:7|Po:-1|F:2|Ma:10;25;4;anneau de l eclipse:1|depetrant:2|anneau apotropaïque:2|Eclairs:4|robe de scin:5|grand sort d'ubiquite:5|2 humanites:6|rapiere:6;2000;Humanite : il peut utiliser une humanité max quand il le souhaite (capacité régénérée si les joueurs vont au feu)
+Le sort depetrant de scin est automatiquement recupere par les joueurs à sa mort;scîn, le conjurateur
+sarah;15;1:3|2:4;Ph:2;3;3;2 dagues aiguisees:3|1 humanite:4|2 humanites:6;150;Précise : elle peut tenter un backstab n'importe quand. Disparition : Si elle a 5 pv au début de son tour, sur 4+ elle se camoufle et disparaît de l'endroit;
+scinat;10;1:3|2:4|3:5;F:10|Ma:12;10;2;sauvetage cendre:4;400; S'il réussit, scînat reste sur place et scin est téléporté..Sauveur : si scin va subir une frappe, scînat peut utiliser son sort sauvetage cendré avant. Si celui-ci rate scin peut toujours tenter de se défendre. Parlant : Scînat peut parler à son porteur. Porteur: scînat peut changer de porteur sans soucis, il change alors de nom. <nomPorteur>+<at>;serpentvicieuxat
+chien enrage;15;1:2|2:3;Ph:5;1;2;croc chien enrage:0|humanite:4;30;;Chien enragé
+elfe nu;20;1:1|2:2|3:3;Ph:1|Ma:6|Po:1|F:1;20;3;1 humanite:4|2 humanites:5;115;Télépathe de premier niveau. Peut deviner vaguement ce que veulent les joueurs.;
+smith le dragon rouge;300;1:6|2:8|3:12;Ph:20|Po:10|F:50|Ma:-10;25;5;armure du chevalier:3|ignivome:4|epee lourde a deux mains:5|3 Humanite:6;2000;;
+oblex;100;1:1|2:1|3:1;Ma:20|F:-20|Ph:50|Po:50;50;3;drain de magie:0|sort nul:4|sort moyen:5|tres bon sort:6;400;Sens la présence des êtres intelligents de très loin et n'a de cesse que de les pourchasser pour les dévorer.;
+carcasse de chevalier;35;1:2|2:4|3:6;Po:-6|F:4|Ph:8|Ma:-2;0;4;bouclier de chevalier:4|epee a double tranchant:5|Armure de chevalier:6;200;Compte comme tenant ses armes à 2 mains même si tenues à 1 main;
+carcasse armee;11;1:1|2:2;Ph:0;0;2;epee ebrechee:5;22;;
+carcasse;11;1:1|2:2;Ph:0;0;2;poignard brise, cailloux, baton...:4;22;;
+fadar;48;1:3|2:6|3:9;Ph:11|Ma:6|Po:5|F:5;17;4;anneau apotropaïque:2|Talisman de vie(compté dans les stats de base):3|2 humanités:4|armure des roncières de jais:5|echgul:6;630;Roulade.Télépathe faunesque : elle comprend vaguement ce que les animaux disent.;
+adar;37;1:4|2:7|3:10;Ph:9|Ma:6|Po:5|F:9;14;4;anneau nyctalopie:2|1 humanité, ambre dorée:4|armure des roncières de jais:5|ichgul:6;630;Roulade. Chasseur précis : bénéficie de +1 sur son moins bon dé de frappe contre un animal sauvage. ;
+durluf;47;1:5|2:6|3:6;Po:-3|F:4|Ph:6|Ma:-1;11;3;Talisman de vie VI(compté dans les pvs):4|Anneau du détrousseur:5|Lieblingsschwert(ZweiHander):6;1450;la FAJ de Durluf passe en degat magique lorsqu'il utilise Lieblingsschwert.;
+kaboldu;20;1:2|2:3|3:3;Ph:1|Po:3|F:5;5;2;Croc chien enrage:0|Humanite:4;250;;
+esprit kyrielle;80;1:4|2:5|3:8|4:10;Po:15|F:2|Ph:20|Ma:-13;23;0;;2500;Inconsistent: coups critiques impossible contre l'esprit kyrielle.
+En debut de tour choisit le MJ fixe 3 personnages vivants en visuel de l'esprit kyrielle, il donne un seuil correspondant à chacun de ces personnages : 4+=premier choix|2+=deuxieme choix|1+=dernier choix.
+Le MJ lance le dé et l'esprit kyrielle copie les objets tenus en mains ainsi que les armures, sorts, talismans et anneaux correspondant au personnage du seuil du dé. La copie dure jusqu'au début du porchain tour de l'esprit kyrielle.
+L'esprit kyrielle dispose en début de tour d'autant d'énergie qu'il y'a de choses avec une intelligence supérieure à 0 dans un environ de ~15m;
+morphvoreur;65;1:5|2:7|3:7;Ph:15|Ma:16|Po:15|F:-4;3;4;griffes morphvoreur:0|relique de necroalgos:3|relique necrozetetique:5;230;Court tout le temps : Parcours 2x la distance en normale pour une action de déplacement.
+Lorsqu'il tue un ennemi sur un coup critique il plonge dans son corps et se régénère de 10 pvs.;
+carcasse legere;13;1:1|2:2;Ph:1;0;3;armure de cuir:4|epee droite:5|bouclier de bois:6;72;;
+scribelin;14;1:1|2:1|3:1;Ph:1|Po:5;6;1;humanite:4;60;très concentré sur sa tâche de scribe et très lâche. Petits et frêles;
+krass;36;1:2|2:3|3:4;Ph:2|Po:6|F:-4;9;3;;270;Subit 3 degat de feu par tour lorsqu'elle reste au soleil, sa peau étant très fragile.;
+brebere;62;1:3|2:4|3:6;Ph:3|Ma:8|F:5|Po:-5;7;3;croc fauglir:0|humanite:4;165;Regagne 3 énergies à la fin de son tour et peut décider de faire une action de combat bonus.;Brébère
+boa absorbant;40;1:4|2:6|3:8;Po:15|F:15|Ph:-6|Ma:15;5;4;morsure venimeuse:0;160;Une fois que le boa fixe sa cible, celle-ci ne bénéficie plus que d'une action par tour, ne peut plus détacher son regard et finit par être aveugle au bout de 3 tours.
+Pour chaque attaque magique ou de pyromancie que le boa subit, il absorbe la frappe en résolvant les dégâts normalement. Cependant il projette un jet de salive noir écumante sur sa cible au début de son tour avec exactement les mêmes statistiques de ce qu'il a subit.;
+ionyr;50;1:1|2:1|3:3;Ph:1|Po:4|F:5|Ma:13;14;4;faucille de gobelin:1|anneau de l eclipse:2|main de pyromancie:3|boule de feu:4|robe de pyrobelin:5|propiation par le feu:5|2 Humanite:6;1200;Ionyr est aveugle il a developpe d'autre moyen de percevoir, grâce à sa langue de serpent et son audition notamment. Il est impossible de le surprendre et il sent plein de choses qui sont imperceptibles aux autres.;Ïonyr
+baraganorg;63;1:3|2:6|3:8;Ph:17|Po:8|F:5|Ma:-5;6;4;pagne inutile:0|longue dague equilibree(x2):4|anneau turpide:5|technique brute de parade:5|technique vif ambidextre:6|anneau opportuniste:6;650;;
+skronskrons, le pyro;23;1:2|2:3|3:6;Ph:3|Po:3;1;3;lunette de skronskorns:2|tablier ignifuge:3|Krameur:4|humanite:6;430;Ingénieur qui aime les mécanismes, la mine et surtout le feu;
+minotaure;80;1:6|2:8|3:10;Po:3|F:8|Ph:17|Ma:3;1;4;hache:5|Armure lourde du taureau:6;393;Puissant : si tous les dés utilisés dans le bloquage réussisse, le minotaure repousse ses ennemis ceux-ci tombent par terre leur tour est terminé;
+soldat carcasse;15;1:2|2:3|3:3;Ph:3|Ma:-2;0;3;armure de carcasse:4|epee droite:5|bouclier de carcasse:6;95;;
+carcasse lourde;15;1:2|2:3|3:4;Ph:2|Po:-2;0;3;armure de maille:5|hache rouillee:6;110;;
+devineresse grabataire;15;1:0;F:20|Ph:-5;0;1;;40;Revit si les joueurs se reposent au feu et se souvient de l'histoire.
+Fragile : si elle est blessée le MJ jette 1D4, si = 1 alors elle s'accroche à son agresseur fermement, elle se décompose rapidement en passant de squelette à poussière et meurt en emportant toutes les âmes et humanités de son meurtrier.;
+carcasse guetteuse;15;1:1|2:2;Ph:2;1;3;armure petromorphe usee:4|longue dague:5|50 âmes supp:6;80;Les carcasses guetteuses se positionnent à un endroit et s'emmitouflent dans leur cape petromorphe pour prendre l'apparence d'un rocher et surprendre leur cible.
+Si un joueur se trouve devant une carcasse guetteuse à ~2m max, celle-ci peut bondir et effectuer un backstab. Il est automatiquement réussi si le joueur est de dos, sinon la carcasse jette un dé, sur 10+ le backstab est réussi.;
+bouquetin;13;1:1|2:2;Ph:3|Ma:1;1;2;coups de sabots:0|viande:4|humanite:5;15;;
+oicta;500;1:15;Ph:30|Po:10|F:50|Ma:30;80;10;;20000;omnipotent;oïcta
+cerefroi;40;3:8;Ph:15|Po:5|F:-10|Ma:7;2;4;etreinte de cerefroi:0|coups de sabots:0;310;glacial : les  joueurs proche ne peuvent pas courir (faire deux actions de déplacement)
+effroi : pour une action le cerefroi peut crier, le MJ jette 1D20, tous les êtres vivants alentours jette 1D20. Si < cerefroi, alors la victime est obligée d'utiliser ses deux prochaines actions pour s'enfuir en courant.;
+loup des neiges;25;1:1|2:2;Ph:2|Po:4|F:-4|Ma:4;6;2;croc chien enrage:0|humanite:4;55;rapide : leurs actions de déplacement correspondent à deux déplacement de joueur
+aux abois : impossible à prendre par surprise
+prédateur : voit leur proie de très loin et peuvent se mouvoir de manière invisible dans la neige. Un joueur sans bonus doit faire 19+ pour avoir un indice sur une forme dans la neige et 20+ pour imaginer que c'est un fauve.;
+wulfstein;70;1:1|2:2|3:4;Ph:3|Po:5|F:5|Ma:10;16;6;anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de zairzan:5|javelots de feu:5|2 Humanite:6;1500;;
+loup;27;1:1|2:3;Ph:2|Po:4|F:-4|Ma:4;6;2;croc chien enrage:0|humanite:4;55;rapide : leurs actions de déplacement correspondent à deux déplacement de joueur
+aux abois : impossible à prendre par surprise;
+ours;38;1:1|2:8;Ph:9|Po:1|F:-5|Ma:5;4;4;coup de griffes:0|humanite:4;110;charge : peut parcourir une grande distance sur une action de mouvement, tout droit. Il peut viser un joueur, s'il l'atteint et que le poids du joueur est inférieur à la force de l'ours alors le joueur est projeté 5m plus loin, il devra dépenser 2 actions à se relever.;
+serpent geant;30;1:3|2:3|3:4;Po:11|F:-4|Ph:1|Ma:1;2;3;morsure venimeuse:0;130;peut se laisser tomber d'une branche très haute pour faire une attaque surprise, backstab. Pour voir le serpent un test d'observation doit faire 17+.
+constriction : pour deux action un serpent peut s'enrouler autour de sa cible. Lutte de force, si le serpent gagne la cible ne peut pas jouer jusqu'à ce que le serpent se desserre. La victime enserrée subit 2 blessure à chaque fin de tour du MJ.;
+brigand;24;1:1|2:3;Ph:4;5;3;sarau du vil bandit:4|longue dague ciselee:5|bouclier de poignet:6|humanite:6;80;brigandage : lorsqu'un brigand tue un ennemi/joueur il récupère automatiquement ses âmes, il faut le tuer pour les récupérer en plus de sa récompense d'âmes habituelle.;
+panthere;33;1:1|2:5;Ph:6|Po:2|F:0|Ma:5;8;3;croc chien enrage:0|humanite:4;120;rapide : leurs actions de déplacement correspondent à deux déplacement de joueur.
+aux abois : impossible à prendre par surprise.
+guetteuse : si l'environnement le permet, la panthere est indetectable à l'oeil nu. Un test d'observation à 17+ peut renseigner sur une ambiance étrangement calme, un animal qui s'enfuie.
+Chasseuse : la panthere reste cachée aussi longtemps que possible, suit les joueurs et n'attaque qu'au moment opportun.;Panthère
+bete eclipsante;50;1:1|2:8;Ph:7|Po:-3|F:2|Ma:10;12;4;croc chien enrage:0|coup de tentacule:0|ubiquite:2|humanite:5;320;rapide : leurs actions de déplacement correspondent à deux déplacement de joueur.
+aux abois : impossible à prendre par surprise.
+Chasseuse : La panthere reste cachée aussi longtemps que possible, suit les joueurs et n'attaque qu'au moment opportun.
+illusion : la bete eclipsante projette son illusion systématiquement lors d'une attaque, l'illusion décale son image de 1m. L'illusion est projetée par ses tentacules. Elle ne se dévoile que lorsqu'elle frappe.;Bête éclipsante
+troll;160;1:3|2:5|3:12;Ph:20|Po:10|F:6|Ma:-3;3;4;poing de troll:0|etau de troll:0;1120;Lorsqu'il est assis il est totalement pris pour un rocher.
+Peau dure : si une frappe de plus de 10 degats physique touche le troll mais ne le blesse pas alors sur 10+(D20) l'arme est brisée.
+;
+chenille geante;40;1:1|2:1|3:1;Po:15|F:-10|Ph:9|Ma:0;1;2;morsure venimeuse:0|humanite:2;100;Pour voir la chenille un test d'observation doit faire 17+.
+kamikaze : lorsqu'elle est frappée sur 10+(D20) la chenille projette une explosion d'acide qui inflige 1 de degat de poison et 1 de degat de feu à l'aggresseur. Lorsqu'elle meurt elle explose dans une gerbe d'acide qui cause 2 de degats de poison et 2 de degats de feu à tout être vivant dans un rayon de 3m.;Chenille géante
+nyctaphage;35;1:0|2:0|3:0;Ph:4|Ma:5|Po:15|F:-20;0;1;graine nyctaphage:3;80;;
+vort;30;1:1|2:3;Ph:4|Po:3;9;3;longue dague ciselee:2|justaucorp tisse:3|humanite:4|vortex:5;160;Pour une action et une fois par rencontre vort peut user d'une corne de brume pour appeler des secours, le MJ jette 1D6 : c'est le nombre de brigands qui arrivent en renfort.;
+rerora;20;1:1|2:4;Ph:3;13;3;tunique dechiree:3|marteau de forge:4|bouclier de bois:6|humanite:6;100;Courageuse: immunisée contre les sorts, menaces, capacités qui vise à insuffler la peur.;
+brirzurzr;30;1:3|2:3|3:5;Ph:-4|Ma:1|Po:10|F:-15;3;2;ambre gelee:2;90;Insensible au saignements et aux eventreurs. et à tous les sorts ou effets qui vise à utiliser le sang de la cible (le sien est magiquement congelé)
+Sent magiquement extrêmement bien, et ceux jusqu'à plusieurs centaines de mètres;
+kerkerschatte;15;1:1|2:1|3:1;;0;2;poignard surinant:4;200;Aucune frappe ne l'atteint.
+Les kerkerschatte frappe les ombres des êtres vivants, celles-ci ne peuvent pas se défendre sauf avec un miracle. (Cf miracle "ombre dansante" pour plus de détails).
+1x par tour la kerkerschatte peut faire une action de l'ombre, jeter 1D4:
+4+ : Kidnapping, si l'ombre arrive à toucher un être léger (poids 0) ou de petite taille (enfant), alors elle peut emporter son corps en entier dans les ombres.
+3+ : Le kerkerschatte peut voler quelque chose dans l'inventaire d'une ombre, l'element disparaît de l'inventaire du porteur de l'ombre.
+;
+le trio de jehovoix;0;1:1;;0;0;;0;Michâle, Janoix, Cécilence.;
+michale;20;1:1|2:2;Ph:3|Ma:1;6;2;longue dague:2|cape de pelerin:3|humanite:4;100;Désarme magiquement tout inquiétude chez son interlocuteur au premier abord.;
+janoix;16;1:1|2:1;Ph:2;2;2;cape de pelerin:3|humanite:4;50;phytogéographe : connaît très bien la flore des Landes enclavées (du moins les zones les moins dangereuses);
+cecilence;70;1:1|2:4;Ph:2|Ma:11|Po:10|F:4;18;4;cape de pelerin:3|humanite:4|balai volant:6;50;Oenomorphe : peut changer n'importe quelle boisson en sang d'enfant (le picotement donne l'impression d'un goût alcoolisé).
+Nyctophile : peut faire tomber la nuit en 3 tours, pour chaque tour passé dans la nuit, elle recouvre 2 pv.
+Manchot : elle utilise son balai comme un bâton de marche, car il faut les deux mains pour bien piloter;Cécilence
+nistra;38;1:3|2:6|3:7;Ph:9|Ma:8|Po:6|F:3;18;5;technique botte secrete:3|technique dague dash:3|armure cuir taillee:3|longue dague equilibree(x2):4|couteau de lancer:5|anneau du lache:5|anneau du charognard sournois:6|humanite:6;750;Metamorphe: peut prendre la forme de n'importe quel humain ou humaine que son interlocuteur ne connaît pas.
+Assassin : peut effectuer des frappes précises avec un bonus de +3 sur son test de précision.;
+rutap;38;1:3|2:6|3:7;Ph:9|Ma:8|Po:6|F:3;18;5;armure cuir taillee:3|poignard crochet venimeux:4|longue dague crenelee:4|couteau de lancer:5|anneau du prescient:5|humanite:6;540;Perceur d'âme : Une fois par tour, s'il peut regarder un être vivant avec son oeil alors, Il peut effectuer un sort "paralysie". Le sort réussit automatiquement s'il est plus intelligent que la cible. Le sort ne s'arrête pas s'il détourne le regard. 
+Assassin : peut effectuer des frappes précises avec un bonus de +2 sur son test de précision.;
+moutoncle;75;1:1|2:9;Ph:10|F:-6|Po:13|Ma:-3;4;4;armure lourde de carcasse:4|anneau de loyauté:4|lycanthrache:5|humanite:6;450;Cornu : peut effectuer des parades avec ses cornes, ne lui coûte pas d'énergie, s'il rate il n'y a pas de malus, mais s'il réussit il ne peut pas contre-attaquer.;
+rho;30;1:1|2:3;Ph:3|F:-8|Ma:1|Po:-5;8;3;ambre rose:3|sarau tisse:4|epee barbelee:5|humanite:6;50;Peut utiliser son ambre et son humanite.
+Attentif : Si le premier coup d'un combat lui est destiné (backstab inclus) il peut l'éviter entièrement sur 8+(D20), sur 10+ il joue son tour immédiatement après l'échec de cette frappe.;
+lynialech;33;1:3|2:6|3:5;Ph:2|Ma:9|Po:2|F:6;18;5;arc d'if noir:2|fleche de corbeaux:3|armure de plumes de jais:4|humanite:6;540;Peut effectuer des sauts de plusieurs mètres en hauteur ou en longueur, sans difficulté.
+Bénéficie d'un bonus de +3 sur ses dés de roulade.;
+om;53;1:1|2:2|3:2;Ph:7|Po:-1|F:2|Ma:10;40;6;anneau de l eclipse:1|transport,surin ensorcele:2|sauvetage cendre:3|chapeau d'ôm:4|arme felonne superieure:5|2 humanites:6;2500;Humanite : il peut utiliser une humanité max quand il le souhaite (capacité régénérée si les joueurs vont au feu);ôm, le moindre
+mare;12;1:0|2:0;Ph:0;2;0;1 humanite:4|2 humanites:5;15;Très rapide et silencieux, il peut disparaître très vite en courant silencieusement pour s'enfuir.;Marë
+sulath;25;1:3|2:3|3:3;Ph:-3|Po:10|F:20|Ma:50;45;2;;1;;
+crapaud de sulath;300;1:2|2:2|3:2;Ph:15|Po:15|F:-15|Ma:15;15;2;;2300;martyre : Il expire ses exhalaisons putrides de douleur à chaque frappe, les attaquants au corps à corps subissent 15 dégâts magiques à chaque fois que le crapaud subit une blessure;
+le corblaid;32;1:1|2:2;Ph:4|Po:1|F:-7|Ma:10;13;2;embrouillamini de cervelle:0|plume de corbeau royal:4|humanite:5;170;Les attaques psioniques sont systématiquement en échec contre lui.
+A tire d'aile : S'il dispose d'une énergie, lorsqu'il subit une frappe il peut jeter 1D20 sur 6+ il s'envole lentement, ne fonctionne que sur pour les frappes à distances.;Le Corblaid
+prince blanc;22;1:1|2:2;Ph:1|Po:3|F:-5|Ma:6;8;3;croc chien enrage:0|humanite:4;110;Grandes oreilles : il entend les sons d'extrêment loin.
+poils chauffant : ses poils peuvent, à sa volonté, dégager une forte chaleur pour réchauffer son environnement. Cela lui permet de rester enfoui totalement sous la neige indéfiniment pour surgir au bon moment sur sa proie.;
+frimas;12;1:1|2:1;Ph:0|Po:2|F:-3|Ma:3;3;1;humanite:4;30;elle peut naviguer sous la neige de manière totalement invisible. Lorsqu'elle est en danger elle peut faire ça immédiatement. Il faut un bon flair ou une bonne ouïe pour la repérer.;
+friselis;9;1:1|2:1;Ph:0|F:-10;2;1;humanite:4;10;;
+alphax;75;1:1|2:10;Ph:14|Po:7|F:1|Ma:-3;6;4;coup de griffes:0|croc fauglir:0|humanite:4;440;Vision : voit extrêmement loin, et sent extrêment loin.
+caligineux : se déplace sans bruit. Il peut choisir à son gré d'être de la fumée ou un chien géant, ou les deux. Sous forme de fumée il effectue 3 unités de déplacement en une action.
+Lorsqu'il subit une frappe il peut jeter 1D6 sur 4+ la frappe traverse son corps en fumée, sans faire de dégâts.;Alphax, le fumeur.
+dorbal;110;1:2|2:4|3:4;Po:-1|F:7|Ph:12|Ma:-5;6;3;nekrotine:4|epee barbelee:5|Armure de chevalier:6;1110;C'est un spectre sans tête, il ne peut pas être décapité.
+Chien fidèle : pour une action il peut siffler, et alphax se matérialise à ses côtés dans un nuage sombre montant du sol
+Informe : Un de ses bras peut se détacher de son corps et aller attraper quelque chose qui est à maximum 20m, leur étreinte est très puissante (8 force). En faisant un jet de lutte de force (la soudaineté rend impossible de faire une roulade pour eviter), il peut pendre un humanoïde par les pieds.;Dorbal, le chasseur de tête
+lali;500;1:2|2:2|3:50;Ph:70|Po:40|F:-20|Ma:50;6;2;;10000;gel puissant : tout ce qui la touche gel instantanément et se brisera en morceaux au prochain contact subit.;lali, la murène
+volucre anthropophage;15;1:1|2:3;Ph:2|Po:6|F:-1;1;2;serre de volucre anthropophage:0|ailes de volucre anthropophage:4;35;;
+carcasse gelee;14;1:1|2:2;Ph:3|F:-4|Ma:2|Po:2;0;3;armure de cuir:4|epee large:5|bouclier de bois:6;80;friable : Les frappes de précisions bénéficie de +2 au dés contre ces carcasses (le corp se brise facilement)
+Frigorifiante : lorsqu'un joueur est blessé par une carcasse gelée, il ne peut pas se déplacer à son prochain tour.;carcasse gelée
+spectre de necroclore;0;1:0;Ph:0;3;2;sort quelconque:4;150;Prend les mêmes stats que sa version physique. Seulement est invincible aux dégâts physiques et de poison. Sa stat de défense physique devient sa stat de défense magique.
+Dès qu'il subit une blessure, jeter 1D6 sur 5+ il disparaît dans un nuage de fumée verte.;
+squelette;25;1:1|2:3;Ph:5|Ma:1|Po:5|F:-4;0;3;epee lourde:3|epee barbelee:3|epee a deux mains:3|bouclier rond:4|os du retour:5|ambre noire:6;130;Revive sur 2+ (1D6) au bout de 2 tour mort. Il faut détruire leur totem pour les éliminer définitivement.;
+pat;20;1:2|2:3|3:3;Ph:1|Po:3|F:5;5;2;Croc chien enrage:0|Humanite:4;250;;
+heleade;20;1:1|2:1|3:1;Ma:-3|F:-5|Po:20|Ph:15;7;3;pique de glace d heleade:0|cristaux heleade:2|humanite:6;140;Sussurement gercés : la cible jette 1D20+sa défense magique si le résultat < 10 alors la cible est attirée irresistiblement par l'héléade. La cible baisse les armes et va dépenser l'entièreté de son prochain tour à rejoindre les brase de l'héléade.
+Fuyante : Si l'héléade est blessée, elle jette 1D20+vie restantes si le résultat < 17 alors elle s'enfuit en s'enfonçant dans sa congère.;Héléade des givres.
+torageuse;0;1:0;Ph:0;0;0;souffleuse d ame:4;150;Prend les mêmes stats que le corps physique avant le rage quit.
+Littéralement invicible. Mais subit la douleur des coups pour la durée d'un tour (par exemple peut s'écrouler par terre inanimee après un eclair foudroyant). Le but est de creer le desespoir et la fatigue nerveuse chez les joueurs qui voit le monstre se relever systematiquement.
+Très aggressive et provocatrice, cherche l'affrontement
+S'en prends toujours au joueur le plus haineux/agressif/ecrasant
+Menace de frapper violemment mais ne peut pas le faire, sauf s'il a ete frappe au tour precedent par sa cible.
+Dans ce cas elle peut infliger exactement la meme frappe (rejeter les des) que la derniere reçue, avec les meme statistiques et elle peut le faire autant de fois par tour qu'il y'a eu de gros mots prononcés depuis son apparition.
+Ses degats sont toujours convertis en degats magiques.
+La torageuse disparaît si la cible rate le test d'impavidite : a chaque tour la torageuse jette 1D20-(bonus impavide indifférence de la cible), si le résultat <= 0 alors la torageuse disparaît dans un autre univers.
+Le bonus d'impavidite est attibué au bon vouloir du MJ (exmeple : +1 = le joueur regarde la torageuse sans la quitter des yeux, sans sourciller, +5 le joueur s'asseoit en tailleur en fermant les yeux), le bonus d'imapvidite se cumule de tour en tour, et est reinitialise à l'apparition ou disparition d'une torageuse.;
+tomek;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+stellaraneide;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+chauve-souris geante;23;1:2|2:2|3:2;Po:3|F:2|Ph:4;2;2;morsure buveuse:0;105;Vol : peut frapper pendant son action de mouvement.
+Grippe : Une fois qu'elles ont mordues une cible, elle s'accroche à elle virvolte autour, impossible de s'échapper, roulades inefficaces, la chauve-souris s'acharnera sur la même cible jusqu'à ce qu'un des deux succombe.;chauve-souris geante
+vampire;60;1:2|2:2|3:5;Po:8|F:-7|Ph:9;13;5;morsure buveuse:0|houppelande mephistophelique:2;200;vaporeux:Diminue son propre poid de 3
+telepathe: peuvent communiquer/lire par l'esprit en regardant dans les yeux. Si le destinataire essaye de bloquer l'entrée, celui-ci doit faire trois propositions de ce à quoi son personnage pense précisément à ce moment, le MJ pique une information au hasard et le vampire la connaît.
+Metamorphe : peut se changer en loup ou en chauve-souris géante à son gré pour une action.
+Calme : ne dépense jamais plus de 3 énergie pour attaquer.
+Vaporeux : peut effectuer des roulades mais cela a pour effet qu'il évite juste rapidement les coups sans bouger. Le seuil de réussite est augmenté de son poid (ou diminué si le poid est négatif)
+Immortel : a chaque tour apres sa mort le vampire se releve avec toute sa vie si le joueur qui a porté le coup fatal perds du sang (il voit son sang défié toute loi physique et glisser pour rejoindre le corp). Pour eliminer definitivement un vampire il faut lui trancher la tete et la mettre dans le feu, ou lui transpercer le coeur d'un pieu. Au moment où le vampire se reveille il recupere ses ames du joueur.
+Pervertisseur : si la frappe "morsure buveuse" effectue des blessures par saignement, le vampire peut decider de cracher son propre sang dans les veines. La victime devient un vampire moindre (pareil que vampire moins "immortel" et "pervertisseur") dans 30 min (peut continuer à jouer mais le MJ peut lui faire subir ses instincts de vampire);vampire
+datura;60;1:2|2:2|3:4;Po:6|F:-7|Ph:6|Ma:4;15;5;morsure buveuse:0|houppelande mephistophelique:2|anneau caligineux:5;230;vaporeux:Diminue son propre poid de 3
+telepathe: peuvent communiquer/lire par l'esprit en regardant dans les yeux. Si le destinataire essaye de bloquer l'entrée, celui-ci doit faire trois propositions de ce à quoi son personnage pense précisément à ce moment, le MJ pique une information au hasard et le vampire la connaît.
+Metamorphe : peut se changer en loup ou en chauve-souris géante à son gré pour une action.
+Calme : ne dépense jamais plus de 3 énergie pour attaquer.
+Vaporeux : peut effectuer des roulades mais cela a pour effet qu'il évite juste rapidement les coups sans bouger. Le seuil de réussite est augmenté de son poid (ou diminué si le poid est négatif)
+Immortel : a chaque tour apres sa mort le vampire se releve avec toute sa vie si le joueur qui a porté le coup fatal perds du sang (il voit son sang défié toute loi physique et glisser pour rejoindre le corp). Pour eliminer definitivement un vampire il faut lui trancher la tete et la mettre dans le feu, ou lui transpercer le coeur d'un pieu. Au moment où le vampire se reveille il recupere ses ames du joueur.
+Pervertisseur : si la frappe "morsure buveuse" effectue des blessures par saignement, le vampire peut decider de cracher son propre sang dans les veines. La victime devient un vampire moindre (pareil que vampire moins "immortel" et "pervertisseur") dans 30 min (peut continuer à jouer mais le MJ peut lui faire subir ses instincts de vampire);datura
+lechasseuse;15;1:0;F:20|Ph:-5;0;1;;40;;Lechasseuse
+mamba noir;24;1:3|2:3|3:3;Po:10|F:-2|Ph:3|Ma:-2;3;4;morsure venimeuse:0;160;tetanisant: si la cible subit des degats de venin, elle jette 1D4 à tous les tours où elle subit des degats de venin sur un résultat de 1 elle est paralysée (impossible de jouer ce tour);
+blupz;42;1:1;Po:7|F:5|Ph:1|Ma:10;17;2;flute ophiole:4|sarbacane nanosinophile:5|flechette toxique:6;1000;Vol:peut voler à l'infini, comme une mouche un peu.
+herboriste:dispose de pleins de potions sur lui (antidote aux poisons les plus basiques, restauration de pv, regain de vigueur). Peut enduire ses flèches de différents poisons (normal, psychédélique, paralysie, appâtisant), le poison s'arrête lorsque le compteur est à 0
+Multilinguiste: parle et comprend tous les êtres qui ont au moins 1 d'intelligence
+;
+crocos;14;1:1|2:3;Ph:3|Po:12|F:8|Ma:10;5;2;croc chien enrage:0;150;vif : peuvent jouer quand ils veulent, entre deux actions d'un joueur ou entre deux joueurs. S'ils jouent en dehors du tour du MJ alors il ne jouent pas pendant le prochain tour du MJ. (ce qu'il fait qu'ils peuvent plus ou moins jouer deux fois de suite: tour du MJ, leur tour surprise et ensuite ils poireautent deux tours)
+demoniaque : ils sont hyper enerves tout le temps il veulent tout manger. Impossible à raisonner ou a discuter, devorer est leur nature
+mangeur d'ames : des que quelque chose avec des ames meurent ils se ruent tous dessus (avec leur action surprise), ils avalent 1D100 âmes chacun s'ils avalent 40 âmes ou plus alors un nouveau crocos apparaît à côté. Les âmes non avalées sont perdues à la fin de leur tour, ils ne peuvent pas avaler plus d'âmes que ce que la victime a perdue;
+trollon;90;1:6|2:6|3:6;Ph:14|Po:6|F:3|Ma:-7;2;3;charge de trollon:0|main nue:0;760;Sprinteur : ils se déplacent de 2 déplacement humain, et de 3 s'ils courent avec leurs 2 actions.
+Assommeur: le trollon peut frapper à main nue en frappe de precision, s'il enleve +50% de la vie restante du joueur alors celui-ci tombe dans les pommes immédiattement. Il peut être réveillé pour une action. Sinon il se reveillera pendu par les pieds dans la clairière au trolls.
+Hypracons : c'est dit, ils sont très cons et facilement enturlupinable
+Camouflage : autant ils sont cons, autant ils peuvent très bien se cacher dans la forêt, ils peuvent aussi le faire très mal.
+Kidnappeur : ils peuvent faire une frappe de précision pour attraper les jambes de la victime, s'ils y arrivent et que la victime pèse 5 ou moins, alors il la traîne en courant soudainement très vite et s'enfonce dans la forêt. Ils l'amènent à la clairière au troll.;
+telemilpattes;65;1:3|2:3|3:3;Ph:11|Ma:6|Po:6|F:-5;1;3;croc poison:0|humanite(x4):3|fragment eterna:6;300;Telepathe: est en lien télépathique avec son maître, celui-ci voit et entend tout ce que voit et entend le télémilpattes et peut lui enjoindre des phrases à prononcer
+Megaphone: peut faire entendrela voix de son maître très fort grâce à sa langue qui peut moduler les fréquences de la voix de son maître
+Avale-Suprise : si un joueur fonce sur le telemilpatte (tant qu'il a de l'élan), alors le telemilpatte réagit immédiattement juste après l'action de déplacement du joueur, peu importe si ce n'est pas son tour. Et déboîte sa machoîre de manière hallucinante tout en aspirant très fort, avec une haleine putride. Le joueur est aspiré et peut s'échapper avec une roulade malus de 1D6 (lancé par le MJ). Si la roulade rate, alors le joueur est avalé sec et net. Il n'est pas mort mais ne peut plus que parler et penser dans le ventre de la bête. Tous les tours du telemilpatte le compteur du poison du joueur augmente de 2. Le telemilpatte ne peut avaler personne d'autre tant que le joueur précédent n'est pas digéré. Si le compteur de poison du joueur dans la gorge du telemilpatte depasse 5 alors on considère que tout l'equipement qu'il portait a fondu. Ouvrir le telemilpattes libere sa victime.;
+cleanst;20;1:1|2:2;Ph:2;3;2;epee barbelee:3|humanite(x5):4|anneau du lache:5|anneau du cacochyme:5|armure de chevalier:6;500;Sympathique: peut s'attirer l'empathie et la sympathie de son interlocuteur très facilement, il rallie toujours le public à son bord et manipule prestement les mots de manipulations. Sur une lutte d'intelligence réussit il convainc son auditeur qu'il a raison;
+proulpuik;13;1:1|2:1;Ph:-1|F:-3|Po:5|Ma:15;6;2;avaleur de talents:4|coup de tentacule:5;900;suceur d'organes: si un coup de tentacule blesse alors il peut decider de ne pas faire de blessure mais d'échanger un organe avec sa cible, qui souffre alors d'une hemoragie (1pv en moins à chaque fin de ses tours), les pvs du proulpuik et de la cible sont inversés.
+penetration nasale: si un coup de tentacule tue, alors avec 1D20 sur 5+ le proulpuik peut rentrer dans par le nez de sa victime et prendre la place de son cerveau. La victime meurt normalement, par contre son corps physique est rechargé en pv, et le proulpuik peut utiliser ce corps physiques. Par ailleurs lors de la résurrection, si le corp n'a pas été abandonné par le proulpuik alors celui-ci meurt mais aspire définitivement 1 intelligence en mourrant. ;
+leucrotta;20;1:4|2:4|3:4;Ph:8|Ma:4;2;3;charge catoblepas:0|croc chien enrage:0|humanite:4;110;appâteur: peut imiter la voix de n'importe quel humain qu'il a entendu;
+bigobelours;50;1:3|2:5|3:9;Ph:9|Po:6|F:4|Ma:-4;5;5;armure de carcasse:3|lourde masse d arme:4|anneau deshumanisant:5|humanite:6;230;Implacable : Tant qu'ils ont une énergie ils peuvent jeter un dé lorsqu'ils subissent une frappe (résoudre ce dé comme une frappe à 1 energie), ils réduisent les degats totaux de la frappe reçus par les degats totaux de leur frappe. S'ils font plus de degats que leur adversaire alors celui-ci subit la différence des dégâts et ne peut pas se défendre. Ensuite le bigobelours jette 1D20 sur 8+ il conserve son énergie.
+Masseur : ils peuvent relancer leurs dés qui font 1 lors d'une frappe.;
+necrozetete;300;1:0;Ph:0;0;30;exhumation mortelle:3|Aspirameur:3|relique necrozetetique:4|relique de necroalgos:5|exhumation anthropophobe:6;500;Beaucoup de pv. Meurt s'il n'a plus d'énergie. Sont toutefois soumissibles aux effets des sorts.
+Attaque de préférence les êtres morts avec des humanités, une humanité leur redonne toute leur énergie.
+Mais s'ils sont bientôt à court, ils attaquent les porteurs d'humanités.
+Aliénable: Ils perdent 1 énergie à chaque action. C'est pour ça qu'on les voit souvent parfaitement stoïque
+Nihilant: lors de n'importe quel jet de dé concernant un necrozetete le/les joueurs concernés doivent fermer les yeux et ne peuvent donc pas voir le résultat des dés (impossible pour les autres joueurs de leur donner des indications)
+Necrophile : dans les environs de la rabouillère aux stellaranéides, lorsque quelque chose meurt un necrozetete se matérialise aspirant son dernier souffle sur 1D20 < 8;
+semence demo-nique;20;1:1|2:1;Ph:20|F:-30|Po:10|Ma:2;0;1;croc acide:0;10;brulant:consumme instantanement tout metal qui le blesse
+multi-coeur: si la semence subit une frappe fatale par des dégâts physiques, alors elle est coupée en deux créant deux nouvelles semences avec la moitié des points de vie restants de la semence avant la frappe (arrondi à l'inférieur, une semence d'1pv meurt sans se multiplier)
+insemineur:S'il touche la peau d un etre vivant, alors il peut s'implanter dans ses cellules entierement pour donner naissances a un demonique (peut effectuer une frappe de precision pour toucher la peau entre l'armure). La semence disparait alors entierment dans le corps.
+Une proeminence noire de la taille d'une tete apparait au tour prochain du joueur. Au tour d'apres la proeminence abrite un foetus de demonique qui commence a bouger. A la fin du 3 eme tour du joueur la proemeinence explose et le demonique apparait.
+Lorsque le demonique naît, il prend un item au choix du joueur, le joueur le perd.;
+demonique;22;1:3|2:3|3:3;Po:3|F:30|Ph:3|Ma:-2;8;3;morsure brulante:0|technique volage:3;300;Vol : peut frapper pendant son action de mouvement.Vif: peut virevolter pour éviter les coups (équivalent d une roulade avec 1 dé)
+Voleur : acharner a voler des equipements, il sait utiliser tout ce qu'il touche parfaitement.;
+grounf;38;1:1|2:8;Ph:9|Po:1|F:-5|Ma:5;4;4;coup de griffes:0|humanite:4;110;charge : peut parcourir une grande distance sur une action de mouvement, tout droit. Il peut viser un joueur, s'il l'atteint et que le poids du joueur est inférieur à la force de l'ours alors le joueur est projeté 5m plus loin, il devra dépenser 2 actions à se relever.;
+kerkerschafe;15;1:1|2:3;Ph:1|F:-10;2;1;fourche:5|humanite:6;50;verbigération: grogne, menace, crache, débagoule sans sens. Pas de communication possible une fois la menace faite, la deuxième semonce est une frappe d'estoc.;
+nyctarame;35;1:0|2:0|3:0;Ph:4|Ma:5|Po:15|F:-20;0;1;graine nyctaphage:3;80;;
+huorn;115;1:3|2:5|3:10;Ph:18|Po:8|F:-10|Ma:8;2;5;branche de huorn:0;970;Peut apparaître comme un arbre et ne pas réagir ou peut s'éveiller à son gré: Dispose toujours de l'initiative.
+Les branches semblent balancer alors qu'il n'y a pas de vents, certaines branches suivent les joueurs.
+Jusqu'à ce que par-dessus un joueur deux branches le saisissent par les épaules et lui cache la bouche. Pour l'emmener dans les arbres. 
+MJ lance 1D20, sur 8+ réussite parfaite, sur 6+ le joueur peut crier et se débattre. ;
