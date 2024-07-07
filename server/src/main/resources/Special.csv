@@ -68,9 +68,6 @@ Max Energie : 3
 Seuil Blocage : 6+
 Blocage : 1
 Poids : 1;
-fiole d estus;OUTIL;Restaure toute la vie.
-Utilisation : 3
-Coût : 1 action spéciale;
 fiole de poison;OUTIL;Ajoute Toxine 2+ => 4 sur l’arme tenue pour la prochaine frappe uniquement. 
 Ne fonctionne pas sur les armes disposant déjà de Toxine.
 Utilisation : 5
@@ -263,3 +260,7 @@ technique brume;TECHNIQUE;Effet : Répand une brume autour du lanceur, il devien
 technique camouflage;TECHNIQUE;Effet :le joueur est dissimulé à la vue des regards inavertis s'il reste immobile et que l'environnement le permet (sombre caché). Cela accorde +3 au dé de tentative de backstab;
 test;OUTIL;Fonctionne par paire, semble magique.;test2
 parchemin de mylene;OUTIL;decrits les memoires de mylene;
+fiole d estus;OUTIL;Restaure 1D10 pv
+Utilisation : 3
+Coût : 1 action spéciale
+Se régénère au feu;
