@@ -10,13 +10,31 @@ import org.litote.kmongo.reactivestreams.KMongo
 import org.litote.kmongo.regex
 
 val client = KMongo.createClient().coroutine
-val database = client.getDatabase("JDRProd")
+val database = client.getDatabase("JDRProd_Backup")
 
 val collectionsApiableItem:MutableMap<String,CoroutineCollection<out ApiableItem>> = mutableMapOf()
 
 fun createCollectionTables(){
     unmutableListApiItemDefinition.forEach {
         collectionsApiableItem[it.nameForApi!!] = database.getCollection(it.nameForApi!!)
+    }
+}
+
+//TODO ajouter ici une ligne dans le when a chaque fois qu'eun nouvelle collection dans la bdd est cree
+/**
+ * strict est un booleen quand il est à true c'est à dire qu'on cherche exactement l'element qui matche le nom
+ */
+suspend fun insertListElements(instanceOfCollectionItemDefinition:ApiableItem,listToInsert:List<ApiableItem>): Any {
+    return when(instanceOfCollectionItemDefinition){
+        is Arme ->  database.getCollection<Arme>().insertMany(listToInsert as List<Arme>)
+        is Armure -> database.getCollection<Armure>().insertMany(listToInsert as List<Armure>)
+        is Monster -> database.getCollection<Monster>().insertMany(listToInsert as List<Monster>)
+        is Bouclier -> database.getCollection<Bouclier>().insertMany(listToInsert as List<Bouclier>)
+        is Sort -> database.getCollection<Sort>().insertMany(listToInsert as List<Sort>)
+        is Special -> database.getCollection<Special>().insertMany(listToInsert as List<Special>)
+        is Joueur -> database.getCollection<Joueur>().insertMany(listToInsert as List<Joueur>)
+        is Equipe -> database.getCollection<Equipe>().insertMany(listToInsert as List<Equipe>)
+        else-> Unit
     }
 }
 

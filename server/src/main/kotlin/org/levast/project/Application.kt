@@ -20,6 +20,7 @@ import com.mongodb.MongoBulkWriteException
 import createCollectionTables
 import getCollectionElements
 import getCollectionElementsAsString
+import insertListElements
 import io.ktor.http.ContentDisposition
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
@@ -146,10 +147,10 @@ fun Application.module() {
                 get("/"+ itapiable.uploadFileForApi) {
                     //retrieve the data from csv file
 
-                    val parsedData = try {
+                    val parsedData:List<ApiableItem> = try {
                         itapiable.decomposeCSV(
-                            File("src/jvmMain/resources/${itapiable.nameForApi}.csv").readLines()
-                            .asSequence()) as List<Nothing>
+                            File("${itapiable.nameForApi}.csv").readLines()
+                            .asSequence())
                     } catch (e: FileNotFoundException) {
                         //si le fichier existe pas on retourne une liste vide
                         logger.error(e.stackTraceToString())
@@ -157,7 +158,7 @@ fun Application.module() {
                     }
                     //send data to database
                     try {
-                        collectionsApiableItem[itapiable.nameForApi]!!.insertMany(parsedData)
+                        insertListElements(itapiable,parsedData)
                     } catch (e: MongoBulkWriteException) {
                         logger.error(e.stackTraceToString())
                     }
