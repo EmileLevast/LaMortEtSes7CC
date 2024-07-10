@@ -1,5 +1,6 @@
 package affichage
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Card
@@ -11,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import configuration.IConfiguration
@@ -24,20 +26,13 @@ fun layoutMenuConfiguration() {
 
     val onCloseChangeIpDialog:()->Unit = { openChangeIpDialog = false}
 
-//
-//    ModalNavigationDrawer(
-//        drawerContent = {
-//            ModalDrawerSheet {
-//                NavigationDrawerItem(
-//                    label = { Text(text = "Adresse Server") },
-//                    selected = false,
-//                    onClick = { openChangeIpDialog= true}
-//                )
-//            }
-//        }
-//    ) {
-//        // Screen content
-//    }
+    Column {
+        TextButton(onClick = {
+            openChangeIpDialog = true
+        }){
+            Text("Changer Adresse")
+        }
+    }
 
     if(openChangeIpDialog){
         AlertDialogChangeIp(onCloseChangeIpDialog)
@@ -69,6 +64,8 @@ fun AlertDialogChangeIp(
         confirmButton = {
             TextButton(
                 onClick = {
+                    config.setIpAdressTargetServer(ipAdressInput)
+                    onDismissRequest()
                 }
             ) {
                 Text("Confirmer")
@@ -77,6 +74,7 @@ fun AlertDialogChangeIp(
         dismissButton = {
             TextButton(
                 onClick = {
+                    onDismissRequest()
                 }
             ) {
                 Text("Annuler")

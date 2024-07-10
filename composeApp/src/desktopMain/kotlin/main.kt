@@ -6,6 +6,7 @@ import affichage.layoutListItem
 import affichage.layoutMenuConfiguration
 import affichage.layoutModeSelection
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -84,6 +86,9 @@ fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
 
     val (equipes, setEquipes) = remember { mutableStateOf<List<Equipe>>(emptyList()) }
 
+    var openMenuBurger by remember { mutableStateOf(false) }
+
+
     //chargement des equipes
     remember {
         coroutineScope.launch {
@@ -97,6 +102,8 @@ fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
             })
         }
     }
+
+
 
     //Si on est pas encore decide d'ouvrir l'appli en mode admin ou non
     if (isInAdminMode == null) {
@@ -114,7 +121,15 @@ fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
         }
     }
 
-    layoutMenuConfiguration()
+    Column(horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.Top) {
+        TextButton(onClick = {openMenuBurger = !openMenuBurger}){
+            Text("Menu")
+        }
+        if(openMenuBurger){
+            layoutMenuConfiguration()
+        }
+    }
+
 
 
 }
