@@ -3,7 +3,6 @@ import affichage.LayoutStatsJoueur
 import affichage.layoutAdmin
 import affichage.layoutJoueur
 import affichage.layoutListItem
-import affichage.layoutMenuConfiguration
 import affichage.layoutModeSelection
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Box
@@ -12,10 +11,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -116,8 +111,6 @@ fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
             WindowJoueurs(selectEquipe, bitmapBackground)
         }
     }
-
-    layoutMenuConfiguration()
 
 
 }
