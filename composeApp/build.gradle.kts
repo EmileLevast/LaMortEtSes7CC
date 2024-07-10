@@ -82,6 +82,9 @@ kotlin {
             //dependency injection
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+
+            implementation(libs.androidx.datastore)
+            implementation(libs.datastore.preferences.core)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
