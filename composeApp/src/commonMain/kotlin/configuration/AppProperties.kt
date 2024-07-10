@@ -1,6 +1,7 @@
 package configuration
 
+import SERVER_PORT
 import kotlinx.serialization.Serializable
 
 @Serializable
-class AppProperties(val serverUrl:String="")
+class AppProperties(var ipAdressServer:String="", val portServer: Int = SERVER_PORT)

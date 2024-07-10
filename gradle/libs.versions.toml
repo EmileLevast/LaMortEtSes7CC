@@ -11,6 +11,8 @@ androidx-espresso-core = "3.5.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.1.5"
 compose-plugin = "1.6.10"
+datastore = "1.1.1"
+datastorePreferencesCore = "1.1.1"
 junit = "4.13.2"
 kmongoCoroutine = "5.1.0"
 koinComposeVersion = "1.1.0"
@@ -20,8 +22,11 @@ kotlinxSerializationJson = "1.6.3"
 ktor = "2.3.12"
 logback = "1.5.6"
 uiDesktop = "1.6.8"
+material3Desktop = "1.2.1"
 
 [libraries]
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastorePreferencesCore" }
 kmongo-coroutine = { module = "org.litote.kmongo:kmongo-coroutine", version.ref = "kmongoCoroutine" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComposeVersion" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
@@ -48,6 +53,7 @@ ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "kto
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
 androidx-ui-desktop = { group = "androidx.compose.ui", name = "ui-desktop", version.ref = "uiDesktop" }
+androidx-material3-desktop = { group = "androidx.compose.material3", name = "material3-desktop", version.ref = "material3Desktop" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
