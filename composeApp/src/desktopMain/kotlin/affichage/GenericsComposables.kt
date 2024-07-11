@@ -14,7 +14,7 @@ import org.koin.compose.koinInject
 fun buttonDarkStyled(texte:String, onClick:()->Unit){
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
-    FloatingActionButton(modifier = Modifier.padding(graphicsConsts.paddingCellLayoutJoueur), onClick=onClick, backgroundColor = Color.Black) {
-        Text(color = Color.White, text = texte,fontFamily = FontFamily(Font(graphicsConsts.fontCard)))
+    FloatingActionButton( onClick=onClick, backgroundColor = Color.Black) {
+        Text(modifier = Modifier.padding(graphicsConsts.paddingCellLayoutJoueur),color = Color.White, text = texte,fontFamily = FontFamily(Font(graphicsConsts.fontCard)))
     }
 }

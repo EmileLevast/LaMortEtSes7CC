@@ -18,6 +18,7 @@ fun layoutModeSelection(
         Column(
             modifier = Modifier.align(Alignment.Center),
             verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             buttonDarkStyled("Admin") {
                 onAdminSelection(true)
