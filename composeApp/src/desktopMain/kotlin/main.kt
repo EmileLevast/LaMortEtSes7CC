@@ -5,16 +5,24 @@ import affichage.layoutJoueur
 import affichage.layoutListItem
 import affichage.layoutMenuConfiguration
 import affichage.layoutModeSelection
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -104,32 +112,40 @@ fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
     }
 
 
-
-    //Si on est pas encore decide d'ouvrir l'appli en mode admin ou non
-    if (isInAdminMode == null) {
-        layoutModeSelection {
-            switchAdminMode(it)
-        }
-    } else if (isInAdminMode) {//si le mode admin est selectionne
-        layoutAdmin(bitmapBackground)
-    } else {
-        //si la liste d'equipe est vide alors on affiche les equipes
-        if (selectEquipe == null) {
-            LayoutEquipe(equipes) { setSelectEquipe(it) }
+    Box {
+        //Si on est pas encore decide d'ouvrir l'appli en mode admin ou non
+        if (isInAdminMode == null) {
+            layoutModeSelection {
+                switchAdminMode(it)
+            }
+        } else if (isInAdminMode) {//si le mode admin est selectionne
+            layoutAdmin(bitmapBackground)
         } else {
-            WindowJoueurs(selectEquipe, bitmapBackground)
+            //si la liste d'equipe est vide alors on affiche les equipes
+            if (selectEquipe == null) {
+                LayoutEquipe(equipes) { setSelectEquipe(it) }
+            } else {
+                WindowJoueurs(selectEquipe, bitmapBackground)
+            }
+        }
+
+
+        Column(Modifier.align(Alignment.TopEnd)) {
+            IconButton(onClick = { openMenuBurger = !openMenuBurger }, modifier = Modifier.align(Alignment.End))
+            {
+                Icon(Icons.Default.Menu, "Menu")
+            }
+
+            AnimatedVisibility(
+                visible = openMenuBurger,
+                enter = slideInHorizontally{it},
+                exit = slideOutHorizontally{it}
+            ) {
+                layoutMenuConfiguration()
+            }
+
         }
     }
-
-    Column(horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.Top) {
-        TextButton(onClick = {openMenuBurger = !openMenuBurger}){
-            Text("Menu")
-        }
-        if(openMenuBurger){
-            layoutMenuConfiguration()
-        }
-    }
-
 
 
 }
