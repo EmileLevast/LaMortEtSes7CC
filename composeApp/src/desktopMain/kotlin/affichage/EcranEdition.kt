@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -83,6 +84,15 @@ fun layoutEdition(
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+                Text(
+                    text = itemToEdit.nomComplet.ifBlank { itemToEdit.nom },
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h2,
+                    fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
+                    color = Color.Black
+                )
+
 
                 Box (Modifier.fillMaxWidth()){
 

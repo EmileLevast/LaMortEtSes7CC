@@ -31,7 +31,7 @@ fun layoutMenuConfiguration(isInAdminMode: Boolean?, switchAdminMode: (Boolean?)
 
     val onCloseChangeIpDialog:()->Unit = { openChangeIpDialog = false}
 
-    Card(Modifier.fillMaxHeight(),backgroundColor = Color.Black, shape = RoundedCornerShape(10.dp), border = BorderStroke(10.dp, Color.Gray)) {
+    Card(Modifier.fillMaxHeight(),backgroundColor = Color.Black, shape = RoundedCornerShape(10.dp), border = BorderStroke(5.dp, graphicsConsts.brushMenu)) {
         Column(Modifier.padding(graphicsConsts.cellContentPadding)) {
             textButtonMenu("Changer Adresse"){
                 openChangeIpDialog = true

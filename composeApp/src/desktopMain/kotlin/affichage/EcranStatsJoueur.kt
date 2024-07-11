@@ -4,7 +4,14 @@ import Carac
 import Joueur
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,6 +19,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import deparseDefense
 import getIntOrZeroOrNull
+import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
@@ -37,6 +46,9 @@ import kotlin.reflect.KMutableProperty1
 fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifier = Modifier) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
     val apiApp = koinInject<ApiApp>()
+    val scrollState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
 
     Column(
         modifier = Modifier.then(modifier)
@@ -50,63 +62,79 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
         Image(
-            bitmap = actuelJoueur.getImage(apiApp)?: imageResource(Res.drawable.UnknownImage),
+            bitmap = actuelJoueur.getImage(apiApp) ?: imageResource(Res.drawable.UnknownImage),
             contentDescription = "avatar",
             contentScale = ContentScale.Fit,            // crop the image if it's not a square
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .weight(1f)
+                .height(200.dp)
                 .clip(CircleShape)                       // clip to the circle shape
                 .border(2.dp, Color.Black, CircleShape)   // add a border (optional)
         )
-        Text(
-            text = "Niveau : ${actuelJoueur.niveau}",
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
-        )
-        Text(
-            text = "Defense : " + deparseDefense(actuelJoueur.caracOrigin.defense),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h6,
-            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
-        )
 
-        //pour chacune des caracteristiques cites dans cette liste on affiche un layout
-        listOf(
-            Pair("Vie", Carac::vie),
-            Pair("Force", Carac::force),
-            Pair("Energie", Carac::energie),
-            Pair("Intelligence", Carac::intelligence),
-            Pair("Humanite", Carac::humanite),
-        ).forEach {
-            LayoutCaracSpecificProp(
-                it.first,
-                actuelJoueur,
-                it.second,
-                onSave
-            )
+        LazyColumn(
+            Modifier.draggable(
+                orientation = Orientation.Vertical,
+                state = rememberDraggableState { delta ->
+                    coroutineScope.launch {
+                        scrollState.scrollBy(-delta)
+                    }
+                },
+            ),
+            state = scrollState,
+        ) {
+            item {
+                Text(
+                    text = "Niveau : ${actuelJoueur.niveau}",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h6,
+                    fontFamily = FontFamily(Font(graphicsConsts.fontCard))
+                )
+            }
+            item {
+                Text(
+                    text = "Defense : " + deparseDefense(actuelJoueur.caracOrigin.defense),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h6,
+                    fontFamily = FontFamily(Font(graphicsConsts.fontCard))
+                )
+            }
+
+            items(
+                listOf(
+                    Pair("Vie", Carac::vie),
+                    Pair("Force", Carac::force),
+                    Pair("Energie", Carac::energie),
+                    Pair("Intelligence", Carac::intelligence),
+                    Pair("Humanite", Carac::humanite),
+                )
+            ) {
+                LayoutCaracSpecificProp(
+                    it.first,
+                    actuelJoueur,
+                    it.second,
+                    onSave
+                )
+            }
+
+            item {
+                Pair("Ames", Carac::ame).let {
+                    LayoutCaracSpecificProp(
+                        it.first,
+                        actuelJoueur,
+                        it.second,
+                        onSave,
+                        true
+                    )
+                }
+            }
+
+            item {
+                layoutDetailJoueur(actuelJoueur)
+            }
         }
-        Pair("Ames", Carac::ame).let {
-            LayoutCaracSpecificProp(
-                it.first,
-                actuelJoueur,
-                it.second,
-                onSave,
-                true
-            )
-        }
 
 
-
-
-        TextField(
-            value = actuelJoueur.details,
-            onValueChange = { actuelJoueur.details = it;onSave() },
-            minLines = 4,
-            label = { Text("détails") }
-
-        )
     }
 
 }
@@ -146,16 +174,30 @@ fun LayoutUneCarac(
     openDialogWithMultiplesNumber: Boolean,
     onTextChange: (String, String) -> Unit,
 ) {
-    val (showDialogMultipleButtons, setShowDialogMultipleButtons) = remember { mutableStateOf(MultipleButtonsDialog.CLOSED) }
+    val (showDialogMultipleButtons, setShowDialogMultipleButtons) = remember {
+        mutableStateOf(
+            MultipleButtonsDialog.CLOSED
+        )
+    }
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     when (showDialogMultipleButtons) {
         MultipleButtonsDialog.ADDITIVE -> {
-            dialogAmes (Color.Green){ facteur -> onTextChange(actuelCarac, (actuelCarac.toInt() + facteur).toString()) }
+            dialogAmes(Color.Green) { facteur ->
+                onTextChange(
+                    actuelCarac,
+                    (actuelCarac.toInt() + facteur).toString()
+                )
+            }
         }
 
         MultipleButtonsDialog.SOUSTRACTIVE -> {
-            dialogAmes (Color.Red){ facteur -> onTextChange(actuelCarac, (actuelCarac.toInt() - facteur).toString()) }
+            dialogAmes(Color.Red) { facteur ->
+                onTextChange(
+                    actuelCarac,
+                    (actuelCarac.toInt() - facteur).toString()
+                )
+            }
         }
 
         MultipleButtonsDialog.CLOSED -> {
@@ -184,9 +226,9 @@ fun LayoutUneCarac(
             onClick = {
                 if (!openDialogWithMultiplesNumber) {
                     onTextChange(actuelCarac, (actuelCarac.toInt() + 1).toString())
-                } else if(showDialogMultipleButtons == MultipleButtonsDialog.CLOSED) {
+                } else if (showDialogMultipleButtons == MultipleButtonsDialog.CLOSED) {
                     setShowDialogMultipleButtons(MultipleButtonsDialog.ADDITIVE)
-                }else{
+                } else {
                     setShowDialogMultipleButtons(MultipleButtonsDialog.CLOSED)
                 }
             }) {
@@ -200,9 +242,9 @@ fun LayoutUneCarac(
             onClick = {
                 if (!openDialogWithMultiplesNumber) {
                     onTextChange(actuelCarac, (actuelCarac.toInt() - 1).toString())
-                } else if(showDialogMultipleButtons == MultipleButtonsDialog.CLOSED){
+                } else if (showDialogMultipleButtons == MultipleButtonsDialog.CLOSED) {
                     setShowDialogMultipleButtons(MultipleButtonsDialog.SOUSTRACTIVE)
-                }else{
+                } else {
                     setShowDialogMultipleButtons(MultipleButtonsDialog.CLOSED)
                 }
             }) {
@@ -216,21 +258,21 @@ fun LayoutUneCarac(
 }
 
 @Composable
-fun dialogAmes(color : Color, majAmes: (Int) -> Unit) {
+fun dialogAmes(color: Color, majAmes: (Int) -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         elevation = 5.dp
     ) {
-        modifierLesAmes(color,majAmes)
+        modifierLesAmes(color, majAmes)
     }
 }
 
 @Composable
-fun modifierLesAmes(color : Color,majAmes: (Int) -> Unit) {
+fun modifierLesAmes(color: Color, majAmes: (Int) -> Unit) {
     Row(horizontalArrangement = Arrangement.Center) {
         for (i in arrayOf(1, 10, 100)) {
-            FloatingActionButton( backgroundColor = Color.LightGray,onClick = { majAmes(i) }) {
+            FloatingActionButton(backgroundColor = Color.LightGray, onClick = { majAmes(i) }) {
                 Text(color = color, text = i.toString())
             }
         }

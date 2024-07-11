@@ -18,10 +18,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
@@ -49,13 +51,15 @@ fun layoutJoueur(
             modifier = Modifier.clickable {
                 onSelectedDecouvertesEquipe()
                 }.padding(15.dp),
-            border = BorderStroke(1.dp, Color.Magenta),
+            border = BorderStroke(graphicsConsts.widthBorder, graphicsConsts.brushSpecialBorder),
             elevation = 15.dp,
         ) {
             Text(
                 text = "Découvertes",
-                style = MaterialTheme.typography.h6,
-                modifier = Modifier.padding(15.dp)
+                style = TextStyle(
+                    brush = graphicsConsts.brushSpecialBorder),
+                modifier = Modifier.padding(15.dp),
+                fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
             )
         }
         LazyRow(
@@ -77,7 +81,7 @@ fun layoutJoueur(
                         .selectable(joueur._id == selectedJoueur._id, onClick = {
                             onSelectedJoueurChange(joueur)
                         }).padding(graphicsConsts.paddingCellLayoutJoueur),
-                    border = BorderStroke(1.dp, if (joueur._id == selectedJoueur._id) Color.Red else Color.Black),
+                    border = BorderStroke(graphicsConsts.widthBorder, if (joueur._id == selectedJoueur._id) graphicsConsts.brushBorderSelected else graphicsConsts.brushBorder),
                     elevation = graphicsConsts.paddingCellLayoutJoueur,
                 ) {
                     nameAndIconPlayer( joueur)

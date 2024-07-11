@@ -55,7 +55,7 @@ fun LayoutEquipe(
                 Card(
                     modifier = Modifier.clickable { onSelectEquipe(equipe) }
                         .padding(15.dp),
-                    border = BorderStroke(1.dp, Color.Black),
+                    border = BorderStroke(graphicsConsts.widthBorder, graphicsConsts.brushBorder),
                     elevation = 15.dp,
                 ) {
                     Text(
