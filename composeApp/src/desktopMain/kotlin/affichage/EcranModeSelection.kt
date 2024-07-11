@@ -1,6 +1,7 @@
 package affichage
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
@@ -13,20 +14,18 @@ import androidx.compose.ui.Modifier
 fun layoutModeSelection(
     onAdminSelection: (Boolean) -> Unit
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Button(onClick = {
-            onAdminSelection(true)
-        }) {
-            Text("Admin")
-        }
-        Button(onClick = {
-            onAdminSelection(false)
-        }) {
-            Text("Utilisateur")
+    Box(Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            verticalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            buttonDarkStyled("Admin") {
+                onAdminSelection(true)
+            }
+            buttonDarkStyled("Utilisateur") {
+                onAdminSelection(false)
+            }
         }
     }
+
 }

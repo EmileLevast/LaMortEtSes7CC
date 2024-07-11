@@ -43,7 +43,6 @@ fun layoutAdmin(
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun layoutRecherche(
     imageBackground: ImageBitmap?,
@@ -55,6 +54,8 @@ fun layoutRecherche(
     var loading by mutableStateOf(false)
     var isDetailedModeOn by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
+    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+
 
     val apiApp = koinInject<ApiApp>()
 
@@ -74,8 +75,8 @@ fun layoutRecherche(
         }
     }
 
-    Column {
-        Row(Modifier.padding(20.dp).fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+    Column(Modifier.fillMaxSize()) {
+        Row(Modifier.padding(20.dp).align(Alignment.CenterHorizontally), horizontalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace)) {
             TextField(
                 modifier = Modifier.onKeyEvent {
                     if (it.key == Key.Enter) {
@@ -92,15 +93,11 @@ fun layoutRecherche(
                     }
                 },
             )
-            Button(onClick = {
+            buttonDarkStyled("Valider") {
                 rechercheItems()
-            }) {
-                Text("Valider")
             }
-            Button(onClick = {
+            buttonDarkStyled("Vider") {
                 onChangeListItems(emptyList())
-            }) {
-                Text("Vider")
             }
             Switch(
                 checked = isDetailedModeOn,

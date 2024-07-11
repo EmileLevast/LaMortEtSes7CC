@@ -101,7 +101,7 @@ fun MainWindow() {
     }
 
 
-    Box {
+    Box(Modifier.fillMaxSize()) {
         //Si on est pas encore decide d'ouvrir l'appli en mode admin ou non
         if (isInAdminMode == null) {
             layoutModeSelection {

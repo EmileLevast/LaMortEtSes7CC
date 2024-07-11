@@ -15,6 +15,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -97,15 +101,16 @@ fun layoutEdition(
                 Box (Modifier.fillMaxWidth()){
 
                     Row(horizontalArrangement = Arrangement.Start) {
-                        Button(onClick = {
+                        IconButton(onClick = {
                             backClick(true)
-                        }) {
-                            Text("Retour")
+                        })
+                        {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, "Retour")
                         }
                     }
 
-                    Row(Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.Center) {
-                        Button(onClick = {
+                    Row(Modifier.align(Alignment.Center),horizontalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace)) {
+                        buttonDarkStyled("update") {
                             val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
                             coroutineScope.launch(Dispatchers.IO) {
                                 val res = apiApp.updateItem(itemParsed)
@@ -117,10 +122,8 @@ fun layoutEdition(
                                     }
                                 }
                             }
-                        }) {
-                            Text("Update")
                         }
-                        Button(onClick = {
+                        buttonDarkStyled("Save") {
                             val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
                             coroutineScope.launch(Dispatchers.IO) {
                                 val res = apiApp.insertItem(itemParsed)
@@ -132,13 +135,9 @@ fun layoutEdition(
                                     }
                                 }
                             }
-                        }) {
-                            Text("Save")
                         }
-                        Button(onClick = {
+                        buttonDarkStyled("Delete") {
                             openAlertDialogDeletion = true
-                        }) {
-                            Text("Delete")
                         }
                     }
                 }
@@ -235,13 +234,14 @@ fun layoutEdition(
             }
         }
         if (openAlertDialogDeletion) {
+            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
+
             AlertDialog(
-                title = { Text("Supprimer l'élément") },
+                title = { Text("Supprimer ${itemParsed.nom}") },
                 onDismissRequest = { openAlertDialogDeletion = false },
                 confirmButton = {
                     TextButton(
                         onClick = {
-                            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
                             openAlertDialogDeletion = false
                             coroutineScope.launch(Dispatchers.IO) {
                                 val res = apiApp.deleteItem(itemParsed)
@@ -315,4 +315,6 @@ fun layoutListeSelectables(
         }
     }
 }
+
+
 
