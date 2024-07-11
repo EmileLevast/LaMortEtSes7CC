@@ -21,8 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.Font
+import org.koin.compose.koinInject
 
 @Composable
 fun LayoutEquipe(
@@ -31,6 +34,8 @@ fun LayoutEquipe(
 ) {
     val scrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
+    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+
 
     Box(Modifier.fillMaxSize()){
         LazyRow(
@@ -56,7 +61,8 @@ fun LayoutEquipe(
                     Text(
                         text = equipe.nom,
                         style = MaterialTheme.typography.h6,
-                        modifier = Modifier.padding(15.dp)
+                        modifier = Modifier.padding(15.dp),
+                        fontFamily = FontFamily(Font(graphicsConsts.fontCard))
                     )
                 }
             }

@@ -22,11 +22,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.imageResource
 import org.koin.compose.koinInject
 
@@ -110,8 +112,9 @@ fun nameAndIconPlayer(joueur: Joueur) {
                     columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
                 }
                 .padding(graphicsConsts.paddingCellLayoutJoueur),
-            text = joueur.nom,
+            text = joueur.nomComplet.ifBlank { joueur.nom },
             style = MaterialTheme.typography.h6,
+            fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
     }
 }
