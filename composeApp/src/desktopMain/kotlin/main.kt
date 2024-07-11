@@ -29,13 +29,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.icon_dark_soul
 import network.ApiApp
+import org.jetbrains.compose.resources.imageResource
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
 import org.koin.core.context.startKoin
@@ -58,7 +63,7 @@ fun main() = application {
 fun AppDesktop(onExit: () -> Unit) {
 
 
-    Window(onCloseRequest = onExit, title = "La mort et ses 7 Couvre-chefs") {
+    Window(onCloseRequest = onExit, title = "La mort et ses 7 Couvre-chefs", icon = BitmapPainter(imageResource( Res.drawable.icon_dark_soul))) {
         MainWindow()
     }
 
