@@ -7,6 +7,7 @@ import Bouclier
 import ENDPOINT_MAJ_CARACS_JOUEUR
 import ENDPOINT_RECHERCHE_STRICTE
 import ENDPOINT_RECHERCHE_TOUT
+import ERROR_NETWORK_MESSAGE
 import Equipe
 import IListItem
 import Joueur
@@ -14,6 +15,7 @@ import Monster
 import QUERY_PARAMETER_NOM
 import Sort
 import Special
+import androidx.compose.ui.graphics.ImageBitmap
 import configuration.IConfiguration
 import extractDecouvertesListFromEquipe
 import extractEquipementsListFromJoueur
@@ -49,43 +51,32 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     }
 
     suspend fun searchAnything(nomSearched: String, strict: Boolean = false): List<IListItem> {
-        try {
-            return deserializeAnythingItemDTO(searchAnythingStringEncoded(nomSearched, strict))
-        } catch (e: Exception) {
-            println(" ${e.stackTraceToString()} Erreur de connexion au réseau lors de la récupération d'équipement")
-            return listOf()
-        }
+        return deserializeAnythingItemDTO(searchAnythingStringEncoded(nomSearched, strict))
     }
 
     private suspend fun searchAnythingStringEncoded(
         nomSearched: String,
         strict: Boolean
     ): List<AnythingItemDTO> {
-
-        jsonClient.get("$endpoint/$ENDPOINT_RECHERCHE_TOUT") {
-            url {
-                parameters.append(ENDPOINT_RECHERCHE_STRICTE, strict.toString())
-                parameters.append(QUERY_PARAMETER_NOM, nomSearched)
+        return catchNetworkError(defaultReturnValue = listOf()) {
+            jsonClient.get("$endpoint/$ENDPOINT_RECHERCHE_TOUT") {
+                url {
+                    parameters.append(ENDPOINT_RECHERCHE_STRICTE, strict.toString())
+                    parameters.append(QUERY_PARAMETER_NOM, nomSearched)
+                }
+            }.let {
+                if (it.status != HttpStatusCode.NoContent) it.body<List<AnythingItemDTO>>() else listOf()
             }
-        }.let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<AnythingItemDTO>>() else listOf()
         }
     }
 
-    suspend fun searchEverything(
+    private suspend fun searchEverything(
         searchedNames: List<String>,
-        strict: Boolean = false
     ): List<IListItem> {
-        try {
-            return deserializeAnythingItemDTO(searchEverythingStringEncoded(searchedNames))
-        } catch (e: Exception) {
-            println(" ${e.stackTraceToString()} Erreur de connexion au réseau lors de la récupération d'équipement")
-
-            return listOf()
-        }
+        return deserializeAnythingItemDTO(searchEverythingStringEncoded(searchedNames))
     }
 
-    fun deserializeAnythingItemDTO(listAnythingItem: List<AnythingItemDTO>): List<IListItem> {
+    private fun deserializeAnythingItemDTO(listAnythingItem: List<AnythingItemDTO>): List<IListItem> {
         val listItemsFound = mutableListOf<IListItem>()
         for (anythingItem in listAnythingItem) {
 
@@ -113,38 +104,32 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         return listItemsFound
     }
 
-    suspend fun searchEverythingStringEncoded(searchedNames: List<String>): List<AnythingItemDTO> {
-
-        jsonClient.put("$endpoint/$ENDPOINT_RECHERCHE_TOUT") {
-            contentType(ContentType.Application.Json)
-            setBody(searchedNames)
-        }.let {
-            return if (it.status != HttpStatusCode.NoContent) it.body<List<AnythingItemDTO>>() else listOf()
+    private suspend fun searchEverythingStringEncoded(searchedNames: List<String>): List<AnythingItemDTO> {
+        return catchNetworkError(defaultReturnValue = listOf()) {
+            jsonClient.put("$endpoint/$ENDPOINT_RECHERCHE_TOUT") {
+                contentType(ContentType.Application.Json)
+                setBody(searchedNames)
+            }.let {
+                if (it.status != HttpStatusCode.NoContent) it.body<List<AnythingItemDTO>>() else listOf()
+            }
         }
     }
 
     suspend fun searchJoueur(nomSearched: String): List<Joueur>? {
+        return catchNetworkError(defaultReturnValue = listOf()) {
 
-        try {
             jsonClient.get(endpoint + "/" + Joueur().nameForApi) {
                 url {
                     parameters.append(QUERY_PARAMETER_NOM, nomSearched)
                 }
             }.let {
-                return if (it.status != HttpStatusCode.NoContent) it.body<List<Joueur>>() else null
+                if (it.status != HttpStatusCode.NoContent) it.body<List<Joueur>>() else null
             }
-        } catch (e: Exception) {
-            println(
-                " Erreur de connexion au réseau lors de la récupération des joueurs :\n " +
-                        e.stackTraceToString()
-            )
-
-            return listOf()
         }
     }
 
     suspend fun searchAllJoueur(listNomSearched: List<String>): List<Joueur> {
-        var listJoueurs = mutableListOf<Joueur>()
+        val listJoueurs = mutableListOf<Joueur>()
         listNomSearched.forEach { nameSearched ->
             if (nameSearched.isNotBlank()) {
                 //pour chacun des équipements on cherche dans chacune des tables mais on recupere que le premier trouvé
@@ -157,29 +142,22 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     }
 
     suspend fun searchEquipe(nomSearched: String): List<Equipe>? {
-
-        try {
+        return catchNetworkError(defaultReturnValue = listOf()) {
             jsonClient.get(endpoint + "/" + Equipe().nameForApi) {
                 url {
                     parameters.append(QUERY_PARAMETER_NOM, nomSearched)
                 }
             }.let {
-                return if (it.status != HttpStatusCode.NoContent) it.body<List<Equipe>>() else null
+                if (it.status != HttpStatusCode.NoContent) it.body<List<Equipe>>() else null
             }
-        } catch (e: Exception) {
-            println(
-                " Erreur de connexion au réseau lors de la récupération des equipes :\n " +
-                        e.stackTraceToString()
-            )
-            return listOf()
         }
     }
 
     suspend fun searchAllEquipementJoueur(joueur: Joueur): List<IListItem> {
-        var listEquipements = mutableListOf<IListItem>()
+        val listEquipements = mutableListOf<IListItem>()
         extractEquipementsListFromJoueur(joueur).let {
             if (it.isNotEmpty()) {
-                listEquipements.addAll(searchEverything(it, true))
+                listEquipements.addAll(searchEverything(it))
             }
         }
         return listEquipements
@@ -190,7 +168,7 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         extractDecouvertesListFromEquipe(equipe).let {
             if (it.isNotEmpty()) {
                 //pour chacun des équipements on cherche dans chacune des tables mais on recupere que le premier trouvé
-                listDecouvertes.addAll(searchEverything(it, true))
+                listDecouvertes.addAll(searchEverything(it))
             }
         }
         return listDecouvertes
@@ -201,48 +179,95 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
      * pour mettre à jour les stats d'un joueur
      */
     suspend fun updateJoueur(joueurToUpdate: Joueur): Boolean {
-        jsonClient.post(endpoint + "/" + joueurToUpdate.nameForApi + "/$ENDPOINT_MAJ_CARACS_JOUEUR") {
-            contentType(ContentType.Application.Json)
-            setBody(joueurToUpdate)
-        }.let {
-            return it.status == HttpStatusCode.OK
+        return catchNetworkError(defaultReturnValue = false) {
+            jsonClient.post(endpoint + "/" + joueurToUpdate.nameForApi + "/$ENDPOINT_MAJ_CARACS_JOUEUR") {
+                contentType(ContentType.Application.Json)
+                setBody(joueurToUpdate)
+            }.let {
+                it.status == HttpStatusCode.OK
+            }
         }
     }
 
     suspend fun insertItem(itemSelected: ApiableItem): Boolean {
-        jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.insertForApi}") {
-            contentType(ContentType.Application.Json)
-            setBody(itemSelected)
-        }.let {
-            return it.status == HttpStatusCode.OK
+        return catchNetworkError(defaultReturnValue = false) {
+            jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.insertForApi}") {
+                contentType(ContentType.Application.Json)
+                setBody(itemSelected)
+            }.let {
+                it.status == HttpStatusCode.OK
+            }
         }
     }
 
     suspend fun updateItem(itemSelected: ApiableItem): Boolean {
-        jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.updateForApi}") {
-            contentType(ContentType.Application.Json)
-            setBody(itemSelected)
-        }.let {
-            return it.status == HttpStatusCode.OK
+        return catchNetworkError(defaultReturnValue = false) {
+            jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.updateForApi}") {
+                contentType(ContentType.Application.Json)
+                setBody(itemSelected)
+            }.let {
+                it.status == HttpStatusCode.OK
+            }
         }
     }
 
     suspend fun deleteItem(itemSelected: ApiableItem): Boolean {
-        jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.deleteForApi}") {
-            url {
-                parameters.append(QUERY_PARAMETER_NOM, itemSelected.nom)
+        return catchNetworkError(defaultReturnValue = false) {
+            jsonClient.post(endpoint + "/" + itemSelected.nameForApi + "/${itemSelected.deleteForApi}") {
+                url {
+                    parameters.append(QUERY_PARAMETER_NOM, itemSelected.nom)
+                }
+            }.let {
+                it.status == HttpStatusCode.OK
             }
-        }.let {
-            return it.status == HttpStatusCode.OK
         }
     }
 
-    fun downloadImageWithName(imageName: String) = imageDownloader.downloadImageWithName(imageName)
+    fun downloadImageWithName(imageName: String): ImageBitmap? {
+        return catchNetworkErrorUnsuspendly(defaultReturnValue = null) {
+            imageDownloader.downloadImageWithName(imageName)
+        }
+    }
 
     fun getUrlImageWithFileName(fileName: String) = "$endpoint/images/$fileName"
-    fun downloadBackgroundImage(urlImageWithFileName: String) =
-        imageDownloader.downloadBackgroundImage(urlImageWithFileName)
+    fun downloadBackgroundImage(urlImageWithFileName: String): ImageBitmap? {
+        return catchNetworkErrorUnsuspendly(defaultReturnValue = null) {
+            imageDownloader.downloadBackgroundImage(urlImageWithFileName)
+        }
+    }
 
+
+    private suspend fun <T> catchNetworkError(
+        errorMessage: String = ERROR_NETWORK_MESSAGE,
+        defaultReturnValue: T,
+        networkAction: suspend () -> T,
+    ): T {
+        return try {
+            networkAction()
+        } catch (e: Exception) {
+            println(
+                " $errorMessage\n " +
+                        e.stackTraceToString()
+            )
+            return defaultReturnValue
+        }
+    }
+
+    private fun <T> catchNetworkErrorUnsuspendly(
+        errorMessage: String = ERROR_NETWORK_MESSAGE,
+        defaultReturnValue: T,
+        networkAction: () -> T,
+    ): T {
+        return try {
+            networkAction()
+        } catch (e: Exception) {
+            println(
+                " $errorMessage\n " +
+                        e.stackTraceToString()
+            )
+            return defaultReturnValue
+        }
+    }
 }
 
 

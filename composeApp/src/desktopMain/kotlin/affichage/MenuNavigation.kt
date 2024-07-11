@@ -23,10 +23,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import configuration.IConfiguration
 import network.ApiApp
+import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 
 @Composable
@@ -42,7 +44,7 @@ fun layoutMenuConfiguration() {
             TextButton(onClick = {
                 openChangeIpDialog = true
             }){
-                Text("Changer Adresse", color = Color.White )
+                Text("Changer Adresse", color = Color.White, fontFamily = FontFamily(Font(graphicsConsts.fontCard)) )
             }
         }
     }
