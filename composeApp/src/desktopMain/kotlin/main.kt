@@ -9,18 +9,14 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -61,33 +57,21 @@ fun main() = application {
 @Preview
 fun AppDesktop(onExit: () -> Unit) {
 
-    val (isInAdminMode, switchAdminMode) = remember { mutableStateOf<Boolean?>(null) }
 
     Window(onCloseRequest = onExit, title = "La mort et ses 7 Couvre-chefs") {
-        MenuBar {
-            if (isInAdminMode != null) {
-                Menu("Mode", mnemonic = 'M') {
-                    if (isInAdminMode) {
-                        Item("Vers utilisateur", onClick = { switchAdminMode(false) })
-                    } else {
-                        Item("Vers Admin", onClick = { switchAdminMode(true) })
-                    }
-                }
-            }
-        }
-        MainWindow(isInAdminMode, switchAdminMode)
-
+        MainWindow()
     }
 
 
 }
 
 @Composable
-fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
+fun MainWindow() {
     val apiApp = koinInject<ApiApp>()
 
 
     val coroutineScope = rememberCoroutineScope()
+    val (isInAdminMode, switchAdminMode) = remember { mutableStateOf<Boolean?>(null) }
 
     val (selectEquipe, setSelectEquipe) = remember { mutableStateOf<Equipe?>(null) }
     val (bitmapBackground, updateBitmapBackground) = remember { mutableStateOf<ImageBitmap?>(null) }
@@ -141,7 +125,7 @@ fun MainWindow(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
                 enter = slideInHorizontally{it},
                 exit = slideOutHorizontally{it}
             ) {
-                layoutMenuConfiguration()
+                layoutMenuConfiguration(isInAdminMode, switchAdminMode)
             }
 
         }

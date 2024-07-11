@@ -1,9 +1,5 @@
 package affichage
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -11,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Card
-import androidx.compose.material.Shapes
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
@@ -22,29 +17,33 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import configuration.IConfiguration
-import network.ApiApp
 import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutMenuConfiguration() {
+fun layoutMenuConfiguration(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
 
     var openChangeIpDialog by remember { mutableStateOf(false) }
+    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     val onCloseChangeIpDialog:()->Unit = { openChangeIpDialog = false}
-    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     Card(Modifier.fillMaxHeight(),backgroundColor = Color.Black, shape = RoundedCornerShape(10.dp), border = BorderStroke(10.dp, Color.Gray)) {
         Column(Modifier.padding(graphicsConsts.cellContentPadding)) {
-            TextButton(onClick = {
+            textButtonMenu("Changer Adresse"){
                 openChangeIpDialog = true
-            }){
-                Text("Changer Adresse", color = Color.White, fontFamily = FontFamily(Font(graphicsConsts.fontCard)) )
+            }
+            if(isInAdminMode == true){
+                textButtonMenu("Mode Utilisateur"){
+                    switchAdminMode(false)
+                }
+            }else{
+                textButtonMenu("Mode Admin"){
+                    switchAdminMode(true)
+                }
             }
         }
     }
@@ -96,5 +95,14 @@ fun AlertDialogChangeIp(
             }
         }
     )
+}
+
+@Composable
+fun textButtonMenu(texte:String, onClick : ()->Unit){
+    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+
+    TextButton(onClick = onClick){
+        Text(texte, color = Color.White, fontFamily = FontFamily(Font(graphicsConsts.fontCard)) )
+    }
 }
 
