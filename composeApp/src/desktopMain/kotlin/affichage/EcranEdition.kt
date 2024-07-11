@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
@@ -192,7 +193,8 @@ fun layoutEdition(
                                 apiApp.updateItem(equipeToUpdate)
                             }
                         }
-                    }
+                    },
+                    graphicsConsts.brushEquipe
                 )
                 layoutListeSelectables(
                     Modifier,
@@ -216,7 +218,8 @@ fun layoutEdition(
                                 apiApp.updateItem(joueurToUpdate)
                             }
                         }
-                    }
+                    },
+                    graphicsConsts.brushJoueursCard
                 )
             }
         }
@@ -278,6 +281,7 @@ fun layoutListeSelectables(
     listSelectables: List<IListItem>,
     isDefaultChecked: (IListItem) -> Boolean,
     onSelect: (Boolean, IListItem) -> Unit,
+    brushToUse: Brush
 ) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
@@ -290,12 +294,11 @@ fun layoutListeSelectables(
         ) {
         items(listSelectables) {
             Card(
-                Modifier.width(IntrinsicSize.Min),
-                backgroundColor = it.color
+                Modifier.width(IntrinsicSize.Min), elevation = graphicsConsts.cardElevation
             ) {
                 var checked by remember { mutableStateOf(isDefaultChecked(it)) }
                 Column(
-                    Modifier.width(IntrinsicSize.Min),
+                    Modifier.width(IntrinsicSize.Min).background(brushToUse),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -304,6 +307,9 @@ fun layoutListeSelectables(
                         style = MaterialTheme.typography.body2,
                     )
                     Checkbox(
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = Color.Black
+                        ),
                         checked = checked,
                         onCheckedChange = { isSelected ->
                             checked = isSelected

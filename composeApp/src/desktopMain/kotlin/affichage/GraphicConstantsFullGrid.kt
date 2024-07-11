@@ -37,8 +37,22 @@ class GraphicConstantsFullGrid {
         0.9f to Color.White,
     )
 
+    private val colorsEquipe = arrayOf(
+        0.0f to Color(0xFF006400),
+        0.8f to Color.LightGray,
+        0.95f to Color.White,
+    )
+
+    private val colorsJoueursCard = arrayOf(
+        0.0f to Color(0xFFED7F10),
+        0.8f to Color.LightGray,
+        0.95f to Color.White,
+    )
+
     val brushSpecialBorder = Brush.horizontalGradient(colorStops = colorsSpecialBorder)
     val brushBorder = Brush.horizontalGradient(colorStops = colorsBorder)
     val brushBorderSelected = Brush.horizontalGradient(colorStops = colorsBorderSelected)
     val brushMenu = Brush.verticalGradient(colorStops = colorsBorder)
+    val brushEquipe = Brush.linearGradient(colorStops = colorsEquipe)
+    val brushJoueursCard = Brush.linearGradient(colorStops = colorsJoueursCard)
 }
