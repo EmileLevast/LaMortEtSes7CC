@@ -1,3 +1,5 @@
+import org.gradle.wrapper.Install
+
 val kmongoVersion = "5.1.0"
 
 plugins {
@@ -12,6 +14,8 @@ version = "1.0.0"
 application {
     mainClass.set("org.levast.project.ApplicationKt")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["io.ktor.development"] ?: "false"}")
+
+
 }
 
 dependencies {
@@ -37,4 +41,16 @@ dependencies {
     implementation(libs.kmongo.coroutine)
 
 
+}
+
+tasks.withType<Zip>() {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType<Tar>() {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.installDist {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
