@@ -128,7 +128,7 @@ fun layoutRecherche(
 
     if (loading) {
         Box(Modifier.fillMaxSize()) {
-            CircularProgressIndicator(Modifier.align(Alignment.BottomEnd))
+            CircularProgressIndicator(Modifier.align(Alignment.BottomEnd), color = Color.Black)
         }
     }
 }

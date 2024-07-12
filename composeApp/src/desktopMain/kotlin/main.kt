@@ -1,5 +1,6 @@
 import affichage.LayoutEquipe
 import affichage.LayoutStatsJoueur
+import affichage.buttonDarkStyled
 import affichage.layoutAdmin
 import affichage.layoutJoueur
 import affichage.layoutListItem
@@ -28,13 +29,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import lamortetses7cc.composeapp.generated.resources.Res
@@ -63,7 +65,11 @@ fun main() = application {
 fun AppDesktop(onExit: () -> Unit) {
 
 
-    Window(onCloseRequest = onExit, title = "La mort et ses 7 Couvre-chefs", icon = BitmapPainter(imageResource( Res.drawable.icon_dark_soul))) {
+    Window(
+        onCloseRequest = onExit,
+        title = "La mort et ses 7 Couvre-chefs",
+        icon = BitmapPainter(imageResource(Res.drawable.icon_dark_soul))
+    ) {
         MainWindow()
     }
 
@@ -75,29 +81,39 @@ fun MainWindow() {
     val apiApp = koinInject<ApiApp>()
 
 
-    val coroutineScope = rememberCoroutineScope()
     val (isInAdminMode, switchAdminMode) = remember { mutableStateOf<Boolean?>(null) }
 
     val (selectEquipe, setSelectEquipe) = remember { mutableStateOf<Equipe?>(null) }
     val (bitmapBackground, updateBitmapBackground) = remember { mutableStateOf<ImageBitmap?>(null) }
+    val coroutineScope = rememberCoroutineScope()
 
     val (equipes, setEquipes) = remember { mutableStateOf<List<Equipe>>(emptyList()) }
 
     var openMenuBurger by remember { mutableStateOf(false) }
+    val (triggerEquipe, setTriggerEquipe) = remember { mutableStateOf(false) }
+    val (isLoading, setLoading) = remember { mutableStateOf(false) }
 
 
-    //chargement des equipes
-    remember {
-        coroutineScope.launch {
-            setEquipes(apiApp.searchEquipe(".*") ?: listOf())
-            updateBitmapBackground(withContext(Dispatchers.IO) {//dans un thread à part on maj toute l'equipe
-                apiApp.downloadBackgroundImage(
-                    apiApp.getUrlImageWithFileName(
-                        IMAGENAME_CARD_BACKGROUND
+    LaunchedEffect(triggerEquipe) {
+        if(!isLoading){
+            coroutineScope.launch {
+                setLoading(true)
+                setEquipes(withContext(Dispatchers.IO) {//dans un thread à part on maj toute l'equipe
+                    apiApp.searchEquipe(".*") ?: listOf()
+                })
+
+                updateBitmapBackground(withContext(Dispatchers.IO) {//dans un thread à part on recherche l'image background
+                    apiApp.downloadBackgroundImage(
+                        apiApp.getUrlImageWithFileName(
+                            IMAGENAME_CARD_BACKGROUND
+                        )
                     )
-                )
-            })
+                })
+                setLoading(false)
+            }
         }
+
+
     }
 
 
@@ -113,6 +129,12 @@ fun MainWindow() {
             //si la liste d'equipe est vide alors on affiche les equipes
             if (selectEquipe == null) {
                 LayoutEquipe(equipes) { setSelectEquipe(it) }
+                Row(Modifier.align(Alignment.Center)) {
+                    buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
+                    if (isLoading) {
+                        CircularProgressIndicator(color = Color.Black)
+                    }
+                }
             } else {
                 WindowJoueurs(selectEquipe, bitmapBackground)
             }
@@ -120,15 +142,18 @@ fun MainWindow() {
 
 
         Column(Modifier.align(Alignment.TopEnd)) {
-            IconButton(onClick = { openMenuBurger = !openMenuBurger }, modifier = Modifier.align(Alignment.End))
+            IconButton(
+                onClick = { openMenuBurger = !openMenuBurger },
+                modifier = Modifier.align(Alignment.End)
+            )
             {
                 Icon(Icons.Default.Menu, "Menu")
             }
 
             AnimatedVisibility(
                 visible = openMenuBurger,
-                enter = slideInHorizontally{it},
-                exit = slideOutHorizontally{it}
+                enter = slideInHorizontally { it },
+                exit = slideOutHorizontally { it }
             ) {
                 layoutMenuConfiguration(isInAdminMode, switchAdminMode)
             }
@@ -271,7 +296,7 @@ fun WindowJoueurs(
         }
         if (loading) {
             Box(Modifier.fillMaxSize()) {
-                CircularProgressIndicator(Modifier.align(Alignment.BottomEnd))
+                CircularProgressIndicator(Modifier.align(Alignment.BottomEnd), color = Color.Black)
             }
         }
 
