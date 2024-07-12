@@ -27,8 +27,10 @@ class ConfigurationImpl() : IConfiguration {
     }
 
     override fun setIpAdressTargetServer(adresseIp: String) {
-        CoroutineScope(Dispatchers.Default).launch {
-            setNewIpAdressToPreferences(adresseIp)
+        runBlocking {
+            coroutineScope {
+                setNewIpAdressToPreferences(adresseIp)
+            }
         }
 
         properties.ipAdressServer = adresseIp
