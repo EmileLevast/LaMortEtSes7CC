@@ -214,7 +214,7 @@ technique doryan malchance;TECHNIQUE;Tous les résultats des dés 20 sont égaux
 Nécessaire : 5 point de compétence
 1 point de compétence gagné sur chaque D20 qui donne 1.;
 technique a la lumiere du jour;TECHNIQUE;Bonus de +1 sur tous les D20 lorsque le joueur est à la lumière du soleil (joli soleil) ou feu de repos.
-Point de compétence : 40
+Point de compétence : 7
 Point de compétence gagné quand il fait beau en extérieur à chaque D20 lancé;Technique "A la lumiere du jour"
 anneau feulide;ANNEAU;Tant que le joueur dispose d’au moins 1 d’énergie, 
 il bénéficie de +20 défense de feu.
@@ -229,7 +229,7 @@ technique imperio;TECHNIQUE;Effet : le lanceur cible un ennemi, chacun fait le t
 technique de babel;TECHNIQUE;Effet : Le lanceur peut parler aux animaux et bêtes qui parlent un langage simple (bouquetin, chèvre, chien...). Les bêtes le comprennent;
 cristaux heleade;OUTIL;Pendant 2 tours, le corps du porteur se transforme en glace et en eau. IL bénéficie de +10 en défense physique et poison, mais de -3 en défense de feu et de magie.;
 technique brulure apaisante;TECHNIQUE;Effet : a chaque fois qu'il subit une frappe de feu, alors il récupère un point de vie avant de résoudre les dégâts de la frappe.
-Points de compétences requis : 10. A chaque frappe de feu ennemie qui ne le blesse pas alors il débloque un point de compétence.;
+Points de compétences requis : 6. A chaque frappe de feu ennemie (ou feu involontaire, essayer pas de me niquer) qui ne le blesse pas alors il débloque un point de compétence.;
 anneau coagulant;ANNEAU;Avec cet anneau le porteur ne subit pas les dégâts de saignements (immunise contre la vampirisation aussi).
 Après chaque utilisation jeter 1D6, sur 1 l'anneau est détruit.;
 gemme blanche;OUTIL;Si tous les porteurs d'une gemme blanche sont morts alors ils ressuscitent au dernier feu;
@@ -263,4 +263,4 @@ parchemin de mylene;OUTIL;decrits les memoires de mylene;
 fiole d estus;OUTIL;Restaure 1D10 pv
 Utilisation : 3
 Coût : 1 action spéciale
-Se régénère au feu;
+Se régénère au feu.;

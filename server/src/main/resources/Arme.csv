@@ -130,8 +130,8 @@ winged spear;|1/2/3=>Ph:0
 |4/5/6=>Ph:6
 ;6=>Ph:12;3;Niveau Minimum:6;8;1;;
 lance de gobelin;|1/2/3=>Ph:0
-|4/5/6=>Ph:5
-;6=>Ph:10;3;Force Minimum:5;7;2;Toxine 2+ => 1;
+|4/5/6=>Ph:4|Po:1
+;6=>Ph:8|Po:2;3;Force Minimum:5;7;2;Toxine 2+ => 1;
 fleau;|1/2/3/4=>Ph:0
 |5/6=>Ph:9
 ;;5;Force Minimum:5;17;3;Écacheur: ( si degat de la frappe >0 & si la cible bloque avec un bouclier ) Si la cible ne réussi pas à bloquer tous les dégâts  alors son bouclier est détruit.;
@@ -288,7 +288,7 @@ uchigatana;|1=>Ph:0
 |4/5=>Ph:6
 |6=>Ph:10
 ;6=>Ph:11;3;Niveau Minimum:8;21;1;Saigne 7+ => 10
-Seppuku : le joueur se présente dos à l'ennemi et se transperce le ventre pour atteindre l'ennemi derrière lui. Il subit la frappe lui-même et il ajoute un dé 7 à sa frappe pour résoudre la frappe pour l'ennemi;
+Seppuku : le joueur se présente dos à l'ennemi et se transperce le ventre pour atteindre l'ennemi derrière lui. Il subit la frappe lui-même et il ajoute 1D8 à sa frappe pour résoudre la frappe pour l'ennemi. De plus l'ennemi subit la frappe en coup critique car il ne voit pas la lame;
 hachette double maudite;|1/2=>Ph:0
 |3/4/5/6=>Ph:6
 ;6=>Ph:12|2pv en moins pour le porteur;4;Humanite Minimum:4;10;1;Polydextrie :avoir 2 de ces hachettes en ambidextrie ajoute 2 dégâts magiques aux dégâts totaux des frappes.;
@@ -433,3 +433,7 @@ Possibilité d'une frappe de précision :
 15+ la cible est soulevée à 2m du sol, pendue par les pieds
 10+ la cible est enserrée avec une force de 15 (nécessite une lutte de force pour se libérer)
 8+ la cible est bousculée, lutte de force à 10, la victime chute par terre si elle perds, et perds une action au prochain tour.;
+daguoblin;|1=>Ph:0
+|2/3/4/5=>Ph:3
+|6=>Ph:4|Po:2
+;6=>Ph:9;2;;6;1;venin 4+ => 2;

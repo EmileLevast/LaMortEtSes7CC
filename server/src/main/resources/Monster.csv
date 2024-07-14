@@ -55,7 +55,8 @@ carcasse lourde;15;1:2|2:3|3:4;Ph:2|Po:-2;0;3;armure de maille:5|hache rouillee:
 devineresse grabataire;15;1:0;F:20|Ph:-5;0;1;;40;Revit si les joueurs se reposent au feu et se souvient de l'histoire.
 Fragile : si elle est blessée le MJ jette 1D4, si = 1 alors elle s'accroche à son agresseur fermement, elle se décompose rapidement en passant de squelette à poussière et meurt en emportant toutes les âmes et humanités de son meurtrier.;
 carcasse guetteuse;15;1:1|2:2;Ph:2;1;3;armure petromorphe usee:4|longue dague:5|50 âmes supp:6;80;Les carcasses guetteuses se positionnent à un endroit et s'emmitouflent dans leur cape petromorphe pour prendre l'apparence d'un rocher et surprendre leur cible.
-Si un joueur se trouve devant une carcasse guetteuse à ~2m max, celle-ci peut bondir et effectuer un backstab. Il est automatiquement réussi si le joueur est de dos, sinon la carcasse jette un dé, sur 10+ le backstab est réussi.;
+Si un joueur se trouve devant une carcasse guetteuse à ~2m max, celle-ci peut bondir et effectuer un backstab. Il est automatiquement réussi si le joueur est de dos, sinon la carcasse jette un dé, sur 10+ le backstab est réussi.
+Il y'a un malus de 1 pour faire un backstab contre ses monstres très avertis.;
 bouquetin;13;1:1|2:2;Ph:3|Ma:1;1;2;coups de sabots:0|viande:4|humanite:5;15;;
 oicta;500;1:15;Ph:30|Po:10|F:50|Ma:30;80;10;;20000;omnipotent;oïcta
 cerefroi;40;3:8;Ph:15|Po:5|F:-10|Ma:7;2;4;etreinte de cerefroi:0|coups de sabots:0;310;glacial : les  joueurs proche ne peuvent pas courir (faire deux actions de déplacement)
@@ -144,7 +145,7 @@ Dans ce cas elle peut infliger exactement la meme frappe (rejeter les des) que l
 Ses degats sont toujours convertis en degats magiques.
 La torageuse disparaît si la cible rate le test d'impavidite : a chaque tour la torageuse jette 1D20-(bonus impavide indifférence de la cible), si le résultat <= 0 alors la torageuse disparaît dans un autre univers.
 Le bonus d'impavidite est attibué au bon vouloir du MJ (exmeple : +1 = le joueur regarde la torageuse sans la quitter des yeux, sans sourciller, +5 le joueur s'asseoit en tailleur en fermant les yeux), le bonus d'imapvidite se cumule de tour en tour, et est reinitialise à l'apparition ou disparition d'une torageuse.;
-tomek;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
+tomek;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Père de rico gil sayan;
 stellaraneide;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
 chauve-souris geante;23;1:2|2:2|3:2;Po:3|F:2|Ph:4;2;2;morsure buveuse:0;105;Vol : peut frapper pendant son action de mouvement.
 Grippe : Une fois qu'elles ont mordues une cible, elle s'accroche à elle virvolte autour, impossible de s'échapper, roulades inefficaces, la chauve-souris s'acharnera sur la même cible jusqu'à ce qu'un des deux succombe.;chauve-souris geante
