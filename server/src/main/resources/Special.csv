@@ -264,3 +264,5 @@ fiole d estus;OUTIL;Restaure 1D10 pv
 Utilisation : 3
 Coût : 1 action spéciale
 Se régénère au feu.;
+technique backstab sournois;TECHNIQUE;Effet : le joueur réussit automatiquement son test pour le backstab si la cible est inavertie de sa présence ( pas besoin d'être dans le dos de la cible);
+technique veulerie;TECHNIQUE;Effet : si la vie du joueur <=25% au début de son tour, alors il peut courrir se cacher dans la cachette la plus improbable aux environs, et tous les ennemis doivent faire 1D20+Intelligence=17+ pour voir où le joueur est caché.;

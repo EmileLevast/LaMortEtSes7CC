@@ -435,5 +435,5 @@ Possibilité d'une frappe de précision :
 8+ la cible est bousculée, lutte de force à 10, la victime chute par terre si elle perds, et perds une action au prochain tour.;
 daguoblin;|1=>Ph:0
 |2/3/4/5=>Ph:3
-|6=>Ph:4|Po:2
-;6=>Ph:9;2;;6;1;venin 4+ => 2;
+|6=>Ph:3|Po:3
+;6=>Ph:7;2;;6;1;venin 4+ => 2;

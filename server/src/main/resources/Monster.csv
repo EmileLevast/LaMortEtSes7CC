@@ -21,7 +21,7 @@ krun;13;1:1|2:2|3:3;Ph:3|Po:3;1;2;peau de loup:3|lance de gobelin:4|humanite:5;9
 zairzan;70;1:1|2:2|3:4;Ph:3|Po:5|F:5|Ma:10;16;6;anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de zairzan:5|javelots de feu:5|2 Humanite:6;1500;;zaïrzan
 scin;60;1:3|2:4|3:7;Ph:7|Po:-1|F:2|Ma:10;25;4;anneau de l eclipse:1|depetrant:2|anneau apotropaïque:2|Eclairs:4|robe de scin:5|grand sort d'ubiquite:5|2 humanites:6|rapiere:6;2000;Humanite : il peut utiliser une humanité max quand il le souhaite (capacité régénérée si les joueurs vont au feu)
 Le sort depetrant de scin est automatiquement recupere par les joueurs à sa mort;scîn, le conjurateur
-sarah;15;1:3|2:4;Ph:2;3;3;2 dagues aiguisees:3|1 humanite:4|2 humanites:6;150;Précise : elle peut tenter un backstab n'importe quand. Disparition : Si elle a 5 pv au début de son tour, sur 4+ elle se camoufle et disparaît de l'endroit;
+sarah;15;1:3|2:4;Ph:2;3;3;2 dagues aiguisees:3|1 humanite:4|technique veulerie:4|technique backstab sournois:5|2 humanites:6;150;technique backstab sournois et technique veulerie.;
 scinat;10;1:3|2:4|3:5;F:10|Ma:12;10;2;sauvetage cendre:4;400; S'il réussit, scînat reste sur place et scin est téléporté..Sauveur : si scin va subir une frappe, scînat peut utiliser son sort sauvetage cendré avant. Si celui-ci rate scin peut toujours tenter de se défendre. Parlant : Scînat peut parler à son porteur. Porteur: scînat peut changer de porteur sans soucis, il change alors de nom. <nomPorteur>+<at>;serpentvicieuxat
 chien enrage;15;1:2|2:3;Ph:5;1;2;croc chien enrage:0|humanite:4;30;;Chien enragé
 elfe nu;20;1:1|2:2|3:3;Ph:1|Ma:6|Po:1|F:1;20;3;1 humanite:4|2 humanites:5;115;Télépathe de premier niveau. Peut deviner vaguement ce que veulent les joueurs.;
