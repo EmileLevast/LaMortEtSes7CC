@@ -23,7 +23,6 @@ import org.koin.compose.koinInject
 fun layoutAdmin(
     imageBackground: ImageBitmap?
 ) {
-    var itemsToShow by remember { mutableStateOf<List<IListItem>>(emptyList()) }
 
     var selectedItemToEdit by remember { mutableStateOf<IListItem?>(null) }
 
@@ -38,24 +37,25 @@ fun layoutAdmin(
     if (selectedItemToEdit != null) {
         layoutEdition(selectedItemToEdit!!, onClickBackFromEdition)
     } else {
-        layoutRecherche(imageBackground, itemsToShow, onClickItem) {
-            itemsToShow = it
-        }
+        layoutRecherche(imageBackground, onClickItem)
     }
 }
 
 @Composable
 fun layoutRecherche(
     imageBackground: ImageBitmap?,
-    listItems: List<IListItem>,
     onClickItem: (IListItem) -> Unit,
-    onChangeListItems: (List<IListItem>) -> Unit
 ) {
     var nameSearched by remember { mutableStateOf("") }
     var loading by mutableStateOf(false)
     var isDetailedModeOn by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+    val itemsToShow = remember { mutableStateListOf<IListItem>()}
+
+
+    //contient la liste des id des items qui sont references comme ne devant pas être supprimés
+    val listPinnedItem = remember { mutableStateListOf<Int>()}
 
 
     val apiApp = koinInject<ApiApp>()
@@ -69,11 +69,21 @@ fun layoutRecherche(
                     apiApp.searchAnything(nameSearched)
                 }
                 withContext(Dispatchers.Default) {
-                    onChangeListItems(listItems + itemsFound)
+                    itemsToShow.addAll(itemsFound)
                 }
                 loading = false
             }
         }
+    }
+
+    //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
+    val togglePinnedItem: (Int,Boolean) -> Unit = { id, toPin ->
+        if(toPin){
+            listPinnedItem.add(id)
+        }else{
+            listPinnedItem.remove(id)
+        }
+
     }
 
     Column(Modifier.fillMaxSize()) {
@@ -98,7 +108,7 @@ fun layoutRecherche(
                 rechercheItems()
             }
             buttonDarkStyled("Vider") {
-                onChangeListItems(emptyList())
+                itemsToShow.removeIf { item-> !listPinnedItem.contains(item._id) }
             }
             Switch(
                 checked = isDetailedModeOn,
@@ -115,14 +125,17 @@ fun layoutRecherche(
 
         }
         layoutListItem(
-            listItems,
+            itemsToShow,
             imageBackground,
             Modifier,
             null,
             {},
             onClickItem,
             true,
-            isDetailedModeOn
+            isDetailedModeOn,
+            true,
+            listPinnedItem,
+            togglePinnedItem
         )
     }
 

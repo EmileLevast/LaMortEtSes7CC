@@ -13,8 +13,13 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.twotone.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +31,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
@@ -44,7 +48,10 @@ fun layoutListItem(
     hideBigElement: () -> Unit,
     showBigElement: (IListItem) -> Unit,
     isShowingStats : Boolean,
-    isDetailedModeOn : Boolean = false
+    isDetailedModeOn : Boolean = false,
+    isModeAdmin:Boolean =false,
+    listPinnedItems :List<Int>? = null,
+    togglePinItem:(Int,Boolean)->Unit = { i: Int, b: Boolean -> }
 ) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
@@ -53,6 +60,7 @@ fun layoutListItem(
 
     val scrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
+
 
     LazyVerticalGrid(
         state = scrollState,
@@ -84,6 +92,24 @@ fun layoutListItem(
                     }
 
 
+                    //Afficher le bouton pin si on est en mode Admin
+                    if(isModeAdmin && listPinnedItems!=null){
+                        if(listPinnedItems.contains(equipement._id)){
+                            IconButton(onClick = {
+                                togglePinItem(equipement._id,false)
+                            })
+                            {
+                                Icon(Icons.Filled.Star, "Desinpegler")
+                            }
+                        }else{
+                            IconButton(onClick = {
+                                togglePinItem(equipement._id,true)
+                            })
+                            {
+                                Icon(Icons.TwoTone.Star, "Epingler")
+                            }
+                        }
+                    }
 
                     //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
                     if(!isDetailedModeOn){
