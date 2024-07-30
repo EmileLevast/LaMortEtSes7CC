@@ -56,10 +56,6 @@ fun layoutRecherche(
 
     val adminUiState by adminViewModel.uiState.collectAsState()
 
-    //contient la liste des id des items qui sont references comme ne devant pas être supprimés
-    val listPinnedItem = remember { mutableStateListOf<Int>()}
-
-
     val apiApp = koinInject<ApiApp>()
 
     val rechercheItems: () -> Unit = {
@@ -81,9 +77,9 @@ fun layoutRecherche(
     //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
     val togglePinnedItem: (Int,Boolean) -> Unit = { id, toPin ->
         if(toPin){
-            listPinnedItem.add(id)
+            adminViewModel.pinItem(id)
         }else{
-            listPinnedItem.remove(id)
+            adminViewModel.removePin(id)
         }
 
     }
@@ -110,7 +106,7 @@ fun layoutRecherche(
                 rechercheItems()
             }
             buttonDarkStyled("Vider") {
-                adminViewModel.deleteIf { item-> !listPinnedItem.contains(item._id) }
+                adminViewModel.keepPinnedItemsOnly()
             }
             Switch(
                 checked = isDetailedModeOn,
@@ -136,7 +132,7 @@ fun layoutRecherche(
             true,
             isDetailedModeOn,
             true,
-            listPinnedItem,
+            adminUiState.listPinneditems,
             togglePinnedItem
         )
     }
