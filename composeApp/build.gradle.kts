@@ -64,7 +64,6 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -82,9 +81,11 @@ kotlin {
             //dependency injection
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.androidx.material3)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+
         }
     }
 }
@@ -126,7 +127,6 @@ android {
     }
 }
 dependencies {
-    implementation(libs.androidx.ui.desktop)
 }
 
 compose.desktop {
