@@ -82,6 +82,9 @@ kotlin {
             //dependency injection
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.lifecycle.viewmodel.compose)
+
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

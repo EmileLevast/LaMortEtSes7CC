@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
@@ -13,11 +12,13 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.ApiApp
 import org.koin.compose.koinInject
+import viewModel.AdminViewModel
 
 @Composable
 fun layoutAdmin(
@@ -45,14 +46,15 @@ fun layoutAdmin(
 fun layoutRecherche(
     imageBackground: ImageBitmap?,
     onClickItem: (IListItem) -> Unit,
+    adminViewModel: AdminViewModel= viewModel{ AdminViewModel() }
 ) {
     var nameSearched by remember { mutableStateOf("") }
     var loading by mutableStateOf(false)
     var isDetailedModeOn by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
-    val itemsToShow = remember { mutableStateListOf<IListItem>()}
 
+    val adminUiState by adminViewModel.uiState.collectAsState()
 
     //contient la liste des id des items qui sont references comme ne devant pas être supprimés
     val listPinnedItem = remember { mutableStateListOf<Int>()}
@@ -69,7 +71,7 @@ fun layoutRecherche(
                     apiApp.searchAnything(nameSearched)
                 }
                 withContext(Dispatchers.Default) {
-                    itemsToShow.addAll(itemsFound)
+                    adminViewModel.addAllToItems(*itemsFound.toTypedArray())
                 }
                 loading = false
             }
@@ -108,7 +110,7 @@ fun layoutRecherche(
                 rechercheItems()
             }
             buttonDarkStyled("Vider") {
-                itemsToShow.removeIf { item-> !listPinnedItem.contains(item._id) }
+                adminViewModel.deleteIf { item-> !listPinnedItem.contains(item._id) }
             }
             Switch(
                 checked = isDetailedModeOn,
@@ -125,7 +127,7 @@ fun layoutRecherche(
 
         }
         layoutListItem(
-            itemsToShow,
+            adminUiState.listitems,
             imageBackground,
             Modifier,
             null,
