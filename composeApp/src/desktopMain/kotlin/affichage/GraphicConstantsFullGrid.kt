@@ -49,6 +49,9 @@ class GraphicConstantsFullGrid {
         0.95f to Color.White,
     )
 
+    val colorBackgroundSmallHeader = Color(0x77ED7F10)
+    val colorSmallHeader = Color(0xFF5b3c11)
+
     val brushSpecialBorder = Brush.horizontalGradient(colorStops = colorsSpecialBorder)
     val brushBorder = Brush.horizontalGradient(colorStops = colorsBorder)
     val brushBorderSelected = Brush.horizontalGradient(colorStops = colorsBorderSelected)
