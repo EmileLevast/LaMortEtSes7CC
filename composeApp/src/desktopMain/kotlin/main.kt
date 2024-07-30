@@ -33,10 +33,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
+import androidx.compose.ui.window.rememberWindowState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import lamortetses7cc.composeapp.generated.resources.Res
@@ -63,21 +63,22 @@ fun main() = application {
 @Composable
 @Preview
 fun AppDesktop(onExit: () -> Unit) {
-
+    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply { placement = WindowPlacement.Fullscreen }
 
     Window(
         onCloseRequest = onExit,
         title = "La mort et ses 7 Couvre-chefs",
+        state = state,
         icon = BitmapPainter(imageResource(Res.drawable.icon_dark_soul))
     ) {
-        MainWindow()
+        MainWindow(onExit)
     }
 
 
 }
 
 @Composable
-fun MainWindow() {
+fun MainWindow(onExit: () -> Unit) {
     val apiApp = koinInject<ApiApp>()
 
 
@@ -155,7 +156,7 @@ fun MainWindow() {
                 enter = slideInHorizontally { it },
                 exit = slideOutHorizontally { it }
             ) {
-                layoutMenuConfiguration(isInAdminMode, switchAdminMode)
+                layoutMenuConfiguration(isInAdminMode, switchAdminMode, onExit)
             }
 
         }

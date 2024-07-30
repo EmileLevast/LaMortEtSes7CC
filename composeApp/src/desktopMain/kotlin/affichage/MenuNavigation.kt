@@ -24,7 +24,11 @@ import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutMenuConfiguration(isInAdminMode: Boolean?, switchAdminMode: (Boolean?) -> Unit) {
+fun layoutMenuConfiguration(
+    isInAdminMode: Boolean?,
+    switchAdminMode: (Boolean?) -> Unit,
+    onExit: () -> Unit
+) {
 
     var openChangeIpDialog by remember { mutableStateOf(false) }
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
@@ -33,7 +37,7 @@ fun layoutMenuConfiguration(isInAdminMode: Boolean?, switchAdminMode: (Boolean?)
 
     Card(Modifier.fillMaxHeight(),backgroundColor = Color.Black, shape = RoundedCornerShape(10.dp), border = BorderStroke(5.dp, graphicsConsts.brushMenu)) {
         Column(Modifier.padding(graphicsConsts.cellContentPadding)) {
-            textButtonMenu("Changer Adresse"){
+            textButtonMenu("Verboten"){
                 openChangeIpDialog = true
             }
             if(isInAdminMode == true){
@@ -41,9 +45,12 @@ fun layoutMenuConfiguration(isInAdminMode: Boolean?, switchAdminMode: (Boolean?)
                     switchAdminMode(false)
                 }
             }else{
-                textButtonMenu("Mode Admin"){
+                textButtonMenu("Unlimited Power !"){
                     switchAdminMode(true)
                 }
+            }
+            textButtonMenu("Barrez-vous cons de mimes!"){
+                onExit()
             }
         }
     }
