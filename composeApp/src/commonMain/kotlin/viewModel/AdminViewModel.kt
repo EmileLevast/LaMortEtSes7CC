@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import model.AdminModelState
 
 class AdminViewModel : ViewModel(){
@@ -13,15 +14,15 @@ class AdminViewModel : ViewModel(){
     val uiState: StateFlow<AdminModelState> = _uiState.asStateFlow()
 
     fun addAllToItems(vararg items : IListItem){
-        _uiState.value.listitems.addAll(items)
-    }
-
-    fun clearAllItems(){
-        _uiState.value.listitems.clear()
+        updateListItems(_uiState.value.listitems+items)
     }
 
     fun deleteIf(predicate : (IListItem)->Boolean){
-        _uiState.value.listitems.removeAll{item -> predicate(item)}
+        updateListItems(_uiState.value.listitems.filter { item -> !predicate(item) })
+    }
+
+    private fun updateListItems(items: List<IListItem>){
+        _uiState.update { currentState -> currentState.copy(listitems = items) }
     }
 
 }
