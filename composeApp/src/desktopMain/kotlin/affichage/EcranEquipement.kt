@@ -1,10 +1,8 @@
 package affichage
 
 import IListItem
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -30,10 +28,12 @@ import androidx.compose.material.icons.twotone.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInParent
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -69,6 +69,8 @@ fun layoutListItem(
 
     val scrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
+    val listOfHeader:MutableList<Pair<String,Int>> = remember { mutableStateListOf() }
+    var positionInRootHeaderOfHeader by remember { mutableStateOf(0) }
 
     val groupsEquipements = equipementsAfficher.groupBy { it::class.simpleName }
 
@@ -89,7 +91,15 @@ fun layoutListItem(
         ) {
 
             groupsEquipements.forEach { (groupName, equipementsGrouped) ->
-                header(groupName?:"Xaraxatrailles", graphicsConsts.colorBackgroundSmallHeader, graphicsConsts.colorSmallHeader)
+                header(groupName?:"Xaraxatrailles", graphicsConsts.colorBackgroundSmallHeader, graphicsConsts.colorSmallHeader){ coord ->
+                    val indexOfConcernedHeader = listOfHeader.indexOfFirst { it.first == groupName }
+                    if(indexOfConcernedHeader >= 0){
+                        listOfHeader[indexOfConcernedHeader] = Pair(groupName?:"Vide", coord.positionInRoot().y.toInt())
+                    }else{
+                        listOfHeader.add(Pair(groupName?:"Vide", coord.positionInRoot().y.toInt()))
+                    }
+                    listOfHeader.sortBy { -it.second }
+                }
 
                 items(equipementsGrouped) { equipement ->
                     Card(
@@ -193,10 +203,18 @@ fun layoutListItem(
             }
         }
         if(groupsEquipements.isNotEmpty()){
-            Surface (modifier = Modifier.clip(RoundedCornerShape(10.dp)).fillMaxWidth()){
-                Text(groupsEquipements.keys.first()?:"Vide", color = graphicsConsts.colorSmallHeader,
+            Surface (modifier = Modifier.clip(RoundedCornerShape(10.dp)).fillMaxWidth().onGloballyPositioned { coord ->
+                positionInRootHeaderOfHeader = coord.positionInRoot().y.toInt()
+            }){
+                Text(
+                    try {
+                        listOfHeader.first { it.second<positionInRootHeaderOfHeader }.let{it.first + ":" +it.second+"="+positionInRootHeaderOfHeader}
+                    } catch (e: Exception) {
+                        "Aie position"
+                    }, color = graphicsConsts.colorSmallHeader,
                     textAlign = TextAlign.Center, modifier = Modifier.background(graphicsConsts.colorBackgroundSmallHeader).fillMaxWidth())
             }
+            Text(color = Color.White, text = listOfHeader.joinToString("\n") { headerToStr -> headerToStr.first+":"+headerToStr.second })
         }
     }
 
@@ -212,13 +230,13 @@ fun layoutListItem(
 fun LazyGridScope.header(
     title: String,
     colorBackground:Color,
-    colorFront:Color
+    colorFront:Color,
+    onChangeLayoutCoordinates: (LayoutCoordinates)->Unit
 ) {
-
-
     item(span = { GridItemSpan(this.maxLineSpan) }, content = {
-        Surface (modifier = Modifier.clip(RoundedCornerShape(10.dp))){
-            Text(title, color = colorFront, textAlign = TextAlign.Center, modifier = Modifier.background(colorBackground))
+        Surface (modifier = Modifier.clip(RoundedCornerShape(10.dp)).onGloballyPositioned(onChangeLayoutCoordinates)){
+            Text(title, color = colorFront, textAlign = TextAlign.Center, modifier = Modifier.background(colorBackground)
+                    )
         }
     })
 }
