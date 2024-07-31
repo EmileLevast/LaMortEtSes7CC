@@ -30,21 +30,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
+import lamortetses7cc.composeapp.generated.resources.sword
 import network.ApiApp
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.imageResource
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 
 
@@ -66,13 +67,14 @@ fun layoutListItem(
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
     val apiApp = koinInject<ApiApp>()
 
-
     val scrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
     val listOfHeader:MutableList<Pair<String,Int>> = remember { mutableStateListOf() }
     var positionInRootHeaderOfHeader by remember { mutableStateOf(0) }
 
     val groupsEquipements = equipementsAfficher.groupBy { it::class.simpleName }
+
+    
 
     Box(Modifier.then(modifier)){
         LazyVerticalGrid(
@@ -133,6 +135,12 @@ fun layoutListItem(
                                         Icon(Icons.TwoTone.Star, "Epingler")
                                     }
                                 }
+                                Image(
+                                    modifier = Modifier.fillMaxWidth(0.2f),
+                                    painter = painterResource(Res.drawable.sword),
+                                    contentScale = ContentScale.Fit,
+                                    contentDescription = null,
+                                )
                             }
 
                             //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
@@ -153,7 +161,7 @@ fun layoutListItem(
                                             // Set column height using the LayoutCoordinates
                                             columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
                                         },
-                                        painter = painterResource("UnknownImage.jpg"),
+                                        painter = painterResource(Res.drawable.UnknownImage),
                                         contentDescription = null,
                                     )
                                 }
