@@ -1,6 +1,11 @@
 package affichage
 
 import IListItem
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,10 +31,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.twotone.Star
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -41,7 +49,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
-import lamortetses7cc.composeapp.generated.resources.sword
+import lamortetses7cc.composeapp.generated.resources.stuff_symbol
 import network.ApiApp
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.imageResource
@@ -74,7 +82,14 @@ fun layoutListItem(
 
     val groupsEquipements = equipementsAfficher.groupBy { it::class.simpleName }
 
-    
+    val infiniteTransition = rememberInfiniteTransition()
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0F,
+        targetValue = 360F,
+        animationSpec = infiniteRepeatable(
+            animation = tween(5000, easing = LinearEasing)
+        )
+    )
 
     Box(Modifier.then(modifier)){
         LazyVerticalGrid(
@@ -121,26 +136,29 @@ fun layoutListItem(
                             //Afficher le bouton pin si on est en mode Admin
                             if(isModeAdmin && listPinnedItems!=null){
                                 if(listPinnedItems.contains(equipement._id)){
-                                    IconButton(onClick = {
-                                        togglePinItem(equipement._id,false)
-                                    })
-                                    {
-                                        Icon(Icons.Filled.Star, "Desinpegler")
-                                    }
+                                    Image(
+                                        modifier = Modifier.fillMaxWidth(0.2f).align(Alignment.BottomEnd).clickable{
+                                            togglePinItem(equipement._id,false)
+                                        }
+                                            .graphicsLayer {
+                                                rotationY = angle
+                                            },
+                                        painter = painterResource(Res.drawable.stuff_symbol),
+                                        contentScale = ContentScale.Fit,
+                                        contentDescription = null,
+                                        colorFilter = ColorFilter.tint(Color.White)
+                                    )
                                 }else{
-                                    IconButton(onClick = {
-                                        togglePinItem(equipement._id,true)
-                                    })
-                                    {
-                                        Icon(Icons.TwoTone.Star, "Epingler")
-                                    }
+                                    Image(
+                                        modifier = Modifier.fillMaxWidth(0.14f).align(Alignment.BottomEnd).clickable{
+                                            togglePinItem(equipement._id,true)
+                                        },
+                                        painter = painterResource(Res.drawable.stuff_symbol),
+                                        contentScale = ContentScale.Fit,
+                                        contentDescription = null,
+                                    )
                                 }
-                                Image(
-                                    modifier = Modifier.fillMaxWidth(0.2f),
-                                    painter = painterResource(Res.drawable.sword),
-                                    contentScale = ContentScale.Fit,
-                                    contentDescription = null,
-                                )
+
                             }
 
                             //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
