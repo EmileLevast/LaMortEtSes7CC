@@ -96,9 +96,8 @@ fun layoutListItem(
                     if(indexOfConcernedHeader >= 0){
                         listOfHeader[indexOfConcernedHeader] = Pair(groupName?:"Vide", coord.positionInRoot().y.toInt())
                     }else{
-                        listOfHeader.add(Pair(groupName?:"Vide", coord.positionInRoot().y.toInt()))
+                        listOfHeader.add(0,Pair(groupName?:"Vide", coord.positionInRoot().y.toInt()))
                     }
-                    listOfHeader.sortBy { -it.second }
                 }
 
                 items(equipementsGrouped) { equipement ->
@@ -208,13 +207,12 @@ fun layoutListItem(
             }){
                 Text(
                     try {
-                        listOfHeader.first { it.second<positionInRootHeaderOfHeader }.let{it.first + ":" +it.second+"="+positionInRootHeaderOfHeader}
+                        listOfHeader.first { it.second<=positionInRootHeaderOfHeader }.first
                     } catch (e: Exception) {
-                        "Aie position"
+                        "Tu connais cette catégorie ? Moi pas."
                     }, color = graphicsConsts.colorSmallHeader,
                     textAlign = TextAlign.Center, modifier = Modifier.background(graphicsConsts.colorBackgroundSmallHeader).fillMaxWidth())
             }
-            Text(color = Color.White, text = listOfHeader.joinToString("\n") { headerToStr -> headerToStr.first+":"+headerToStr.second })
         }
     }
 
