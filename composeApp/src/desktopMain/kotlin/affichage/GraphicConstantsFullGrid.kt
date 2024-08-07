@@ -17,6 +17,8 @@ class GraphicConstantsFullGrid {
 
     val paddingCellLayoutJoueur = 15.dp
 
+    val colorStuffOn = Color(0xFFED7F10)
+
     private val colorsSpecialBorder = arrayOf(
         0.0f to Color(0xFFED7F10),
         0.5f to Color.Gray,

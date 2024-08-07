@@ -168,7 +168,7 @@ fun layoutListItem(
                                         painter = painterResource(Res.drawable.stuff_symbol),
                                         contentScale = ContentScale.Fit,
                                         contentDescription = null,
-                                        colorFilter = ColorFilter.tint(Color.White)
+                                        colorFilter = ColorFilter.tint(graphicsConsts.colorStuffOn)
                                     )
                                 }else{
                                     Image(
@@ -178,6 +178,7 @@ fun layoutListItem(
                                         painter = painterResource(Res.drawable.stuff_symbol),
                                         contentScale = ContentScale.Fit,
                                         contentDescription = null,
+                                        colorFilter = ColorFilter.tint(Color.White)
                                     )
                                 }
 
