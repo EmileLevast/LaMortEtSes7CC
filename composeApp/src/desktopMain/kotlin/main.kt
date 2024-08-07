@@ -63,7 +63,7 @@ fun main() = application {
 @Composable
 @Preview
 fun AppDesktop(onExit: () -> Unit) {
-    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply {  }
+    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply { placement = WindowPlacement.Fullscreen }
 
     Window(
         onCloseRequest = onExit,
