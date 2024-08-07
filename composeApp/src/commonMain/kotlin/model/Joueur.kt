@@ -10,7 +10,8 @@ class Joueur(
     var caracOrigin: Carac = Carac(),
     var caracActuel: Carac = Carac(),
     var niveau:Int=0,
-    override val nomComplet:String = ""
+    override val nomComplet:String = "",
+    var chaineEquipementSelectionneSerialisee: String ="",
 ) : ApiableItem() {
 
     override val _id = nom.hashCode()
@@ -25,12 +26,13 @@ class Joueur(
         details = other.details,
         caracOrigin = Carac(other.caracOrigin),  // Assuming Carac has a copy constructor
         caracActuel = Carac(other.caracActuel),  // Assuming Carac has a copy constructor
-        niveau = other.niveau
+        niveau = other.niveau,
+        chaineEquipementSelectionneSerialisee = other.chaineEquipementSelectionneSerialisee,
     )
 
     override fun getStatsAsStrings():String{
         return "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
-                "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)+"\n"+details
+                "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)+"\n"+details + getAllEquipmentSelectionneAsList()
     }
 
     override fun parseFromCSV(listCSVElement : List<String>):ApiableItem{
@@ -41,7 +43,8 @@ class Joueur(
             Carac.fromCSV(listCSVElement[3]),
             Carac.fromCSV(listCSVElement[4]),
             listCSVElement[5].getIntOrZero(),
-            listCSVElement[6]
+            listCSVElement[6],
+            listCSVElement[7],
         )
     }
 
@@ -53,11 +56,13 @@ class Joueur(
             "caracOrigin : vie/force/EffectType:Int|Effect:Int.../intelligence/energie/humanite/ame",
             "caracActuel : vie/force/EffectType:Int|Effect:Int.../intelligence/energie/humanite/ame",
             "niveau : Int",
-            "nom complet : String"
+            "nom complet : String",
+            "equipement équipé: ${CHAR_SEP_EQUIPEMENT}String$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}String${CHAR_SEP_EQUIPEMENT}",
         )
     }
 
     fun getAllEquipmentAsList()=chaineEquipementSerialisee.deserializeToListElements()
+    fun getAllEquipmentSelectionneAsList()=chaineEquipementSelectionneSerialisee.deserializeToListElements()
 
     override fun getDeparsedAttributes(): List<String> {
         return listOf<String>(
@@ -67,7 +72,8 @@ class Joueur(
             caracOrigin.toCSV(),
             caracActuel.toCSV(),
             niveau.toString(),
-            nomComplet
+            nomComplet,
+            chaineEquipementSelectionneSerialisee
         )
     }
 }
