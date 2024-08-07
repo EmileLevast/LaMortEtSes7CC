@@ -226,14 +226,13 @@ fun WindowJoueurs(
 
     //Lorsqu'on clique sur un item pour l'ajouter à la liste des items sélectionnés
     //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
-    val togglePinnedItem: (String,Boolean) -> Unit = { nom, toPin ->
+    val togglePinnedItem: (String,Boolean) -> Unit = { nomItem, toPin ->
         if(toPin){
-            listPinnedItems+=listOf(nom)
+            selectedJoueur.equip(nomItem)
         }else{
-            listPinnedItems = listPinnedItems.filter { it != nom }
-
+            selectedJoueur.unequip(nomItem)
         }
-
+        coroutineScope.launch(Dispatchers.IO) { apiApp.updateJoueur(selectedJoueur) }
     }
 
     //lorsqu'on clique sur un nouveau joueur à sélectionner

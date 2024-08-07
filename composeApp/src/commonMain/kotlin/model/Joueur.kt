@@ -63,6 +63,12 @@ class Joueur(
 
     fun getAllEquipmentAsList()=chaineEquipementSerialisee.deserializeToListElements()
     fun getAllEquipmentSelectionneAsList()=chaineEquipementSelectionneSerialisee.deserializeToListElements()
+    fun equip(itemNom:String){
+        chaineEquipementSelectionneSerialisee+= "$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT"
+    }
+    fun unequip(itemNom:String){
+        chaineEquipementSelectionneSerialisee.replace("$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT","")
+    }
 
     override fun getDeparsedAttributes(): List<String> {
         return listOf<String>(
