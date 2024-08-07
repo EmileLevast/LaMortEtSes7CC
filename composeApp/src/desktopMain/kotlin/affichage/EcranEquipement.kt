@@ -67,8 +67,8 @@ fun layoutListItem(
     showBigElement: (IListItem) -> Unit,
     isShowingStats : Boolean,
     isDetailedModeOn : Boolean = false,
-    listPinnedItems :List<Int>? = null,
-    togglePinItem:(Int,Boolean)->Unit = { i: Int, b: Boolean -> }
+    listPinnedItems :List<String>? = null,
+    togglePinItem:(String,Boolean)->Unit = { i: String, b: Boolean -> }
 ) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
@@ -157,10 +157,10 @@ fun layoutListItem(
 
                             //Afficher le bouton pin si on est en mode Admin
                             if(listPinnedItems!=null){
-                                if(listPinnedItems.contains(equipement._id)){
+                                if(listPinnedItems.contains(equipement.nom)){
                                     Image(
                                         modifier = Modifier.fillMaxWidth(0.2f).align(Alignment.BottomEnd).clickable{
-                                            togglePinItem(equipement._id,false)
+                                            togglePinItem(equipement.nom,false)
                                         }
                                             .graphicsLayer {
                                                 rotationY = angle
@@ -173,7 +173,7 @@ fun layoutListItem(
                                 }else{
                                     Image(
                                         modifier = Modifier.fillMaxWidth(0.14f).align(Alignment.BottomEnd).clickable{
-                                            togglePinItem(equipement._id,true)
+                                            togglePinItem(equipement.nom,true)
                                         },
                                         painter = painterResource(Res.drawable.stuff_symbol),
                                         contentScale = ContentScale.Fit,

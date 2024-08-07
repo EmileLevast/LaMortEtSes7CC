@@ -75,11 +75,11 @@ fun layoutRecherche(
     }
 
     //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
-    val togglePinnedItem: (Int,Boolean) -> Unit = { id, toPin ->
+    val togglePinnedItem: (String,Boolean) -> Unit = { nom, toPin ->
         if(toPin){
-            adminViewModel.pinItem(id)
+            adminViewModel.pinItem(nom)
         }else{
-            adminViewModel.removePin(id)
+            adminViewModel.removePin(nom)
         }
 
     }

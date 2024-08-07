@@ -18,22 +18,22 @@ class AdminViewModel : ViewModel(){
     }
 
     fun keepPinnedItemsOnly(){
-        updateListItems(_uiState.value.listitems.filter { item -> _uiState.value.listPinneditems.contains(item._id) })
+        updateListItems(_uiState.value.listitems.filter { item -> _uiState.value.listPinneditems.contains(item.nom) })
     }
 
-    fun pinItem(itemId:Int){
-        updateListPinnedItems(_uiState.value.listPinneditems+itemId)
+    fun pinItem(itemNom:String){
+        updateListPinnedItems(_uiState.value.listPinneditems+itemNom)
     }
 
-    fun removePin(itemIdToRemove:Int){
-        updateListPinnedItems(_uiState.value.listPinneditems.filter { itemId -> itemId != itemIdToRemove })
+    fun removePin(itemToRemove:String){
+        updateListPinnedItems(_uiState.value.listPinneditems.filter { itemNom -> itemNom != itemToRemove })
     }
 
     private fun updateListItems(items: List<IListItem>){
         _uiState.update { currentState -> currentState.copy(listitems = items) }
     }
 
-    private fun updateListPinnedItems(items: List<Int>){
+    private fun updateListPinnedItems(items: List<String>){
         _uiState.update { currentState -> currentState.copy(listPinneditems = items) }
     }
 

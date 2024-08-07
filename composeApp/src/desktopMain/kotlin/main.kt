@@ -226,11 +226,11 @@ fun WindowJoueurs(
 
     //Lorsqu'on clique sur un item pour l'ajouter à la liste des items sélectionnés
     //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
-    val togglePinnedItem: (Int,Boolean) -> Unit = { id, toPin ->
+    val togglePinnedItem: (String,Boolean) -> Unit = { nom, toPin ->
         if(toPin){
-            listPinnedItems+=listOf(id)
+            listPinnedItems+=listOf(nom)
         }else{
-            listPinnedItems = listPinnedItems.filter { it != id }
+            listPinnedItems = listPinnedItems.filter { it != nom }
 
         }
 
@@ -299,7 +299,7 @@ fun WindowJoueurs(
                         hideBigElement,
                         showBigElement,
                         true,
-                        listPinnedItems = listPinnedItems,
+                        listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList(),
                         togglePinItem = togglePinnedItem
                     )
                 }
