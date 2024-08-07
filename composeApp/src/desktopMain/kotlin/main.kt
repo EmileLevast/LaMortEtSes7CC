@@ -63,7 +63,7 @@ fun main() = application {
 @Composable
 @Preview
 fun AppDesktop(onExit: () -> Unit) {
-    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply { placement = WindowPlacement.Fullscreen }
+    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply {  }
 
     Window(
         onCloseRequest = onExit,
@@ -177,7 +177,7 @@ fun WindowJoueurs(
 
     val (joueurs, setJoueurs) = remember { mutableStateOf<List<Joueur>>(emptyList()) }
     val (equipements, setEquipements) = remember { mutableStateOf<List<IListItem>>(emptyList()) }
-    var listPinnedItems by remember { mutableStateOf<List<Int>>(emptyList()) }
+    var listPinnedItems by remember { mutableStateOf<List<String>>(emptyList()) }
     val (decouvertesEquipe, setDecouvertesEquipe) = remember { mutableStateOf<List<IListItem>?>(null) }
     var selectedJoueur by remember { mutableStateOf(Joueur()) }
     var justClickedJoueur by remember { mutableStateOf(Joueur()) }
@@ -190,8 +190,6 @@ fun WindowJoueurs(
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
 
     LaunchedEffect(justClickedJoueur, equipeRecherche) {
-        selectedJoueur =
-            justClickedJoueur // dans tous les cas on change le joueur actuel par celui sélectionné
         loading = true
         val updatedAllJoueurs =
             withContext(Dispatchers.IO) {//dans un thread à part on maj tous les joueurs
@@ -199,12 +197,12 @@ fun WindowJoueurs(
             }
         setJoueurs(updatedAllJoueurs)//on mets à jour tous les joueurs
         //on remet le joueur actuel a jour avec celui qui a ete selectionne
-        selectedJoueur =
-            updatedAllJoueurs.find { it._id == justClickedJoueur._id } ?: justClickedJoueur
+        selectedJoueur = updatedAllJoueurs.find { it._id == justClickedJoueur._id } ?: justClickedJoueur
         val updatedEquipments = withContext(Dispatchers.IO) {
             apiApp.searchAllEquipementJoueur(selectedJoueur)//on met a jour tout ses equipements
         }
         setEquipements(updatedEquipments)//on les mets sur l'ecran
+        listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList()
         loading = false
     }
 
@@ -232,6 +230,7 @@ fun WindowJoueurs(
         }else{
             selectedJoueur.unequip(nomItem)
         }
+        listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList()
         coroutineScope.launch(Dispatchers.IO) { apiApp.updateJoueur(selectedJoueur) }
     }
 
@@ -298,7 +297,7 @@ fun WindowJoueurs(
                         hideBigElement,
                         showBigElement,
                         true,
-                        listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList(),
+                        listPinnedItems = listPinnedItems,
                         togglePinItem = togglePinnedItem
                     )
                 }

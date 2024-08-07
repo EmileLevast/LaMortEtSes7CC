@@ -32,7 +32,7 @@ class Joueur(
 
     override fun getStatsAsStrings():String{
         return "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
-                "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)+"\n"+details + getAllEquipmentSelectionneAsList()
+                "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)+"\n"+details +"\néquipé:"+ getAllEquipmentSelectionneAsList()
     }
 
     override fun parseFromCSV(listCSVElement : List<String>):ApiableItem{
@@ -67,7 +67,7 @@ class Joueur(
         chaineEquipementSelectionneSerialisee+= "$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT"
     }
     fun unequip(itemNom:String){
-        chaineEquipementSelectionneSerialisee.replace("$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT","")
+        chaineEquipementSelectionneSerialisee = chaineEquipementSelectionneSerialisee.replace("$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT","")
     }
 
     override fun getDeparsedAttributes(): List<String> {
