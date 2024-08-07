@@ -177,6 +177,7 @@ fun WindowJoueurs(
 
     val (joueurs, setJoueurs) = remember { mutableStateOf<List<Joueur>>(emptyList()) }
     val (equipements, setEquipements) = remember { mutableStateOf<List<IListItem>>(emptyList()) }
+    var listPinnedItems by remember { mutableStateOf<List<Int>>(emptyList()) }
     val (decouvertesEquipe, setDecouvertesEquipe) = remember { mutableStateOf<List<IListItem>?>(null) }
     var selectedJoueur by remember { mutableStateOf(Joueur()) }
     var justClickedJoueur by remember { mutableStateOf(Joueur()) }
@@ -223,6 +224,17 @@ fun WindowJoueurs(
         loading = false
     }
 
+    //Lorsqu'on clique sur un item pour l'ajouter à la liste des items sélectionnés
+    //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
+    val togglePinnedItem: (Int,Boolean) -> Unit = { id, toPin ->
+        if(toPin){
+            listPinnedItems+=listOf(id)
+        }else{
+            listPinnedItems = listPinnedItems.filter { it != id }
+
+        }
+
+    }
 
     //lorsqu'on clique sur un nouveau joueur à sélectionner
     val onSelectedJoueurChange: (Joueur) -> Unit = { clickedJoueur ->
@@ -286,7 +298,9 @@ fun WindowJoueurs(
                         equipementToShow,
                         hideBigElement,
                         showBigElement,
-                        true
+                        true,
+                        listPinnedItems = listPinnedItems,
+                        togglePinItem = togglePinnedItem
                     )
                 }
                 LayoutStatsJoueur(selectedJoueur, {

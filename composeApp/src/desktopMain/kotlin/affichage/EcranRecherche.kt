@@ -131,7 +131,6 @@ fun layoutRecherche(
             onClickItem,
             true,
             isDetailedModeOn,
-            true,
             adminUiState.listPinneditems,
             togglePinnedItem
         )

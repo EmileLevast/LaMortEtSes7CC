@@ -67,7 +67,6 @@ fun layoutListItem(
     showBigElement: (IListItem) -> Unit,
     isShowingStats : Boolean,
     isDetailedModeOn : Boolean = false,
-    isModeAdmin:Boolean =false,
     listPinnedItems :List<Int>? = null,
     togglePinItem:(Int,Boolean)->Unit = { i: Int, b: Boolean -> }
 ) {
@@ -132,9 +131,32 @@ fun layoutListItem(
                                 mutableStateOf(0.dp)
                             }
 
+                            //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
+                            if(!isDetailedModeOn){
+                                if (imageBackground != null) {
+                                    Image(
+                                        modifier = Modifier.onGloballyPositioned { coordinates ->
+                                            // Set column height using the LayoutCoordinates
+                                            columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
+                                        },
+                                        painter = CustomPainterCard(imageBackground, equipement.getImage(apiApp) ?: imageResource(Res.drawable.UnknownImage)),
+                                        contentDescription = null,
+                                    )
+                                }
+                                else {
+                                    Image(
+                                        modifier = Modifier.onGloballyPositioned { coordinates ->
+                                            // Set column height using the LayoutCoordinates
+                                            columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
+                                        },
+                                        painter = painterResource(Res.drawable.UnknownImage),
+                                        contentDescription = null,
+                                    )
+                                }
+                            }
 
                             //Afficher le bouton pin si on est en mode Admin
-                            if(isModeAdmin && listPinnedItems!=null){
+                            if(listPinnedItems!=null){
                                 if(listPinnedItems.contains(equipement._id)){
                                     Image(
                                         modifier = Modifier.fillMaxWidth(0.2f).align(Alignment.BottomEnd).clickable{
@@ -160,31 +182,6 @@ fun layoutListItem(
                                 }
 
                             }
-
-                            //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
-                            if(!isDetailedModeOn){
-                                if (imageBackground != null) {
-                                    Image(
-                                        modifier = Modifier.onGloballyPositioned { coordinates ->
-                                            // Set column height using the LayoutCoordinates
-                                            columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
-                                        },
-                                        painter = CustomPainterCard(imageBackground, equipement.getImage(apiApp) ?: imageResource(Res.drawable.UnknownImage)),
-                                        contentDescription = null,
-                                    )
-                                }
-                                else {
-                                    Image(
-                                        modifier = Modifier.onGloballyPositioned { coordinates ->
-                                            // Set column height using the LayoutCoordinates
-                                            columnHeightDp = with(localDensity) { coordinates.size.height.toDp() }
-                                        },
-                                        painter = painterResource(Res.drawable.UnknownImage),
-                                        contentDescription = null,
-                                    )
-                                }
-                            }
-
 
                             Column(
                                 modifier = if (!isDetailedModeOn) {
