@@ -73,7 +73,7 @@ fun Application.module() {
         json()
     }
     install(CallLogging) {
-        level = org.slf4j.event.Level.INFO
+        level = org.slf4j.event.Level.WARN
 
     }
     install(CORS) {

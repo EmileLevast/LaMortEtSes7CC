@@ -45,7 +45,7 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         }
         install(Logging) {
             logger = Logger.SIMPLE
-            level = LogLevel.ALL
+            level = LogLevel.INFO
         }
 
     }

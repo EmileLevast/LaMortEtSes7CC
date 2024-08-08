@@ -76,7 +76,7 @@ fun layoutListItem(
 
     val scrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
-    val listOfHeader:MutableList<Pair<String,Int>> = remember { mutableStateListOf() }
+    val listOfHeader:MutableList<Pair<String,Int>> = mutableStateListOf()
     var positionInRootHeaderOfHeader by remember { mutableStateOf(0) }
 
     val groupsEquipements = equipementsAfficher.groupBy { it::class.simpleName }
@@ -109,10 +109,13 @@ fun layoutListItem(
             groupsEquipements.forEach { (groupName, equipementsGrouped) ->
                 header(groupName?:"Xaraxatrailles", graphicsConsts.colorBackgroundSmallHeader, graphicsConsts.colorSmallHeader){ coord ->
                     val indexOfConcernedHeader = listOfHeader.indexOfFirst { it.first == groupName }
+                    val positionY = coord.positionInRoot().y.toInt()
+
+                    //si le header a deja ete enregistre comme apparaissant a l'ecran
                     if(indexOfConcernedHeader >= 0){
-                        listOfHeader[indexOfConcernedHeader] = Pair(groupName?:"Vide", coord.positionInRoot().y.toInt())
+                        listOfHeader[indexOfConcernedHeader] = Pair(groupName?:"Vide", positionY)
                     }else{
-                        listOfHeader.add(0,Pair(groupName?:"Vide", coord.positionInRoot().y.toInt()))
+                        listOfHeader.add(0,Pair(groupName?:"Vide", positionY))
                     }
                 }
 
