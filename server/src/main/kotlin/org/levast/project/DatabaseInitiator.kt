@@ -10,7 +10,7 @@ import org.litote.kmongo.reactivestreams.KMongo
 import org.litote.kmongo.regex
 
 val client = KMongo.createClient().coroutine
-val database = client.getDatabase("JDRProd")
+val database = client.getDatabase("JDRTest")
 
 val collectionsApiableItem:MutableMap<String,CoroutineCollection<out ApiableItem>> = mutableMapOf()
 

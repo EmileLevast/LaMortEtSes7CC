@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class Sort(
     override val nom:String="inconnu",
-    val type:SpellType=SpellType.AME,
+    val sortType:SpellType=SpellType.AME,
     val utilisation:Int=0,
     val cout:String="Aucune",
     val intelligenceMin:Int=0,
@@ -34,7 +34,7 @@ class Sort(
 
         val coupCritiquesParsed = strSimplify(coupCritiques, isSimplify)
 
-        return type.symbol + "\n" +
+        return sortType.symbol + "\n" +
                 "Utilisations : $utilisation\n" +
                 "Cout : $cout\n" +
                 "Intelligence Minimum : $intelligenceMin\n" +
@@ -92,7 +92,7 @@ class Sort(
 
         return listOf<String>(
             nom,
-            type.name,
+            sortType.name,
             utilisation.toString(),
             cout,
             intelligenceMin.toString(),
@@ -105,7 +105,7 @@ class Sort(
         )
     }
 
-    override fun getBackgroundBorder(): String = "border${type.name.lowercase()}.svg"
+    override fun getBackgroundBorder(): String = "border${sortType.name.lowercase()}.svg"
 
 
 
