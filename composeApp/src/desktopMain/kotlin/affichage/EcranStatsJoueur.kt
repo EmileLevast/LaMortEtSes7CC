@@ -61,16 +61,7 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             style = MaterialTheme.typography.h4,
             fontFamily = FontFamily(Font(graphicsConsts.fontCard))
         )
-        Image(
-            bitmap = actuelJoueur.getImage(apiApp) ?: imageResource(Res.drawable.UnknownImage),
-            contentDescription = "avatar",
-            contentScale = ContentScale.Fit,            // crop the image if it's not a square
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .height(200.dp)
-                .clip(CircleShape)                       // clip to the circle shape
-                .border(2.dp, Color.Black, CircleShape)   // add a border (optional)
-        )
+
 
         LazyColumn(
             Modifier.draggable(
@@ -83,6 +74,20 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             ),
             state = scrollState,
         ) {
+
+            item{
+                Image(
+                    bitmap = actuelJoueur.getImage(apiApp) ?: imageResource(Res.drawable.UnknownImage),
+                    contentDescription = "avatar",
+                    contentScale = ContentScale.Fit,            // crop the image if it's not a square
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .height(200.dp)
+                        .clip(CircleShape)                       // clip to the circle shape
+                        .border(2.dp, Color.Black, CircleShape)   // add a border (optional)
+                )
+            }
+
             item {
                 Text(
                     text = "Niveau : ${actuelJoueur.niveau}",
