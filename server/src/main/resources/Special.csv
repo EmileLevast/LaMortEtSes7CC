@@ -266,3 +266,5 @@ Coût : 1 action spéciale
 Se régénère au feu.;
 technique backstab sournois;TECHNIQUE;Effet : le joueur réussit automatiquement son test pour le backstab si la cible est inavertie de sa présence ( pas besoin d'être dans le dos de la cible);
 technique veulerie;TECHNIQUE;Effet : si la vie du joueur <=25% au début de son tour, alors il peut courrir se cacher dans la cachette la plus improbable aux environs, et tous les ennemis doivent faire 1D20+Intelligence=17+ pour voir où le joueur est caché.;
+talisman illithid;TALISMAN;recupere automatiquement les humanités sur les ennemis tués par le porteur. L'ennemi est toujours droppable par la suite.;
+technique illichtide;TECHNIQUE;Effet : le porteur peut équiper jusqu'à 5 sort simultanément.;

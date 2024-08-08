@@ -274,7 +274,6 @@ ombre dansante superieure;MIRACLE;5;Le lanceur, doit s'asseoir en tailleur par t
 embrouillamini de cervelle;PSIONIQUE;3;3 énergies;7;;;;0;Le lanceur choisit deux cibles quelconques, il faut que les deux cibles soient des êtres pensants. Pour chacune des cibles, le lanceur et la cible jettent 1D20+leur intelligence, si pour chacune des cibles le lanceur a un résultat strictement supérieur à la cible alors il invertit l'esprit des deux cibles. cela a pour effet que chacune des cibles jouent dorénavant dans le corps de l'autre. Le sort dure tant que le lanceur est vivant et qu'il ne quitte pas la zone.;
 souffle mortel;NECROMANCIE;3;1 humanite;8;;;;0;"Il vous souffle dessus vous mourrez" - Merlin.
 Faire perdre (1D20 pv - les humanites de la cible) à la cible. La cible ne peut pas l'éviter avec une roulade ou tout autre artifice physique. Si elle meurt de ce sort, alors elle tombe en poussière et ses âmes disparaisse.
-
 ;
 volonte sapee;PSIONIQUE;3;1 énergie;8;être plus intelligent que la cible;;Le sort est efficace si la cible n'a pas plus de 4 d'intelligence de plus que le lanceur;0;Le lanceur lance 1D6. Sur 2+ le sort est réussi.
 La cible perds sa volonté, cela signifie qu'elle ne prendra plus d'initiative et sera très influencable.
@@ -299,3 +298,37 @@ Distance.;|1/2=>F:0
 |4/5=>F:3
 |6=>F:4
 ;;10;;
+incurpsionisme;PSIONIQUE;3;3 énergie;9;Defense magique min : 10;;;0;Le lanceur jette 1D6: 
+6+: le MJ lui présente la situation brièvement et l'environnement dans lequel se trouve les autres aventuriers de ce monde. Le lanceur peut même avoir une vision des derniers évènements vécus, et peut stopper le temps à l'endroit qui l'intéresse.
+4+ : Pareil mais le lanceur ne voit que le présent
+3+ : le MJ présente juste brièvement les personnages des équipes en nommant leur nom d'équipe
+2+ : le MJ liste juste les équipes sans les nommer ni les décrire mais en les classant selon leur éloignement par rapport au lanceur, le lanceur peut choisir de se projeter dans l'une ou l'autre des équipes
+1+ : le MJ envoie le lanceur où il veut
+
+Ensuite le lanceur choisit un monde de destination.
+Toutes les personnes qui touchent physiquement le lanceur à ce moment sont emportées avec lui.
+Leur conscience sont emmenées dans cette planète, leur corps physiques sont laissés sur leur monde natal. Le temps s'arrête dans leur monde natal en attendant leur retour.
+
+Dans le monde de destination ils sont à l'identique de leur monde natal, ils ont tout recréé y compris leur forme physique, cependant tout cela n'est que le fruit de la volonté du lanceur. Un magicien pourra déceler qu'il ne s'agit que de spectres d'un autre monde.
+Ils peuvent intéragir avec le monde de destination de manière tout à fait normal, les joueurs du monde de destination seront joués par le MJ. Toutefois le monde n'est pas garanti d'être exactement le même que ceux des joueurs (il est donc possible que les joueurs du monde cible ne voit pas les effets des intéractions).
+Les joueurs peuvent emporter des items du monde cible dans leur monde natal et de la même manière ce qu'ils donnent disparaît de leur monde natal.
+
+Le voyage dure 20 min réelles, au-delà de ce temps des torageuses peuvent apparaître pour dévorer ses âmes incursionnées perdues.
+Il faut utiliser une autre utilisation d'incurpsionisme pour faire le voyage de retour
+;
+grande telereminiscence;PSIONIQUE;1;;15;;;;0;Cela ne coûte pas d'utilisation d'effectuer ce sort.
+Le porteur cible un être pensant (doté d'une intelligence de 1+)  puis fait une lutte d'intelligence avec la cible:
+- S'il gagne : le MJ lui raconte des bribes de souvenirs marquants de la cible, suffisamment précis pour que le lanceur puisse en tirer beaucoup de bénéfices. Les souvenirs courts termes ou insignifiants pour la cible ne sont pas relatés.
+- S'il perd : la cible est insondable
+- S'il perd de +5 alors la cible détecte une intrusion mentale sans pouvoir déduire précisément qui, quoi , où.
+- S'il fait 1 ou perd de 10+ alors le sort n'est plus utilisable jusqu'au prochain feu.;
+telescribe;PSIONIQUE;5;1 énergie;6;;;;0;Le lanceur doit voir clairement un espace de chaire à vif sur la cible, c'est par là que son esprit s'insinuera dans le corps. 
+Le lanceur cible un être pensant (doté d'une intelligence de 1+)  puis fait une lutte d'intelligence avec la cible:
+- S'il gagne :le joueur peut écrire une pensée simple mais tenace dans l'esprit de la cible, et peut choisir son niveau d'obsession
+- S'il perd : la cible est insondable
+- S'il perd de +5 alors la cible détecte l'intrusion mentale ainsi que le lanceur de cette attaque.;
+metatelemorphie;PSIONIQUE;4;;10;;;;0;Le lanceur peut projeter la forme qu'il souhaite dans l'esprit de ses cibles, il peut y avoir jusqu'à 5 cibles différentes avec des formes choisies différentes. Si la position et la forme choisie sont les mêmes pour toutes les cibles alors le nombre de cibles est infinies. La forme doit avoir un volume équivalent au corps du lanceur, mais la couleur et la forme peuvent changer.
+Le pouvoir dure indéfiniment, jusqu'à ce que le porteur face le résultat maximal avec n'importe quel dé (hors bonus sur le dé) à ce moment le sort s'arrête.
+Le porteur n'est pas mis au courant par le MJ que le sort s'est éteint, il en subira les conséquences avec surprise s'il ne s'en est pas rendu compte (en espérant que le MJ oui);
+telekinesie;PSIONIQUE;5;;12;Def magique min : 5;;;0;Le sort permet de déplacer des objets en vues sans respecter les loies de la physique.Le nombre maximal d'objet porté ne doit pas avoir un poid > 6
+Le sort peut s'arrêter de manière inopinée après 30 min réelles depuis le lancement de l'utilisation, le MJ ne prévient pas le lanceur quand le sort s'arrête.;
