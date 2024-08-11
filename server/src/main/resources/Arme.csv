@@ -341,10 +341,10 @@ coup de griffes;|1/2/3=>Ph:0
 |5/6=>Ph:11
 ;;4;Force Minimum:1;20;0;;
 coup de tentacule;|1=>Ph:0
-|2=>Ph:2
-|3/4=>Ph:4
-|5=>Ph:6
-|6=>Ph:10
+|2=>Ph:2|Po:1
+|3/4=>Ph:3|Po:2
+|5=>Ph:5|Po:3
+|6=>Ph:6|Po:4
 ;;2;;15;0;Agit comme une arme de portee 3m;
 poing de troll;|1/2/3/4=>Ph:0
 |5=>Ph:9

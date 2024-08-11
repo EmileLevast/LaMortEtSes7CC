@@ -268,3 +268,8 @@ technique backstab sournois;TECHNIQUE;Effet : le joueur réussit automatiquement
 technique veulerie;TECHNIQUE;Effet : si la vie du joueur <=25% au début de son tour, alors il peut courrir se cacher dans la cachette la plus improbable aux environs, et tous les ennemis doivent faire 1D20+Intelligence=17+ pour voir où le joueur est caché.;
 talisman illithid;TALISMAN;recupere automatiquement les humanités sur les ennemis tués par le porteur. L'ennemi est toujours droppable par la suite.;
 technique illichtide;TECHNIQUE;Effet : le porteur peut équiper jusqu'à 5 sort simultanément.;
+coffret lichisation;OUTIL;Porte une gravure représentant un alhoon ou une illichtide.;Coffret Alhoon de lichisation
+bras alhoon;OUTIL;Si équipé, permet de lancer des sorts psioniques et de bénéficier de +2 sur un dé du sorts. (1 seul dé au choix parmi tous les dés nécessités par le sort). De plus cela réduit de 2 l'intelligence minimale requise pour les sorts psioniques.
+Poid : 1;
+humanite ancestrale [nbr];OUTIL;Lorsqu'elle est consommée ajoute +[Nbr] humanites.;
+technique insaisissable;TECHNIQUE;Effet : le porteur (s'il dispose au moins d'une énergie), ne subit que le dé le plus fort de la frappe qu'il reçoit. L'énergie n'est pas consommée.;
