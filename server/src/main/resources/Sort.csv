@@ -40,7 +40,7 @@ le coup inamissible;AME;6;;9;;;;0;L’arme du lanceur semble être animée d’u
 Dur jusqu’au début du prochain tour du lanceur.
 Lorsque le lanceur fait une frappe avec son arme la frappe touche l’ennemi même si celui-ci réussit une roulade. 
 De plus si le FFC = 0 alors on considère que le jet de dés de la frappe a donné un FFC = 1.;
-l arme felonne;AME;3;;9;;;;0;L’arme de la cible semble être animée d’une vie propre et canalise sa haine sur son porteur.
+l arme felonne;AME;4;;9;;;;0;L’arme de la cible semble être animée d’une vie propre et canalise sa haine sur son porteur.
 Le lanceur choisit une arme tenue en main par un ennemi ou un allié ou lui-même.
 Il peut alors faire une frappe avec l’arme sur le porteur de celle-ci.
 Le lanceur peut choisir quelle quantité d’énergie mettre dans la frappe en respectant les critères de l’arme.
@@ -330,6 +330,8 @@ Le lanceur cible un être pensant (doté d'une intelligence de 1+)  puis fait un
 metatelemorphie;PSIONIQUE;4;;10;;;;0;Le lanceur peut projeter la forme qu'il souhaite dans l'esprit de ses cibles, il peut y avoir jusqu'à 5 cibles différentes avec des formes choisies différentes. Si la position et la forme choisie sont les mêmes pour toutes les cibles alors le nombre de cibles est infinies. La forme doit avoir un volume équivalent au corps du lanceur, mais la couleur et la forme peuvent changer.
 Le pouvoir dure indéfiniment, jusqu'à ce que le porteur face le résultat maximal avec n'importe quel dé (hors bonus sur le dé) à ce moment le sort s'arrête.
 Le porteur n'est pas mis au courant par le MJ que le sort s'est éteint, il en subira les conséquences avec surprise s'il ne s'en est pas rendu compte (en espérant que le MJ oui);
-telekinesie;PSIONIQUE;5;;12;Def magique min : 5;;;0;Le sort permet de déplacer des objets en vues sans respecter les loies de la physique.Le nombre maximal d'objet porté ne doit pas avoir un poid > 6
-Le sort peut s'arrêter de manière inopinée après 30 min réelles depuis le lancement de l'utilisation, le MJ ne prévient pas le lanceur quand le sort s'arrête.;
+telekinesie;PSIONIQUE;3;;13;Def magique min : 5;;;0;Le sort permet de déplacer des objets en vues sans respecter les loies de la physique.Le nombre maximal d'objet porté ne doit pas avoir un poid > 6
+Le sort peut s'arrêter de manière inopinée après 30 min réelles depuis le lancement de l'utilisation, le MJ ne prévient pas le lanceur quand le sort s'arrête.
+On considère qu'un objet tenu par télékinésie est tenu réellement par le lanceur du sort, on utilise les stats du lanceur si il y'a besoin de résoudre des actions avec l'objet tenu.
+Si l'objet est tenu par un ennemi alors il faut faire une lutte de force pour maîtriser la télékinésie sur cet objet.;
 xaraxatrailles;NECROMANCIE;2;;7;;;;0;Cibler un cadavre permet de revoir par ses yeux la minute qui a précédé sa mort.;
