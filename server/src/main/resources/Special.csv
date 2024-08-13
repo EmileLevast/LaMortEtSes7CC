@@ -192,7 +192,7 @@ A chaque fois que le joueur tue un ennemi ses épées doubles et remporte ses â
 technique epee a 2 mains imparable;TECHNIQUE;Effet : le joueur bénéficiant de cette technique ne peut pas être paré lorsqu'il frappe à 2 mains avec une épée
 Points de compétences : 70
 A chaque fois que le joueur tue un ennemi avec une épée à 2 mains et remporte ses âmes, il gagne ce nombre d'âme/10 en point de compétences.;
-technique esquive de dague;TECHNIQUE;Effet : Si le joueur porte une dague dans une main et une arme dans l'autre alors lorsqu'il subit une frappe il ajoute 1D4 à sa défense physique.
+technique esquive de dague;TECHNIQUE;Effet : Si le joueur porte une dague (ou autre arme de courte portée pas de "long" dans le nom) dans une main et une arme dans l'autre alors lorsqu'il subit une frappe il ajoute 1D4 à sa défense physique.
 Points de compétences : 40
 A chaque fois que le joueur tue un ennemi en étant avec une arme dans chaque main, dont une dague, il gagne ce nombre d'âme/10 en point de compétences.;
 gemme d intermonde orangee;OUTIL;Permet d'écrire des messages à l'adresse des autres joueurs des autres parties.;
@@ -229,13 +229,13 @@ technique imperio;TECHNIQUE;Effet : le lanceur cible un ennemi, chacun fait le t
 technique de babel;TECHNIQUE;Effet : Le lanceur peut parler aux animaux et bêtes qui parlent un langage simple (bouquetin, chèvre, chien...). Les bêtes le comprennent;
 cristaux heleade;OUTIL;Pendant 2 tours, le corps du porteur se transforme en glace et en eau. IL bénéficie de +10 en défense physique et poison, mais de -3 en défense de feu et de magie.;
 technique brulure apaisante;TECHNIQUE;Effet : a chaque fois qu'il subit une frappe de feu, alors il récupère un point de vie avant de résoudre les dégâts de la frappe.
-Points de compétences requis : 6. A chaque frappe de feu ennemie (ou feu involontaire, essayer pas de me niquer) qui ne le blesse pas alors il débloque un point de compétence.;
+Points de compétences requis : 6. A chaque frappe de feu ennemie (ou feu involontaire mais essayez pas de me niquer :p) qui ne le blesse pas alors il débloque un point de compétence.;
 anneau coagulant;ANNEAU;Avec cet anneau le porteur ne subit pas les dégâts de saignements (immunise contre la vampirisation aussi).
 Après chaque utilisation jeter 1D6, sur 1 l'anneau est détruit.;
 gemme blanche;OUTIL;Si tous les porteurs d'une gemme blanche sont morts alors ils ressuscitent au dernier feu;
 coffre de padoue;OUTIL;Fonctionne par paire, semble magique.;
 technique dague dash;TECHNIQUE;Effet :le personnage tient une dague dans chaque main, n'importe quel type de dague. Alors il peut se déplacer de quelques mètres très rapidement entre chaque frappe, et s'il change de cible alors il a un effet de surprise sur cette nouvelle frappe et donc +1 s'il fait une frappe de précision.;
-technique botte secrete;TECHNIQUE;Effet :si le personnage tient une arme d'un poid de 1 max alors il peut declencher une parade (cf bouclier) sur 3 nombres. Mais perds 1 point de défense naturelle après résolution de l'action. Se regénère en fin de combat.;
+technique botte secrete;TECHNIQUE;Effet :si le personnage tient une arme d'un poid de 1 max alors il peut declencher une parade (cf bouclier) sur 3 nombres. Mais perds 1 point de défense naturelle simultanément. Se regénère en fin d'action de combat.;
 flute ophiole;OUTIL;souffler dedans calme les serpents de la forêt des landes enclavées;
 poison psychedelique;OUTIL;Déclenche une folie meurtrière, 2 tours plus tard. Avec un bonus de +1 sur ses dés de frappe. Attaque avec acharnement la dernière personne à avoir parlé (dans le jeu).;
 anneau critique;ANNEAU;Avec cet anneau le porteur frappe en coup critique si la cible n'a plus d'energie;
@@ -273,3 +273,5 @@ bras alhoon;OUTIL;Si équipé, permet de lancer des sorts psioniques et de bén�
 Poid : 1;
 humanite ancestrale [nbr];OUTIL;Lorsqu'elle est consommée ajoute +[Nbr] humanites.;
 technique insaisissable;TECHNIQUE;Effet : le porteur (s'il dispose au moins d'une énergie), ne subit que le dé le plus fort de la frappe qu'il reçoit. L'énergie n'est pas consommée.;
+technique implacable;TECHNIQUE;Effet : Tant que le porteur a 1 énergie il peut jeter un dé lorsqu'il subit une frappe (résoudre ce dé comme une frappe à 1 energie), il réduit les degats totaux de la frappe reçus par les degats totaux de sa frappe. S'il fait plus de degats que son adversaire alors celui-ci subit la différence des dégâts et ne peut pas se défendre. Ensuite le porteur jette 1D20 sur 8+ il conserve son énergie.;
+technique violence à deux mains;TECHNIQUE;Effet : le porteur bénéficie de +2 sur son plus petit dé lors de chacune de ses frappes à deux mains.;
