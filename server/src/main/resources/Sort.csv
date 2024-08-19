@@ -114,7 +114,7 @@ Seuil blocage: 3+
 blocage: IAJ du lanceur (max 8)
 Si la frappe n’était pas dirigée contre le lanceur alors l’allié frappé peut se défendre en plus du blocage ajouté par le lanceur du miracle.;
 dereliction;MIRACLE;3;2 energies;9;;;;0;Le lanceur choisit une cible, alliée ou ennemie, celle-ci ne pourra pas être considérée comme étant en coup critique même si elle n’a plus d’énergie. Le sort dure jusqu’au début du prochain tour du lanceur.;
-engourdissement;MIRACLE;3;2 energies;4;;;;0;Cibler un ennemi. Jeter un dé. 
+engourdissement;MIRACLE;3;2 energies;4;;;;0;Cibler un ennemi. Jeter 1D6. 
 3+ : l’ennemi ciblé subit le sort, il ne dispose plus que d’une action par tour. 
 0+ : aucun effet
 Le sort dure tant que le lanceur consacre une action par tour à maintenir le sort.;
@@ -139,7 +139,7 @@ boule de feu;PYROMANCIE;9;;7;Maximum energie:2
 Distance.;|1/2/3=>F:0
 |4=>F:2
 |5/6=>F:4
-;Embrasement si FFC >4;16;Embrasement: si l’ennemi possède une armure faite de tissu qui ne possède pas de défense en feu, celle-ci prends feu et disparaît définitivement.;
+;Embrasement si la frappe touche;16;Embrasement: si l’ennemi possède une armure faite de tissu qui ne possède pas de défense en feu, celle-ci prends feu et disparaît définitivement.;
 paume incandescente;PYROMANCIE;0;;3;Minimum energie :1
 Distance.;;;0;Le joueur libère une faible lumière avec sa main, qui permet à celui-ci, uniquement, de percer les ombres proches de lui. 
 Le sort dure tant que le joueur dispose de 1 d’énergie en réserve, et que la main de pyromancie
@@ -316,7 +316,7 @@ Les joueurs peuvent emporter des items du monde cible dans leur monde natal et d
 Le voyage dure 20 min réelles, au-delà de ce temps des torageuses peuvent apparaître pour dévorer ses âmes incursionnées perdues.
 Il faut utiliser une autre utilisation d'incurpsionisme pour faire le voyage de retour
 ;
-grande telereminiscence;PSIONIQUE;1;;15;;;;0;Cela ne coûte pas d'utilisation d'effectuer ce sort.
+grande telereminiscence;PSIONIQUE;8;;15;;;;0;Cela ne coûte pas d'utilisation d'effectuer ce sort.
 Le porteur cible un être pensant (doté d'une intelligence de 1+)  puis fait une lutte d'intelligence avec la cible:
 - S'il gagne : le MJ lui raconte des bribes de souvenirs marquants de la cible, suffisamment précis pour que le lanceur puisse en tirer beaucoup de bénéfices. Les souvenirs courts termes ou insignifiants pour la cible ne sont pas relatés.
 - S'il perd : la cible est insondable
@@ -324,7 +324,7 @@ Le porteur cible un être pensant (doté d'une intelligence de 1+)  puis fait un
 - S'il fait 1 ou perd de 10+ alors le sort n'est plus utilisable jusqu'au prochain feu.;
 telescribe;PSIONIQUE;5;1 énergie;6;;;;0;Le lanceur doit voir clairement un espace de chaire à vif sur la cible, c'est par là que son esprit s'insinuera dans le corps. 
 Le lanceur cible un être pensant (doté d'une intelligence de 1+)  puis fait une lutte d'intelligence avec la cible:
-- S'il gagne :le joueur peut écrire une pensée simple mais tenace dans l'esprit de la cible, et peut choisir son niveau d'obsession
+- S'il gagne : le joueur peut modifier ou créer un souvenir dans l'esprit de la cible
 - S'il perd : la cible est insondable
 - S'il perd de +5 alors la cible détecte l'intrusion mentale ainsi que le lanceur de cette attaque.;
 metatelemorphie;PSIONIQUE;4;;10;;;;0;Le lanceur peut projeter la forme qu'il souhaite dans l'esprit de ses cibles, il peut y avoir jusqu'à 5 cibles différentes avec des formes choisies différentes. Si la position et la forme choisie sont les mêmes pour toutes les cibles alors le nombre de cibles est infinies. La forme doit avoir un volume équivalent au corps du lanceur, mais la couleur et la forme peuvent changer.
@@ -335,3 +335,4 @@ Le sort peut s'arrêter de manière inopinée après 30 min réelles depuis le l
 On considère qu'un objet tenu par télékinésie est tenu réellement par le lanceur du sort, on utilise les stats du lanceur si il y'a besoin de résoudre des actions avec l'objet tenu.
 Si l'objet est tenu par un ennemi alors il faut faire une lutte de force pour maîtriser la télékinésie sur cet objet.;
 xaraxatrailles;NECROMANCIE;2;;7;;;;0;Cibler un cadavre permet de revoir par ses yeux la minute qui a précédé sa mort.;
+telepathie;PSIONIQUE;0;1 énergie;6;;;;0;Passif. Peut parler dans l'esprit de son interlocuteur, jusqu'à 5 personnes simultanément.;

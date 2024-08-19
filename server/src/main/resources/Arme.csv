@@ -149,7 +149,7 @@ hache rouillee;|1/2/3/4=>Ph:0
 ;4=>Ph:7;3;Force Minimum:5;13;2;;
 labrys gobeline;|1/2/3/4=>Ph:0
 |5/6=>Ph:6
-;4=>Ph:6;3;Force Minimum:5;13;2;Backswing:Si portée à deux mains et que le coup a un FCC inférieur ou égal à 0, alors tous les dés des prochaines frappes de ce tour sont augmentés de 1. Toxine 3+ => 2  ;
+;4=>Ph:6;3;Force Minimum:5;13;2;Backswing:Si portée à deux mains et que le coup ne touche pas, alors tous les dés des prochaines frappes de ce tour sont augmentés de 1. Toxine 3+ => 2  ;
 torche;|1/2=>F:0
 |3/4/5/6=>F:2
 ;6=>F:4;1;;4;1;;
@@ -236,7 +236,7 @@ griffes morphvoreur;|1/2=>Ph:0
 |3/4=>Ph:6
 |5=>Ph:9
 |6=>Ph:12
-;;4;;15;0;Peut effectuer une parade avec une énergie avec un seuil de parade à 2+.;
+;;4;;15;0;Peut effectuer une parade;
 massue minotaurine;|1/2/3/4=>Ph:0
 |5=>Ph:9
 |6=>Ph:12
@@ -436,4 +436,4 @@ Possibilité d'une frappe de précision :
 daguoblin;|1=>Ph:0
 |2/3/4/5=>Ph:3
 |6=>Ph:3|Po:3
-;6=>Ph:7;2;;6;1;venin 4+ => 2;
+;6=>Ph:7|Po:3;2;;6;1;venin 4+ => 2;
