@@ -3,6 +3,7 @@ package affichage
 import Joueur
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,8 +15,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,30 +30,57 @@ import androidx.compose.ui.unit.dp
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutDetailJoueur(actuelJoueur:Joueur){
-
-    var detailJoueur by remember {  mutableStateOf(actuelJoueur.details) }
+fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     var isShowingAddDetailPopup by remember { mutableStateOf(false) }
 
+    var detailsActuel by remember(actuelJoueur.details) { mutableStateOf(actuelJoueur.details) }
 
-    if(isShowingAddDetailPopup){
-        AlertDialogAjoutDetail({detailJoueur+="\n" + it}, {isShowingAddDetailPopup=false})
+    if (isShowingAddDetailPopup) {
+        AlertDialogAjoutDetail({
+            actuelJoueur.details += "\n" + it;
+            onSave()
+        }, { isShowingAddDetailPopup = false })
     }
 
+
     Column(Modifier.fillMaxWidth()) {
-        detailJoueur.split("\n").forEach {
-            if(it.isNotBlank()){
-                Card(Modifier.fillMaxWidth().padding(3.dp),border = BorderStroke(graphicsConsts.widthBorder, graphicsConsts.brushSpecialBorder), elevation = graphicsConsts.cardElevation) {
-                    Text(it, Modifier.fillMaxWidth().padding(5.dp), textAlign = TextAlign.Center)
+
+        detailsActuel.split("\n").forEach {
+            if (it.isNotBlank()) {
+                Row(Modifier.fillMaxWidth()) {
+                    Card(
+                        Modifier.weight(1f).padding(3.dp),
+                        border = BorderStroke(
+                            graphicsConsts.widthBorder,
+                            graphicsConsts.brushSpecialBorder
+                        ),
+                        elevation = graphicsConsts.cardElevation
+                    ) {
+                        Text(it, Modifier.padding(5.dp), textAlign = TextAlign.Center)
+                    }
+                    IconButton(onClick = {
+                        actuelJoueur.details = actuelJoueur.details.replace(it, "")
+                            .replace("\n\n", "\n")//on supprime l'ancien detail
+                        detailsActuel=actuelJoueur.details //pour afficher le changement
+                        onSave()
+                    })
+                    {
+                        Icon(Icons.Rounded.Delete, "supprimer detail", tint = Color.LightGray)
+                    }
                 }
             }
         }
-        Card(Modifier.fillMaxWidth(0.4f).align(Alignment.CenterHorizontally).padding(3.dp),border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray), elevation = graphicsConsts.cardElevation, shape = RoundedCornerShape(50)) {
+        Card(
+            Modifier.fillMaxWidth(0.4f).align(Alignment.CenterHorizontally).padding(3.dp),
+            border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
+            elevation = graphicsConsts.cardElevation,
+            shape = RoundedCornerShape(50)
+        ) {
             IconButton(onClick = {
-                isShowingAddDetailPopup=true
+                isShowingAddDetailPopup = true
             })
             {
                 Icon(Icons.Rounded.Add, "ajouter detail", tint = Color.LightGray)
@@ -65,11 +93,11 @@ fun layoutDetailJoueur(actuelJoueur:Joueur){
 
 @Composable
 fun AlertDialogAjoutDetail(
-    onAddingDetail : (String)->Unit,
-    onDismissRequest: ()->Unit
+    onAddingDetail: (String) -> Unit,
+    onDismissRequest: () -> Unit
 ) {
 
-    var detailActuel by remember { mutableStateOf("detail actuel")}
+    var detailActuel by remember { mutableStateOf("detail actuel") }
 
     AlertDialog(
         title = {

@@ -34,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import deparseDefense
 import getIntOrZeroOrNull
 import kotlinx.coroutines.launch
-import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
@@ -137,7 +136,7 @@ fun LayoutStatsJoueur(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifi
             }
 
             item {
-                layoutDetailJoueur(actuelJoueur)
+                layoutDetailJoueur(actuelJoueur, onSave)
             }
         }
 
