@@ -17,19 +17,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.twotone.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,6 +61,7 @@ fun layoutListItem(
     equipementToShow: IListItem?,
     hideBigElement: () -> Unit,
     showBigElement: (IListItem) -> Unit,
+    scrollGridState:LazyGridState,
     isShowingStats : Boolean,
     isDetailedModeOn : Boolean = false,
     listPinnedItems :List<String>? = null,
@@ -74,7 +71,6 @@ fun layoutListItem(
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
     val apiApp = koinInject<ApiApp>()
 
-    val scrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
     val listOfHeader:MutableList<Pair<String,Int>> = mutableStateListOf()
     var positionInRootHeaderOfHeader by remember { mutableStateOf(0) }
@@ -92,7 +88,7 @@ fun layoutListItem(
 
     Box(Modifier.then(modifier)){
         LazyVerticalGrid(
-            state = scrollState,
+            state = scrollGridState,
             columns = GridCells.Adaptive(minSize = graphicsConsts.cellMinWidth),
             verticalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace),
             horizontalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace),
@@ -100,7 +96,7 @@ fun layoutListItem(
                 orientation = Orientation.Vertical,
                 state = rememberDraggableState { delta ->
                     coroutineScope.launch {
-                        scrollState.scrollBy(-delta)
+                        scrollGridState.scrollBy(-delta)
                     }
                 },
             )

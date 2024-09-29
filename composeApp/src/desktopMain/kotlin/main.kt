@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -63,7 +65,7 @@ fun main() = application {
 @Composable
 @Preview
 fun AppDesktop(onExit: () -> Unit) {
-    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply { placement = WindowPlacement.Fullscreen }
+    val state = rememberWindowState(placement = WindowPlacement.Maximized).apply {  }
 
     Window(
         onCloseRequest = onExit,
@@ -189,6 +191,11 @@ fun WindowJoueurs(
     //pour savoir quel élément à afficher en gros
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
 
+    //pour garder en mémoire l'endroit où la liste est scrollée
+    val scrollStateEquipment = rememberLazyGridState()
+    val scrollStateDecouvertes = rememberLazyGridState()
+
+
     LaunchedEffect(justClickedJoueur, equipeRecherche) {
         loading = true
         val updatedAllJoueurs =
@@ -286,6 +293,7 @@ fun WindowJoueurs(
                         equipementToShow,
                         hideBigElement,
                         showBigElement,
+                        scrollStateDecouvertes,
                         false
                     )
                 } else {
@@ -296,13 +304,13 @@ fun WindowJoueurs(
                         equipementToShow,
                         hideBigElement,
                         showBigElement,
+                        scrollStateEquipment,
                         true,
                         listPinnedItems = listPinnedItems,
                         togglePinItem = togglePinnedItem
                     )
                 }
                 LayoutStatsJoueur(selectedJoueur, {
-                    selectedJoueur = Joueur(selectedJoueur)
                     coroutineScope.launch(Dispatchers.IO) { apiApp.updateJoueur(selectedJoueur) }
                 }, Modifier.weight(1f))
             }

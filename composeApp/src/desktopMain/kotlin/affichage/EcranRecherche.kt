@@ -2,6 +2,7 @@ package affichage
 
 import IListItem
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -53,6 +54,7 @@ fun layoutRecherche(
     var isDetailedModeOn by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+    val scrollStateRecherche = rememberLazyGridState()
 
     val adminUiState by adminViewModel.uiState.collectAsState()
 
@@ -129,6 +131,7 @@ fun layoutRecherche(
             null,
             {},
             onClickItem,
+            scrollStateRecherche,
             true,
             isDetailedModeOn,
             adminUiState.listPinneditems,
