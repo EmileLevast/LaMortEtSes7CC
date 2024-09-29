@@ -6,6 +6,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -45,6 +46,8 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
+import lamortetses7cc.composeapp.generated.resources.mainFermee
+import lamortetses7cc.composeapp.generated.resources.mainOuverte
 import lamortetses7cc.composeapp.generated.resources.stuff_symbol
 import network.ApiApp
 import org.jetbrains.compose.resources.Font
@@ -77,15 +80,6 @@ fun layoutListItem(
 
     val groupsEquipements = equipementsAfficher.groupBy { it::class.simpleName }
 
-    val infiniteTransition = rememberInfiniteTransition()
-    val angle by infiniteTransition.animateFloat(
-        initialValue = 0F,
-        targetValue = 360F,
-        animationSpec = infiniteRepeatable(
-            animation = tween(5000, easing = LinearEasing)
-        )
-    )
-
     Box(Modifier.then(modifier)){
         LazyVerticalGrid(
             state = scrollGridState,
@@ -116,10 +110,13 @@ fun layoutListItem(
                 }
 
                 items(equipementsGrouped) { equipement ->
+                    val isItemPinned = listPinnedItems?.contains(equipement.nom)
+
                     Card(
                         modifier = Modifier.fillMaxHeight().clickable { showBigElement(equipement) },
                         backgroundColor = equipement.color,
-                        elevation = graphicsConsts.cardElevation
+                        elevation = graphicsConsts.cardElevation,
+                        border = if(isItemPinned == true) BorderStroke(4.dp,Color.Red) else null
                     ) {
 
                         Box {
@@ -154,34 +151,28 @@ fun layoutListItem(
                                 }
                             }
 
-                            //Afficher le bouton pin si on est en mode Admin
-                            if(listPinnedItems!=null){
-                                if(listPinnedItems.contains(equipement.nom)){
-                                    Image(
-                                        modifier = Modifier.fillMaxWidth(0.2f).align(Alignment.BottomEnd).clickable{
-                                            togglePinItem(equipement.nom,false)
-                                        }
-                                            .graphicsLayer {
-                                                rotationY = angle
-                                            },
-                                        painter = painterResource(Res.drawable.stuff_symbol),
-                                        contentScale = ContentScale.Fit,
-                                        contentDescription = null,
-                                        colorFilter = ColorFilter.tint(graphicsConsts.colorStuffOn)
-                                    )
-                                }else{
-                                    Image(
-                                        modifier = Modifier.fillMaxWidth(0.14f).align(Alignment.BottomEnd).clickable{
-                                            togglePinItem(equipement.nom,true)
-                                        },
-                                        painter = painterResource(Res.drawable.stuff_symbol),
-                                        contentScale = ContentScale.Fit,
-                                        contentDescription = null,
-                                        colorFilter = ColorFilter.tint(Color.White)
-                                    )
-                                }
+                            //Afficher le bouton pin s'il y'a une liste d'items sélectionnés
+                            if(isItemPinned == true){
+                                Image(
+                                    modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd).clickable{
+                                        togglePinItem(equipement.nom,false)
+                                    },
+                                    painter = painterResource(Res.drawable.mainFermee),
+                                    contentScale = ContentScale.Fit,
+                                    contentDescription = null,
 
+                                )
+                            }else{
+                                Image(
+                                    modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd).clickable{
+                                        togglePinItem(equipement.nom,true)
+                                    },
+                                    painter = painterResource(Res.drawable.mainOuverte),
+                                    contentScale = ContentScale.Fit,
+                                    contentDescription = null,
+                                )
                             }
+
 
                             Column(
                                 modifier = if (!isDetailedModeOn) {
