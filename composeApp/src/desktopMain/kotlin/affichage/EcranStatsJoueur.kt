@@ -17,9 +17,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -152,21 +154,26 @@ fun LayoutCaracSpecificProp(
     onSave: () -> Unit,
     openDialogWithMultiplesNumber: Boolean = false
 ) {
+    var caracToChange by mutableStateOf(concernedCarac.get(concernedJoueur.caracActuel))
+
     LayoutUneCarac(
         nomCarac,
         concernedCarac.get(concernedJoueur.caracOrigin).toString(),
-        concernedCarac.get(concernedJoueur.caracActuel).toString(),
+        caracToChange.toString(),
         openDialogWithMultiplesNumber
     ) { oldValue, newValue ->
-        concernedCarac.set(
-            concernedJoueur.caracActuel,
-            if (oldValue == "0" && newValue.isNotBlank() && newValue.last() == '0' && newValue.length == 1) {
-                newValue.first().toString().getIntOrZeroOrNull() ?: oldValue.toInt()
-            } else {
-                newValue.getIntOrZeroOrNull() ?: oldValue.toInt()
-            }
-        )
-        //puis on enregistre le changement
+
+        //on change sur l'écran la caractéristique
+        caracToChange = if (oldValue == "0" && newValue.isNotBlank() && newValue.last() == '0' && newValue.length == 1) {
+            newValue.first().toString().getIntOrZeroOrNull() ?: oldValue.toInt()
+        } else {
+            newValue.getIntOrZeroOrNull() ?: oldValue.toInt()
+        }
+
+        //on met à jour notre objet joueur
+        concernedCarac.set(concernedJoueur.caracActuel,caracToChange)
+
+        //puis on enregistre le changement sur le serveur
         onSave()
     }
 }

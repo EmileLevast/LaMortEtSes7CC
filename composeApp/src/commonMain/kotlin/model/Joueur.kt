@@ -19,16 +19,7 @@ class Joueur(
     override val color: Color
         get() = Color(0xFFDFAF2C)
 
-    // Copy constructor
-    constructor(other: Joueur) : this(
-        nom = other.nom,
-        chaineEquipementSerialisee = other.chaineEquipementSerialisee,
-        details = other.details,
-        caracOrigin = Carac(other.caracOrigin),  // Assuming Carac has a copy constructor
-        caracActuel = Carac(other.caracActuel),  // Assuming Carac has a copy constructor
-        niveau = other.niveau,
-        chaineEquipementSelectionneSerialisee = other.chaineEquipementSelectionneSerialisee,
-    )
+
 
     override fun getStatsAsStrings():String{
         return "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
