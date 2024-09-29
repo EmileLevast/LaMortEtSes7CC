@@ -5,25 +5,26 @@ import CHAR_SEP_EQUIPEMENT
 import Equipe
 import IListItem
 import Joueur
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,11 +32,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import lamortetses7cc.composeapp.generated.resources.OptimusPrinceps
 import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
 import org.koin.compose.koinInject
 import org.jetbrains.compose.resources.Font
+import org.jetbrains.compose.resources.imageResource
 
 @Composable
 fun layoutEdition(
@@ -60,6 +62,13 @@ fun layoutEdition(
 
     var message by remember { mutableStateOf<String?>(null) }
     var openAlertDialogDeletion by remember { mutableStateOf(false) }
+
+    //pour sizer l'image selon la taille du titre
+    var RowHeightDp by remember {
+        mutableStateOf(0.dp)
+    }
+    // Get local density from composable
+    val localDensity = LocalDensity.current
 
     LaunchedEffect(message) {
         if (message != null) {
@@ -90,13 +99,26 @@ fun layoutEdition(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                Text(
-                    text = itemToEdit.nomComplet.ifBlank { itemToEdit.nom },
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.h2,
-                    fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
-                    color = Color.Black
-                )
+                Row {
+                    Text(
+                        modifier = Modifier.onGloballyPositioned { coordinates ->
+                            // Set column height using the LayoutCoordinates
+                            RowHeightDp = with(localDensity) { coordinates.size.height.toDp() }
+                        },
+                        text = itemToEdit.nomComplet.ifBlank { itemToEdit.nom },
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.h2,
+                        fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
+                        color = Color.Black
+                    )
+                    Image(
+                        modifier = Modifier.height(RowHeightDp),
+                        painter = CustomPainterIcon(itemToEdit.getImage(apiApp)?: imageResource(Res.drawable.UnknownImage)),
+                        contentDescription = "avatar",
+                        contentScale = ContentScale.Fit
+                    )
+                }
+
 
 
                 Box (Modifier.fillMaxWidth()){
