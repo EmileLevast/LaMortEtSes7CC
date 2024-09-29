@@ -2,6 +2,7 @@ package affichage
 
 import IListItem
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -27,6 +28,8 @@ fun layoutAdmin(
 ) {
 
     var selectedItemToEdit by remember { mutableStateOf<IListItem?>(null) }
+    val scrollStateRecherche = rememberLazyGridState()
+
 
     val onClickItem = { itemClicked: IListItem ->
         selectedItemToEdit = itemClicked
@@ -39,7 +42,7 @@ fun layoutAdmin(
     if (selectedItemToEdit != null) {
         layoutEdition(selectedItemToEdit!!, onClickBackFromEdition)
     } else {
-        layoutRecherche(imageBackground, onClickItem)
+        layoutRecherche(imageBackground, onClickItem, scrollStateRecherche)
     }
 }
 
@@ -47,6 +50,7 @@ fun layoutAdmin(
 fun layoutRecherche(
     imageBackground: ImageBitmap?,
     onClickItem: (IListItem) -> Unit,
+    scrollStateRecherche :LazyGridState,
     adminViewModel: AdminViewModel= viewModel{ AdminViewModel() }
 ) {
     var nameSearched by remember { mutableStateOf("") }
@@ -54,7 +58,6 @@ fun layoutRecherche(
     var isDetailedModeOn by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
-    val scrollStateRecherche = rememberLazyGridState()
 
     val adminUiState by adminViewModel.uiState.collectAsState()
 
