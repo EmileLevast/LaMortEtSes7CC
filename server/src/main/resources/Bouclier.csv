@@ -17,7 +17,7 @@ bouclier rond;Ph:16|Po:6;Force Minimum:4;2;Pare automatiquement si la frappe ne 
 bouclier de chevalier;Ph:11;Force Minimum:7;3;Si le porteur annonce une parade alors il jette 1D20 : si le résultat est INFERIEUR à la somme des dés de l'attaque adverse alors la parade est réussie. Il n'y a pas de contre attaque possible avec une parade de ce bouclier;
 bouclier argonaute;Ph:5|Po:8|Ma:10;Def Poison Minimum:6
 Intelligence Minimum:6;2;Permet d'équiper une technique et un anneau supplémentaire.
-Il s'agit d'une relique qui contient les restes du corps et de sa magie mais sans mémoire ni pensées. Ses tentacules labiales sont encastrées sur l'avant du bouclier.
+Il s'agit d'une relique d'illithid qui contient les restes du corps et de sa magie mais sans mémoire ni pensées. Ses tentacules labiales sont encastrées sur l'avant du bouclier.
 Il maugrée et peste tout le temps contre son porteur, en criant parfois très fort, on ignore si les paroles sont psioniques ou prononcées par les tentacules.
 Lorsqu'il subit une frappe jetez 1D20 sur (17+) il effctue une lutte de force (avec force:0) contre l'attaquant pour s'emparer de son arme, sinon sur (3-) il quitte la main du porteur et s'enfuit en glissant sur ses tentacules.
 Lorsqu'il n'est pas porté, il compte comme une entité à part entière et dispose de 10pv et aucune défense, s'il meurt le bouclier est inutilisable.;

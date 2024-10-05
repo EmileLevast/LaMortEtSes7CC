@@ -149,7 +149,8 @@ hache rouillee;|1/2/3/4=>Ph:0
 ;4=>Ph:7;3;Force Minimum:5;13;2;;
 labrys gobeline;|1/2/3/4=>Ph:0
 |5/6=>Ph:6
-;4=>Ph:6;3;Force Minimum:5;13;2;Backswing:Si portée à deux mains et que le coup ne touche pas, alors tous les dés des prochaines frappes de ce tour sont augmentés de 1. Toxine 3+ => 2  ;
+;4=>Ph:6;3;Force Minimum:5;13;2;Backswing:Si portée à deux mains et que le coup ne touche pas, alors tous les dés de la prochaine frappe uniquement sont augmentés de 1 (reportable sur la frappe suivante si celle-ci ne touche de nouveau pas). 
+Toxine 3+ => 2  ;
 torche;|1/2=>F:0
 |3/4/5/6=>F:2
 ;6=>F:4;1;;4;1;;
@@ -437,3 +438,7 @@ daguoblin;|1=>Ph:0
 |2/3/4/5=>Ph:3
 |6=>Ph:3|Po:3
 ;6=>Ph:7|Po:3;2;;6;1;venin 4+ => 2;
+crachat acide;|1=>Po:0
+|2/3/4/5=>Po:3
+|6=>Po:5
+;;2;Force Minimum:1;10;0;Toxine 3+ => 1.;
