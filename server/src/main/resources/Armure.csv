@@ -46,3 +46,5 @@ encephale de demon;Ph:-3|Po:4|Ma:15 ;Intelligence Minimum:3;0;lorsque le porteur
 De plus a chaque fois que le joueur touche un PNJ (par l'intermédiaire d'une arme fonctionne aussi), la voix de Demon lui recite une fois toutes les stats de l'ennemi. ;
 encephale alhoon;Ph:-4|Po:9|Ma:10|F:-1;Intelligence Minimum:4;0;De plus si le joueur avale du sang frais d'un être vivant alors il prend connaissance de toutes les statistiques de l'être (le MJ lui assigne l'item de l'être, pas ses équipements) .
 Ne peut pas être porté avec une autre armure (même si c'est une cape ou quoi cherchez pas à m'enfler);
+armure de mystercenaire;Ph:2|F:4|Ma:3|Po:3;Force Minimum:1;1;Si le porteur est un guerrier ou un voleur alors une fois par vie (se régénère au feu). Il peut utiliser la capacité spéciale Berserk.
+Berserk : la force du joueur est doublée et il peut avoir des points de vie négatif pendant 1 tour de table complet (donc le temps que tout le monde fasse ses 2 actions) sans mourrir. A la fin du sort s'il a des points de vie négatif il meurt.;
