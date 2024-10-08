@@ -200,7 +200,7 @@ Voleur : acharner a voler des equipements, il sait utiliser tout ce qu'il touche
 grounf;38;1:1|2:8;Ph:9|Po:1|F:-5|Ma:5;4;4;coup de griffes:0|humanite:4;110;charge : peut parcourir une grande distance sur une action de mouvement, tout droit. Il peut viser un joueur, s'il l'atteint et que le poids du joueur est inférieur à la force de l'ours alors le joueur est projeté 5m plus loin, il devra dépenser 2 actions à se relever.;
 kerkerschafe;15;1:1|2:3;Ph:1|F:-10;2;1;fourche:5|humanite:6;50;verbigération: grogne, menace, crache, débagoule sans sens. Pas de communication possible une fois la menace faite, la deuxième semonce est une frappe d'estoc.;
 nyctarame;35;1:0|2:0|3:0;Ph:4|Ma:5|Po:15|F:-20;0;1;graine nyctaphage:3;80;;
-huorn;115;1:3|2:5|3:10;Ph:18|Po:8|F:-10|Ma:8;2;5;branche de huorn:0;970;Peut apparaître comme un arbre et ne pas réagir ou peut s'éveiller à son gré: Dispose toujours de l'initiative.
+huorn;115;1:3|2:5|3:10;Ph:18|Po:8|F:-10|Ma:8;2;5;branche de huorn:0|humanite:1;970;Peut apparaître comme un arbre et ne pas réagir ou peut s'éveiller à son gré: Dispose de l'initiative dans ce cas.
 Les branches semblent balancer alors qu'il n'y a pas de vents, certaines branches suivent les joueurs.
 Jusqu'à ce que par-dessus un joueur deux branches le saisissent par les épaules et lui cache la bouche. Pour l'emmener dans les arbres. 
 MJ lance 1D20, sur 8+ réussite parfaite, sur 6+ le joueur peut crier et se débattre. ;
@@ -220,3 +220,11 @@ crill;18;1:1|2:2;Ph:3;3;2;lance:3|humanite(x5):4|anneau du detrousseur:5|anneau 
 fignigus;15;1:0;F:18|Ph:4|Po:1;27;2;humanite:1|invoque laniere de feu:3|grand regard de feu:5;932;Peu envoyer des lepidophenix pour envoyer des messages loin de lui.;
 pommedetartine;27;1:1|2:4;Ph:5;7;3;tunique dechiree:3|mains nues:4|humanite(x3):6;321;;
 sourimare;47;1:1|2:2;Ph:3|Po:8|F:-5|Ma:-4;1;1;coup de griffes:0|humanite:4;31;Amical: il va renifler et chercher le contact des joueurs s'il est en confiance. Si les joueurs le caresse il se tremousse, et ses poils libère des particules magiques. Le joueur qui l'a caressé reçoit 1D100 âmes. Ensuite le sourimare s'en va sur 1 pour 1D4.;
+frondemon;37;1:1;Ph:0|Ma:18|Po:18|F:-11;8;4;mains nues:0|appel des huorns:3|arbrification:5;525;Mauvaise herbe: tous les pv perdus par dégâts physiques durant le dernier tour sont regagnés au début du tour du MJ (le frondémon tombe en morceau de fumée et de branches puis se reconstitue), peu importe si le frondémon était mort si le rajout des pvs perdus en dégâts physique lui font avoir des pvs positifs alors il revit (il faut donc compter les pvs négatifs aussi). Toutes les âmes sont récupérées lors de sa première mort.;
+mouche de morgai;24;1:0|2:0|3:0;Po:9|F:-2|Ma:1;0;5;morsure buveuse:0;30;Nuée : insensible aux dégâts physiques (à moins d'une précision incroyable pour frapper une petite mouche). Ne peuvent dépenser que 1 énergie max par frappe.
+Harceleuse : Une fois qu'elles ont une cible elle ne change plus de cibles et parcourent jusqu'à 3 unité de mouvement en 1 action.
+Lâche : jetez 1D4 après chaque blessure, sur 1 la nuée se disperse instanément et disparaît.
+Pondeuse : l'effet saignement de "morsure buveuse" ne restaure pas les points de vie mais indique un nombre d'oeufs pondus dans le corps de la cible. 
+Jetez 1D4 pour savoir où sont pondus les oeufs : 1 - tete, 2 - bras, 3 - jambes, 4 - torse. (le membre reste le même pour les attaques suivantes)
+A chaque tour du MJ le joueur lance 1D100(indiquer au joueur qu'il a des picotements et autres, puis de gros boutons etc), s'il fait moins que le nombre d'oeufs qu'il a en lui alors les mouches lui explose le membre en question, il perds autant de pv que le résultat du D100 et une nouvelle nuée de mouches de morgai apparaît.
+A la fin de chaque tour du MJ tous les joueurs contaminés diminue de 2 leur nombre d'oeufs. Toutes ces informations chiffrés sont cachées des joueurs.;nuee de mouches de morgai
