@@ -1,6 +1,7 @@
 package affichage
 
 import IListItem
+import Special
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -205,7 +206,7 @@ fun layoutListItem(
                                         textAlign = TextAlign.Center,
                                         style = MaterialTheme.typography.h5,
                                         fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
-                                        color = Color.White
+                                        color = if((equipement as? Special)?.itemType == SpecialItemType.TECHNIQUE)graphicsConsts.colorStuffOn else Color.White
                                     )
                                 }
                             }
