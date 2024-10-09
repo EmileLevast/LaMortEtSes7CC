@@ -163,7 +163,7 @@ fun layoutListItem(
                                     contentDescription = null,
 
                                 )
-                            }else{
+                            }else if (listPinnedItems!=null){//pour s'assurer qu'on est pas en mode "decouvertes" et donc qu'on ne veut pas afficher les mains
                                 Image(
                                     modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd).clickable{
                                         togglePinItem(equipement.nom,true)
