@@ -2,7 +2,7 @@ Nom;equipement ;details ;caracOrigin ;caracActuel ;niveau ;nom complet ;equipeme
 doryan;|talisman d energie [nbr]||baton de cedre||arme magique||talisman de chasseur de feu||anneau moratoire||os coupant||technique esquive de dague||tunique dechiree||technique doryan malchance||arbalete grossiere||carreau simple||eclairs||longue dague||gemme d intermonde orangee|;Mage
 Talisman energie I
 14 carreaux;17/2/Ma:2/5/3/1/0;17/2/Ma:2/5/3/0/104;2;Doryan, prononcé à l'anglaise;
-remi h;|main spirituelle||soin palliatif||talisman d energie [nbr]||engourdissement||technique esquive de dague||gorgee bienfaitrice||technique a la lumiere du jour||gemme d intermonde orangee||technique epee a 2 mains imparable||os coupant||longue dague||cape petromorphe usee||daguoblin||torche||labrys gobeline|;Clerc
+remi h;|main spirituelle||soin palliatif||talisman d energie [nbr]||engourdissement||technique esquive de dague||gorgee bienfaitrice||technique a la lumiere du jour||gemme d intermonde orangee||technique epee a 2 mains imparable||os coupant||longue dague||cape petromorphe usee||daguoblin||torche||labrys gobeline||bouclier argonaute|;Clerc
 Talisman d'énergie 1
 Corde de plantes sciaphiles tressees : poids max : 5, longueur 8m.
 peau de sanglier
@@ -37,15 +37,15 @@ ember;|baton de cedre||arme magique||os coupant||talisman d energie [nbr]||etrei
 1 talisman d'energie I
 ames morts vivants perdus (200 âmes)
 talisman protection magique 3
-chapeau troué;17/2/Ma:2/4/2/1/0;9/2/Ma:2/4/2/0/160;1;;
-lyra;|main nue||epee ebrechee||talisman d energie [nbr]||couteau de lancer||givrant||braise blanche||technique de babel||serre de volucre anthropophage|;Guerriere
+chapeau troué;17/2/Ma:2/4/2/1/0;9/2/Ma:2/4/2/0/160;1;;|talisman d energie [nbr]||technique imperio||talisman de protection [type] [nbr]||anneau coagulant||baton de cedre||arme magique||torche||cape petromorphe usee|
+lyra;|main nue||epee ebrechee||talisman d energie [nbr]||couteau de lancer||givrant||braise blanche||technique de babel|;Guerriere
 Partage la vie de Freddy le bouquetin
-couteau de lancer (x1);15/5/Ph:4/3/2/1/0;0/5/Ph:4/3/3/0/0;2;;
+couteau de lancer (x1);15/5/Ph:4/3/2/1/0;0/5/Ph:4/3/3/0/0;2;;|technique de babel||talisman d energie [nbr]||epee ebrechee||givrant|
 sylvara;|passe-partout||longue-vue||dague||talisman d energie [nbr]||fleche simple||arc||ailes de volucre anthropophage||epee barbelee|;Voleur
 Phalange en os
 Possession Thmog
 Corde 10m
-Fleches simples x5;13/2/Ph:1|Po:2/2/2/2/0;0/2/Ph:1|Po:2/2/2/0/0;1;;
+Fleches simples x5;13/2/Ph:1|Po:2/2/2/2/0;0/2/Ph:1|Po:2/2/2/0/0;1;;|talisman d energie [nbr]||epee barbelee||ailes de volucre anthropophage|
 voldemort;|paume incandescente||talisman de chasseur de feu||main nue||longue dague||main de pyromancie||talisman d energie [nbr]||fleche de mauvaise facture||gorgee bienfaitrice||etreinte brulante||epee inegide||fiole d estus|;Pyromancienne
 
 talisman energie 1;14/3/Ph:3|F:2/3/2/1/0;14/3/Ph:3|F:2/3/3/1/1;1;;|talisman de chasseur de feu||talisman d energie [nbr]||fleche de mauvaise facture||main de pyromancie|
@@ -65,4 +65,4 @@ aphelesther;|vie moisie||soin palliatif||main spirituelle||gemme blanche||epee d
 papier et crayon;14/2/Ph:1|Ma:3/3/2/1/0;14/2/Ph:1|Ma:3/3/3/1/0;1;;
 maureen;|main de pyromancie||paume incandescente||fleurs de feu||gemme blanche||gemme d intermonde orangee||marteau de forge|;pyromancienne;14/3/Ph:2|F:2/3/2/1/0;9/3/Ph:2|F:2/3/3/1/10;1;egan;
 tomek gil sayan;|hache double tranchant||gemme blanche|;;16/7/Ph:6/3/3/1/0;16/7/Ph:6/3/3/1/0;1;;
-tentaplupa;|technique illichtide||grande telereminiscence||telescribe||metatelemorphie||telekinesie||incurpsionisme||telepathie||sondage cerebral||oubli||petite fleche d ame||bouclier argonaute|;;15/1/Ma:10|Po:7|F:-6/37/3/0/0;15/1/Ma:10|Po:7|F:-8/37/3/0/185;3;;|talisman illithid||technique illichtide||metatelemorphie||telepathie||dague||petite fleche d ame||telescribe||grande telereminiscence|
+tentaplupa;|technique illichtide||grande telereminiscence||telescribe||metatelemorphie||telekinesie||incurpsionisme||telepathie||sondage cerebral||oubli||petite fleche d ame|;;15/1/Ma:10|Po:7|F:-6/37/3/0/0;15/1/Ma:10|Po:7|F:-8/37/3/0/185;3;;|talisman illithid||technique illichtide||metatelemorphie||telepathie||dague||petite fleche d ame||telescribe||grande telereminiscence|

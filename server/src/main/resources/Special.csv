@@ -282,3 +282,7 @@ muguet braise;OUTIL;Extrêmement rare. C'est une plante qui ne pousse que dans d
 Une fois possédé dans l'inventaire, alors si tous les joueurs sont réunis à un feu ils peuvent se téléporter au feu de leur choix qu'ils ont déjà visités;
 talisman d ylia;TALISMAN;Procure +2 intelligence
 (Procure +3 intelligence aux clercs);
+fiole de sang de loplip;OUTIL;Poison violemment mortel et terriblement douloureux pour les gobelins.
+Utilisation : 3
+Coût : 1 action spéciale
+Le gobelin perds 100pv d'un coup 1 tour après ingestion. Il se tord de douleur des pustules gigantesques lui poussent sur le corps, et dans un cri de douleur il explose dans un giclement de pus.;

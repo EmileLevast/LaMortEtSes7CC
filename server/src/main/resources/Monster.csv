@@ -226,5 +226,12 @@ Harceleuse : Une fois qu'elles ont une cible elle ne change plus de cibles et pa
 Lâche : jetez 1D4 après chaque blessure, sur 1 la nuée se disperse instanément et disparaît.
 Pondeuse : l'effet saignement de "morsure buveuse" ne restaure pas les points de vie mais indique un nombre d'oeufs pondus dans le corps de la cible. 
 Jetez 1D4 pour savoir où sont pondus les oeufs : 1 - tete, 2 - bras, 3 - jambes, 4 - torse. (le membre reste le même pour les attaques suivantes)
-A chaque tour du MJ le joueur lance 1D100(indiquer au joueur qu'il a des picotements et autres, puis de gros boutons etc), s'il fait moins que le nombre d'oeufs qu'il a en lui alors les mouches lui explose le membre en question, il perds autant de pv que le résultat du D100 et une nouvelle nuée de mouches de morgai apparaît.
-A la fin de chaque tour du MJ tous les joueurs contaminés diminue de 2 leur nombre d'oeufs. Toutes ces informations chiffrés sont cachées des joueurs.;nuee de mouches de morgai
+A chaque tour du MJ le joueur lance 1D100(indiquer au joueur qu'il a des picotements et autres, puis de gros boutons etc), s'il fait moins que le nombre d'oeufs qu'il a en lui alors les mouches lui explose le membre en question, il perds autant de pv que le résultat du D100/2 et une nouvelle nuée de mouches de morgai apparaît.
+A la fin de chaque tour du MJ tous les joueurs contaminés augmente de 2 leur nombre d'oeufs s'ils n'ont pas éclos. Toutes ces informations chiffrés sont cachées des joueurs.;nuee de mouches de morgai
+mimic;30;1:5|2:6|3:7;Ph:3|Ma:-2|Po:2;4;3;croc fauglir:0|coup de griffes:0|humanite:4;360;La mimic peut prendre l'apparence de n'importe quel objet et peut rester ensuite parfaitement immobile pendant des heures. Lorsque quelque chose la touche elle bondit agressive et attaque tout ce qu'elle détecte jsqu'à ce que rien ne bouge.
+Sonar : elle n'a pas d'oreilles, ni d'odorat ni de yeux. Elle détecte seulement tout ce qui bouge et tout ce qui la touche. Si quelque chose ne bouge pas pendant 2 tours complets elle considère que c'est un meuble.
+Lente: elle ne peut faire qu'une action de mouvement par tour.
+Sournoise : Elle peut aussi décider de surprendre un joueur en se déplaçant puis en copiant un autre objet, si elle fait ça jetez 1D4 :
+3+ l'objet choisi colle parfaitement à l'environnement elle est très discrète
+2+ l'objet est cohérent mais peut sortir du lot de par sa taille ou son emplacement
+1 l'objet est totalement incohérent et il semble absolument inaproprié dans l'endroit;
