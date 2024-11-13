@@ -1,7 +1,7 @@
 Nom;Vie;Force ;Defense ;Intelligence ;Energie ;Drops ;Ames ;Capacite speciale ;nom complet 
 guerrier gobelin;17;1:2|2:3|3:5;Ph:3|Po:3;1;3;cuir de gobelin:3|fouet, lance de gobelin:4|humanite:6;105;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
 homme damne de sulath;50;1:1|2:1|3:1;Ma:-15|F:-15;0;3;humanite:2;350;Lorsqu'il frappe leurs armes voient leur dégâts physiques transformés en dégâts magiques.;Damne de sulath
-pyrobelin;30;1:1|2:2|3:2;Ph:3|Po:3|Ma:5;9;4;anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de pyrobelin, brise braisee:5|humanite:6;175;;
+pyrobelin;30;1:1|2:2|3:2;Ph:3|Po:3|Ma:5;9;4;serpent aile:0|anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de pyrobelin, brise braisee:5|humanite:6;175;;
 lampadophore gobelin;22;1:2|2:4|3:5;Ph:3|Po:3|F:1;2;3;cuir de gobelin:3|torche:4|longue dague:4|bouclier brute:5|humanite:6;120;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
 garde gobelin;20;1:1|2:2|3:4;Ph:4|Po:3;1;3;lourde cotte de gobelin:3|labrys gobeline:4|bouclier de bois:5|humanite:6;120;Il s'agit d'un peuple intelligent et organisé, ils frappent tous le même joueur, celui qui a le moins de vie. Ils peuvent s'enfuir. Ils sont nyctalopes et cavernicoles;
 gobelours;35;1:3|2:5|3:7;Ph:5|Po:3|F:1|Ma:-3;3;3;armure de chevalier:3|fleau:4|technique implacable:4|technique technique violence à deux mains:5|humanite:6;160;;
@@ -18,10 +18,10 @@ fshire;60;1:3|2:3|3:3;Ma:1|F:8|Po:-4|Ph:2;7;3;coups de sabots:0|1 humanite:5|2 h
 serpent aile;17;1:3|2:3|3:3;Po:11|F:-2|Ph:4;1;2;morsure venimeuse:0;125;Vol : peut frapper pendant son action de mouvement.Vif: peut virevolter pour éviter les coups (équivalent d�une roulade avec 1 dé);Serpent ailé
 armure vivante;30;1:4|2:5|3:6;Po:15|F:9|Ph:13|Ma:-3;0;3;epee barbelee:5|Armure de chevalier(non equipee mais droppable):6;145;Inconsistent: coups critiques impossible contre l'armure vivante;
 krun;13;1:1|2:2|3:3;Ph:3|Po:3;1;2;peau de loup:3|lance de gobelin:4|humanite:5;95;Amical: Si un de ses alliés proche va subir une frappe, sur 4+ il se jette devant et prends le coup.;
-zairzan;70;1:1|2:2|3:4;Ph:3|Po:5|F:5|Ma:10;16;6;anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de zairzan:5|javelots de feu:5|2 Humanite:6;1500;;zaïrzan
+zairzan;70;1:1|2:2|3:4;Ph:3|Po:5|F:5|Ma:10;16;6;serpent aile:0|anneau de l eclipse:2|main de pyromancie:3|immolation endogene:4|robe de zairzan:5|javelots de feu:5|2 Humanite:6;1500;;zaïrzan
 scin;60;1:3|2:4|3:7;Ph:7|Po:-1|F:2|Ma:10;25;4;anneau de l eclipse:1|depetrant:2|anneau apotropaïque:2|Eclairs:4|robe de scin:5|grand sort d'ubiquite:5|2 humanites:6|rapiere:6;2000;Humanite : il peut utiliser une humanité max quand il le souhaite (capacité régénérée si les joueurs vont au feu)
 Le sort depetrant de scin est automatiquement recupere par les joueurs à sa mort;scîn, le conjurateur
-sarah;15;1:3|2:4;Ph:2;3;3;2 dagues aiguisees:3|1 humanite:4|technique veulerie:4|technique backstab sournois:5|2 humanites:6;150;technique backstab sournois et technique veulerie.;
+sarah;15;1:3|2:4;Ph:2;3;3;2 dagues aiguisees:3|1 humanite:4|technique veulerie:4|technique backstab sournois:5|2 humanites:6;150;;
 scinat;10;1:3|2:4|3:5;F:10|Ma:12;10;2;sauvetage cendre:4;400; S'il réussit, scînat reste sur place et scin est téléporté..Sauveur : si scin va subir une frappe, scînat peut utiliser son sort sauvetage cendré avant. Si celui-ci rate scin peut toujours tenter de se défendre. Parlant : Scînat peut parler à son porteur. Porteur: scînat peut changer de porteur sans soucis, il change alors de nom. <nomPorteur>+<at>;serpentvicieuxat
 chien enrage;15;1:2|2:3;Ph:5;1;2;croc chien enrage:0|humanite:4;30;;Chien enragé
 elfe nu;20;1:1|2:2|3:3;Ph:1|Ma:6|Po:1|F:1;20;3;1 humanite:4|2 humanites:5;115;Télépathe de premier niveau. Peut deviner vaguement ce que veulent les joueurs.;
@@ -30,9 +30,10 @@ oblex;100;1:1|2:1|3:1;Ma:20|F:-20|Ph:50|Po:50;50;3;drain de magie:0|sort nul:4|s
 carcasse de chevalier;35;1:2|2:4|3:6;Po:-6|F:4|Ph:8|Ma:-2;0;4;bouclier de chevalier:4|epee a double tranchant:5|Armure de chevalier:6;200;Compte comme tenant ses armes à 2 mains même si tenues à 1 main;
 carcasse armee;11;1:1|2:2;Ph:0;0;2;epee ebrechee:5;22;;
 carcasse;11;1:1|2:2;Ph:0;0;2;poignard brise, cailloux, baton...:4;22;;
-fadar;48;1:3|2:6|3:9;Ph:11|Ma:6|Po:5|F:5;17;4;anneau apotropaïque:2|Talisman de vie(compté dans les stats de base):3|2 humanités:4|armure des roncières de jais:5|echgul:6;630;Roulade.Télépathe faunesque : elle comprend vaguement ce que les animaux disent.;
-adar;37;1:4|2:7|3:10;Ph:9|Ma:6|Po:5|F:9;14;4;anneau nyctalopie:2|1 humanité, ambre dorée:4|armure des roncières de jais:5|ichgul:6;630;Roulade. Chasseur précis : bénéficie de +1 sur son moins bon dé de frappe contre un animal sauvage. ;
-durluf;47;1:5|2:6|3:6;Po:-3|F:4|Ph:6|Ma:-1;11;3;Talisman de vie VI(compté dans les pvs):4|Anneau du détrousseur:5|Lieblingsschwert(ZweiHander):6;1450;la FAJ de Durluf passe en degat magique lorsqu'il utilise Lieblingsschwert.;
+fadar;52;1:3|2:6|3:9;Ph:11|Ma:6|Po:5|F:5;17;4;anneau apotropaïque:2|Talisman de vie(compté dans les stats de base):3|2 humanités:4|armure des roncières de jais:5|echgul:6;630;Roulade.Télépathe faunesque : elle comprend vaguement ce que les animaux disent.;
+adar;43;1:4|2:7|3:10;Ph:9|Ma:6|Po:5|F:9;14;4;anneau nyctalopie:2|technique insaisissable:3|technique defiance:3|humanite:4| ambre doree:4|armure des roncières de jais:5|ichgul:6;630;Roulade. Chasseur précis : bénéficie de +1 sur son moins bon dé de frappe contre un animal sauvage.
+Demi-elfe : possède une ouïe extrêmement fine, toutes les tentatives de surprises quelconques qui implique du bruit ont un malus de 3 sur les dés de réussite de la surprise.;
+durluf;47;1:5|2:6|3:6;Po:-3|F:4|Ph:6|Ma:-1;11;3;Talisman de vie VI(compté dans les pvs):3|anneau du détrousseur:4|haubert de faecrist:5|zweiHander:6;1450;la FAJ de Durluf passe en degat magique lorsqu'il utilise Lieblingsschwert.;
 kaboldu;20;1:2|2:3|3:3;Ph:1|Po:3|F:5;5;2;Croc chien enrage:0|Humanite:4;250;;
 esprit kyrielle;80;1:4|2:5|3:8|4:10;Po:15|F:2|Ph:20|Ma:-13;23;0;;2500;Inconsistent: coups critiques impossible contre l'esprit kyrielle.
 En debut de tour choisit le MJ fixe 3 personnages vivants en visuel de l'esprit kyrielle, il donne un seuil correspondant à chacun de ces personnages : 4+=premier choix|2+=deuxieme choix|1+=dernier choix.
@@ -183,7 +184,9 @@ cleanst;20;1:1|2:2;Ph:2;3;2;epee barbelee:3|humanite(x5):4|anneau du lache:5|ann
 proulpuik;13;1:1|2:1;Ph:-1|F:-3|Po:5|Ma:15;6;2;avaleur de talents:4|coup de tentacule:5;900;suceur d'organes: si un coup de tentacule blesse alors il peut decider de ne pas faire de blessure mais d'échanger un organe avec sa cible, qui souffre alors d'une hemoragie (1pv en moins à chaque action), les pvs du proulpuik et de la cible sont inversés.
 penetration nasale: si un coup de tentacule tue, alors avec 1D20 sur 5+ le proulpuik peut rentrer dans par le nez de sa victime et prendre la place de son cerveau. La victime meurt normalement, par contre son corps physique est rechargé en pv, et le proulpuik peut utiliser ce corps physiques. Par ailleurs lors de la résurrection, si le corp n'a pas été abandonné par le proulpuik alors celui-ci meurt mais aspire définitivement 1 intelligence en mourrant. ;
 leucrotta;20;1:4|2:4|3:4;Ph:8|Ma:4;2;3;charge catoblepas:0|croc chien enrage:0|humanite:4;110;appâteur: peut imiter la voix de n'importe quel humain qu'il a entendu;
-bigobelours;50;1:3|2:5|3:9;Ph:9|Po:6|F:4|Ma:-4;5;5;armure de carcasse:3|lourde masse d arme:4|technique implacable:4|anneau deshumanisant:5|humanite:6;230;Masseur : ils peuvent relancer leurs dés qui font 1 lors d'une frappe.;
+bigobelours;50;1:3|2:5|3:9;Ph:9|Po:6|F:4|Ma:-4;5;5;armure de carcasse:3|lourde masse d arme:4|technique implacable:4|anneau deshumanisant:5|humanite:6;230;Masseur : ils peuvent relancer leurs dés qui font 1 lors d'une frappe.
+Indecapitable : survivent à la premiere decapitation
+Quatre yeux : ils frappent avec précision et soudaineté, les roulades contre eux nécessitent une énergie supplémentaire.;
 necrozetete;300;1:0;Ph:0;0;30;exhumation mortelle:3|Aspirameur:3|relique necrozetetique:4|relique de necroalgos:5|exhumation anthropophobe:6;500;Beaucoup de pv. Meurt s'il n'a plus d'énergie. Sont toutefois soumissibles aux effets des sorts.
 Attaque de préférence les êtres morts avec des humanités, une humanité leur redonne toute leur énergie.
 Mais s'ils sont bientôt à court, ils attaquent les porteurs d'humanités.
@@ -228,10 +231,13 @@ Pondeuse : l'effet saignement de "morsure buveuse" ne restaure pas les points de
 Jetez 1D4 pour savoir où sont pondus les oeufs : 1 - tete, 2 - bras, 3 - jambes, 4 - torse. (le membre reste le même pour les attaques suivantes)
 A chaque tour du MJ le joueur lance 1D100(indiquer au joueur qu'il a des picotements et autres, puis de gros boutons etc), s'il fait moins que le nombre d'oeufs qu'il a en lui alors les mouches lui explose le membre en question, il perds autant de pv que le résultat du D100/2 et une nouvelle nuée de mouches de morgai apparaît.
 A la fin de chaque tour du MJ tous les joueurs contaminés augmente de 2 leur nombre d'oeufs s'ils n'ont pas éclos. Toutes ces informations chiffrés sont cachées des joueurs.;nuee de mouches de morgai
-mimic;30;1:5|2:6|3:7;Ph:3|Ma:-2|Po:2;4;3;croc fauglir:0|coup de griffes:0|humanite:4;360;La mimic peut prendre l'apparence de n'importe quel objet et peut rester ensuite parfaitement immobile pendant des heures. Lorsque quelque chose la touche elle bondit agressive et attaque tout ce qu'elle détecte jsqu'à ce que rien ne bouge.
+mimic;30;1:5|2:6|3:7;Ph:3|Ma:-2|Po:2;4;3;croc fauglir:0|coup de griffes:0|ambre argentee:1|humanite:5;360;La mimic peut prendre l'apparence de n'importe quel objet et peut rester ensuite parfaitement immobile pendant des heures. Lorsque quelque chose la touche elle bondit agressive et attaque tout ce qu'elle détecte jsqu'à ce que rien ne bouge.
 Sonar : elle n'a pas d'oreilles, ni d'odorat ni de yeux. Elle détecte seulement tout ce qui bouge et tout ce qui la touche. Si quelque chose ne bouge pas pendant 2 tours complets elle considère que c'est un meuble.
 Lente: elle ne peut faire qu'une action de mouvement par tour.
 Sournoise : Elle peut aussi décider de surprendre un joueur en se déplaçant puis en copiant un autre objet, si elle fait ça jetez 1D4 :
 3+ l'objet choisi colle parfaitement à l'environnement elle est très discrète
 2+ l'objet est cohérent mais peut sortir du lot de par sa taille ou son emplacement
 1 l'objet est totalement incohérent et il semble absolument inaproprié dans l'endroit;
+hilikilq;25;1:1|2:2|3:2;Ph:1|Po:-2|Ma:3;6;3;talisman d'un fragment d'ancien:1|amulette du cenacle des naufrages:2|sort diaphane:3|miracle de surseance:4|miracle de convivialite:5|humanite x3:6|robe pedantesque du cenacle:6;75;;hilikilq, le mir-aculé
+le barakeur;63;1:3|2:6|3:8;Ph:17|Po:8|F:5|Ma:-5;6;4;pagne inutile:0|longue dague equilibree(x2):4|anneau turpide:5|technique brute de parade:5|technique vif ambidextre:6|anneau opportuniste:6;650;;
+kirnling;38;1:1|2:2|3:5;Ph:6|Po:1|Ma:7|F:3;9;4;armure d oswald:3|cimeterre:4|anneau obviant:5|humanite:5;464;;

@@ -262,8 +262,9 @@ test;OUTIL;Fonctionne par paire, semble magique.;test2
 parchemin de mylene;OUTIL;decrits les memoires de mylene;
 fiole d estus;OUTIL;Restaure 1D10 pv
 Utilisation : 3
-Coût : 1 action spéciale
-Se régénère au feu.;
+Coût : une action spéciale
+Se régénère au feu.
+En revanche boire une fiole d'estus peut se faire dans une autre action spéciale sans en dépenser une supplémentaire.;
 technique backstab sournois;TECHNIQUE;Effet : le joueur réussit automatiquement son test pour le backstab si la cible est inavertie de sa présence ( pas besoin d'être dans le dos de la cible);
 technique veulerie;TECHNIQUE;Effet : si la vie du joueur <=25% au début de son tour, alors il peut courrir se cacher dans la cachette la plus improbable aux environs, et tous les ennemis doivent faire 1D20+Intelligence=17+ pour voir où le joueur est caché.;
 talisman illithid;TALISMAN;recupere automatiquement les humanités sur les ennemis tués par le porteur. L'ennemi est toujours droppable par la suite.;
@@ -272,11 +273,11 @@ coffret lichisation;OUTIL;Porte une gravure représentant un alhoon ou une illic
 bras alhoon;OUTIL;Si équipé, permet de lancer des sorts psioniques et de bénéficier de +2 sur un dé du sorts. (1 seul dé au choix parmi tous les dés nécessités par le sort). De plus cela réduit de 2 l'intelligence minimale requise pour les sorts psioniques.
 Poid : 1;
 humanite ancestrale [nbr];OUTIL;Lorsqu'elle est consommée ajoute +[Nbr] humanites.;
-technique insaisissable;TECHNIQUE;Effet : le porteur (s'il dispose au moins d'une énergie), ne subit que le dé le plus fort de la frappe qu'il reçoit. L'énergie n'est pas consommée.;
+technique insaisissable;TECHNIQUE;Effet : le porteur (s'il dispose au moins d'une énergie), ne subit que le dé le plus fort de la frappe qu'il reçoit. L'énergie n'est pas consommée. Il peut ensuite encore décider de faire une roulade ou non.;
 technique implacable;TECHNIQUE;Effet : Tant que le porteur a 1 énergie il peut jeter un dé lorsqu'il subit une frappe (résoudre ce dé comme une frappe à 1 energie), il réduit les degats totaux de la frappe reçus par les degats totaux de sa frappe. S'il fait plus de degats que son adversaire alors celui-ci subit la différence des dégâts et ne peut pas se défendre. Ensuite le porteur jette 1D20 sur 8+ il conserve son énergie.;
 technique violence à deux mains;TECHNIQUE;Effet : le porteur bénéficie de +2 sur son plus petit dé lors de chacune de ses frappes à deux mains.;
 technique cameleon;TECHNIQUE;Effet : le monstre est dissimulé dans son environnement. Il faut obtenir un 17+D20 d'observation pour le voir nettement peu importe la distance, sinon seule des informations vagues sont données voir pas du tout si le résultat est trop faible.;
-technique epieur;TECHNIQUE;Effet : Voit plus vite que tout le monde, une fois qu'un joueur a annoncé une action, l'épibale peut effectuer une de ses deux actions avant lui, le joueur effectue ensuite son action tel qu'il l'avait annoncé.;
+technique epieur;TECHNIQUE;Effet : Voit plus vite que tout le monde, une fois qu'un joueur a annoncé une action, le technicien peut effectuer une de ses deux actions avant lui, le joueur effectue ensuite son action tel qu'il l'avait annoncé.;
 technique constriction;TECHNIQUE;Effet : pour deux action le monstre peut s'enrouler autour de sa cible. Lutte de force, si le monstre gagne la cible ne peut pas jouer tant que le monstre maintient ses deux actions pour serrer la victime. La victime enserrée subit 2 blessure en saignement à chaque fin de tour du monstre.;
 muguet braise;OUTIL;Extrêmement rare. C'est une plante qui ne pousse que dans des endroits spécifiques et disparaît en 24h.
 Une fois possédé dans l'inventaire, alors si tous les joueurs sont réunis à un feu ils peuvent se téléporter au feu de leur choix qu'ils ont déjà visités;
@@ -286,3 +287,9 @@ fiole de sang de loplip;OUTIL;Poison violemment mortel et terriblement douloureu
 Utilisation : 3
 Coût : 1 action spéciale
 Le gobelin perds 100pv d'un coup 1 tour après ingestion. Il se tord de douleur des pustules gigantesques lui poussent sur le corps, et dans un cri de douleur il explose dans un giclement de pus.;
+technique defiance;TECHNIQUE;Effet : le porteur s'il reçoit une frappe surprise, dans le sens où l'interlocuteur était amical une seconde plus tôt et essaye de la lui mettre à l'envers. Dans le cas où le technicien a connaissance de la présence de l'attaquant, même si celui-ci est derrière lui ou autre, on pars du principe que le technicien garde toujours un sixième sens sur toutes les personnes qui l'entoure dont il a conscience de la présence (ne fonctionne pas si la personne était dissimulée ou autre). Alors le technicien peut effectuer une action bonus avant la frappe de son adversaire (il dispose toujours de 2 actions à son prochain tour).;
+talisman d un fragment d ancien;TALISMAN;Procure +6 points de vie
+(Procure +9 points de vie aux clercs)
+Procure aussi +2 défense magique;talisman d'un fragment d'Ancien
+amulette du cenacle des naufrages;OUTIL;Permet de lancer des miracles.
+L'intelligence minimum requise pour lancer des miracles est réduite de 1 (de 2 pour les clercs).;amulette du cénacle des naufragés
