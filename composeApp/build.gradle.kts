@@ -79,11 +79,10 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.lifecycle.viewmodel.compose)
-
-
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.androidx.ui.desktop)
         }
     }
 }
@@ -135,8 +134,5 @@ compose.desktop {
             packageName = "org.levast.project"
             packageVersion = "1.0.0"
         }
-    }
-    dependencies {
-        implementation(libs.androidx.ui.desktop)
     }
 }
