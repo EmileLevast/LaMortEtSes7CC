@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.2"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
@@ -10,7 +10,7 @@ androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.5.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.1.5"
-compose-plugin = "1.6.10"
+compose-plugin = "1.7.0"
 junit = "4.13.2"
 kmongoCoroutine = "5.1.0"
 koinComposeVersion = "1.1.0"
@@ -21,7 +21,7 @@ ktor = "2.3.12"
 lifecycleViewmodelCompose = "2.8.0"
 lifecycleViewmodelComposeVersion = "2.8.0"
 logback = "1.5.6"
-uiDesktop = "1.6.8"
+uiDesktop = "1.7.0"
 
 [libraries]
 kmongo-coroutine = { module = "org.litote.kmongo:kmongo-coroutine", version.ref = "kmongoCoroutine" }
