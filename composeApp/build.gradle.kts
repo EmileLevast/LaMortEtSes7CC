@@ -124,9 +124,7 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
-dependencies {
-    implementation(libs.androidx.ui.desktop)
-}
+
 
 compose.desktop {
     application {
@@ -137,5 +135,8 @@ compose.desktop {
             packageName = "org.levast.project"
             packageVersion = "1.0.0"
         }
+    }
+    dependencies {
+        implementation(libs.androidx.ui.desktop)
     }
 }
