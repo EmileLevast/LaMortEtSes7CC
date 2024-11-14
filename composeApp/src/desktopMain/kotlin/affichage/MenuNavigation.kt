@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import configuration.GraphicConstantsFullGrid
 import configuration.IConfiguration
 import org.jetbrains.compose.resources.Font
 import org.koin.compose.koinInject

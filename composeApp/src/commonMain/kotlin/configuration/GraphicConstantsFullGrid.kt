@@ -1,4 +1,4 @@
-package affichage
+package configuration
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color

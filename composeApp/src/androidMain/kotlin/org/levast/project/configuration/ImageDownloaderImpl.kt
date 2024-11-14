@@ -1,18 +1,13 @@
-package configuration
+package org.levast.project.configuration
 
+import android.graphics.BitmapFactory
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.toComposeImageBitmap
-import androidx.compose.ui.res.loadImageBitmap
-import androidx.compose.ui.res.useResource
-import lamortetses7cc.composeapp.generated.resources.Res
-import lamortetses7cc.composeapp.generated.resources.UnknownImage
+import androidx.compose.ui.graphics.asImageBitmap
+import configuration.IConfiguration
 import network.IImageDownloader
-import org.jetbrains.compose.resources.imageResource
-import org.jetbrains.skia.Image
-import java.io.ByteArrayOutputStream
-import java.net.HttpURLConnection
+import java.io.IOException
 import java.net.URL
-import javax.imageio.ImageIO
+
 
 class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
 
@@ -22,17 +17,13 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
 
     private fun loadNetworkImage(link: String, format: String): ImageBitmap {
         val url = URL(link)
-        val connection = url.openConnection() as HttpURLConnection
-        connection.connect()
+        try {
+            return BitmapFactory.decodeStream(url.openConnection().getInputStream()).asImageBitmap()
+        } catch (e: IOException) {
+            println(e)
+            return ImageBitmap(10,10)//une image vide
+        }
 
-        val inputStream = connection.inputStream
-        val bufferedImage = ImageIO.read(inputStream)
-
-        val stream = ByteArrayOutputStream()
-        ImageIO.write(bufferedImage, format, stream)
-        val byteArray = stream.toByteArray()
-
-        return Image.makeFromEncoded(byteArray).toComposeImageBitmap()
     }
 
     override fun downloadBackgroundImage(urlImage: String): ImageBitmap {
@@ -57,6 +48,6 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
         }
     }
 
-    fun getUrlImageWithFileName(fileName: String) = "$endpoint/images/$fileName"
+    private fun getUrlImageWithFileName(fileName: String) = "$endpoint/images/$fileName"
 
 }
