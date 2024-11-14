@@ -82,7 +82,7 @@ kotlin {
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(libs.androidx.ui.desktop)
+//            implementation(libs.androidx.ui.desktop)
         }
     }
 }
@@ -119,11 +119,12 @@ android {
     buildFeatures {
         compose = true
     }
-    dependencies {
-        debugImplementation(compose.uiTooling)
-    }
+
 }
 
+dependencies {
+    debugImplementation(compose.uiTooling)
+}
 
 compose.desktop {
     application {
