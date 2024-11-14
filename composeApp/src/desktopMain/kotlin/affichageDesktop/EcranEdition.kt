@@ -5,6 +5,7 @@ import CHAR_SEP_EQUIPEMENT
 import Equipe
 import IListItem
 import Joueur
+import affichage.buttonDarkStyled
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

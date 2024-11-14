@@ -1,6 +1,6 @@
 import affichageDesktop.LayoutEquipe
 import affichageDesktop.LayoutStatsJoueur
-import affichageDesktop.buttonDarkStyled
+import affichage.buttonDarkStyled
 import affichageDesktop.layoutAdmin
 import affichageDesktop.layoutJoueur
 import affichageDesktop.layoutListItem
@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton

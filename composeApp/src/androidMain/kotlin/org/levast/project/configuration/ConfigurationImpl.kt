@@ -16,7 +16,7 @@ class ConfigurationImpl() : IConfiguration {
 
     private lateinit var properties:AppProperties
 
-    override fun getEndpointServer() = "http://${properties.ipAdressServer}:${properties.portServer}"
+    override fun getEndpointServer() = "http://10.0.2.2:${properties.portServer}"
 
 
     init {
