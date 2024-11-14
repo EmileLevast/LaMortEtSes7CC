@@ -4,6 +4,8 @@ import Equipe
 import IMAGENAME_CARD_BACKGROUND
 import affichage.buttonDarkStyled
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
@@ -13,7 +15,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,7 +53,7 @@ fun EcranChoixEquipe(){
     }
 
     if(selectEquipe == null){
-        Column {
+        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
             LayoutEquipe(equipes) { setSelectEquipe(it) }
         }
@@ -64,9 +69,11 @@ fun LayoutEquipe(
 ){
     LazyColumn {
         items(equipeAfficher){
-            Card {
-                Text(it.nom)
-                Text(it.getMembreEquipe().joinToString("\n"))
+            Card(Modifier.fillMaxWidth().padding(15.dp)) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(it.nom)
+                    Text(it.getMembreEquipe().joinToString("\n"))
+                }
             }
         }
     }
