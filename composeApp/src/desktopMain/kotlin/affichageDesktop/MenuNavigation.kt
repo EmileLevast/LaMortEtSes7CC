@@ -1,4 +1,4 @@
-package affichage
+package affichageDesktop
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column

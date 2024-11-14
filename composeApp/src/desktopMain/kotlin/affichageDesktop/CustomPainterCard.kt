@@ -1,18 +1,21 @@
-package affichage
+package affichageDesktop
 
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.toSize
 import kotlin.math.roundToInt
 
-class CustomPainterIcon constructor(
+class CustomPainterCard constructor(
     private val image: ImageBitmap,
+    private val imageOverlay: ImageBitmap,
     private val srcOffset: IntOffset = IntOffset.Zero,
     private val srcSize: IntSize = IntSize(image.width, image.height),
+    private val overlaySize: IntSize = IntSize(imageOverlay.width, imageOverlay.height)
 ) : Painter() {
 
     private val size: IntSize = validateSize(srcOffset, srcSize)
@@ -23,10 +26,24 @@ class CustomPainterIcon constructor(
             srcOffset,
             srcSize,
             dstSize = IntSize(
-                this@onDraw.size.height.roundToInt(),
+                this@onDraw.size.width.roundToInt(),
                 this@onDraw.size.height.roundToInt()
             )
         )
+
+        // draw the second image with an Overlay blend mode to blend the two together
+        val translate = this@onDraw.size.width/6f
+        translate (translate,translate){
+            drawImage(
+                imageOverlay,
+                srcOffset,
+                overlaySize,
+                dstSize = IntSize(
+                    (2*this@onDraw.size.width/3).roundToInt(),
+                    (2*this@onDraw.size.width/3).roundToInt()
+                )
+            )
+        }
 
     }
 

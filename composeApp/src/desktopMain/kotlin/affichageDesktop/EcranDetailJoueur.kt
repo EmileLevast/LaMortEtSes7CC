@@ -1,4 +1,4 @@
-package affichage
+package affichageDesktop
 
 import Joueur
 import androidx.compose.foundation.BorderStroke

@@ -1,4 +1,4 @@
-package affichage
+package affichageDesktop
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton

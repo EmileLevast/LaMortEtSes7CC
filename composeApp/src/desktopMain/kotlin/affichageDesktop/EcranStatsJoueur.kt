@@ -1,4 +1,4 @@
-package affichage
+package affichageDesktop
 
 import Carac
 import Joueur

@@ -1,4 +1,4 @@
-package affichage
+package affichageDesktop
 
 import ApiableItem
 import CHAR_SEP_EQUIPEMENT

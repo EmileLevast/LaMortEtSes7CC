@@ -1,4 +1,4 @@
-package affichage
+package affichageDesktop
 
 import IListItem
 import androidx.compose.foundation.layout.*
