@@ -2,6 +2,7 @@
 
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.Serializable
+import model.HeadBodyShowable
 
 @Serializable
 class Equipe(
@@ -9,7 +10,7 @@ class Equipe(
     var chaineJoueurSerialisee: String ="",
     override val nomComplet:String = "",
     var chaineDecouvertSerialisee: String ="",
-) : ApiableItem() {
+) : ApiableItem(),HeadBodyShowable {
 
     override val _id = nom.hashCode()
     override var isAttached = false
@@ -54,4 +55,8 @@ class Equipe(
             chaineDecouvertSerialisee
         )
     }
+
+    override fun getHead() = nom
+
+    override fun getBody()= getMembreEquipe().joinToString("\n")
 }

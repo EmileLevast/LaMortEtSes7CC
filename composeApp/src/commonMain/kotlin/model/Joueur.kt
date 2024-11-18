@@ -1,6 +1,7 @@
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import model.HeadBodyShowable
 
 @Serializable
 class Joueur(
@@ -12,7 +13,7 @@ class Joueur(
     var niveau:Int=0,
     override val nomComplet:String = "",
     var chaineEquipementSelectionneSerialisee: String ="",
-) : ApiableItem() {
+) : ApiableItem(), HeadBodyShowable {
 
     override val _id = nom.hashCode()
     override var isAttached = false
@@ -73,4 +74,9 @@ class Joueur(
             chaineEquipementSelectionneSerialisee
         )
     }
+
+    override fun getHead() = nomComplet.ifEmpty { nom }
+
+    override fun getBody() = "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
+            "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)
 }

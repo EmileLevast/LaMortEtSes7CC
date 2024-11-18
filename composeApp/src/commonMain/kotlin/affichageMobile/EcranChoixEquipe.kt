@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import model.HeadBodyShowable
 import network.ApiApp
 import org.koin.compose.koinInject
 
@@ -58,7 +59,7 @@ fun EcranPrincipal(){
     if(selectEquipe == null){
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
-            EcranEquipe(equipes) { setSelectEquipe(it) }
+            LayoutListSelectableItem(equipes) { setSelectEquipe(it) }
         }
     }else{
         EcranAffichageJoueur(selectEquipe, bitmapBackground)
@@ -67,16 +68,16 @@ fun EcranPrincipal(){
 }
 
 @Composable
-fun EcranEquipe(
-    equipeAfficher: List<Equipe>,
-    onSelectEquipe: (Equipe) -> Unit
+fun <T : HeadBodyShowable> LayoutListSelectableItem(
+    elementsAfficher: List<T>,
+    onSelectEquipe: (T) -> Unit
 ){
     LazyColumn {
-        items(equipeAfficher){
+        items(elementsAfficher){
             Card(Modifier.fillMaxWidth().padding(15.dp).clickable { onSelectEquipe(it) }) {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(it.nom, style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onTertiaryContainer)
-                    Text(it.getMembreEquipe().joinToString("\n"), style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center)
+                    Text(it.getHead(), style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onTertiaryContainer)
+                    Text(it.getBody(), style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center)
                 }
             }
         }
