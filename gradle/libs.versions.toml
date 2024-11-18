@@ -11,6 +11,9 @@ androidx-espresso-core = "3.6.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-plugin = "1.7.0"
+datastorePreferences = "1.1.1"
+datastorePreferencesRxjava2 = "1.1.1"
+datastorePreferencesRxjava3 = "1.1.1"
 junit = "4.13.2"
 kmongoCoroutine = "5.1.0"
 koinComposeVersion = "1.1.0"
@@ -25,6 +28,10 @@ uiDesktop = "1.7.0"
 uiTextGoogleFonts = "1.7.5"
 
 [libraries]
+androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastorePreferences" }
+androidx-datastore-preferences-rxjava3 = { module = "androidx.datastore:datastore-preferences-rxjava3", version.ref = "datastorePreferencesRxjava3" }
+androidx-datastore-preferences-rxjava2 = { module = "androidx.datastore:datastore-preferences-rxjava2", version.ref = "datastorePreferencesRxjava2" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

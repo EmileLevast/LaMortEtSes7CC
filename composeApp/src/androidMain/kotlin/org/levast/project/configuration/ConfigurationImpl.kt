@@ -16,7 +16,7 @@ class ConfigurationImpl() : IConfiguration {
 
     private lateinit var properties:AppProperties
 
-    override fun getEndpointServer() = "http://10.0.2.2:${properties.portServer}"
+    override fun getEndpointServer() = "http://${properties.ipAdressServer}:${properties.portServer}"
 
 
     init {
@@ -31,7 +31,7 @@ class ConfigurationImpl() : IConfiguration {
                         File(PROPERTY_FILE_PATH).readText()
                     } catch (e: Exception) {
                         println(e.stackTraceToString())
-                        "localhost"
+                        "10.0.2.2"
                     }
                 )
             }

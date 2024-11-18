@@ -79,10 +79,14 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.lifecycle.viewmodel.compose)
+
+            //shared preferences
+            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.datastore.preferences.core)
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-//            implementation(libs.androidx.ui.desktop)
         }
     }
 }

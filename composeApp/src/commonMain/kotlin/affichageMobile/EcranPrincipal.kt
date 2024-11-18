@@ -65,6 +65,7 @@ fun EcranPrincipal(){
         EcranChoixJoueur(selectEquipe, bitmapBackground)
     }
 
+
 }
 
 @Composable
