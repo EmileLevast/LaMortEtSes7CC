@@ -2,6 +2,7 @@ package com.example.compose
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -10,7 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import org.levast.project.theme.AppTypography
+import androidx.compose.ui.text.font.FontFamily
+import lamortetses7cc.composeapp.generated.resources.Aniron_7BaP
+import lamortetses7cc.composeapp.generated.resources.Anironc_d9DK
+import lamortetses7cc.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.Font
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -269,9 +274,43 @@ fun AppTheme(
       else -> lightScheme
   }
 
+
+    val bodyFontFamily = FontFamily(
+        Font(
+            Res.font.Aniron_7BaP
+        )
+    )
+
+    val displayFontFamily = FontFamily(
+        Font(
+            Res.font.Anironc_d9DK
+        )
+    )
+
+// Default Material 3 typography values
+    val baseline = Typography()
+
+    val appTypography = Typography(
+        displayLarge = baseline.displayLarge.copy(fontFamily = displayFontFamily),
+        displayMedium = baseline.displayMedium.copy(fontFamily = displayFontFamily),
+        displaySmall = baseline.displaySmall.copy(fontFamily = displayFontFamily),
+        headlineLarge = baseline.headlineLarge.copy(fontFamily = displayFontFamily),
+        headlineMedium = baseline.headlineMedium.copy(fontFamily = displayFontFamily),
+        headlineSmall = baseline.headlineSmall.copy(fontFamily = displayFontFamily),
+        titleLarge = baseline.titleLarge.copy(fontFamily = displayFontFamily),
+        titleMedium = baseline.titleMedium.copy(fontFamily = displayFontFamily),
+        titleSmall = baseline.titleSmall.copy(fontFamily = displayFontFamily),
+        bodyLarge = baseline.bodyLarge.copy(fontFamily = bodyFontFamily),
+        bodyMedium = baseline.bodyMedium.copy(fontFamily = bodyFontFamily),
+        bodySmall = baseline.bodySmall.copy(fontFamily = bodyFontFamily),
+        labelLarge = baseline.labelLarge.copy(fontFamily = bodyFontFamily),
+        labelMedium = baseline.labelMedium.copy(fontFamily = bodyFontFamily),
+        labelSmall = baseline.labelSmall.copy(fontFamily = bodyFontFamily),
+    )
+
   MaterialTheme(
     colorScheme = colorScheme,
-    typography = AppTypography,
+    typography = appTypography,
     content = content
   )
 }
