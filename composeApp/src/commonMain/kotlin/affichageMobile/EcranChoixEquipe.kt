@@ -70,11 +70,11 @@ fun EcranPrincipal(){
 @Composable
 fun <T : HeadBodyShowable> LayoutListSelectableItem(
     elementsAfficher: List<T>,
-    onSelectEquipe: (T) -> Unit
+    onSelectElement: (T) -> Unit
 ){
     LazyColumn {
         items(elementsAfficher){
-            Card(Modifier.fillMaxWidth().padding(15.dp).clickable { onSelectEquipe(it) }) {
+            Card(Modifier.fillMaxWidth().padding(15.dp).clickable { onSelectElement(it) }) {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(it.getHead(), style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onTertiaryContainer)
                     Text(it.getBody(), style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center)

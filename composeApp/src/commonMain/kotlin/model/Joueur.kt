@@ -77,6 +77,7 @@ class Joueur(
 
     override fun getHead() = nomComplet.ifEmpty { nom }
 
-    override fun getBody() = "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
+    override fun getBody() = "Niveau : $niveau\n" +
             "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)
+
 }
