@@ -42,11 +42,11 @@ fun EcranPrincipal(){
 
     LaunchedEffect(triggerEquipe) {
         coroutineScope.launch {
-            setEquipes(withContext(Dispatchers.Main) {//dans un thread à part on maj toute l'equipe
+            setEquipes(withContext(Dispatchers.Default) {//dans un thread à part on maj toute l'equipe
                 apiApp.searchEquipe(".*") ?: listOf()
             })
 
-            updateBitmapBackground(withContext(Dispatchers.Main) {//dans un thread à part on recherche l'image background
+            updateBitmapBackground(withContext(Dispatchers.Default) {//dans un thread à part on recherche l'image background
                 apiApp.downloadBackgroundImage(
                     apiApp.getUrlImageWithFileName(
                         IMAGENAME_CARD_BACKGROUND
@@ -62,7 +62,7 @@ fun EcranPrincipal(){
             LayoutListSelectableItem(equipes) { setSelectEquipe(it) }
         }
     }else{
-        EcranAffichageJoueur(selectEquipe, bitmapBackground)
+        EcranChoixJoueur(selectEquipe, bitmapBackground)
     }
 
 }

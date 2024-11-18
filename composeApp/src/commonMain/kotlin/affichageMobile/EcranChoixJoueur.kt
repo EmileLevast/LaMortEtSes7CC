@@ -15,15 +15,15 @@ import network.ApiApp
 import org.koin.compose.koinInject
 
 @Composable
-fun EcranAffichageJoueur(selectEquipe: Equipe, bitmapBackground: ImageBitmap?) {
+fun EcranChoixJoueur(selectedEquipe: Equipe, bitmapBackground: ImageBitmap?) {
     val apiApp = koinInject<ApiApp>()
     val coroutineScope = rememberCoroutineScope()
     val (joueurs, setJoueurs) = remember { mutableStateOf<List<Joueur>>(emptyList()) }
 
-    LaunchedEffect(true) {
+    LaunchedEffect(selectedEquipe) {
         coroutineScope.launch {
             setJoueurs(withContext(Dispatchers.Unconfined) {//dans un thread à part on maj toute l'equipe
-                apiApp.searchAllJoueur(selectEquipe.getMembreEquipe()) ?: listOf()
+                apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe()) ?: listOf()
             })
         }
     }
