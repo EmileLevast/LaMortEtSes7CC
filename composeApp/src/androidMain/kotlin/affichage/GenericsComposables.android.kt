@@ -3,14 +3,16 @@ package affichage
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -27,8 +29,6 @@ actual fun LayoutDrawerMenu(content: @Composable() () -> Unit) {
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                Text("Drawer title", modifier = Modifier.padding(16.dp))
-                HorizontalDivider()
                 NavigationDrawerItem(
                     label = { Text(text = "Drawer Item") },
                     selected = false,
@@ -39,9 +39,8 @@ actual fun LayoutDrawerMenu(content: @Composable() () -> Unit) {
     ) {
         Scaffold(
             floatingActionButton = {
-                ExtendedFloatingActionButton(
-                    text = { Text("Show drawer") },
-                    icon = { Icon(true , {Icons.Filled.Add}) },
+                FilledIconButton(
+                    content = { Icon(Icons.Filled.Menu, contentDescription = "Menu") },
                     onClick = {
                         scope.launch {
                             drawerState.apply {
@@ -52,7 +51,7 @@ actual fun LayoutDrawerMenu(content: @Composable() () -> Unit) {
                 )
             }
         ) { contentPadding ->
-            // Screen content
+            content()
         }
     }
 }
