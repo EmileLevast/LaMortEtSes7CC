@@ -2,6 +2,7 @@ package affichageMobile
 
 import Equipe
 import IMAGENAME_CARD_BACKGROUND
+import affichage.LayoutDrawerMenu
 import affichage.buttonDarkStyled
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -56,13 +57,15 @@ fun EcranPrincipal(){
         }
     }
 
-    if(selectEquipe == null){
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
-            LayoutListSelectableItem(equipes) { setSelectEquipe(it) }
+    LayoutDrawerMenu {
+        if(selectEquipe == null){
+            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
+                LayoutListSelectableItem(equipes) { setSelectEquipe(it) }
+            }
+        }else{
+            EcranChoixJoueur(selectEquipe, bitmapBackground)
         }
-    }else{
-        EcranChoixJoueur(selectEquipe, bitmapBackground)
     }
 
 
