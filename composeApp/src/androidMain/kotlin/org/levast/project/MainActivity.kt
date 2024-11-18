@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.compose.AppTheme
 import org.koin.compose.KoinContext
 import org.koin.core.context.startKoin
 
@@ -28,7 +29,8 @@ fun AppAndroid(){
     }
 
     KoinContext {
-        AppMobile()
+        AppTheme {
+            AppMobile()
+        }
     }
-
 }
