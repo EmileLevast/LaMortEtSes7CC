@@ -3,6 +3,7 @@ package affichageMobile
 import Equipe
 import IMAGENAME_CARD_BACKGROUND
 import affichage.buttonDarkStyled
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,7 +29,7 @@ import network.ApiApp
 import org.koin.compose.koinInject
 
 @Composable
-fun EcranChoixEquipe(){
+fun EcranPrincipal(){
     val apiApp = koinInject<ApiApp>()
     val coroutineScope = rememberCoroutineScope()
     val (equipes, setEquipes) = remember { mutableStateOf<List<Equipe>>(emptyList()) }
@@ -57,21 +58,22 @@ fun EcranChoixEquipe(){
     if(selectEquipe == null){
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
-            LayoutEquipe(equipes) { setSelectEquipe(it) }
+            EcranEquipe(equipes) { setSelectEquipe(it) }
         }
-
+    }else{
+        EcranAffichageJoueur(selectEquipe, bitmapBackground)
     }
 
 }
 
 @Composable
-fun LayoutEquipe(
+fun EcranEquipe(
     equipeAfficher: List<Equipe>,
     onSelectEquipe: (Equipe) -> Unit
 ){
     LazyColumn {
         items(equipeAfficher){
-            Card(Modifier.fillMaxWidth().padding(15.dp)) {
+            Card(Modifier.fillMaxWidth().padding(15.dp).clickable { onSelectEquipe(it) }) {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(it.nom, style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onTertiaryContainer)
                     Text(it.getMembreEquipe().joinToString("\n"), style = MaterialTheme.typography.bodyMedium, textAlign = TextAlign.Center)
