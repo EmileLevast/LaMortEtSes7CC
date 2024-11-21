@@ -49,6 +49,6 @@ fun EcranChoixJoueur(
     if (selectedJoueur == null) {
         LayoutListSelectableItem(joueurs,onSelectedJoueurChange)
     }else{//Sinon on montre l'écran du joueur
-        EcranJoueur(selectedJoueur)//On montre l'écran du joueur
+        EcranJoueur(selectedJoueur, bitmapBackground)//On montre l'écran du joueur
     }
 }
