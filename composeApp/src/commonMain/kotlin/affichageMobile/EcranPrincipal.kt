@@ -10,9 +10,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -57,7 +63,7 @@ fun EcranPrincipal(){
         }
     }
 
-    LayoutDrawerMenu {
+    LayoutDrawerMenu({
         if(selectEquipe == null){
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 buttonDarkStyled("Rafraîchissez vous") { setTriggerEquipe(triggerEquipe.not()) }
@@ -65,6 +71,11 @@ fun EcranPrincipal(){
             }
         }else{
             EcranChoixJoueur(selectEquipe, bitmapBackground)
+        }
+    }){
+        TextButton({}){
+            Icon(Icons.Default.Warning, contentDescription = "Adresse Ip",)
+            Text("Maintenance")
         }
     }
 

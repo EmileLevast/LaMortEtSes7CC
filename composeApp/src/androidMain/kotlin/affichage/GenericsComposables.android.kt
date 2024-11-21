@@ -29,12 +29,9 @@ actual fun LayoutDrawerMenu(content: @Composable() () -> Unit,contentOption: @Co
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                NavigationDrawerItem(
-                    label = { Text(text = "Drawer Item") },
-                    selected = false,
-                    onClick = { /*TODO*/ }
-                )
+                contentOption()
             }
+
         },
     ) {
         Scaffold(
