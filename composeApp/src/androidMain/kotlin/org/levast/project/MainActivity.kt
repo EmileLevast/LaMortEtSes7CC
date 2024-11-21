@@ -41,10 +41,6 @@ fun AppAndroid(){
 
     KoinContext {
         AppTheme {
-            //Init le contexte android pour les preferences
-            val config = koinInject<IConfiguration>()
-
-            (config as? ConfigurationImpl)?.setupContextForPreferences(LocalContext.current)
 
             //Redirige vers le code de commonMain
             AppMobile()
