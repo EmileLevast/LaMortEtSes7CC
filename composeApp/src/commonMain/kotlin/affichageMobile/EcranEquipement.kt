@@ -78,15 +78,18 @@ fun EcranEquipement(
             val isItemPinned = listPinnedItems?.contains(equipement.nom)
 
             Card(
-                modifier = Modifier.fillMaxWidth().clickable { showBigElement(equipement) },
+                modifier = Modifier.fillMaxWidth().clickable { showBigElement(equipement) }.padding(5.dp),
                 border = if(isItemPinned == true) BorderStroke(4.dp, MaterialTheme.colorScheme.onSecondaryContainer) else null
             ) {
 
-                Box {
+                Box(Modifier.padding(15.dp)) {
 
                     //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
                     if(!isDetailedModeOn){
-                        drawImageWithNetwork(equipement)
+                        Column(Modifier.fillMaxWidth(),
+                            horizontalAlignment = Alignment.CenterHorizontally) {
+                            drawImageWithNetwork(equipement)
+                        }
                     }
 
                     //Afficher le bouton pin s'il y'a une liste d'items sélectionnés
@@ -102,7 +105,7 @@ fun EcranEquipement(
                             )
                     }else if (listPinnedItems!=null){//pour s'assurer qu'on est pas en mode "decouvertes" et donc qu'on ne veut pas afficher les mains
                         Image(
-                            modifier = Modifier.fillMaxWidth(0.5f).align(Alignment.BottomEnd).clickable{
+                            modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd).clickable{
                                 togglePinItem(equipement.nom,true)
                             },
                             painter = painterResource(Res.drawable.mainOuverte),
