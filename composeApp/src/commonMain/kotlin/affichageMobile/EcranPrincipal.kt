@@ -109,6 +109,7 @@ fun EcranPrincipal() {
             nameSavedUser = ""
             setTriggerEquipe(triggerEquipe.not())
             setSelectEquipe(null)
+            selectedJoueur= null
         }) {
             Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
             Text("Reset sélection")

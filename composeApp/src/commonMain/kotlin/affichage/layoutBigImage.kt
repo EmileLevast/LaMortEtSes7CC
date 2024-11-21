@@ -42,27 +42,37 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
         ){
-        Card(Modifier.padding(10.dp)){
-            Column(
-                modifier = Modifier.clickable { onClick() },
+        Card(){
+            LazyColumn (
+                modifier = Modifier.clickable { onClick() }.background(MaterialTheme.colorScheme.tertiaryContainer).padding(10.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                drawImageWithNetwork(equipement)
+                item {
+                    drawImageWithNetwork(equipement)
+                }
 
-                Text(
-                    text = equipement.nomComplet.ifBlank { equipement.nom },
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.titleMedium,
-                )
+                item{
+                    Text(
+                        text = equipement.nomComplet.ifBlank { equipement.nom },
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
 
                 if(isShowingStats){
-                    Text(
-                        modifier = Modifier.padding(graphicsConsts.statsBigImagePadding),
-                        text = equipement.getStatsAsStrings(),
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
+                    item{
+                        Text(
+                            modifier = Modifier.padding(graphicsConsts.statsBigImagePadding),
+                            text = equipement.getStatsAsStrings(),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+
+                        )
+                    }
+
                 }
             }
         }
