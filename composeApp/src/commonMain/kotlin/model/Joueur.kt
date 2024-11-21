@@ -13,7 +13,7 @@ class Joueur(
     var niveau:Int=0,
     override val nomComplet:String = "",
     var chaineEquipementSelectionneSerialisee: String ="",
-) : ApiableItem(), HeadBodyShowable {
+) : ApiableItem() {
 
     override val _id = nom.hashCode()
     override var isAttached = false
@@ -74,8 +74,6 @@ class Joueur(
             chaineEquipementSelectionneSerialisee
         )
     }
-
-    override fun getHead() = nomComplet.ifEmpty { nom }
 
     override fun getBody() = "Niveau : $niveau\n" +
             "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)

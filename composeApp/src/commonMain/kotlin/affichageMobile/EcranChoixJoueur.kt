@@ -30,11 +30,9 @@ fun EcranChoixJoueur(
 
     LaunchedEffect(selectedEquipe) {
         coroutineScope.launch {
-            setJoueurs(withContext(Dispatchers.Unconfined) {//dans un thread à part on maj toute l'equipe
+            setJoueurs(withContext(Dispatchers.Default) {//dans un thread à part on maj toute l'equipe
                 apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe()) ?: listOf()
             })
-
-
         }
     }
 
@@ -51,6 +49,6 @@ fun EcranChoixJoueur(
     if (selectedJoueur == null) {
         LayoutListSelectableItem(joueurs,onSelectedJoueurChange)
     }else{//Sinon on montre l'écran du joueur
-        EcranJoueur()//On montre l'écran du joueur
+        EcranJoueur(selectedJoueur)//On montre l'écran du joueur
     }
 }

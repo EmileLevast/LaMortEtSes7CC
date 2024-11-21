@@ -10,7 +10,7 @@ class Equipe(
     var chaineJoueurSerialisee: String ="",
     override val nomComplet:String = "",
     var chaineDecouvertSerialisee: String ="",
-) : ApiableItem(),HeadBodyShowable {
+) : ApiableItem() {
 
     override val _id = nom.hashCode()
     override var isAttached = false
@@ -56,7 +56,6 @@ class Equipe(
         )
     }
 
-    override fun getHead() = nom
 
     override fun getBody()= getMembreEquipe().joinToString("\n")
 }

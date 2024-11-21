@@ -1,6 +1,7 @@
 import androidx.compose.ui.graphics.ImageBitmap
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import model.HeadBodyShowable
 import network.ApiApp
 
 @Serializable
@@ -25,6 +26,8 @@ sealed class ApiableItem() : IListItem {
 
     @Transient
     val downloadForApi = "download$nameForApi"
+
+
 
     fun decomposeCSV(sequenceLinesFile: Sequence<String>): List<ApiableItem> {
         val listApiableItem = mutableListOf<ApiableItem>()

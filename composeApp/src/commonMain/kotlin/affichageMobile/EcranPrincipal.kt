@@ -81,10 +81,10 @@ fun EcranPrincipal() {
 
     LaunchedEffect(equipes){
         coroutineScope.launch(Dispatchers.Default) {
-            if (config.getUserName().isNotBlank()) {//S'il y'a un joueur d'enregistré
+            if (nameSavedUser?.isNotBlank() == true) {//S'il y'a un joueur d'enregistré
                 //Alors on set automatiquement l'équipe
                 setSelectEquipe(equipes.find {
-                    it.getMembreEquipe().contains(config.getUserName())
+                    it.getMembreEquipe().contains(nameSavedUser)
                 })
             }
         }
@@ -100,11 +100,15 @@ fun EcranPrincipal() {
             EcranChoixJoueur(selectEquipe, selectedJoueur, {
                 selectedJoueur = it
                 config.setUserName(it.nom)
+                nameSavedUser = it.nom
             }, bitmapBackground)
         }
     }) {
         TextButton({
             config.setUserName("")
+            nameSavedUser = ""
+            setTriggerEquipe(triggerEquipe.not())
+            setSelectEquipe(null)
         }) {
             Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
             Text("Reset sélection")
