@@ -3,6 +3,7 @@ package affichage
 import ApiableItem
 import IListItem
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
