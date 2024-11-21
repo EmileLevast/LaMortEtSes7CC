@@ -2,6 +2,8 @@ package affichageDesktop
 
 import IListItem
 import Special
+import affichage.CustomPainterCard
+import affichage.layoutBigImage
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

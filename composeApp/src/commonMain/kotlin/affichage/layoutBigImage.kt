@@ -1,4 +1,4 @@
-package affichageDesktop
+package affichage
 
 import IListItem
 import androidx.compose.foundation.Image
@@ -12,6 +12,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -59,7 +61,7 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
 
                 text = equipement.nomComplet.ifBlank { equipement.nom },
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h2,
+                style = MaterialTheme.typography.titleMedium,
                 fontFamily = FontFamily(Font(graphicsConsts.fontCard)),
                 color = Color.Black
             )
@@ -68,7 +70,7 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
                 Text(
                     modifier = Modifier.padding(graphicsConsts.statsBigImagePadding),
                     text = equipement.getStatsAsStrings(),
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.bodyMedium,
                     overflow = TextOverflow.Ellipsis,
                     color = Color.Black
                 )
