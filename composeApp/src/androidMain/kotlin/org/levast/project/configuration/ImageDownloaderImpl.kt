@@ -20,7 +20,7 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
         try {
             return BitmapFactory.decodeStream(url.openConnection().getInputStream()).asImageBitmap()
         } catch (e: IOException) {
-            println(e)
+            println(e.stackTraceToString())
             return ImageBitmap(10,10)//une image vide
         }
 
@@ -44,7 +44,8 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
         return try {
             downloadImageWithUrl(getUrlImageWithFileName(imageNameWithExtension))
         } catch (e: Exception) {
-            null
+            println(e.stackTraceToString())
+            return null
         }
     }
 
