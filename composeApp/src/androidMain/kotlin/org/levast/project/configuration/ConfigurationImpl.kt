@@ -1,39 +1,46 @@
 package configuration
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import android.content.Context
+import androidx.compose.ui.platform.LocalContext
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
-import lamortetses7cc.composeapp.generated.resources.Res
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import java.io.File
+import org.levast.project.configuration.KEY_IP_ADDRESS
 
+// At the top level of your kotlin file:
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class ConfigurationImpl() : IConfiguration {
 
-    private val PROPERTY_FILE_PATH ="properties"
+
 
     private lateinit var properties:AppProperties
+    private var context:Context?=null
 
     override fun getEndpointServer() = "http://${properties.ipAdressServer}:${properties.portServer}"
 
 
     init {
-        loadFileProperties()
+        loadAppProperties()
     }
 
-    private fun loadFileProperties(){
+    fun setupContextForPreferences(context: Context){
+        this.context=context
+    }
+
+    private fun loadAppProperties(){
         runBlocking {
             coroutineScope {
-                properties = AppProperties(
-                    try {
-                        File(PROPERTY_FILE_PATH).readText()
-                    } catch (e: Exception) {
-                        println(e.stackTraceToString())
-                        "10.0.2.2"
-                    }
-                )
+                val exampleCounterFlow: Flow<String> = context?.dataStore?.data?.map { preferences ->
+                        preferences[KEY_IP_ADDRESS] ?: "10.0.2.2"
+                    } ?: flowOf("10.0.2.2")
+
+                properties.ipAdressServer = exampleCounterFlow
             }
         }
     }
@@ -42,6 +49,5 @@ class ConfigurationImpl() : IConfiguration {
 
     override fun setIpAdressTargetServer(adresseIp: String) {
         properties.ipAdressServer=adresseIp
-        File(PROPERTY_FILE_PATH).writeText(adresseIp)
     }
 }

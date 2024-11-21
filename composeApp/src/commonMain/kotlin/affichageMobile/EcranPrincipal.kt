@@ -2,6 +2,7 @@ package affichageMobile
 
 import Equipe
 import IMAGENAME_CARD_BACKGROUND
+import affichage.AlertDialogChangeIp
 import affichage.LayoutDrawerMenu
 import affichage.buttonDarkStyled
 import androidx.compose.foundation.clickable
@@ -21,14 +22,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import configuration.GraphicConstantsFullGrid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -45,6 +49,11 @@ fun EcranPrincipal(){
     val (selectEquipe, setSelectEquipe) = remember { mutableStateOf<Equipe?>(null) }
 
     val (bitmapBackground, updateBitmapBackground) = remember { mutableStateOf<ImageBitmap?>(null) }
+
+
+    //MENU
+    var openChangeIpDialog by remember { mutableStateOf(false) }
+    val onCloseChangeIpDialog:()->Unit = { openChangeIpDialog = false}
 
 
     LaunchedEffect(triggerEquipe) {
@@ -73,10 +82,16 @@ fun EcranPrincipal(){
             EcranChoixJoueur(selectEquipe, bitmapBackground)
         }
     }){
-        TextButton({}){
+        TextButton({
+            openChangeIpDialog =true
+        }){
             Icon(Icons.Default.Warning, contentDescription = "Adresse Ip",)
             Text("Maintenance")
         }
+    }
+
+    if(openChangeIpDialog){
+        AlertDialogChangeIp(onCloseChangeIpDialog)
     }
 
 

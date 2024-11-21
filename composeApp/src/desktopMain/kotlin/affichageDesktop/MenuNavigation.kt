@@ -1,5 +1,6 @@
 package affichageDesktop
 
+import affichage.AlertDialogChangeIp
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -59,50 +60,6 @@ fun layoutMenuConfiguration(
     if(openChangeIpDialog){
         AlertDialogChangeIp(onCloseChangeIpDialog)
     }
-}
-
-@Composable
-fun AlertDialogChangeIp(
-    onDismissRequest: ()->Unit
-) {
-    val config = koinInject<IConfiguration>()
-
-    var ipAdressInput by remember { mutableStateOf(config.getIpAdressTargetServer()) }
-
-    AlertDialog(
-        title = {
-            Text(text = "ChangeIp")
-        },
-        text = {
-            TextField(
-                value = ipAdressInput,
-                onValueChange = { ipAdressInput = it },
-                label = { Text("ip") }
-            )
-        },
-        onDismissRequest = {
-            onDismissRequest()
-        },
-        confirmButton = {
-            TextButton(
-                onClick = {
-                    config.setIpAdressTargetServer(ipAdressInput)
-                    onDismissRequest()
-                }
-            ) {
-                Text("Confirmer")
-            }
-        },
-        dismissButton = {
-            TextButton(
-                onClick = {
-                    onDismissRequest()
-                }
-            ) {
-                Text("Annuler")
-            }
-        }
-    )
 }
 
 @Composable
