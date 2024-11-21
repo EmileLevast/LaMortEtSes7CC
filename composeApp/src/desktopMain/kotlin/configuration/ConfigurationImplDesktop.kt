@@ -39,4 +39,14 @@ class ConfigurationImplDesktop() : IConfiguration {
         properties.ipAdressServer=adresseIp
         File(PROPERTY_FILE_PATH).writeText(adresseIp)
     }
+
+    /*
+    Sur Desktop y'a pas d'utilisateur associé à l'application donc on laisse vide ces fonctions
+     */
+    override fun setUserName(nomUser: String) {
+    }
+
+    override fun getUserName(): String {
+        return "NO CONTEXT USER"
+    }
 }

@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.levast.project.configuration.KEY_IP_ADDRESS
+import org.levast.project.configuration.KEY_USER_NAME
 
 // At the top level of your kotlin file:
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -37,7 +38,12 @@ class ConfigurationImpl() : IConfiguration {
             context?.dataStore?.data?.map { preferences ->
                 preferences[KEY_IP_ADDRESS] ?: "10.0.2.2"
             }?.first()?:"10.0.2.2"
-        })
+        },
+            runBlocking {
+                context?.dataStore?.data?.map { preferences ->
+                    preferences[KEY_USER_NAME] ?: "unkown"
+                }?.first()?:"unkown"
+            })
     }
 
     override fun getIpAdressTargetServer() =  properties.ipAdressServer
@@ -50,7 +56,18 @@ class ConfigurationImpl() : IConfiguration {
                 settings[KEY_IP_ADDRESS] = adresseIp
             }
         }
-
-
     }
+
+    override fun setUserName(nomUser: String) {
+        properties.userName=nomUser
+
+        runBlocking {
+            context?.dataStore?.edit { settings ->
+                settings[KEY_IP_ADDRESS] = nomUser
+            }
+        }
+    }
+
+    override fun getUserName() = properties.userName
+
 }
