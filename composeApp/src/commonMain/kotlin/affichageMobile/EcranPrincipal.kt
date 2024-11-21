@@ -61,14 +61,12 @@ fun EcranPrincipal() {
     val onCloseChangeIpDialog: () -> Unit = { openChangeIpDialog = false }
 
     LaunchedEffect(triggerEquipe) {
-        coroutineScope.launch {
-            setEquipes(withContext(Dispatchers.Default) {//dans un thread à part on maj toute l'equipe
-                apiApp.searchEquipe(".*") ?: listOf()
-            })
 
-            if(config.getUserName()!=null){//S'il y'a un joueur d'enregistré
-                //Alors on set automatiquement l'équipe
-                setSelectEquipe(equipes.find {it.getMembreEquipe().contains(config.getUserName())})
+        coroutineScope.launch {
+            withContext(Dispatchers.Default) {
+                    setEquipes(//dans un thread à part on maj toute l'equipe
+                            apiApp.searchEquipe(".*") ?: listOf()
+                    )
             }
 
             updateBitmapBackground(withContext(Dispatchers.Default) {//dans un thread à part on recherche l'image background
@@ -78,6 +76,17 @@ fun EcranPrincipal() {
                     )
                 )
             })
+        }
+    }
+
+    LaunchedEffect(equipes){
+        coroutineScope.launch(Dispatchers.Default) {
+            if (config.getUserName().isNotBlank()) {//S'il y'a un joueur d'enregistré
+                //Alors on set automatiquement l'équipe
+                setSelectEquipe(equipes.find {
+                    it.getMembreEquipe().contains(config.getUserName())
+                })
+            }
         }
     }
 
@@ -95,7 +104,7 @@ fun EcranPrincipal() {
         }
     }) {
         TextButton({
-            config.setUserName(null)
+            config.setUserName("")
         }) {
             Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
             Text("Reset sélection")

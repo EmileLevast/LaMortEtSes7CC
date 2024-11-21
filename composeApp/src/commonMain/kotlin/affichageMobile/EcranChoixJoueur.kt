@@ -2,14 +2,11 @@ package affichageMobile
 
 import Equipe
 import Joueur
-import affichage.LayoutDrawerMenu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.ImageBitmap
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +34,13 @@ fun EcranChoixJoueur(
                 apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe()) ?: listOf()
             })
 
-            if(config.getUserName()!=null){//S'il y'a un joueur d'enregistré
+
+        }
+    }
+
+    LaunchedEffect(joueurs){
+        coroutineScope.launch(Dispatchers.Default) {
+            if(config.getUserName().isNotBlank()){//S'il y'a un joueur d'enregistré
                 //Alors on set automatiquement le joueur Sélectionné
                 joueurs.find {it.nom == config.getUserName()}?.let { onSelectedJoueurChange(it) }
             }

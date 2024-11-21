@@ -36,8 +36,8 @@ class ConfigurationImpl() : IConfiguration {
         },
             runBlocking {
                 context?.dataStore?.data?.map { preferences ->
-                    preferences[KEY_USER_NAME]
-                }?.first()
+                    preferences[KEY_USER_NAME] ?: ""
+                }?.first() ?: ""
             })
     }
 
@@ -53,18 +53,16 @@ class ConfigurationImpl() : IConfiguration {
         }
     }
 
-    override fun setUserName(nomUser: String?) {
+    override fun setUserName(nomUser: String) {
         properties.userName=nomUser
 
         runBlocking {
             context?.dataStore?.edit { settings ->
-                if(nomUser!=null){
-                    settings[KEY_USER_NAME] = nomUser
-                }
+                settings[KEY_USER_NAME] = nomUser
             }
         }
     }
 
-    override fun getUserName(): String? = properties.userName
+    override fun getUserName(): String = properties.userName
 
 }

@@ -46,5 +46,5 @@ class ConfigurationImplDesktop() : IConfiguration {
     override fun setUserName(nomUser: String?) {
     }
 
-    override fun getUserName() = null
+    override fun getUserName(): String = null
 }
