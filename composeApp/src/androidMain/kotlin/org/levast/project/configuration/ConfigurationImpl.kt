@@ -59,7 +59,7 @@ class ConfigurationImpl() : IConfiguration {
         runBlocking {
             context?.dataStore?.edit { settings ->
                 if(nomUser!=null){
-                    settings[KEY_IP_ADDRESS] = nomUser
+                    settings[KEY_USER_NAME] = nomUser
                 }
             }
         }
