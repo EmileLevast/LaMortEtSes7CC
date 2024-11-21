@@ -67,6 +67,7 @@ fun EcranEquipement(
     togglePinItem: (String, Boolean) -> Unit = { i: String, b: Boolean -> }
 ) {
 
+    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
 
     LazyColumn(
@@ -85,15 +86,7 @@ fun EcranEquipement(
 
                     //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
                     if(!isDetailedModeOn){
-                        if (imageBackground != null) {
-                            drawImageWithNetwork(equipement)
-                        }
-                        else {
-                            Image(
-                                painter = painterResource(Res.drawable.UnknownImage),
-                                contentDescription = null,
-                            )
-                        }
+                        drawImageWithNetwork(equipement)
                     }
 
                     //Afficher le bouton pin s'il y'a une liste d'items sélectionnés
@@ -140,6 +133,7 @@ fun EcranEquipement(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.titleLarge,
+                                color = if((equipement as? Special)?.itemType == SpecialItemType.TECHNIQUE)graphicsConsts.colorStuffOn else MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         }
 

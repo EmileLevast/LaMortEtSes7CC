@@ -21,7 +21,7 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
             return BitmapFactory.decodeStream(url.openConnection().getInputStream()).asImageBitmap()
         } catch (e: IOException) {
             println(e.stackTraceToString())
-            return ImageBitmap(10,10)//une image vide
+            return imageBackground!!
         }
 
     }
