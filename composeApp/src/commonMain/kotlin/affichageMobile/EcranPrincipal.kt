@@ -13,9 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -33,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import configuration.GraphicConstantsFullGrid
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,11 +51,9 @@ fun EcranPrincipal() {
 
     val (bitmapBackground, updateBitmapBackground) = remember { mutableStateOf<ImageBitmap?>(null) }
 
-
     //Variables de sélection du Joueur actuel
     var selectedJoueur: Joueur? by remember { mutableStateOf(null) }
     var nameSavedUser: String? by remember { mutableStateOf(config.getUserName()) }
-
 
     //MENU
     var openChangeIpDialog by remember { mutableStateOf(false) }
@@ -69,6 +64,11 @@ fun EcranPrincipal() {
             setEquipes(withContext(Dispatchers.Default) {//dans un thread à part on maj toute l'equipe
                 apiApp.searchEquipe(".*") ?: listOf()
             })
+
+            if(config.getUserName()!=null){//S'il y'a un joueur d'enregistré
+                //Alors on set automatiquement l'équipe
+                setSelectEquipe(equipes.find {it.getMembreEquipe().contains(config.getUserName())})
+            }
 
             updateBitmapBackground(withContext(Dispatchers.Default) {//dans un thread à part on recherche l'image background
                 apiApp.downloadBackgroundImage(

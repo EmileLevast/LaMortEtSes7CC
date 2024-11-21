@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.ImageBitmap
+import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,6 +26,8 @@ fun EcranChoixJoueur(
     bitmapBackground: ImageBitmap?
 ) {
     val apiApp = koinInject<ApiApp>()
+    val config = koinInject<IConfiguration>()
+
     val coroutineScope = rememberCoroutineScope()
     val (joueurs, setJoueurs) = remember { mutableStateOf<List<Joueur>>(emptyList()) }
 
@@ -33,6 +36,11 @@ fun EcranChoixJoueur(
             setJoueurs(withContext(Dispatchers.Unconfined) {//dans un thread à part on maj toute l'equipe
                 apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe()) ?: listOf()
             })
+
+            if(config.getUserName()!=null){//S'il y'a un joueur d'enregistré
+                //Alors on set automatiquement le joueur Sélectionné
+                joueurs.find {it.nom == config.getUserName()}?.let { onSelectedJoueurChange(it) }
+            }
         }
     }
 

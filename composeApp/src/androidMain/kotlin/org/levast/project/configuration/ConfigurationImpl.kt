@@ -1,17 +1,12 @@
 package configuration
 
 import android.content.Context
-import androidx.compose.ui.platform.LocalContext
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.levast.project.configuration.KEY_IP_ADDRESS
 import org.levast.project.configuration.KEY_USER_NAME
@@ -41,8 +36,8 @@ class ConfigurationImpl() : IConfiguration {
         },
             runBlocking {
                 context?.dataStore?.data?.map { preferences ->
-                    preferences[KEY_USER_NAME] ?: "unkown"
-                }?.first()?:"unkown"
+                    preferences[KEY_USER_NAME]
+                }?.first()
             })
     }
 
@@ -68,6 +63,6 @@ class ConfigurationImpl() : IConfiguration {
         }
     }
 
-    override fun getUserName() = properties.userName
+    override fun getUserName(): String? = properties.userName
 
 }

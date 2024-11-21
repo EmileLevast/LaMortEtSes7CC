@@ -5,5 +5,5 @@ interface IConfiguration {
     fun setIpAdressTargetServer(adresseIp:String):Unit
     fun getIpAdressTargetServer():String
     fun setUserName(nomUser:String)
-    fun getUserName():String
+    fun getUserName():String?
 }

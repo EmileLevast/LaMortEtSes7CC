@@ -4,4 +4,4 @@ import SERVER_PORT
 import kotlinx.serialization.Serializable
 
 @Serializable
-class AppProperties(var ipAdressServer:String="", var userName:String = "unkown", val portServer: Int = SERVER_PORT)
+class AppProperties(var ipAdressServer:String="", var userName:String? = "unkown", val portServer: Int = SERVER_PORT)

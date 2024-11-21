@@ -44,7 +44,6 @@ fun layoutJoueur(
     val coroutineScope = rememberCoroutineScope()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
-
     Row(Modifier.fillMaxWidth()){
         Card(
             modifier = Modifier.clickable {
