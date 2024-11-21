@@ -43,7 +43,7 @@ class ConfigurationImplDesktop() : IConfiguration {
     /*
     Sur Desktop y'a pas d'utilisateur associé à l'application donc on laisse vide ces fonctions
      */
-    override fun setUserName(nomUser: String) {
+    override fun setUserName(nomUser: String?) {
     }
 
     override fun getUserName() = null

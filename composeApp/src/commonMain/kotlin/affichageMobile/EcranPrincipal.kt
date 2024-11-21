@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -93,6 +94,12 @@ fun EcranPrincipal() {
             }, bitmapBackground)
         }
     }) {
+        TextButton({
+            config.setUserName(null)
+        }) {
+            Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
+            Text("Reset sélection")
+        }
         TextButton({
             openChangeIpDialog = true
         }) {

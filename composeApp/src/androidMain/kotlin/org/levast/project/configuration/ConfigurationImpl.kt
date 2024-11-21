@@ -53,12 +53,14 @@ class ConfigurationImpl() : IConfiguration {
         }
     }
 
-    override fun setUserName(nomUser: String) {
+    override fun setUserName(nomUser: String?) {
         properties.userName=nomUser
 
         runBlocking {
             context?.dataStore?.edit { settings ->
-                settings[KEY_IP_ADDRESS] = nomUser
+                if(nomUser!=null){
+                    settings[KEY_IP_ADDRESS] = nomUser
+                }
             }
         }
     }
