@@ -67,10 +67,6 @@ fun EcranEquipement(
     togglePinItem: (String, Boolean) -> Unit = { i: String, b: Boolean -> }
 ) {
 
-    val apiApp = koinInject<ApiApp>()
-    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
-    val scope = rememberCoroutineScope()
-
 
 
     LazyColumn(

@@ -32,19 +32,12 @@ import org.koin.compose.koinInject
 
 @Composable
 fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: Boolean) {
-    val apiApp = koinInject<ApiApp>()
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
     val scrollState = rememberScrollState()
     val coroutineScope = rememberCoroutineScope()
 
-    val imageToShow = equipement.getImage(apiApp)?: imageResource(Res.drawable.UnknownImage)
-    Row(Modifier.fillMaxSize()) {
-        Image(
-            modifier = Modifier.fillMaxHeight().clickable(onClick = onClick),
-            contentScale = ContentScale.Fit,
-            bitmap = imageToShow ,
-            contentDescription = null,
-        )
+    Row(Modifier.fillMaxSize().clickable { onClick() }) {
+        drawImageWithNetwork(equipement)
 
         Column(modifier = Modifier.weight(1f).draggable(
             orientation = Orientation.Vertical,
