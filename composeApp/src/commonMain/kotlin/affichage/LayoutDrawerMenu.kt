@@ -3,4 +3,7 @@ package affichage
 import androidx.compose.runtime.Composable
 
 @Composable
-expect fun LayoutDrawerMenu(content: @Composable() () -> Unit)
+expect fun LayoutDrawerMenu(
+    content: @Composable() () -> Unit,
+    contentOption: @Composable() () -> Unit
+)

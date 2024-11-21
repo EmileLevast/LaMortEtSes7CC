@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 @Composable
-actual fun LayoutDrawerMenu(content: @Composable() () -> Unit) {
+actual fun LayoutDrawerMenu(content: @Composable() () -> Unit,contentOption: @Composable() () -> Unit) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     ModalNavigationDrawer(
