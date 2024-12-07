@@ -38,7 +38,7 @@ import org.koin.compose.koinInject
 fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: Boolean) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
-    Column(Modifier.fillMaxSize(),
+    Column(Modifier.fillMaxSize().padding(20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
         ){
