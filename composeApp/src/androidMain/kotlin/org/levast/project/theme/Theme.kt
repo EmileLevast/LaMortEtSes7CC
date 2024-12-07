@@ -293,7 +293,7 @@ fun AppTheme(
 
     val displayFontFamily = FontFamily(
         Font(
-            Res.font.Anironc_d9DK
+            Res.font.Aniron_7BaP
         )
     )
 
