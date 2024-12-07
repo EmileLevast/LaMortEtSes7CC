@@ -4,7 +4,6 @@ data class FilterModelState(var filterUser: FilterUser) {
 }
 
 enum class FilterUser {
-    AUCUN,
     TOUT_EQUIPEMENT,
     STATISTIQUES,
     DECOUVERTES,

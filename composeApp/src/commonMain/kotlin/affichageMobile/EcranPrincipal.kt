@@ -153,17 +153,47 @@ fun EcranPrincipal(
         ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES, filterViewModel, drawerState)
         HorizontalDivider()
 
-        //Les catégories d'items
-        ItemSimpleMenuButton(
-            "Equipements",
-            FilterUser.TOUT_EQUIPEMENT,
-            filterViewModel,
-            drawerState
-        )
+
         //Les catégories d'items
         ItemSimpleMenuButton(
             "Equipés",
             FilterUser.EQUIPES,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton(
+            "Armes",
+            FilterUser.ARMES,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton(
+            "Sorts",
+            FilterUser.SORTS,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton(
+            "Armures",
+            FilterUser.ARMURES,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton(
+            "Spéciaux",
+            FilterUser.SPECIAL,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton(
+            "Boucliers",
+            FilterUser.BOUCLIERS,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton(
+            "Equipements",
+            FilterUser.TOUT_EQUIPEMENT,
             filterViewModel,
             drawerState
         )

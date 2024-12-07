@@ -49,7 +49,6 @@ boa absorbant;40;1:4|2:6|3:8;Po:15|F:15|Ph:-6|Ma:15;5;4;morsure venimeuse:0;160;
 Pour chaque attaque magique ou de pyromancie que le boa subit, il absorbe la frappe en résolvant les dégâts normalement. Cependant il projette un jet de salive noir écumante sur sa cible au début de son tour avec exactement les mêmes statistiques de ce qu'il a subit.;
 ionyr;50;1:1|2:1|3:3;Ph:1|Po:4|F:5|Ma:13;14;4;faucille de gobelin:1|anneau de l eclipse:2|main de pyromancie:3|boule de feu:4|robe de pyrobelin:5|propiation par le feu:5|2 Humanite:6;1200;Ionyr est aveugle il a developpe d'autre moyen de percevoir, grâce à sa langue de serpent et son audition notamment. Il est impossible de le surprendre et il sent plein de choses qui sont imperceptibles aux autres.;Ïonyr
 baraganorg;63;1:3|2:6|3:8;Ph:17|Po:8|F:5|Ma:-5;6;4;pagne inutile:0|longue dague equilibree(x2):4|anneau turpide:5|technique brute de parade:5|technique vif ambidextre:6|anneau opportuniste:6;650;;
-skronskrons, le pyro;23;1:2|2:3|3:6;Ph:3|Po:3;1;3;lunette de skronskorns:2|tablier ignifuge:3|Krameur:4|humanite:6;430;Ingénieur qui aime les mécanismes, la mine et surtout le feu;
 minotaure;80;1:6|2:8|3:10;Po:3|F:8|Ph:17|Ma:3;1;4;hache:5|Armure lourde du taureau:6;393;Puissant : si tous les dés utilisés dans le bloquage réussisse, le minotaure repousse ses ennemis ceux-ci tombent par terre leur tour est terminé;
 soldat carcasse;15;1:2|2:3|3:3;Ph:3|Ma:-2;0;3;armure de carcasse:4|epee droite:5|bouclier de carcasse:6;95;;
 carcasse lourde;15;1:2|2:3|3:4;Ph:2|Po:-2;0;3;armure de maille:5|hache rouillee:6;110;;
@@ -202,7 +201,7 @@ demonique;22;1:3|2:3|3:3;Po:3|F:30|Ph:3|Ma:-2;8;3;morsure brulante:0|technique v
 Voleur : acharner a voler des equipements, il sait utiliser tout ce qu'il touche parfaitement.;
 grounf;38;1:1|2:8;Ph:9|Po:1|F:-5|Ma:5;4;4;coup de griffes:0|humanite:4;110;charge : peut parcourir une grande distance sur une action de mouvement, tout droit. Il peut viser un joueur, s'il l'atteint et que le poids du joueur est inférieur à la force de l'ours alors le joueur est projeté 5m plus loin, il devra dépenser 2 actions à se relever.;
 kerkerschafe;15;1:1|2:3;Ph:1|F:-10;2;1;fourche:5|humanite:6;50;verbigération: grogne, menace, crache, débagoule sans sens. Pas de communication possible une fois la menace faite, la deuxième semonce est une frappe d'estoc.;
-nyctarame;35;1:0|2:0|3:0;Ph:4|Ma:5|Po:15|F:-20;0;1;graine nyctaphage:3;80;;
+nyctarame;35;1:0|2:0|3:0;Ph:4|Ma:5|Po:15|F:-20;0;1;graine nyctarame:3;80;;
 huorn;115;1:3|2:5|3:10;Ph:18|Po:8|F:-10|Ma:8;2;5;branche de huorn:0|humanite:1;970;Peut apparaître comme un arbre et ne pas réagir ou peut s'éveiller à son gré: Dispose de l'initiative dans ce cas.
 Les branches semblent balancer alors qu'il n'y a pas de vents, certaines branches suivent les joueurs.
 Jusqu'à ce que par-dessus un joueur deux branches le saisissent par les épaules et lui cache la bouche. Pour l'emmener dans les arbres. 
@@ -241,3 +240,7 @@ Sournoise : Elle peut aussi décider de surprendre un joueur en se déplaçant p
 hilikilq;25;1:1|2:2|3:2;Ph:1|Po:-2|Ma:3;6;3;talisman d'un fragment d'ancien:1|amulette du cenacle des naufrages:2|sort diaphane:3|miracle de surseance:4|miracle de convivialite:5|humanite x3:6|robe pedantesque du cenacle:6;75;;hilikilq, le mir-aculé
 le barakeur;63;1:3|2:6|3:8;Ph:17|Po:8|F:5|Ma:-5;6;4;pagne inutile:0|longue dague equilibree(x2):4|anneau turpide:5|technique brute de parade:5|technique vif ambidextre:6|anneau opportuniste:6;650;;
 kirnling;38;1:1|2:2|3:5;Ph:6|Po:1|Ma:7|F:3;9;4;armure d oswald:3|cimeterre:4|anneau obviant:5|humanite:5;464;;
+ujiss;15;1:1|2:2;Ph:2;2;2;1 humanite:4|2 humanites:5;90;;ujiss, le croquemort
+evine;15;1:1|2:2;Ph:2;2;2;1 humanite:4|2 humanites:5|poison anti-gobelin:6;90;;
+skronskrons;23;1:2|2:3|3:6;Ph:3|Po:3;1;3;lunette de skronskorns:2|tablier ignifuge:3|Krameur:4|humanite:6;430;Ingénieur qui aime les mécanismes, la mine et surtout le feu;skronskrons, le pyro
+manant de paille;11;1:1|2:3;Ph:2|F:-4;0;2;fourche:4;45;;

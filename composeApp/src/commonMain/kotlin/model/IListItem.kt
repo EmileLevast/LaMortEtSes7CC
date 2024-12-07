@@ -28,10 +28,26 @@ interface IListItem : HeadBodyShowable {
 }
 
 fun getListItemFiltered(itemsToFilter :List<IListItem>,filterUser: FilterUser, itemsPinned : List<String>?):List<IListItem>{
-    return if(filterUser == FilterUser.EQUIPES){
-        itemsToFilter.filter { itemsPinned?.contains(it.nom) == true }
-    }else{
-        itemsToFilter
+    return when (filterUser) {
+        FilterUser.EQUIPES -> {
+            itemsToFilter.filter { itemsPinned?.contains(it.nom) == true }
+        }
+        FilterUser.SORTS -> {
+            itemsToFilter.filterIsInstance<Sort>()
+        }
+        FilterUser.ARMES -> {
+            itemsToFilter.filterIsInstance<Arme>()
+        }
+        FilterUser.ARMURES -> {
+            itemsToFilter.filterIsInstance<Armure>()
+        }
+        FilterUser.SPECIAL -> {
+            itemsToFilter.filterIsInstance<Special>()
+        }
+        FilterUser.BOUCLIERS -> {
+            itemsToFilter.filterIsInstance<Bouclier>()
+        }
+        else -> itemsToFilter
     }
 }
 

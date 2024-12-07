@@ -206,6 +206,7 @@ graine nyctaphage;OUTIL;Plantée dans un sous bois, elle déploie une plante nyc
 fragment d eterna;OUTIL;Utiliser pour une action spéciale: les flammes noires s'engouffrent dans le joueur et lui rappelle un souvenir (au gré du MJ) qui lui rappelle en même temps soit une technique soit un sort (à proposer et à discuter avec le MJ).;
 ambre gelee;AMBRE;projette un rayon de gel très puissant. Toutes les victimes sont congelées instantanément. Impossible pour elles de jouer. Chaque cible jette 1D12 à chacun de ses tours, si < au nombre de tour depuis qu'elle gelée alors elle est libérée sinon elle subit le nombre de tours depuis qu'elle est gelée en dégât magique. ;
 balai volant;OUTIL;L'enfourcher permet de voler jusqu'à 10 m au-dessus du sol (subit donc la gravité mais moins).
+Poids maximal que le balai supporte : 3
 Intelligence Min : 5;
 potion de rechauffement;OUTIL;Ramène la température du corps du porteur à sa température normale, l'effet diminue petit à petit pour disparaître complètement au bout de quelques heures.;
 technique sonar mineur;TECHNIQUE;Effet : lorsqu'il effectue un test d'observation, un joueur peut sonder les environs. Son test d'observation peut révéler des éléments dans un rayon de 50m maximum et ce sans prendre en compte les parois physiques.;
@@ -293,3 +294,6 @@ talisman d un fragment d ancien;TALISMAN;Procure +6 points de vie
 Procure aussi +2 défense magique;talisman d'un fragment d'Ancien
 amulette du cenacle des naufrages;OUTIL;Permet de lancer des miracles.
 L'intelligence minimum requise pour lancer des miracles est réduite de 1 (de 2 pour les clercs).;amulette du cénacle des naufragés
+pyrose;OUTIL;Fonctionne par paire, semble magique.;
+graine nyctarame;OUTIL;Plantée dans un sous bois, elle déploie une plante nyctarame en 2 tours.;
+la nuit du giboyeur;OUTIL;Porte une gravure représentant un alhoon ou une illichtide.;la nuit du giboyeur
