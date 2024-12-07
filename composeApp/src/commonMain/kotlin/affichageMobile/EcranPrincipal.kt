@@ -134,12 +134,18 @@ fun EcranPrincipal(
             setTriggerEquipe(triggerEquipe.not())
             setSelectEquipe(null)
             selectedJoueur= null
+            coroutineScope.launch {
+                drawerState.close()
+            }
         }) {
             Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
             Text("Reset sélection")
         }
         TextButton({
             openChangeIpDialog = true
+            coroutineScope.launch {
+                drawerState.close()
+            }
         }) {
             Icon(Icons.Default.Warning, contentDescription = "Adresse Ip")
             Text("Maintenance")
