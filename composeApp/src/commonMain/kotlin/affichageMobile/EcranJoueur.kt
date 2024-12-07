@@ -80,7 +80,7 @@ fun EcranJoueur(
         coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
     }
 
-    LaunchedEffect(selectedJoueur, isRefreshedJoueur) {
+    LaunchedEffect(selectedJoueur) {
         coroutineScope.launch {
 
             val updatedEquipments = withContext(Dispatchers.Default) {
@@ -123,7 +123,7 @@ fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur
     val infiniteTransition = rememberInfiniteTransition(label = "infinite transition")
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = if(isLoadingJoueur) 360f else 1f,
+        targetValue = if(isLoadingJoueur) 360f else 0f,
         animationSpec = infiniteRepeatable(tween(3000, easing = LinearEasing)),
         label = "rotate"
     )
@@ -133,16 +133,18 @@ fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur
         IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd)
             .graphicsLayer {
                 rotationZ = rotation
-            }.clickable {
-                refreshJoueur()
-            })
+            }, refreshJoueur)
     }
 }
 
 @Composable
-fun IconProfilRefreshable(selectedJoueur: Joueur, modifier: Modifier = Modifier) {
+fun IconProfilRefreshable(
+    selectedJoueur: Joueur,
+    modifier: Modifier = Modifier,
+    refreshJoueur: () -> Unit
+) {
     Box (modifier.height(IntrinsicSize.Min)){
-        Box(Modifier.fillMaxSize(0.55f).align(Alignment.Center)) {
+        Box(Modifier.fillMaxSize(0.55f).align(Alignment.Center).clickable { refreshJoueur() }) {
             drawImageWithNetwork(
                 selectedJoueur,
                 Modifier.clip(CircleShape).align(Alignment.Center)
