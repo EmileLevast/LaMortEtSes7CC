@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.window.Tray
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
@@ -42,14 +43,25 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.icon_dark_soul
+import lamortetses7cc.composeapp.generated.resources.iconchapeau
+import lamortetses7cc.composeapp.generated.resources.iconchapeaur
+import lamortetses7cc.composeapp.generated.resources.iconchapeaurond
+import lamortetses7cc.composeapp.generated.resources.icondetaillamortetses7cc
+import lamortetses7cc.composeapp.generated.resources.iconlamortetses7cc
 import network.ApiApp
 import org.jetbrains.compose.resources.imageResource
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.KoinContext
 import org.koin.compose.koinInject
 import org.koin.core.context.startKoin
 
 fun main() = application {
-
+    Tray(
+        icon = painterResource(Res.drawable.iconchapeau),
+        menu = {
+            Item("Quit App", onClick = ::exitApplication)
+        }
+    )
 
     startKoin {
         modules(appModule)
@@ -70,7 +82,7 @@ fun AppDesktop(onExit: () -> Unit) {
         onCloseRequest = onExit,
         title = "La mort et ses 7 Couvre-chefs",
         state = state,
-        icon = BitmapPainter(imageResource(Res.drawable.icon_dark_soul))
+        icon = BitmapPainter(imageResource(Res.drawable.iconchapeau))
     ) {
         MainWindow(onExit)
     }
