@@ -1,9 +1,7 @@
 package affichage
 
-import ApiableItem
 import IListItem
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FloatingActionButton
@@ -41,15 +39,15 @@ fun buttonDarkStyled(texte:String, onClick:()->Unit){
 }
 
 @Composable
-fun drawImageWithNetwork(equipement:IListItem, modifier: Modifier=Modifier){
+fun drawImageWithNetwork(itemToDraw:IListItem, modifier: Modifier=Modifier){
     val apiApp = koinInject<ApiApp>()
     val scope = rememberCoroutineScope()
 
     var imageToDraw by remember { mutableStateOf<ImageBitmap?>(null) }
 
-    LaunchedEffect(equipement){
+    LaunchedEffect(itemToDraw){
         scope.launch(Dispatchers.Default) {
-            imageToDraw = equipement.getImage(apiApp)
+            imageToDraw = itemToDraw.getImage(apiApp)
         }
     }
 

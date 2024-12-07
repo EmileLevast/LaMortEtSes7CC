@@ -67,7 +67,7 @@ fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
                         onSave()
                     })
                     {
-                        Icon(Icons.Rounded.Delete, "supprimer detail", tint = Color.LightGray)
+                        Icon(Icons.Rounded.Delete, "supprimer detail")
                     }
                 }
             }
@@ -81,7 +81,7 @@ fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
                 isShowingAddDetailPopup = true
             })
             {
-                Icon(Icons.Rounded.Add, "ajouter detail", tint = Color.LightGray)
+                Icon(Icons.Rounded.Add, "ajouter detail")
             }
         }
     }

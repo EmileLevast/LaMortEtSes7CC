@@ -3,7 +3,25 @@ package affichageMobile
 import Equipe
 import IListItem
 import Joueur
+import affichage.drawImageWithNetwork
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -12,19 +30,32 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.refreshSymbol
 import network.ApiApp
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import viewModel.FilterViewModel
 import viewModel.stateviewmodel.FilterUser
 
 @Composable
 fun EcranJoueur(
-    selectedJoueur: Joueur, bitmapBackground: ImageBitmap?, selectedEquipe: Equipe, refreshJoueur : Boolean,
+    selectedJoueur: Joueur,
+    bitmapBackground: ImageBitmap?,
+    selectedEquipe: Equipe,
+    refreshJoueur: Boolean,
     filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
 ) {
 
@@ -68,7 +99,7 @@ fun EcranJoueur(
      * Selection des différents écrans
      */
     //si la selection c'est tout les equipements
-    if(filterUiState.filterUser == FilterUser.TOUT_EQUIPEMENT){
+    if (filterUiState.filterUser == FilterUser.TOUT_EQUIPEMENT) {
         EcranListItem(
             equipements,
             scrollListState,
@@ -77,13 +108,38 @@ fun EcranJoueur(
             togglePinItem = togglePinnedItem
         )
     }//si la selection c'est l'affichage des statistiques
-    else if(filterUiState.filterUser == FilterUser.STATISTIQUES){
-        EcranStatistiques(selectedJoueur){
+    else if (filterUiState.filterUser == FilterUser.STATISTIQUES) {
+        EcranStatistiques(selectedJoueur) {
             coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
         }
     }//sinon on considere que c'est l'affichage des decouvertes
-    else{
-        EcranDecouverteEquipe(selectedEquipe,refreshJoueur)
+    else {
+        EcranDecouverteEquipe(selectedEquipe, refreshJoueur)
+    }
+
+    //Affichage de l'image et du nom de profil
+    Box(Modifier.fillMaxSize()) {
+        IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd))
+    }
+}
+
+@Composable
+fun IconProfilRefreshable(selectedJoueur: Joueur, modifier: Modifier = Modifier) {
+    Box (modifier.height(IntrinsicSize.Min)){
+        Box(Modifier.fillMaxSize(0.55f).align(Alignment.Center)) {
+            drawImageWithNetwork(
+                selectedJoueur,
+                Modifier.clip(CircleShape).align(Alignment.Center)
+            )
+        }
+
+        Image(
+            painterResource(Res.drawable.refreshSymbol),
+            "refresh",
+            Modifier.align(Alignment.Center),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.tertiary)
+        )
+
     }
 }
 
