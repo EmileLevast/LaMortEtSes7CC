@@ -76,50 +76,22 @@ fun EcranEquipement(
 
             Card(
                 modifier = Modifier.fillMaxWidth().clickable { equipementToShow = equipement }.padding(5.dp),
-                border = if(isItemPinned == true) BorderStroke(4.dp, MaterialTheme.colorScheme.onSecondaryContainer) else null
+                border = if (isItemPinned == true) BorderStroke(
+                    4.dp,
+                    MaterialTheme.colorScheme.primary
+                ) else null
             ) {
 
-                Box(Modifier.padding(15.dp)) {
+                Box {
 
-                    //Si on dipose d'une image de fond et que le mode détails n'est pas activé (le mode détail n'affiche pas les images)
-                    if(!isDetailedModeOn){
-                        Column(Modifier.fillMaxWidth(),
-                            horizontalAlignment = Alignment.CenterHorizontally) {
-                            drawImageWithNetwork(equipement)
-                        }
-                    }
-
-                    //Afficher le bouton pin s'il y'a une liste d'items sélectionnés
-                    if(isItemPinned == true){
-                        Image(
-                            modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd).clickable{
-                                togglePinItem(equipement.nom,false)
-                            },
-                            painter = painterResource(Res.drawable.mainFermee),
-                            contentScale = ContentScale.Fit,
-                            contentDescription = null,
-
-                            )
-                    }else if (listPinnedItems!=null){//pour s'assurer qu'on est pas en mode "decouvertes" et donc qu'on ne veut pas afficher les mains
-                        Image(
-                            modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd).clickable{
-                                togglePinItem(equipement.nom,true)
-                            },
-                            painter = painterResource(Res.drawable.mainOuverte),
-                            contentScale = ContentScale.Fit,
-                            contentDescription = null,
-                        )
-                    }
-
-
-                    Column(
-                    ) {
-                        if(isDetailedModeOn){
+                    Column(Modifier.fillMaxWidth().padding(horizontal = 8.dp)) {
+                        if (isDetailedModeOn) {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.titleMedium,
+                                color = if(isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
                             )
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
@@ -127,16 +99,42 @@ fun EcranEquipement(
                                 textAlign = TextAlign.Left,
                                 style = MaterialTheme.typography.bodyMedium,
                             )
-                        }else{
+                        } else {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.titleLarge,
-                                color = if((equipement as? Special)?.itemType == SpecialItemType.TECHNIQUE)graphicsConsts.colorStuffOn else MaterialTheme.colorScheme.onPrimaryContainer
+                                color = if(isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
                             )
+
+                            drawImageWithNetwork(equipement, Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp))
                         }
 
+                    }
+
+                    //Afficher le bouton pin s'il y'a une liste d'items sélectionnés
+                    if (isItemPinned == true) {
+                        Image(
+                            modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd)
+                                .clickable {
+                                    togglePinItem(equipement.nom, false)
+                                },
+                            painter = painterResource(Res.drawable.mainFermee),
+                            contentScale = ContentScale.Fit,
+                            contentDescription = null,
+
+                            )
+                    } else if (listPinnedItems != null) {//pour s'assurer qu'on est pas en mode "decouvertes" et donc qu'on ne veut pas afficher les mains
+                        Image(
+                            modifier = Modifier.fillMaxWidth(0.3f).align(Alignment.BottomEnd)
+                                .clickable {
+                                    togglePinItem(equipement.nom, true)
+                                },
+                            painter = painterResource(Res.drawable.mainOuverte),
+                            contentScale = ContentScale.Fit,
+                            contentDescription = null,
+                        )
                     }
                 }
             }
@@ -144,6 +142,6 @@ fun EcranEquipement(
     }
 
     if (equipementToShow != null && !isDetailedModeOn) {
-        layoutBigImage(equipementToShow!!, {equipementToShow = null}, isShowingStats)
+        layoutBigImage(equipementToShow!!, { equipementToShow = null }, isShowingStats)
     }
 }

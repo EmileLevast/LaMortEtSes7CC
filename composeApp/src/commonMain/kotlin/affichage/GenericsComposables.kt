@@ -41,7 +41,7 @@ fun buttonDarkStyled(texte:String, onClick:()->Unit){
 }
 
 @Composable
-fun drawImageWithNetwork(equipement:IListItem){
+fun drawImageWithNetwork(equipement:IListItem, modifier: Modifier=Modifier){
     val apiApp = koinInject<ApiApp>()
     val scope = rememberCoroutineScope()
 
@@ -57,13 +57,13 @@ fun drawImageWithNetwork(equipement:IListItem){
         Image(
             imageToDraw!!,
             contentDescription = "image equipement",
-            modifier = Modifier.clip(shape = RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
+            modifier = modifier.clip(shape = RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
         )
     }else{
         Image(
             painterResource(Res.drawable.UnknownImage),
             contentDescription = "image equipement",
-            modifier = Modifier.clip(shape = RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
+            modifier = modifier.clip(shape = RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
         )
     }
 
