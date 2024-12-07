@@ -121,4 +121,10 @@ fun EcranListItem(
     if (equipementToShow != null && !isDetailedModeOn) {
         layoutBigImage(equipementToShow!!, { equipementToShow = null }, isShowingStats)
     }
+
 }
+
+@Composable
+expect fun handleBackButton()
+
+
