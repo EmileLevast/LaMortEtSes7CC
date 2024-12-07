@@ -3,5 +3,5 @@ package affichageMobile
 import androidx.compose.runtime.Composable
 
 @Composable
-actual fun handleBackButton() {
+actual fun handleBackButton(onClickBack: () -> Unit) {
 }
