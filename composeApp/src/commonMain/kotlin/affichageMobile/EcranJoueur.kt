@@ -4,30 +4,20 @@ import Equipe
 import IListItem
 import Joueur
 import affichage.drawImageWithNetwork
-import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Refresh
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,12 +30,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -61,9 +47,11 @@ import viewModel.stateviewmodel.FilterUser
 @Composable
 fun EcranJoueur(
     selectedJoueur: Joueur,
-    bitmapBackground: ImageBitmap?,
     selectedEquipe: Equipe,
-    refreshJoueur: Boolean,
+    isLoadingJoueur: Boolean,
+    joueurLoaded : ()-> Unit,
+    isRefreshedJoueur: Boolean,
+    refreshJoueur : ()-> Unit,
     filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
 ) {
 
@@ -92,7 +80,7 @@ fun EcranJoueur(
         coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
     }
 
-    LaunchedEffect(selectedJoueur, refreshJoueur) {
+    LaunchedEffect(selectedJoueur, isRefreshedJoueur) {
         coroutineScope.launch {
 
             val updatedEquipments = withContext(Dispatchers.Default) {
@@ -100,6 +88,7 @@ fun EcranJoueur(
             }
             setEquipements(updatedEquipments)//on les mets sur l'ecran
             listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList()
+            joueurLoaded()
         }
     }
 
@@ -122,13 +111,19 @@ fun EcranJoueur(
         }
     }//sinon on considere que c'est l'affichage des decouvertes
     else {
-        EcranDecouverteEquipe(selectedEquipe, refreshJoueur)
+        EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur)
     }
 
+    ProfileImage(selectedJoueur,isLoadingJoueur, refreshJoueur)
+
+}
+
+@Composable
+fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur: () -> Unit){
     val infiniteTransition = rememberInfiniteTransition(label = "infinite transition")
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = 360f,
+        targetValue = if(isLoadingJoueur) 360f else 1f,
         animationSpec = infiniteRepeatable(tween(3000, easing = LinearEasing)),
         label = "rotate"
     )
@@ -138,7 +133,9 @@ fun EcranJoueur(
         IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd)
             .graphicsLayer {
                 rotationZ = rotation
-        })
+            }.clickable {
+                refreshJoueur()
+            })
     }
 }
 

@@ -27,12 +27,13 @@ fun EcranChoixJoueur(
     val apiApp = koinInject<ApiApp>()
     val config = koinInject<IConfiguration>()
     var refreshData by remember { mutableStateOf(true) } //à utiliser pour rafraichir tous les launchedEffect
+    var isLoadingJoueur by remember { mutableStateOf(false) }
 
 
     val coroutineScope = rememberCoroutineScope()
     val (joueurs, setJoueurs) = remember { mutableStateOf<List<Joueur>>(emptyList()) }
 
-    LaunchedEffect(selectedEquipe,refreshData) {
+    LaunchedEffect(selectedEquipe, refreshData) {
         coroutineScope.launch {
             setJoueurs(withContext(Dispatchers.Default) {//dans un thread à part on maj toute l'equipe
                 apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe())
@@ -40,19 +41,31 @@ fun EcranChoixJoueur(
         }
     }
 
-    LaunchedEffect(joueurs){
+    LaunchedEffect(joueurs) {
         coroutineScope.launch(Dispatchers.Default) {
-            if(config.getUserName().isNotBlank()){//S'il y'a un joueur d'enregistré
+            if (config.getUserName().isNotBlank()) {//S'il y'a un joueur d'enregistré
                 //Alors on set automatiquement le joueur Sélectionné
-                joueurs.find {it.nom == config.getUserName()}?.let { onSelectedJoueurChange(it) }
+                joueurs.find { it.nom == config.getUserName() }?.let { onSelectedJoueurChange(it) }
             }
         }
     }
 
     //s'il n'y a pas de joueur sélectionné on montre la liste des joueurs de l'équipe
     if (selectedJoueur == null) {
-        LayoutListSelectableItem(joueurs,onSelectedJoueurChange)
-    }else{//Sinon on montre l'écran du joueur
-        EcranJoueur(selectedJoueur, bitmapBackground,selectedEquipe, refreshData)//On montre l'écran du joueur
+        LayoutListSelectableItem(joueurs, onSelectedJoueurChange)
+    } else {//Sinon on montre l'écran du joueur
+        EcranJoueur(
+            selectedJoueur,
+            selectedEquipe,
+            isLoadingJoueur,
+            {
+                isLoadingJoueur = false
+            },
+            refreshData,
+            {
+                refreshData = refreshData.not()
+                isLoadingJoueur = true
+            })//on declenche la mise à jour du joueur
+
     }
 }
