@@ -1,4 +1,4 @@
-package model.stateviewmodel
+package viewModel.stateviewmodel
 
 import IListItem
 

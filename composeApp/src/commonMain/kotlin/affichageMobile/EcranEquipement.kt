@@ -55,8 +55,6 @@ import org.koin.compose.koinInject
 @Composable
 fun EcranEquipement(
     equipementsAfficher: List<IListItem>,
-    imageBackground: ImageBitmap?,
-    modifier: Modifier = Modifier,
     equipementToShow: IListItem?,
     hideBigElement: () -> Unit,
     showBigElement: (IListItem) -> Unit,

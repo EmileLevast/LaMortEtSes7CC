@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -13,14 +14,20 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.ApiApp
 import org.koin.compose.koinInject
+import viewModel.FilterViewModel
+import viewModel.stateviewmodel.FilterUser
 
 @Composable
-fun EcranJoueur(selectedJoueur:Joueur, bitmapBackground: ImageBitmap?){
+fun EcranJoueur(
+    selectedJoueur: Joueur, bitmapBackground: ImageBitmap?,
+    filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
+) {
 
     val apiApp = koinInject<ApiApp>()
     val coroutineScope = rememberCoroutineScope()
@@ -32,12 +39,16 @@ fun EcranJoueur(selectedJoueur:Joueur, bitmapBackground: ImageBitmap?){
     val scrollListState by remember { mutableStateOf<LazyListState>(LazyListState()) }
     var listPinnedItems by remember { mutableStateOf<List<String>>(emptyList()) }
 
+    //View Model pour savoir l'écran qu'a sélectionné le joueur
+    val filterUiState by filterViewModel.uiState.collectAsState()
+
+
     //Lorsqu'on clique sur un item pour l'ajouter à la liste des items sélectionnés
     //fonction pour ajouter des elements a epingler ou les enlever //true pour epingler l'element
-    val togglePinnedItem: (String,Boolean) -> Unit = { nomItem, toPin ->
-        if(toPin){
+    val togglePinnedItem: (String, Boolean) -> Unit = { nomItem, toPin ->
+        if (toPin) {
             selectedJoueur.equip(nomItem)
-        }else{
+        } else {
             selectedJoueur.unequip(nomItem)
         }
         listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList()
@@ -55,21 +66,28 @@ fun EcranJoueur(selectedJoueur:Joueur, bitmapBackground: ImageBitmap?){
         }
     }
 
-    EcranEquipement(equipements,
-        bitmapBackground,
-        Modifier,
-        equipementToShow,
-        {
-            equipementToShow = null
-        },
-        {
-            equipementToShow = it
-        },
-        scrollListState,
-        true,
-        listPinnedItems = listPinnedItems,
-        togglePinItem = togglePinnedItem
+    /**
+     * Selection des différents écrans
+     */
+    if(filterUiState.filterUser != FilterUser.STATISTIQUES){
+        EcranEquipement(
+            equipements,
+            equipementToShow,
+            {
+                equipementToShow = null
+            },
+            {
+                equipementToShow = it
+            },
+            scrollListState,
+            true,
+            listPinnedItems = listPinnedItems,
+            togglePinItem = togglePinnedItem
         )
+    }else{//on considere que c'est l'affichage des statistiques
+
+    }
+
 
 
 }

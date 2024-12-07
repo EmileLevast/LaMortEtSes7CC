@@ -23,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,9 +42,14 @@ import kotlinx.coroutines.withContext
 import model.HeadBodyShowable
 import network.ApiApp
 import org.koin.compose.koinInject
+import viewModel.AdminViewModel
+import viewModel.FilterViewModel
+import viewModel.stateviewmodel.FilterUser
 
 @Composable
-fun EcranPrincipal() {
+fun EcranPrincipal(
+    filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
+) {
     val apiApp = koinInject<ApiApp>()
     val config = koinInject<IConfiguration>()
 
@@ -60,6 +67,7 @@ fun EcranPrincipal() {
     //MENU
     var openChangeIpDialog by remember { mutableStateOf(false) }
     val onCloseChangeIpDialog: () -> Unit = { openChangeIpDialog = false }
+
 
     LaunchedEffect(triggerEquipe) {
 
@@ -110,6 +118,7 @@ fun EcranPrincipal() {
          */
         //Le profil utilisateur
         TextButton({
+            filterViewModel.changeFilterUser(FilterUser.STATISTIQUES)
         }) {
             Text("Statistiques")
         }
@@ -117,10 +126,12 @@ fun EcranPrincipal() {
 
         //Les catégories d'items
         TextButton({
+            filterViewModel.changeFilterUser(FilterUser.TOUT_EQUIPEMENT)
         }) {
             Text("Equipement")
         }
         TextButton({
+            filterViewModel.changeFilterUser(FilterUser.DECOUVERTES)
         }) {
             Text("Découvertes")
         }

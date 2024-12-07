@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import model.stateviewmodel.AdminModelState
+import viewModel.stateviewmodel.AdminModelState
 
 class AdminViewModel : ViewModel(){
     // Game UI state
