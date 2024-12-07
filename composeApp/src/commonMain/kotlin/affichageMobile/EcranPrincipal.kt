@@ -16,14 +16,16 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,12 +39,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import model.HeadBodyShowable
 import network.ApiApp
 import org.koin.compose.koinInject
-import viewModel.AdminViewModel
 import viewModel.FilterViewModel
 import viewModel.stateviewmodel.FilterUser
 
@@ -66,8 +68,8 @@ fun EcranPrincipal(
 
     //MENU
     var openChangeIpDialog by remember { mutableStateOf(false) }
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val onCloseChangeIpDialog: () -> Unit = { openChangeIpDialog = false }
-
 
     LaunchedEffect(triggerEquipe) {
 
@@ -112,25 +114,17 @@ fun EcranPrincipal(
                 nameSavedUser = it.nom
             }, bitmapBackground)
         }
-    }) {
+    }, {
         /**
          * MENU
          */
         //Le profil utilisateur
-        ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES,filterViewModel)
+        ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES,filterViewModel,drawerState)
         HorizontalDivider()
 
         //Les catégories d'items
-        TextButton({
-            filterViewModel.changeFilterUser(FilterUser.TOUT_EQUIPEMENT)
-        }) {
-            Text("Equipement")
-        }
-        TextButton({
-            filterViewModel.changeFilterUser(FilterUser.DECOUVERTES)
-        }) {
-            Text("Découvertes")
-        }
+        ItemSimpleMenuButton("Equipements", FilterUser.TOUT_EQUIPEMENT,filterViewModel,drawerState)
+        ItemSimpleMenuButton("Decouvertes", FilterUser.DECOUVERTES,filterViewModel,drawerState)
         HorizontalDivider()
 
         //Les options
@@ -150,7 +144,7 @@ fun EcranPrincipal(
             Icon(Icons.Default.Warning, contentDescription = "Adresse Ip")
             Text("Maintenance")
         }
-    }
+    }, drawerState)
 
     if (openChangeIpDialog) {
         AlertDialogChangeIp(onCloseChangeIpDialog)
@@ -189,9 +183,19 @@ fun <T : HeadBodyShowable> LayoutListSelectableItem(
 }
 
 @Composable
-fun ItemSimpleMenuButton(text:String,filter : FilterUser,filterViewModel: FilterViewModel){
+fun ItemSimpleMenuButton(
+    text: String,
+    filter: FilterUser,
+    filterViewModel: FilterViewModel,
+    drawerState: DrawerState
+){
+    val scope = rememberCoroutineScope()
+
     TextButton({
         filterViewModel.changeFilterUser(filter)
+        scope.launch {
+            drawerState.close()
+        }
     }) {
         Text(text)
     }
