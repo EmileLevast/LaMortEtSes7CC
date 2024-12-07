@@ -69,7 +69,7 @@ fun EcranJoueur(
      */
     //si la selection c'est tout les equipements
     if(filterUiState.filterUser == FilterUser.TOUT_EQUIPEMENT){
-        EcranEquipement(
+        EcranListItem(
             equipements,
             scrollListState,
             true,

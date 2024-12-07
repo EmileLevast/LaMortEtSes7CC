@@ -37,7 +37,7 @@ fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean){
         setDecouvertesEquipe(updatedDecouvertes)//on les mets sur l'ecran
     }
 
-    EcranEquipement(
+    EcranListItem(
         decouvertesEquipe,
         scrollListState,
         false
