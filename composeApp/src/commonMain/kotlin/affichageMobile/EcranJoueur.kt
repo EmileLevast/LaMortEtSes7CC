@@ -55,7 +55,6 @@ fun EcranJoueur(selectedJoueur:Joueur, bitmapBackground: ImageBitmap?){
         }
     }
 
-    Text("Joueur ${selectedJoueur.nomComplet.ifBlank { selectedJoueur.nom }}")
     EcranEquipement(equipements,
         bitmapBackground,
         Modifier,
