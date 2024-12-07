@@ -10,14 +10,18 @@ import androidx.compose.material3.TextField
 
 import Joueur
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,14 +57,8 @@ fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
         detailsActuel.split("\n").forEach {
             if (it.isNotBlank()) {
                 Row(Modifier.fillMaxWidth()) {
-                    Card(
-                        modifier = Modifier.weight(1f).padding(3.dp),
-                        border = BorderStroke(
-                            graphicsConsts.widthBorder,
-                            graphicsConsts.brushSpecialBorder
-                        )
-                    ) {
-                        Text(it, Modifier.padding(5.dp), textAlign = TextAlign.Center)
+                    Card(Modifier.weight(1f)){
+                        Text(it,Modifier.align(Alignment.CenterHorizontally).background(MaterialTheme.colorScheme.secondary).fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary)
                     }
                     IconButton(onClick = {
                         actuelJoueur.details = actuelJoueur.details.replace(it, "")
@@ -75,7 +73,7 @@ fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
             }
         }
         Card(
-            modifier = Modifier.fillMaxWidth(0.4f).align(Alignment.CenterHorizontally).padding(3.dp),
+            modifier = Modifier.align(Alignment.CenterHorizontally).padding(3.dp),
             border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
             shape = RoundedCornerShape(50)
         ) {
