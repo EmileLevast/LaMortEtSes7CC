@@ -4,6 +4,13 @@ import Equipe
 import IListItem
 import Joueur
 import affichage.drawImageWithNetwork
+import androidx.compose.animation.core.Easing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -36,6 +43,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -117,9 +125,20 @@ fun EcranJoueur(
         EcranDecouverteEquipe(selectedEquipe, refreshJoueur)
     }
 
+    val infiniteTransition = rememberInfiniteTransition(label = "infinite transition")
+    val rotation by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(tween(3000, easing = LinearEasing)),
+        label = "rotate"
+    )
+
     //Affichage de l'image et du nom de profil
     Box(Modifier.fillMaxSize()) {
-        IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd))
+        IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd)
+            .graphicsLayer {
+                rotationZ = rotation
+        })
     }
 }
 
