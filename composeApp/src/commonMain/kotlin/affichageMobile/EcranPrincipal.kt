@@ -10,11 +10,12 @@ import affichage.drawImageWithNetwork
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,11 +29,13 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,13 +50,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import model.HeadBodyShowable
 import network.ApiApp
 import org.koin.compose.koinInject
 import viewModel.FilterViewModel
+import viewModel.stateviewmodel.FilterModelState
 import viewModel.stateviewmodel.FilterUser
 
 @Composable
@@ -78,6 +81,8 @@ fun EcranPrincipal(
     var openChangeIpDialog by remember { mutableStateOf(false) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val onCloseChangeIpDialog: () -> Unit = { openChangeIpDialog = false }
+    val filterUiState by filterViewModel.uiState.collectAsState()
+
 
     LaunchedEffect(triggerEquipe) {
 
@@ -127,101 +132,124 @@ fun EcranPrincipal(
         /**
          * MENU
          */
-        selectedJoueur?.let {
-            Row {
-                drawImageWithNetwork(
-                    it,
-                    Modifier.padding(4.dp).clip(CircleShape).wrapContentWidth(Alignment.End)
-                        .fillMaxWidth(0.2f)
-                        .border(
-                            BorderStroke(2.dp, MaterialTheme.colorScheme.secondary), CircleShape
-                        )
-                )
+        Column(Modifier.width(IntrinsicSize.Min)) {
 
-                Text(
-                    it.nomComplet.ifBlank { it.nom },
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.tertiary
-                )
+            selectedJoueur?.let {
+                Row {
+                    drawImageWithNetwork(
+                        it,
+                        Modifier.padding(4.dp).clip(CircleShape).wrapContentWidth(Alignment.End)
+                            .fillMaxWidth(0.2f)
+                            .border(
+                                BorderStroke(2.dp, MaterialTheme.colorScheme.secondary), CircleShape
+                            )
+                    )
+
+                    Text(
+                        it.nomComplet.ifBlank { it.nom },
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+
+                }
 
             }
 
-        }
+            //Le profil utilisateur
+            ItemSimpleMenuButton(
+                "Statistiques",
+                FilterUser.STATISTIQUES,
+                filterViewModel,
+                drawerState,
+                filterUiState,
+            )
+            HorizontalDivider()
 
-        //Le profil utilisateur
-        ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES, filterViewModel, drawerState)
-        HorizontalDivider()
 
+            //Les catégories d'items
+            ItemSimpleMenuButton(
+                "Equipés",
+                FilterUser.EQUIPES,
 
-        //Les catégories d'items
-        ItemSimpleMenuButton(
-            "Equipés",
-            FilterUser.EQUIPES,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton(
-            "Armes",
-            FilterUser.ARMES,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton(
-            "Sorts",
-            FilterUser.SORTS,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton(
-            "Armures",
-            FilterUser.ARMURES,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton(
-            "Spéciaux",
-            FilterUser.SPECIAL,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton(
-            "Boucliers",
-            FilterUser.BOUCLIERS,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton(
-            "Equipements",
-            FilterUser.TOUT_EQUIPEMENT,
-            filterViewModel,
-            drawerState
-        )
-        ItemSimpleMenuButton("Decouvertes", FilterUser.DECOUVERTES, filterViewModel, drawerState)
-        HorizontalDivider()
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Armes",
+                FilterUser.ARMES,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Sorts",
+                FilterUser.SORTS,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Armures",
+                FilterUser.ARMURES,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Spéciaux",
+                FilterUser.SPECIAL,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Boucliers",
+                FilterUser.BOUCLIERS,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Equipements",
+                FilterUser.TOUT_EQUIPEMENT,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            ItemSimpleMenuButton(
+                "Decouvertes",
+                FilterUser.DECOUVERTES,
+                filterViewModel,
+                drawerState,
+                filterUiState
+            )
+            HorizontalDivider()
 
-        //Les options
-        TextButton({
-            config.setUserName("")
-            nameSavedUser = ""
-            setTriggerEquipe(triggerEquipe.not())
-            setSelectEquipe(null)
-            selectedJoueur = null
-            coroutineScope.launch {
-                drawerState.close()
+            //Les options
+            TextButton({
+                config.setUserName("")
+                nameSavedUser = ""
+                setTriggerEquipe(triggerEquipe.not())
+                setSelectEquipe(null)
+                selectedJoueur = null
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+            }) {
+                Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
+                Text("Reset sélection")
             }
-        }) {
-            Icon(Icons.Default.Refresh, contentDescription = "Reset joueur")
-            Text("Reset sélection")
-        }
-        TextButton({
-            openChangeIpDialog = true
-            coroutineScope.launch {
-                drawerState.close()
+            TextButton({
+                openChangeIpDialog = true
+                coroutineScope.launch {
+                    drawerState.close()
+                }
+            }) {
+                Icon(Icons.Default.Warning, contentDescription = "Adresse Ip")
+                Text("Maintenance")
             }
-        }) {
-            Icon(Icons.Default.Warning, contentDescription = "Adresse Ip")
-            Text("Maintenance")
         }
     }, drawerState)
 
@@ -266,16 +294,29 @@ fun ItemSimpleMenuButton(
     text: String,
     filter: FilterUser,
     filterViewModel: FilterViewModel,
-    drawerState: DrawerState
+    drawerState: DrawerState,
+    filterUiState: FilterModelState
 ) {
     val scope = rememberCoroutineScope()
 
-    TextButton({
-        filterViewModel.changeFilterUser(filter)
-        scope.launch {
-            drawerState.close()
+    if(filterUiState.filterUser == filter){
+        OutlinedButton({
+            filterViewModel.changeFilterUser(filter)
+            scope.launch {
+                drawerState.close()
+            }
+        }){
+            Text(text)
         }
-    }) {
-        Text(text)
+    }else{
+        TextButton({
+            filterViewModel.changeFilterUser(filter)
+            scope.launch {
+                drawerState.close()
+            }
+        }) {
+            Text(text)
+        }
     }
+
 }
