@@ -10,6 +10,7 @@ import affichage.drawImageWithNetwork
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -139,7 +140,6 @@ fun EcranPrincipal(
 
                 Text(
                     it.nomComplet.ifBlank { it.nom },
-                    modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.tertiary

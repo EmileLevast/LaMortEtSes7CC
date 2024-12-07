@@ -26,8 +26,6 @@ actual fun LayoutDrawerMenu(
         drawerContent = {
             ModalDrawerSheet {
                 contentOption()
-
-
             }
 
         },
