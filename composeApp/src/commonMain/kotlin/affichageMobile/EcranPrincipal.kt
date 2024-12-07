@@ -6,12 +6,18 @@ import Joueur
 import affichage.AlertDialogChangeIp
 import affichage.LayoutDrawerMenu
 import affichage.buttonDarkStyled
+import affichage.drawImageWithNetwork
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Warning
@@ -33,6 +39,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -75,9 +82,9 @@ fun EcranPrincipal(
 
         coroutineScope.launch {
             withContext(Dispatchers.Default) {
-                    setEquipes(//dans un thread à part on maj toute l'equipe
-                            apiApp.searchEquipe(".*") ?: listOf()
-                    )
+                setEquipes(//dans un thread à part on maj toute l'equipe
+                    apiApp.searchEquipe(".*") ?: listOf()
+                )
             }
 
             updateBitmapBackground(withContext(Dispatchers.Default) {//dans un thread à part on recherche l'image background
@@ -90,7 +97,7 @@ fun EcranPrincipal(
         }
     }
 
-    LaunchedEffect(equipes){
+    LaunchedEffect(equipes) {
         coroutineScope.launch(Dispatchers.Default) {
             if (nameSavedUser?.isNotBlank() == true) {//S'il y'a un joueur d'enregistré
                 //Alors on set automatiquement l'équipe
@@ -115,16 +122,52 @@ fun EcranPrincipal(
             }, bitmapBackground)
         }
     }, {
+
         /**
          * MENU
          */
+        selectedJoueur?.let {
+            Row {
+                drawImageWithNetwork(
+                    it,
+                    Modifier.padding(4.dp).clip(CircleShape).wrapContentWidth(Alignment.End)
+                        .fillMaxWidth(0.2f)
+                        .border(
+                            BorderStroke(2.dp, MaterialTheme.colorScheme.secondary), CircleShape
+                        )
+                )
+
+                Text(
+                    it.nomComplet.ifBlank { it.nom },
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+
+            }
+
+        }
+
         //Le profil utilisateur
-        ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES,filterViewModel,drawerState)
+        ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES, filterViewModel, drawerState)
         HorizontalDivider()
 
         //Les catégories d'items
-        ItemSimpleMenuButton("Equipements", FilterUser.TOUT_EQUIPEMENT,filterViewModel,drawerState)
-        ItemSimpleMenuButton("Decouvertes", FilterUser.DECOUVERTES,filterViewModel,drawerState)
+        ItemSimpleMenuButton(
+            "Equipements",
+            FilterUser.TOUT_EQUIPEMENT,
+            filterViewModel,
+            drawerState
+        )
+        //Les catégories d'items
+        ItemSimpleMenuButton(
+            "Equipés",
+            FilterUser.EQUIPES,
+            filterViewModel,
+            drawerState
+        )
+        ItemSimpleMenuButton("Decouvertes", FilterUser.DECOUVERTES, filterViewModel, drawerState)
         HorizontalDivider()
 
         //Les options
@@ -133,7 +176,7 @@ fun EcranPrincipal(
             nameSavedUser = ""
             setTriggerEquipe(triggerEquipe.not())
             setSelectEquipe(null)
-            selectedJoueur= null
+            selectedJoueur = null
             coroutineScope.launch {
                 drawerState.close()
             }
@@ -194,7 +237,7 @@ fun ItemSimpleMenuButton(
     filter: FilterUser,
     filterViewModel: FilterViewModel,
     drawerState: DrawerState
-){
+) {
     val scope = rememberCoroutineScope()
 
     TextButton({

@@ -2,6 +2,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import model.HeadBodyShowable
 import network.ApiApp
+import viewModel.stateviewmodel.FilterUser
 
 interface IListItem : HeadBodyShowable {
     val _id:Int
@@ -24,5 +25,13 @@ interface IListItem : HeadBodyShowable {
     override fun getHead(): String = nomComplet.ifBlank { nom }
 
     override fun getBody(): String = getStatsSimplifiedAsStrings()
+}
+
+fun getListItemFiltered(itemsToFilter :List<IListItem>,filterUser: FilterUser, itemsPinned : List<String>?):List<IListItem>{
+    return if(filterUser == FilterUser.EQUIPES){
+        itemsToFilter.filter { itemsPinned?.contains(it.nom) == true }
+    }else{
+        itemsToFilter
+    }
 }
 

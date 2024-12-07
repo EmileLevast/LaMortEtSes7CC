@@ -33,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.lifecycle.viewmodel.compose.viewModel
+import getListItemFiltered
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -49,9 +50,9 @@ fun EcranJoueur(
     selectedJoueur: Joueur,
     selectedEquipe: Equipe,
     isLoadingJoueur: Boolean,
-    joueurLoaded : ()-> Unit,
+    joueurLoaded: () -> Unit,
     isRefreshedJoueur: Boolean,
-    refreshJoueur : ()-> Unit,
+    refreshJoueur: () -> Unit,
     filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
 ) {
 
@@ -96,34 +97,53 @@ fun EcranJoueur(
      * Selection des différents écrans
      */
     //si la selection c'est tout les equipements
-    if (filterUiState.filterUser == FilterUser.TOUT_EQUIPEMENT) {
-        EcranListItem(
-            equipements,
-            scrollListState,
-            true,
-            listPinnedItems = listPinnedItems,
-            togglePinItem = togglePinnedItem
-        )
-    }//si la selection c'est l'affichage des statistiques
-    else if (filterUiState.filterUser == FilterUser.STATISTIQUES) {
-        EcranStatistiques(selectedJoueur) {
-            coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
+    when (filterUiState.filterUser) {
+        FilterUser.DECOUVERTES -> {
+            EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur)
+        }//si la selection c'est l'affichage des statistiques
+        FilterUser.STATISTIQUES -> {
+            EcranStatistiques(selectedJoueur) {
+                coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
+            }
         }
-    }//sinon on considere que c'est l'affichage des decouvertes
-    else {
-        EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur)
+        //sinon on considere que c'est l'affichage de tout l'equipement
+        else -> {
+            FilterListItem(equipements,
+                scrollListState,
+                listPinnedItems,
+                filterUser = filterUiState.filterUser,
+                togglePinItem = togglePinnedItem)
+        }
     }
 
-    ProfileImage(selectedJoueur,isLoadingJoueur, refreshJoueur)
+    ProfileImage(selectedJoueur, isLoadingJoueur, refreshJoueur)
 
 }
 
 @Composable
-fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur: () -> Unit){
+fun FilterListItem(
+    items: List<IListItem>,
+    scrollListState: LazyListState,
+    listPinnedItems: List<String>? = null,
+    filterUser: FilterUser,
+    togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> }
+) {
+
+    EcranListItem(
+        getListItemFiltered(items,filterUser,listPinnedItems),
+        scrollListState,
+        true,
+        listPinnedItems = listPinnedItems,
+        togglePinItem = togglePinItem
+    )
+}
+
+@Composable
+fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur: () -> Unit) {
     val infiniteTransition = rememberInfiniteTransition(label = "infinite transition")
     val rotation by infiniteTransition.animateFloat(
         initialValue = 0f,
-        targetValue = if(isLoadingJoueur) 360f else 0f,
+        targetValue = if (isLoadingJoueur) 360f else 0f,
         animationSpec = infiniteRepeatable(tween(3000, easing = LinearEasing)),
         label = "rotate"
     )
@@ -133,7 +153,8 @@ fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur
         IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd)
             .graphicsLayer {
                 rotationZ = rotation
-            }, refreshJoueur)
+            }, refreshJoueur
+        )
     }
 }
 
@@ -143,7 +164,7 @@ fun IconProfilRefreshable(
     modifier: Modifier = Modifier,
     refreshJoueur: () -> Unit
 ) {
-    Box (modifier.height(IntrinsicSize.Min)){
+    Box(modifier.height(IntrinsicSize.Min)) {
         Box(Modifier.fillMaxSize(0.55f).align(Alignment.Center).clickable { refreshJoueur() }) {
             drawImageWithNetwork(
                 selectedJoueur,
