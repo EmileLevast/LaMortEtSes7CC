@@ -10,14 +10,17 @@ import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
@@ -51,14 +54,9 @@ import org.koin.compose.koinInject
 import kotlin.reflect.KMutableProperty1
 
 @Composable
-fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit, modifier: Modifier = Modifier) {
-    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
-    val apiApp = koinInject<ApiApp>()
+fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
     val scrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-
-
-
 
     LazyColumn(
         Modifier.draggable(
@@ -164,35 +162,39 @@ fun LayoutUneCarac(
 ) {
 
     Row(
-        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
+            modifier = Modifier.weight(4f),
             text = "$nomCarac($originCarac)",
             textAlign = TextAlign.Center,
         )
-        TextField(modifier = Modifier.weight(2f),
 
-            value = actuelCarac,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            onValueChange = { onTextChange(actuelCarac, it) }
-        )
-        FloatingActionButton(modifier = Modifier.weight(1f),
-            onClick = {
-                onTextChange(actuelCarac, (actuelCarac.toInt() + 1).toString())
-
-            }) {
-            Text(
-                "+",
+            TextField(
+                modifier = Modifier.weight(2f),
+                value = actuelCarac,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                onValueChange = { onTextChange(actuelCarac, it) }
             )
-        }
-        FloatingActionButton(modifier = Modifier.weight(1f),
-            onClick = {
+            FloatingActionButton(
+                modifier = Modifier.weight(1f),
+                onClick = {
+                    onTextChange(actuelCarac, (actuelCarac.toInt() + 1).toString())
+
+                }) {
+                Text(
+                    "+",
+                )
+            }
+            FloatingActionButton(
+                modifier = Modifier.weight(1f),
+                onClick = {
                     onTextChange(actuelCarac, (actuelCarac.toInt() - 1).toString())
-            }) {
-            Text(
-                "-",
-            )
-        }
+                }) {
+                Text(
+                    "-",
+                )
+            }
+
     }
 }

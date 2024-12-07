@@ -85,7 +85,9 @@ fun EcranJoueur(
             togglePinItem = togglePinnedItem
         )
     }else{//on considere que c'est l'affichage des statistiques
-
+        EcranStatistiques(selectedJoueur){
+            coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
+        }
     }
 
 
