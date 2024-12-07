@@ -44,8 +44,6 @@ import kotlinx.coroutines.withContext
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.icon_dark_soul
 import lamortetses7cc.composeapp.generated.resources.iconchapeau
-import lamortetses7cc.composeapp.generated.resources.iconchapeaur
-import lamortetses7cc.composeapp.generated.resources.iconchapeaurond
 import lamortetses7cc.composeapp.generated.resources.icondetaillamortetses7cc
 import lamortetses7cc.composeapp.generated.resources.iconlamortetses7cc
 import network.ApiApp
