@@ -117,11 +117,7 @@ fun EcranPrincipal(
          * MENU
          */
         //Le profil utilisateur
-        TextButton({
-            filterViewModel.changeFilterUser(FilterUser.STATISTIQUES)
-        }) {
-            Text("Statistiques")
-        }
+        ItemSimpleMenuButton("Statistiques", FilterUser.STATISTIQUES,filterViewModel)
         HorizontalDivider()
 
         //Les catégories d'items
@@ -189,5 +185,14 @@ fun <T : HeadBodyShowable> LayoutListSelectableItem(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun ItemSimpleMenuButton(text:String,filter : FilterUser,filterViewModel: FilterViewModel){
+    TextButton({
+        filterViewModel.changeFilterUser(filter)
+    }) {
+        Text(text)
     }
 }
