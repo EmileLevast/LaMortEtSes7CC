@@ -55,9 +55,6 @@ import org.koin.compose.koinInject
 @Composable
 fun EcranEquipement(
     equipementsAfficher: List<IListItem>,
-    equipementToShow: IListItem?,
-    hideBigElement: () -> Unit,
-    showBigElement: (IListItem) -> Unit,
     scrollListState: LazyListState,
     isShowingStats: Boolean,
     isDetailedModeOn: Boolean = false,
@@ -67,6 +64,8 @@ fun EcranEquipement(
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
+    //pour savoir quel élément à afficher en gros
+    var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
 
     LazyColumn(
         state = scrollListState,
@@ -76,7 +75,7 @@ fun EcranEquipement(
             val isItemPinned = listPinnedItems?.contains(equipement.nom)
 
             Card(
-                modifier = Modifier.fillMaxWidth().clickable { showBigElement(equipement) }.padding(5.dp),
+                modifier = Modifier.fillMaxWidth().clickable { equipementToShow = equipement }.padding(5.dp),
                 border = if(isItemPinned == true) BorderStroke(4.dp, MaterialTheme.colorScheme.onSecondaryContainer) else null
             ) {
 
@@ -145,6 +144,6 @@ fun EcranEquipement(
     }
 
     if (equipementToShow != null && !isDetailedModeOn) {
-        layoutBigImage(equipementToShow, hideBigElement, isShowingStats)
+        layoutBigImage(equipementToShow!!, {equipementToShow = null}, isShowingStats)
     }
 }

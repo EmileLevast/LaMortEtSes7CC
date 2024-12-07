@@ -4,9 +4,11 @@ import Equipe
 import Joueur
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.ImageBitmap
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
@@ -24,14 +26,16 @@ fun EcranChoixJoueur(
 ) {
     val apiApp = koinInject<ApiApp>()
     val config = koinInject<IConfiguration>()
+    var refreshData by remember { mutableStateOf(true) } //à utiliser pour rafraichir tous les launchedEffect
+
 
     val coroutineScope = rememberCoroutineScope()
     val (joueurs, setJoueurs) = remember { mutableStateOf<List<Joueur>>(emptyList()) }
 
-    LaunchedEffect(selectedEquipe) {
+    LaunchedEffect(selectedEquipe,refreshData) {
         coroutineScope.launch {
             setJoueurs(withContext(Dispatchers.Default) {//dans un thread à part on maj toute l'equipe
-                apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe()) ?: listOf()
+                apiApp.searchAllJoueur(selectedEquipe.getMembreEquipe())
             })
         }
     }
@@ -49,6 +53,6 @@ fun EcranChoixJoueur(
     if (selectedJoueur == null) {
         LayoutListSelectableItem(joueurs,onSelectedJoueurChange)
     }else{//Sinon on montre l'écran du joueur
-        EcranJoueur(selectedJoueur, bitmapBackground)//On montre l'écran du joueur
+        EcranJoueur(selectedJoueur, bitmapBackground,selectedEquipe, refreshData)//On montre l'écran du joueur
     }
 }

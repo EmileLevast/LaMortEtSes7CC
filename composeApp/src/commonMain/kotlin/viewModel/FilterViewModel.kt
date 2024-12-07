@@ -9,7 +9,7 @@ import viewModel.stateviewmodel.FilterModelState
 
 class FilterViewModel: ViewModel() {
     // Filter UI state
-    private val _uiState = MutableStateFlow(FilterModelState(FilterUser.AUCUN))
+    private val _uiState = MutableStateFlow(FilterModelState(FilterUser.TOUT_EQUIPEMENT))
     val uiState: StateFlow<FilterModelState> = _uiState.asStateFlow()
 
     fun changeFilterUser(filterSelected : FilterUser){
