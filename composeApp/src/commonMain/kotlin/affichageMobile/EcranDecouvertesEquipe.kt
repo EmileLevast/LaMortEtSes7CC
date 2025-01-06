@@ -3,6 +3,7 @@ package affichageMobile
 import Equipe
 import IListItem
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -21,7 +22,7 @@ fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean){
     ) }
 
     val apiApp = koinInject<ApiApp>()
-    val scrollListState by remember { mutableStateOf<LazyListState>(LazyListState()) }
+    val scrollListState by remember { mutableStateOf(LazyGridState()) }
 
 
     LaunchedEffect(refreshDecouvertes, selectedEquipe) {

@@ -12,6 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.mainFermee
@@ -34,7 +39,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun EcranListItem(
     equipementsAfficher: List<IListItem>,
-    scrollListState: LazyListState,
+    scrollListState: LazyGridState,
     isShowingStats: Boolean,
     isDetailedModeOn: Boolean = false,
     listPinnedItems: List<String>? = null,
@@ -44,9 +49,10 @@ fun EcranListItem(
     //pour savoir quel élément à afficher en gros
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
 
-    LazyColumn(
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
         state = scrollListState,
-    ) {
+    ){
         items(equipementsAfficher) { equipement ->
 
             val isItemPinned = listPinnedItems?.contains(equipement.nom)
@@ -65,6 +71,7 @@ fun EcranListItem(
                         if (isDetailedModeOn) {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
+                                maxLines = 2,
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.titleMedium,
@@ -81,7 +88,7 @@ fun EcranListItem(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
-                                style = MaterialTheme.typography.titleLarge,
+                                style = MaterialTheme.typography.bodySmall,
                                 color = if(isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
                             )
 

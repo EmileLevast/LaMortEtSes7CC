@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -63,7 +64,7 @@ fun EcranJoueur(
     //Variable pour enregistrer les equipements à afficher
     val (equipements, setEquipements) = remember { mutableStateOf<List<IListItem>>(emptyList()) }
 
-    val scrollListState by remember { mutableStateOf(LazyListState()) }
+    val scrollListState by remember { mutableStateOf(LazyGridState()) }
     var listPinnedItems by remember { mutableStateOf<List<String>>(emptyList()) }
 
     //View Model pour savoir l'écran qu'a sélectionné le joueur
@@ -123,7 +124,7 @@ fun EcranJoueur(
 @Composable
 fun FilterListItem(
     items: List<IListItem>,
-    scrollListState: LazyListState,
+    scrollListState: LazyGridState,
     listPinnedItems: List<String>? = null,
     filterUser: FilterUser,
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> }
