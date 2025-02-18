@@ -247,6 +247,8 @@ skronskrons;23;1:2|2:3|3:6;Ph:3|Po:3;1;3;lunette de skronskorns:2|tablier ignifu
 manant de paille;11;1:1|2:3;Ph:2|F:-4;0;2;fourche:4;45;;
 mylene;60;1:3|2:4|3:7;Ph:7|Po:-1|F:2|Ma:10;25;4;anneau de l eclipse:1|depetrant:2|anneau apotropaïque:2|Eclairs:4|robe de scin:5|grand sort d'ubiquite:5|2 humanites:6|rapiere:6;2000;Humanite : il peut utiliser une humanité max quand il le souhaite (capacité régénérée si les joueurs vont au feu)
 Le sort depetrant de scin est automatiquement recupere par les joueurs à sa mort;
-troublion;18;1:1|2:1;Ph:1;9;1;croc chien enrage:0|transport:0|technique volage magique:0|humanite:3;170;peureux: lorsqu'ils subissent une frappe une fois les dégâts résolus ils utilisent transport
+troublion;18;1:1|2:1;Ph:1;9;1;croc chien enrage:0|joute:0|transport:0|technique volage magique:0|humanite:3;170;peureux: lorsqu'ils subissent une frappe une fois les dégâts résolus ils utilisent transport
 intangible:lorsque leurs points de vie arrive à 0, ils utilisent transport dans un blip magique et l'attaquant perds toutes les braises qu'il portait.
 braisé: seul une blessure de précision dans leurs yeux les tuent instantanément dans une gerbe d'étincelles leurs yeux se fissurent comme du verre tandis qu'ils se tordent de douleur. Ils laissent une braise de la couleur des dés qui ont été utilisés pour les tuer.;
+qiang;76;1:4|2:4|3:4;Po:2|F:2|Ph:3|Ma:11;17;4;technique sondage ame:0|technique appel effrayeuse:0|Talisman de vie X(compté dans les pvs):3|hauboubert:5|hallebarde:6;2470;Sondeuse d'âmes : les guerrières strigides sont éduquées pour protéger les étincelles de chaque humanité. C'est pourquoi elles savent sonder si un coeur est bon ou mauvais, elles savent ;
+sixmonts;21;1:2|2:2;Ph:2|Po:7|F:-2|Ma:1;8;5;longue dague ciselee:2|surcot:4|humanite:5;740;sens de l'orientation incroyable, presque magique, il saurait presque aller là où il n'a jamais été.;

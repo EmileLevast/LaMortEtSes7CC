@@ -354,3 +354,12 @@ Tout le monde dégage une agréable sensation de familiarité, de quiétude et d
 miracle de l indecis;MIRACLE;6;2 actions spéciales;4;;;;0;La cible peut être le lanceur ou un autre être pensant consentant.
 La cible peut alors changer ses sorts équipés par d'autres sorts de son choix dont elle dispose.
 Le lanceur peut aussi déséquiper ce sort là même sous l'effet du sort.;
+joute;AME;11;;4;Distance(~3m). Max energie : 1;|1=>Ma:0
+|2/3/4/5=>Ma:2
+|6=>Ma:3
+;;6;Après la frappe jetez un dé:
+6 => la cible et 2 autres ennemis
+5 => la cible et 1 autre ennemi 
+3/4/2 => la cible uniquement
+1 => la cible et un allié
+Le résultat détermine qui subit la frappe.Le MJ détermine les cibles ennemies, le lanceur détermine les cibles alliées.;
