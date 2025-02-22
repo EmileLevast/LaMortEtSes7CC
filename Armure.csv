@@ -55,3 +55,8 @@ De plus tous les êtres qui regardent la robe perdent 5 d'intelligence tant qu'i
 armure en peau de fee;Ph:2|Ma:10|F:11;Intelligence Minimum:7;0;L'armure est totalement invisible, le porteur semble nu.
 Les coups critiques sont donc impossible.
 L'armure fait rebondir les coups physiques puissants : tant que le porteur a de l'énergie alors une frappe de 2 énergies, dont les 2 dés touchent, est ignorée. Et toutes les frappes de 3 énergies ou plus sont ignorées. Suivant ces conditions si l'armure fait rebondir un coup alors l'attaquant perds son arme des mains et l'arme va aussi loin que la force de la frappe ignorée (1 m par point de dégâts);armure en peau de fée
+hauboubert;Ph:7|F:8|Po:1|Ma:12;Intelligence Minimum:5;1;Nyctalope :l'amure projette deux rayons lumineux par les yeux qui éclaire jusqu'à perte de vue. Le porteur voit toujours comme en plein jour, mais les rayons lumineux ne sont pas puissants de l'extérieur et ne laisse que 2 point lumineux sur le casque visible de loin dans la pénombre.
+Vocalise : la forme du casque fait résonner puissament la voix du porteur comme un mégaphone, celle-ci est effrayant et peut facilement intimider ses interlocuteurs (+4 pour des luttes d'intelligence d'intimidation)
+Appel : facilite la technique "appel effrayeuse" avec -3 sur le jets de dés de réussite.
+;
+surcot;Ph:1;;0;permet d'avoir 2 objets en plus à disposition sans avoir besoin d'utiliser une action équipement pour les prendre (compter ces deux objets comme étant porté), on considère que les objets sont accrochés sur le surcot et facile à dégainer.;

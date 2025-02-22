@@ -447,3 +447,9 @@ hallebarde;|1/2/3=>Ph:0
 ;6=>Ph:15;14;Force Minimum:10;40;4;Chaque frappe requiert à minima 3 d'énergies.
 Portée 3m.
 Art du tourbillon : possibilité de faire une frappe de précision (de base 11+) pour tourner sur soi-même et frapper tous les ennemis atteignables. Augmentez le seuil de réussite de la frappe de précision de 1 par cible de la frappe tourbillon. Si la frappe de précision réussit alors toutes les cibles subissent la frappe, sinon aucune.;
+bolas impitoyable;|1/2=>Ph:0
+|3=>Ph:3
+|4/5/6=>Ph:4
+;Saigne 5+ => 4;2;;6;1;Distance ~20m
+Chaire à nue : relance le moins bon dé de la frappe.
+Embirlificoteur : Distance uniquement. Possible de faire une frappe de précision avec un seuil de départ de réussite à 12+, ajuster ce seuil en fonction de la situation et ajouter le malus de poids de la cible au seuil (plus il est lourd plus c'est difficile de réussir la frappe de précision). Si la frappe de précision réussit alors la cible tombe au sol  doit passer 3 actions consécutives à se démêler.;
