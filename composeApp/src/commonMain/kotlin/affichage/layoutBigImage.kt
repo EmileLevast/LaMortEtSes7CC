@@ -49,10 +49,6 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                item {
-                    drawImageWithNetwork(equipement)
-                }
-
                 item{
                     Text(
                         text = equipement.nomComplet.ifBlank { equipement.nom },
@@ -60,6 +56,10 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.tertiary
                     )
+                }
+
+                item {
+                    drawImageWithNetwork(equipement)
                 }
 
                 if(isShowingStats){

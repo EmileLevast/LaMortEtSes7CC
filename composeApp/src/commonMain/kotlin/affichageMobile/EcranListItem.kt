@@ -10,13 +10,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,14 +24,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.mainFermee
 import lamortetses7cc.composeapp.generated.resources.mainOuverte
 import org.jetbrains.compose.resources.painterResource
+
 
 @Composable
 fun EcranListItem(
@@ -43,8 +41,10 @@ fun EcranListItem(
     isShowingStats: Boolean,
     isDetailedModeOn: Boolean = false,
     listPinnedItems: List<String>? = null,
-    togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> }
+    togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
+    itemsUtilisations : Map<String,Int>?=null,
 ) {
+    val colorBackground = MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
 
     //pour savoir quel élément à afficher en gros
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
@@ -120,6 +120,19 @@ fun EcranListItem(
                             contentDescription = null,
                         )
                     }
+
+                    val nbrUtilisations = itemsUtilisations?.keys?.contains(equipement.nom)?.let{if(it)itemsUtilisations[equipement.nom].toString() else "1"} ?:""
+                    Text(
+                        modifier = Modifier.align(Alignment.BottomStart).padding(bottom = 15.dp).fillMaxWidth(0.3f).drawBehind {
+                            drawCircle(
+                                color = colorBackground,
+                                radius = this.size.height/2
+                            )
+                        },
+                        text = nbrUtilisations,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.tertiary,
+                    )
                 }
             }
         }

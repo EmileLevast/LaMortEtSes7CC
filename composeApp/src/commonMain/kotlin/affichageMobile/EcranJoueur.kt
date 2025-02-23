@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -113,7 +112,9 @@ fun EcranJoueur(
                 scrollListState,
                 listPinnedItems,
                 filterUser = filterUiState.filterUser,
-                togglePinItem = togglePinnedItem)
+                togglePinItem = togglePinnedItem,
+                itemsUtilisations = selectedJoueur.utilisationsRestantesItem
+            )
         }
     }
 
@@ -127,7 +128,8 @@ fun FilterListItem(
     scrollListState: LazyGridState,
     listPinnedItems: List<String>? = null,
     filterUser: FilterUser,
-    togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> }
+    togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
+    itemsUtilisations : Map<String,Int>?=null
 ) {
 
     EcranListItem(
@@ -135,7 +137,8 @@ fun FilterListItem(
         scrollListState,
         true,
         listPinnedItems = listPinnedItems,
-        togglePinItem = togglePinItem
+        togglePinItem = togglePinItem,
+        itemsUtilisations = itemsUtilisations
     )
 }
 
