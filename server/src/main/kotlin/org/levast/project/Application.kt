@@ -224,10 +224,11 @@ fun Application.module() {
                         val resInsertCaracs = collectionsApiableItem[itapiable.nameForApi]!!.updateOne(filter = Joueur::_id eq joueurToUpdateCaracs._id, update = setValue(Joueur::caracActuel, joueurToUpdateCaracs.caracActuel))
                         val resInsertDetails = collectionsApiableItem[itapiable.nameForApi]!!.updateOne(filter = Joueur::_id eq joueurToUpdateCaracs._id, update = setValue(Joueur::details, joueurToUpdateCaracs.details))
                         val resInsertEquipped = collectionsApiableItem[itapiable.nameForApi]!!.updateOne(filter = Joueur::_id eq joueurToUpdateCaracs._id, update = setValue(Joueur::chaineEquipementSelectionneSerialisee, joueurToUpdateCaracs.chaineEquipementSelectionneSerialisee))
+                        val resInsertUtilisations = collectionsApiableItem[itapiable.nameForApi]!!.updateOne(filter = Joueur::_id eq joueurToUpdateCaracs._id, update = setValue(Joueur::utilisationsRestantesItem, joueurToUpdateCaracs.utilisationsRestantesItem))
 
-                        if(resInsertCaracs.wasAcknowledged() && resInsertDetails.wasAcknowledged() && resInsertEquipped.wasAcknowledged()){
+                        if(resInsertCaracs.wasAcknowledged() && resInsertDetails.wasAcknowledged() && resInsertEquipped.wasAcknowledged() && resInsertUtilisations.wasAcknowledged()){
                             call.respond(HttpStatusCode.OK)
-                        }else if (resInsertCaracs.wasAcknowledged() || resInsertDetails.wasAcknowledged() || resInsertEquipped.wasAcknowledged()){
+                        }else if (resInsertCaracs.wasAcknowledged() || resInsertDetails.wasAcknowledged() || resInsertEquipped.wasAcknowledged() || resInsertUtilisations.wasAcknowledged()){
                             //dans le cas où seulement une des deux données a correctement etait mise à jour
                             call.respond(HttpStatusCode.PartialContent)
                         }
