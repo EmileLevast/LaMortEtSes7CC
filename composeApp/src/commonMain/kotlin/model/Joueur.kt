@@ -22,7 +22,7 @@ class Joueur(
     override fun getStatsAsStrings():String{
         return "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
                 "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)+"\n"+details +"\néquipé:"+ getAllEquipmentSelectionneAsList() +
-                getAllUtilisationsRestantesAsString().ifBlank { null }?.let{ "\nUtilisations restantes :$this" }
+                getAllUtilisationsRestantesAsString().ifBlank { null }?.let{ "\nUtilisations restantes :$it" }
     }
 
     override fun parseFromString(listStringElement : List<String>):ApiableItem{
@@ -57,7 +57,8 @@ class Joueur(
         if(utilisationsRestantesItem.isEmpty()){//s'il n'y a pas d'utilisations on retourne une chaine vide
             return ""
         }
-        return CHAR_SEP_EQUIPEMENT+utilisationsRestantesItem.entries.joinToString("$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}") { entry -> "${entry.key}:${entry.value}" }+CHAR_SEP_EQUIPEMENT
+        return CHAR_SEP_EQUIPEMENT+utilisationsRestantesItem.entries
+            .joinToString("$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}") { entry -> "${entry.key}:${entry.value}" }+CHAR_SEP_EQUIPEMENT
     }
     private fun getDeparseAllUtilisationsStringAsMap(parsedStr : String):MutableMap<String,Int>{
         val trimedStr = parsedStr.trim('|')
