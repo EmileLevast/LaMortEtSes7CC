@@ -1,7 +1,6 @@
 import androidx.compose.ui.graphics.ImageBitmap
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import model.HeadBodyShowable
 import network.ApiApp
 
 @Serializable
@@ -55,7 +54,7 @@ sealed class ApiableItem() : IListItem {
 
             //If the line is empty we pass it
             if (listCSVElementOnLine.first().isNotBlank()) {
-                listApiableItem.add(parseFromCSV(listCSVElementOnLine))
+                listApiableItem.add(parseFromString(listCSVElementOnLine))
             }
 
             i++
@@ -184,7 +183,7 @@ sealed class ApiableItem() : IListItem {
         return res.removeSuffix("|")
     }
 
-    abstract fun parseFromCSV(listCSVElement: List<String>): ApiableItem
+    abstract fun parseFromString(listStringElement: List<String>): ApiableItem
 
     override fun getStatsSimplifiedAsStrings(): String {
         return getStatsAsStrings()

@@ -71,18 +71,18 @@ data class Monster(
                 "${strSimplify(capaciteSpeciale,true)}\n"
     }
 
-    override fun parseFromCSV(listCSVElement : List<String>):ApiableItem {
+    override fun parseFromString(listStringElement : List<String>):ApiableItem {
         return Monster(
-            listCSVElement[0].cleanupForDB(),
-            listCSVElement[1].toInt(),
-            parseSeuilsForce(listCSVElement[2]),
-            parseDefense(listCSVElement[3]),
-            listCSVElement[4].toInt(),
-            listCSVElement[5].toInt(),
-            parseDrops(listCSVElement[6]),
-            listCSVElement[7].toInt(),
-            listCSVElement[8],
-            listCSVElement[9]
+            listStringElement[0].cleanupForDB(),
+            listStringElement[1].toInt(),
+            parseSeuilsForce(listStringElement[2]),
+            parseDefense(listStringElement[3]),
+            listStringElement[4].toInt(),
+            listStringElement[5].toInt(),
+            parseDrops(listStringElement[6]),
+            listStringElement[7].toInt(),
+            listStringElement[8],
+            listStringElement[9]
         )
     }
 

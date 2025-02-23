@@ -22,12 +22,12 @@ class Special(
         return "${itemType.name}\n${strSimplify(capaciteSpeciale,true)}\n"
     }
 
-    override fun parseFromCSV(listCSVElement : List<String>):ApiableItem{
+    override fun parseFromString(listStringElement : List<String>):ApiableItem{
         return Special(
-            listCSVElement[0].cleanupForDB(),
-            parseSpecialItemType(listCSVElement[1]),
-            listCSVElement[2],
-            listCSVElement[3]
+            listStringElement[0].cleanupForDB(),
+            parseSpecialItemType(listStringElement[1]),
+            listStringElement[2],
+            listStringElement[3]
         )
     }
 

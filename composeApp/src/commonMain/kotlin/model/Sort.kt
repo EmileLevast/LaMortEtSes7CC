@@ -67,19 +67,19 @@ class Sort(
 
 
 
-    override fun parseFromCSV(listCSVElement: List<String>): ApiableItem {
+    override fun parseFromString(listStringElement: List<String>): ApiableItem {
         return Sort(
-            listCSVElement[0].cleanupForDB(),
-            parseSpellType(listCSVElement[1]),
-            listCSVElement[2].getIntOrZero(),
-            listCSVElement[3],
-            listCSVElement[4].getIntOrZero(),
-            listCSVElement[5],
-            parseSeuils(listCSVElement[6]),
-            listCSVElement[7],
-            listCSVElement[8].getIntOrZero(),
-            listCSVElement[9],
-            listCSVElement[10]
+            listStringElement[0].cleanupForDB(),
+            parseSpellType(listStringElement[1]),
+            listStringElement[2].getIntOrZero(),
+            listStringElement[3],
+            listStringElement[4].getIntOrZero(),
+            listStringElement[5],
+            parseSeuils(listStringElement[6]),
+            listStringElement[7],
+            listStringElement[8].getIntOrZero(),
+            listStringElement[9],
+            listStringElement[10]
         )
     }
 

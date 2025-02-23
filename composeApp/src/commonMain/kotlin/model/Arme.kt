@@ -47,17 +47,17 @@ class Arme(
                 "${strSimplify(capaciteSpeciale, true)}\n"
     }
 
-    override fun parseFromCSV(listCSVElement: List<String>): ApiableItem {
+    override fun parseFromString(listStringElement: List<String>): ApiableItem {
         return Arme(
-            listCSVElement[0].cleanupForDB(),
-            parseSeuils(listCSVElement[1]),
-            listCSVElement[2],
-            listCSVElement[3].getIntOrZero(),
-            listCSVElement[4],
-            listCSVElement[5].getIntOrZero(),
-            listCSVElement[6].getIntOrZero(),
-            listCSVElement[7],
-            listCSVElement[8]
+            listStringElement[0].cleanupForDB(),
+            parseSeuils(listStringElement[1]),
+            listStringElement[2],
+            listStringElement[3].getIntOrZero(),
+            listStringElement[4],
+            listStringElement[5].getIntOrZero(),
+            listStringElement[6].getIntOrZero(),
+            listStringElement[7],
+            listStringElement[8]
             )
     }
 

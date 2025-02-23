@@ -2,7 +2,6 @@
 
 import androidx.compose.ui.graphics.Color
 import kotlinx.serialization.Serializable
-import model.HeadBodyShowable
 
 @Serializable
 class Equipe(
@@ -21,12 +20,12 @@ class Equipe(
         return "Equipe : \n"+chaineJoueurSerialisee.replace(CHAR_SEP_EQUIPEMENT+CHAR_SEP_EQUIPEMENT,"\n")
     }
 
-    override fun parseFromCSV(listCSVElement : List<String>):ApiableItem{
+    override fun parseFromString(listStringElement : List<String>):ApiableItem{
         return Equipe(
-            listCSVElement[0].cleanupForDB(),
-            listCSVElement[1],
-            listCSVElement[2],
-            listCSVElement[3]
+            listStringElement[0].cleanupForDB(),
+            listStringElement[1],
+            listStringElement[2],
+            listStringElement[3]
         )
     }
 

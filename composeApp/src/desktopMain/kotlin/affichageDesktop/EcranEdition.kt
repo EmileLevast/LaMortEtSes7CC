@@ -136,7 +136,7 @@ fun layoutEdition(
 
                     Row(Modifier.align(Alignment.Center),horizontalArrangement = Arrangement.spacedBy(graphicsConsts.cellSpace)) {
                         buttonDarkStyled("update") {
-                            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
+                            val itemParsed = (itemToEdit as ApiableItem).parseFromString(listAttributs)
                             coroutineScope.launch(Dispatchers.IO) {
                                 val res = apiApp.updateItem(itemParsed)
                                 withContext(Dispatchers.Default) {
@@ -149,7 +149,7 @@ fun layoutEdition(
                             }
                         }
                         buttonDarkStyled("Save") {
-                            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
+                            val itemParsed = (itemToEdit as ApiableItem).parseFromString(listAttributs)
                             coroutineScope.launch(Dispatchers.IO) {
                                 val res = apiApp.insertItem(itemParsed)
                                 withContext(Dispatchers.Default) {
@@ -261,7 +261,7 @@ fun layoutEdition(
             }
         }
         if (openAlertDialogDeletion) {
-            val itemParsed = (itemToEdit as ApiableItem).parseFromCSV(listAttributs)
+            val itemParsed = (itemToEdit as ApiableItem).parseFromString(listAttributs)
 
             AlertDialog(
                 title = { Text("Supprimer ${itemParsed.nom}") },

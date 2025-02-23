@@ -31,14 +31,14 @@ class Bouclier(
                 strSimplify(capaciteSpeciale,true)
     }
 
-    override fun parseFromCSV(listCSVElement : List<String>):ApiableItem {
+    override fun parseFromString(listStringElement : List<String>):ApiableItem {
            return Bouclier(
-               listCSVElement[0].cleanupForDB(),
-               parseDefense(listCSVElement[1]),
-               listCSVElement[2],
-               listCSVElement[3].run{ if(isNotBlank()) toInt() else{0} },
-               listCSVElement[4],
-               listCSVElement[5]
+               listStringElement[0].cleanupForDB(),
+               parseDefense(listStringElement[1]),
+               listStringElement[2],
+               listStringElement[3].run{ if(isNotBlank()) toInt() else{0} },
+               listStringElement[4],
+               listStringElement[5]
             )
     }
 
