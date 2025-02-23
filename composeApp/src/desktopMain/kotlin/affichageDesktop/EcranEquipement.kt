@@ -230,7 +230,12 @@ fun layoutListItem(
 
 
     if(equipementToShow!=null && !isDetailedModeOn){
-        layoutBigImage(equipementToShow, hideBigElement, isShowingStats)
+        layoutBigImage(
+            equipementToShow,
+            hideBigElement,
+            isShowingStats,
+            itemsUtilisations?.get(equipementToShow.nom)
+        )
     }
 }
 

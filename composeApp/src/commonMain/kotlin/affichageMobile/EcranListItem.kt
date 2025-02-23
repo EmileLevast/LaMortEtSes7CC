@@ -121,7 +121,7 @@ fun EcranListItem(
                         )
                     }
 
-                    val nbrUtilisations = itemsUtilisations?.keys?.contains(equipement.nom)?.let{if(it)itemsUtilisations[equipement.nom].toString() else "1"} ?:""
+                    val nbrUtilisations = itemsUtilisations?.get(equipementToShow?.nom)?.run { toString() } ?: "1"
                     Text(
                         modifier = Modifier.align(Alignment.BottomStart).padding(bottom = 15.dp).fillMaxWidth(0.3f).drawBehind {
                             drawCircle(
@@ -139,7 +139,7 @@ fun EcranListItem(
     }
 
     if (equipementToShow != null && !isDetailedModeOn) {
-        layoutBigImage(equipementToShow!!, { equipementToShow = null }, isShowingStats)
+        layoutBigImage(equipementToShow!!, { equipementToShow = null }, isShowingStats, itemsUtilisations?.get(equipementToShow?.nom))
         handleBackButton { equipementToShow = null }
     }
 
