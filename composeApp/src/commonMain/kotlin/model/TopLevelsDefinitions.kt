@@ -10,6 +10,7 @@ const val QUERY_PARAMETER_NOM = "nom"
 const val ENDPOINT_RECHERCHE_TOUT = "all"
 const val ENDPOINT_MAJ_CARACS_JOUEUR = "maj_caracs_joueur"
 const val BALISE_SIMPLE_RULES = "[SIMPLE]"
+const val TYPE_LISTE_CHAINE = "${CHAR_SEP_EQUIPEMENT}String$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}String${CHAR_SEP_EQUIPEMENT}"
 
 //image url
 const val IMAGENAME_CARD_BACKGROUND = "fondCarte.jpg"
@@ -115,4 +116,5 @@ fun deparseDefense(defense: Map<EffectType, String>): String {
     return res.removeSuffix("|")
 }
 
-fun String.deserializeToListElements() = this.removeSurrounding(CHAR_SEP_EQUIPEMENT).split(CHAR_SEP_EQUIPEMENT+CHAR_SEP_EQUIPEMENT)
+fun String.deserializeToListElements() = this.removeSurrounding(CHAR_SEP_EQUIPEMENT).ifBlank { null }?.split(CHAR_SEP_EQUIPEMENT+CHAR_SEP_EQUIPEMENT)
+fun String.formatToPrettyString() = this.replace(CHAR_SEP_EQUIPEMENT+CHAR_SEP_EQUIPEMENT,"\n")

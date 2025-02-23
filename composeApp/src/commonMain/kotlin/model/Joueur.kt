@@ -23,7 +23,7 @@ class Joueur(
     override fun getStatsAsStrings():String{
         return "Niveau : $niveau\n"+getAllEquipmentAsList().joinToString("\n") +
                 "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)+"\n"+details +"\néquipé:"+ getAllEquipmentSelectionneAsList() +
-                getAllUtilisationsRestantesAsString().ifBlank { null }?.let{ "\nUtilisations restantes :$it" }
+                (getAllUtilisationsRestantesAsString().ifBlank { null }?.let{ "\nUtilisations restantes :$it" } ?: "")
     }
 
     override fun parseFromString(listStringElement : List<String>):ApiableItem{
@@ -43,13 +43,13 @@ class Joueur(
     override fun getParsingRulesAttributesAsList(): List<String> {
         return listOf(
             "Nom: String",
-            "equipement : ${CHAR_SEP_EQUIPEMENT}String$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}String${CHAR_SEP_EQUIPEMENT}",
+            "equipement : $TYPE_LISTE_CHAINE",
             "details : String",
             "caracOrigin : vie/force/EffectType:Int|Effect:Int.../intelligence/energie/humanite/ame",
             "caracActuel : vie/force/EffectType:Int|Effect:Int.../intelligence/energie/humanite/ame",
             "niveau : Int",
             "nom complet : String",
-            "equipement équipé: ${CHAR_SEP_EQUIPEMENT}String$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}String${CHAR_SEP_EQUIPEMENT}",
+            "equipement équipé: $TYPE_LISTE_CHAINE",
             "utilisations restantes: ${CHAR_SEP_EQUIPEMENT}String:Int$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}String:Int${CHAR_SEP_EQUIPEMENT}",
         )
     }
@@ -61,17 +61,12 @@ class Joueur(
         return CHAR_SEP_EQUIPEMENT+utilisationsRestantesItem.entries
             .joinToString("$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}") { entry -> "${entry.key}:${entry.value}" }+CHAR_SEP_EQUIPEMENT
     }
-    private fun getDeparseAllUtilisationsStringAsMap(parsedStr : String):MutableMap<String,Int>{
-        val trimedStr = parsedStr.trim('|')
-        if(trimedStr.isBlank()){//s'il n'y a aucune utilisations restantes
-            return mutableMapOf() //on retourne une map normale
-        }
-        return trimedStr.split("||")
-            .associate { entry -> entry.substringBefore(':') to entry.substringAfter(':').toInt() }.toMutableMap()
-    }
+    private fun getDeparseAllUtilisationsStringAsMap(parsedStr : String) = parsedStr.deserializeToListElements()
+        ?.associate { entry -> entry.substringBefore(':') to entry.substringAfter(':').toInt() }
+        ?.toMutableMap() ?: mutableMapOf()
 
-    fun getAllEquipmentAsList()=chaineEquipementSerialisee.deserializeToListElements()
-    fun getAllEquipmentSelectionneAsList()=chaineEquipementSelectionneSerialisee.deserializeToListElements()
+    fun getAllEquipmentAsList()=chaineEquipementSerialisee.deserializeToListElements()?: listOf()
+    fun getAllEquipmentSelectionneAsList()=chaineEquipementSelectionneSerialisee.deserializeToListElements()?: listOf()
 
 
     fun equip(itemNom:String){
