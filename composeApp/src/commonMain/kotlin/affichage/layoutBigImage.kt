@@ -7,31 +7,40 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import configuration.GraphicConstantsFullGrid
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: Boolean, itemUtilisation: Int?) {
+fun layoutBigImage(
+    equipement: IListItem,
+    onClick: () -> Unit,
+    isShowingStats: Boolean,
+    itemUtilisation: Int?
+) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
-
-    Column(Modifier.fillMaxSize().padding(20.dp),
+    Column(
+        Modifier.fillMaxSize().padding(20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-        ){
-        Card(){
-            LazyColumn (
-                modifier = Modifier.clickable { onClick() }.background(MaterialTheme.colorScheme.tertiaryContainer).padding(10.dp),
+    ) {
+        Card(Modifier.background(MaterialTheme.colorScheme.tertiaryContainer)) {
+
+
+            LazyColumn(
+                modifier = Modifier.clickable { onClick() }.padding(10.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                item{
+                item {
                     Text(
                         text = equipement.nomComplet.ifBlank { equipement.nom },
                         textAlign = TextAlign.Center,
@@ -44,8 +53,8 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
                     drawImageWithNetwork(equipement)
                 }
 
-                if(isShowingStats){
-                    item{
+                if (isShowingStats) {
+                    item {
                         Text(
                             modifier = Modifier.padding(graphicsConsts.statsBigImagePadding),
                             text = equipement.getStatsAsStrings(),
@@ -54,12 +63,41 @@ fun layoutBigImage(equipement: IListItem, onClick: () -> Unit, isShowingStats: B
 
                         )
                     }
+                }
+            }
+            val colorBackground =
+                MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
 
+            Row(
+                Modifier.fillMaxWidth(0.5f).align(Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                OutlinedButton({
+                }) {
+                    Text("-")
+                }
+
+                Text(
+                    modifier = Modifier.drawBehind {
+                        drawCircle(
+                            color = colorBackground,
+                            radius = this.size.height / 2
+                        )
+                    },
+                    text = itemUtilisation?.run { toString() } ?: "1",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.tertiaryContainer,
+                )
+
+                OutlinedButton({
+                }) {
+                    Text("+")
                 }
             }
         }
     }
-
 
 
 }
