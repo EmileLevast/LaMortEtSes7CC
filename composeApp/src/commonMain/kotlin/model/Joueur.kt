@@ -11,7 +11,8 @@ class Joueur(
     var niveau:Int=0,
     override val nomComplet:String = "",
     var chaineEquipementSelectionneSerialisee: String ="",
-    private var utilisationsRestantesItem:MutableMap<String,Int> = mutableMapOf()
+    private var utilisationsRestantesItem:MutableMap<String,Int> = mutableMapOf(),
+    private var notesPnj:MutableMap<String,String> = mutableMapOf(),//on parse pas ça ce sera juste editable dans l ecran des joueurs
 ) : ApiableItem() {
 
     override val _id = nom.hashCode()
