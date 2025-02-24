@@ -79,8 +79,8 @@ fun layoutBigImage(
                         }
                     }
                 }
-                val colorBackground =
-                    MaterialTheme.colorScheme.onTertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
+                val colorBackground = MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
+                val colorFront = MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
 
                 Row(
                     Modifier.fillMaxWidth(0.5f).align(Alignment.CenterHorizontally),
@@ -96,14 +96,18 @@ fun layoutBigImage(
                     Text(
                         modifier = Modifier.drawBehind {
                             drawCircle(
+                                color = colorFront,
+                                radius = this.size.height / 2.2f
+                            )
+                            drawCircle(
                                 color = colorBackground,
-                                radius = this.size.height / 2
+                                radius = this.size.height / 2.5f
                             )
                         },
                         text = nbrUtilisationItem.toString(),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.tertiaryContainer,
+                        color = MaterialTheme.colorScheme.tertiary,
                     )
 
                     OutlinedButton({
