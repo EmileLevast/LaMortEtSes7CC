@@ -80,7 +80,7 @@ fun layoutBigImage(
                     }
                 }
                 val colorBackground =
-                    MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
+                    MaterialTheme.colorScheme.onTertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
 
                 Row(
                     Modifier.fillMaxWidth(0.5f).align(Alignment.CenterHorizontally),
