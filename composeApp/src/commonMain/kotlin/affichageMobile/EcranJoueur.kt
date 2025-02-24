@@ -65,6 +65,7 @@ fun EcranJoueur(
 
     val scrollListState by remember { mutableStateOf(LazyGridState()) }
     var listPinnedItems by remember { mutableStateOf<List<String>>(emptyList()) }
+    var mapUtilisationItems by remember { mutableStateOf(selectedJoueur.utilisationsRestantesItem.toMap()) }
 
     //View Model pour savoir l'écran qu'a sélectionné le joueur
     val filterUiState by filterViewModel.uiState.collectAsState()
@@ -79,6 +80,15 @@ fun EcranJoueur(
         }
         listPinnedItems = selectedJoueur.getAllEquipmentSelectionneAsList()
         coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
+    }
+
+    val useItem:(IListItem,Int) -> Unit = { equipement, nbrUtilisationRestantes ->
+        if (selectedJoueur.setUtilisationsItem(equipement,nbrUtilisationRestantes)) {
+            coroutineScope.launch(Dispatchers.Default) {
+                apiApp.updateJoueur(selectedJoueur)
+            }
+            mapUtilisationItems = selectedJoueur.utilisationsRestantesItem.toMap() //TODO c'est censé relancer le changement des utilisations
+        }
     }
 
     LaunchedEffect(selectedJoueur) {
@@ -113,7 +123,8 @@ fun EcranJoueur(
                 listPinnedItems,
                 filterUser = filterUiState.filterUser,
                 togglePinItem = togglePinnedItem,
-                itemsUtilisations = selectedJoueur.utilisationsRestantesItem
+                itemsUtilisations = mapUtilisationItems,
+                onUtilisationItem = useItem
             )
         }
     }
@@ -129,7 +140,8 @@ fun FilterListItem(
     listPinnedItems: List<String>? = null,
     filterUser: FilterUser,
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
-    itemsUtilisations : Map<String,Int>?=null
+    itemsUtilisations: Map<String, Int>? = null,
+    onUtilisationItem: (IListItem, Int) -> Unit
 ) {
 
     EcranListItem(
@@ -138,7 +150,8 @@ fun FilterListItem(
         true,
         listPinnedItems = listPinnedItems,
         togglePinItem = togglePinItem,
-        itemsUtilisations = itemsUtilisations
+        itemsUtilisations = itemsUtilisations,
+        onUtilisationItem = onUtilisationItem
     )
 }
 

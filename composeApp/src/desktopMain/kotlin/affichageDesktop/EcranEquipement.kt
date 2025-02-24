@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import configuration.GraphicConstantsFullGrid
+import getNbrUtilisationAccordingItem
 import kotlinx.coroutines.launch
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
@@ -63,8 +64,10 @@ fun layoutListItem(
     isShowingStats : Boolean,
     isDetailedModeOn : Boolean = false,
     listPinnedItems :List<String>? = null,
-    togglePinItem:(String,Boolean)->Unit = { i: String, b: Boolean -> }
-) {
+    togglePinItem:(String,Boolean)->Unit = { i: String, b: Boolean -> },
+    onUtilisationItem: ((IListItem, Int) -> Unit)? = null,
+    itemsUtilisations: Map<String, Int>? = null,
+    ) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
     val apiApp = koinInject<ApiApp>()
@@ -232,9 +235,14 @@ fun layoutListItem(
     if(equipementToShow!=null && !isDetailedModeOn){
         layoutBigImage(
             equipementToShow,
-            hideBigElement,
+            {equipement,nbrUtilisationRestantes ->
+                if(onUtilisationItem != null){
+                    onUtilisationItem(equipement,nbrUtilisationRestantes)
+                }
+                hideBigElement()
+            },
             isShowingStats,
-            itemsUtilisations?.get(equipementToShow.nom)
+            itemsUtilisations?.get(equipementToShow.nom),
         )
     }
 }

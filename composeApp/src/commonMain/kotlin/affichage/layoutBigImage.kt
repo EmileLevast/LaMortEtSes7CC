@@ -11,6 +11,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -18,17 +22,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import configuration.GraphicConstantsFullGrid
+import getNbrUtilisationAccordingItem
 import org.koin.compose.koinInject
 
 @Composable
 fun layoutBigImage(
     equipement: IListItem,
-    onClick: () -> Unit,
+    onClick: (IListItem,Int) -> Unit,
     isShowingStats: Boolean,
     itemUtilisation: Int?,
-    onSave: (String,Int,Boolean) -> Unit,//(le nom de l'equipement, les utilisations restantes, et true s'il s'agit d'un sort)
     ) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+    var nbrUtilisationItem by remember { mutableStateOf(getNbrUtilisationAccordingItem(equipement,itemUtilisation).toInt()) }
+
     Column(
         Modifier.fillMaxSize().padding(20.dp),
         verticalArrangement = Arrangement.Center,
@@ -43,7 +49,7 @@ fun layoutBigImage(
 
 
                 LazyColumn(
-                    modifier = Modifier.clickable { onClick() }.padding(10.dp).weight(1f,false),
+                    modifier = Modifier.clickable { onClick(equipement,nbrUtilisationItem) }.padding(10.dp).weight(1f,false),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -82,6 +88,7 @@ fun layoutBigImage(
                 ) {
 
                     OutlinedButton({
+                        nbrUtilisationItem--
                     }) {
                         Text("-")
                     }
@@ -93,13 +100,14 @@ fun layoutBigImage(
                                 radius = this.size.height / 2
                             )
                         },
-                        text = itemUtilisation?.run { toString() } ?: "1",
+                        text = nbrUtilisationItem.toString(),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.tertiaryContainer,
                     )
 
                     OutlinedButton({
+                        nbrUtilisationItem++
                     }) {
                         Text("+")
                     }

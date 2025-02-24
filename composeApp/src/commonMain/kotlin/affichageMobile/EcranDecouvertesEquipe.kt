@@ -2,7 +2,6 @@ package affichageMobile
 
 import Equipe
 import IListItem
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,7 +40,7 @@ fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean){
     EcranListItem(
         decouvertesEquipe,
         scrollListState,
-        false
+        false,
     )
 
 }

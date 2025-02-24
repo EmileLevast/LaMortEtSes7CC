@@ -118,3 +118,13 @@ fun deparseDefense(defense: Map<EffectType, String>): String {
 
 fun String.deserializeToListElements() = this.removeSurrounding(CHAR_SEP_EQUIPEMENT).ifBlank { null }?.split(CHAR_SEP_EQUIPEMENT+CHAR_SEP_EQUIPEMENT)
 fun String.formatToPrettyString() = this.replace(CHAR_SEP_EQUIPEMENT+CHAR_SEP_EQUIPEMENT,"\n")
+
+fun getNbrUtilisationAccordingItem(equipement : IListItem,nbrUtilisation : Int?):String{
+    if(nbrUtilisation != null){
+        return nbrUtilisation.toString()
+    }else if( equipement is Sort){//si c'est un sort et qu'il n'y a pas d'utilisations renseignees alors on affiche le nbr d'utilisation du sort
+        return equipement.utilisation.toString()
+    }else{
+        return "1"//si c'est pas un sort et qu'il n'y a pas d'utilisations renseignees alors on affiche 1
+    }
+}

@@ -69,12 +69,7 @@ class Joueur(
     fun getAllEquipmentSelectionneAsList()=chaineEquipementSelectionneSerialisee.deserializeToListElements()?: listOf()
 
 
-    fun equip(itemNom:String){
-        chaineEquipementSelectionneSerialisee+= "$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT"
-    }
-    fun unequip(itemNom:String){
-        chaineEquipementSelectionneSerialisee = chaineEquipementSelectionneSerialisee.replace("$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT","")
-    }
+
 
     override fun getDeparsedAttributes(): List<String> {
         return listOf<String>(
@@ -90,9 +85,41 @@ class Joueur(
         )
     }
 
-
-
     override fun getBody() = "Niveau : $niveau\n" +
             "\n"+caracActuel.showWithComparisonOriginCarac(caracOrigin)
+
+    fun equip(itemNom:String){
+        chaineEquipementSelectionneSerialisee+= "$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT"
+    }
+    fun unequip(itemNom:String){
+        chaineEquipementSelectionneSerialisee = chaineEquipementSelectionneSerialisee.replace("$CHAR_SEP_EQUIPEMENT$itemNom$CHAR_SEP_EQUIPEMENT","")
+    }
+
+    //retourne vrai s'il y'a eu une modification
+    fun setUtilisationsItem(equipement :IListItem, nbrUtilisationsRestantes:Int):Boolean{
+
+        var hasBeenUpdated = false
+
+        val previousUtilisationsRestantes = utilisationsRestantesItem[equipement.nom]
+        if(previousUtilisationsRestantes == null){//s'il y'a avait pas d 'utilisations enregistrees pour cet item
+            if((equipement is Sort && nbrUtilisationsRestantes != equipement.utilisation) //si c'est un sort et que le nbr utilisations est different que le nombre d utilisation du sort
+                ||(equipement !is Sort && nbrUtilisationsRestantes != 1)){ //ou que c'est pas un sort mais qu'on comptabilise plus d'une utilisation
+                utilisationsRestantesItem[equipement.nom] = nbrUtilisationsRestantes
+                hasBeenUpdated = true
+            }
+        }else if(nbrUtilisationsRestantes!=previousUtilisationsRestantes){
+            //si on a un bien un item et que son nombre d'utilisation est different du precent
+            //alors y'a une maj c'est sur
+            if((equipement is Sort && nbrUtilisationsRestantes == equipement.utilisation) //si c'est un sort et que le nbr utilisations et au même nombre que le nombre d utilisation du sort
+                ||(equipement !is Sort && nbrUtilisationsRestantes == 1)){ //ou que c'est pas un sort mais qu'on ne comptabilise qu'une seule utilisation
+                utilisationsRestantesItem.remove(equipement.nom)
+            }else {
+                utilisationsRestantesItem[equipement.nom] = nbrUtilisationsRestantes
+            }
+            hasBeenUpdated = true
+        }
+
+        return hasBeenUpdated
+    }
 
 }

@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import getNbrUtilisationAccordingItem
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.mainFermee
 import lamortetses7cc.composeapp.generated.resources.mainOuverte
@@ -42,9 +43,11 @@ fun EcranListItem(
     isDetailedModeOn: Boolean = false,
     listPinnedItems: List<String>? = null,
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
-    itemsUtilisations : Map<String,Int>?=null,
+    itemsUtilisations: Map<String, Int>? = null,
+    onUtilisationItem: ((IListItem, Int) -> Unit)? = null,
 ) {
-    val colorBackground = MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
+    val colorBackground =
+        MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
 
     //pour savoir quel élément à afficher en gros
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
@@ -52,13 +55,14 @@ fun EcranListItem(
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         state = scrollListState,
-    ){
+    ) {
         items(equipementsAfficher) { equipement ->
 
             val isItemPinned = listPinnedItems?.contains(equipement.nom)
 
             Card(
-                modifier = Modifier.fillMaxWidth().clickable { equipementToShow = equipement }.padding(5.dp),
+                modifier = Modifier.fillMaxWidth().clickable { equipementToShow = equipement }
+                    .padding(5.dp),
                 border = if (isItemPinned == true) BorderStroke(
                     4.dp,
                     MaterialTheme.colorScheme.primary
@@ -75,7 +79,7 @@ fun EcranListItem(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.titleMedium,
-                                color = if(isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
+                                color = if (isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
                             )
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
@@ -89,10 +93,13 @@ fun EcranListItem(
                                 text = equipement.nomComplet.ifBlank { equipement.nom },
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.bodySmall,
-                                color = if(isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
+                                color = if (isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
                             )
 
-                            drawImageWithNetwork(equipement, Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp))
+                            drawImageWithNetwork(
+                                equipement,
+                                Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp)
+                            )
                         }
 
                     }
@@ -121,15 +128,15 @@ fun EcranListItem(
                         )
                     }
 
-                    val nbrUtilisations = itemsUtilisations?.get(equipementToShow?.nom)?.run { toString() } ?: "1"
                     Text(
-                        modifier = Modifier.align(Alignment.BottomStart).padding(bottom = 15.dp).fillMaxWidth(0.3f).drawBehind {
+                        modifier = Modifier.align(Alignment.BottomStart).padding(bottom = 15.dp)
+                            .fillMaxWidth(0.3f).drawBehind {
                             drawCircle(
                                 color = colorBackground,
-                                radius = this.size.height/2
+                                radius = this.size.height / 2
                             )
                         },
-                        text = nbrUtilisations,
+                        text = getNbrUtilisationAccordingItem(equipement, itemsUtilisations?.get(equipement.nom)),
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.tertiary,
                     )
@@ -139,13 +146,22 @@ fun EcranListItem(
     }
 
     if (equipementToShow != null && !isDetailedModeOn) {
-        layoutBigImage(equipementToShow!!, { equipementToShow = null }, isShowingStats, itemsUtilisations?.get(equipementToShow?.nom))
+        layoutBigImage(
+            equipementToShow!!,
+            {itemUsed, nbrUtilisationRestantes->
+                if(onUtilisationItem != null ){
+                    onUtilisationItem(itemUsed,nbrUtilisationRestantes)
+                }
+                equipementToShow = null },//TODO appeler sauvegarde des utilsiations
+            isShowingStats,
+            itemsUtilisations?.get(equipementToShow?.nom)
+        )
         handleBackButton { equipementToShow = null }
     }
 
 }
 
 @Composable
-expect fun handleBackButton(onClickBack:()->Unit)
+expect fun handleBackButton(onClickBack: () -> Unit)
 
 
