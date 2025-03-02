@@ -37,7 +37,7 @@ import configuration.GraphicConstantsFullGrid
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutDetailJoueur(infoToShow : String, onSave: (String) -> Unit) {
+fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
@@ -47,42 +47,44 @@ fun layoutDetailJoueur(infoToShow : String, onSave: (String) -> Unit) {
 
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            onSave(detailsActuel+"\n" + it)
+            onSave(detailsActuel + "\n" + it)
         }, { isShowingAddDetailPopup = false })
     }
 
-    LazyColumn(Modifier.fillMaxWidth()) {
+    Column(Modifier.fillMaxWidth()) {
 
         detailsActuel.split("\n").forEach {
             if (it.isNotBlank()) {
-                item{
-                    Row(Modifier.fillMaxWidth()) {
-                        Card(Modifier.weight(1f).padding(5.dp)){
-                            Text(it,Modifier.align(Alignment.CenterHorizontally).background(MaterialTheme.colorScheme.secondary).fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary)
-                        }
-                        IconButton(onClick = {
-                            detailsActuel = detailsActuel.replace(it, "")
-                                .replace("\n\n", "\n")//on supprime l'ancien detail
-                            onSave(detailsActuel)
-                        })
-                        {
-                            Icon(Icons.Rounded.Delete, "supprimer detail")
-                        }
+                Row(Modifier.fillMaxWidth()) {
+                    Card(Modifier.weight(1f).padding(5.dp)) {
+                        Text(
+                            it,
+                            Modifier.align(Alignment.CenterHorizontally)
+                                .background(MaterialTheme.colorScheme.secondary).fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                    }
+                    IconButton(onClick = {
+                        detailsActuel = detailsActuel.replace(it, "")
+                            .replace("\n\n", "\n")//on supprime l'ancien detail
+                        onSave(detailsActuel)
+                    })
+                    {
+                        Icon(Icons.Rounded.Delete, "supprimer detail")
                     }
                 }
             }
-            item {
-                Card(
-                    modifier = Modifier.padding(3.dp),
-                    border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
-                    shape = RoundedCornerShape(50)
-                ) {
-                    IconButton(onClick = {
-                        isShowingAddDetailPopup = true
-                    })
-                    {
-                        Icon(Icons.Rounded.Add, "ajouter detail")
-                    }
+            Card(
+                modifier = Modifier.padding(3.dp),
+                border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
+                shape = RoundedCornerShape(50)
+            ) {
+                IconButton(onClick = {
+                    isShowingAddDetailPopup = true
+                })
+                {
+                    Icon(Icons.Rounded.Add, "ajouter detail")
                 }
             }
         }

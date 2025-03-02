@@ -58,27 +58,26 @@ fun layoutBigImage(
             Column {
 
 
-                if (isShowingStats) {
-                    LazyColumn(
-                        modifier = Modifier.clickable { onClick(equipement, nbrUtilisationItem) }
-                            .padding(10.dp).weight(1f, false),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
+                LazyColumn(
+                    modifier = Modifier.clickable { onClick(equipement,nbrUtilisationItem) }.padding(10.dp).weight(1f,false),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
 
-                        item {
-                            Text(
-                                text = equipement.nomComplet.ifBlank { equipement.nom },
-                                textAlign = TextAlign.Center,
-                                style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.tertiary
-                            )
-                        }
+                    item {
+                        Text(
+                            text = equipement.nomComplet.ifBlank { equipement.nom },
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.tertiary
+                        )
+                    }
 
-                        item {
-                            drawImageWithNetwork(equipement)
-                        }
+                    item {
+                        drawImageWithNetwork(equipement)
+                    }
 
+                    if (isShowingStats) {
                         item {
                             Text(
                                 modifier = Modifier.padding(graphicsConsts.statsBigImagePadding),
@@ -88,19 +87,11 @@ fun layoutBigImage(
 
                             )
                         }
-                    }
-                }else{
-                    Text(
-                        text = equipement.nomComplet.ifBlank { equipement.nom },
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.tertiary
-                    )
-                    drawImageWithNetwork(equipement)
-
-                    if(joueur!=null){
-                        layoutDetailJoueur(joueur.notesPnj[equipement.nom] ?: ""){ nouvelleNote ->
-                            joueur.notesPnj[equipement.nom] = nouvelleNote
+                    }else if (joueur!=null){
+                        item {
+                            layoutDetailJoueur(joueur.notesPnj[equipement.nom] ?: ""){ nouvelleNote ->
+                                joueur.notesPnj[equipement.nom] = nouvelleNote
+                            }
                         }
                     }
                 }
