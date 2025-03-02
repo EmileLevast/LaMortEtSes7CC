@@ -42,7 +42,8 @@ fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean, jo
         decouvertesEquipe,
         scrollListState,
         false,
-        joueur = joueur
+        joueur = joueur,
+        onSave = onSave
     )
 
 }
