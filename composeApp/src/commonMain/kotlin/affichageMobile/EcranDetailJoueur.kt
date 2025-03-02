@@ -37,17 +37,18 @@ import configuration.GraphicConstantsFullGrid
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutDetailJoueur(infoToShow : String, onSave: (String) -> Unit) {
+fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     var isShowingAddDetailPopup by remember { mutableStateOf(false) }
 
-    var detailsActuel by remember { mutableStateOf(infoToShow) }
+    var detailsActuel by remember(actuelJoueur.details) { mutableStateOf(actuelJoueur.details) }
 
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            onSave(infoToShow+"\n" + it)
+            actuelJoueur.details += "\n" + it;
+            onSave()
         }, { isShowingAddDetailPopup = false })
     }
 
@@ -63,7 +64,7 @@ fun layoutDetailJoueur(infoToShow : String, onSave: (String) -> Unit) {
                         IconButton(onClick = {
                             detailsActuel = detailsActuel.replace(it, "")
                                 .replace("\n\n", "\n")//on supprime l'ancien detail
-                            onSave(detailsActuel)
+                            onSave()
                         })
                         {
                             Icon(Icons.Rounded.Delete, "supprimer detail")
