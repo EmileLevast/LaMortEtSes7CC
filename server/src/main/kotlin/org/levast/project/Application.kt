@@ -5,6 +5,7 @@ import Arme
 import Armure
 import Bouclier
 import ENDPOINT_MAJ_CARACS_JOUEUR
+import ENDPOINT_MAJ_NOTES_JOUEUR
 import ENDPOINT_RECHERCHE_STRICTE
 import Equipe
 import Joueur
@@ -37,14 +38,10 @@ import io.ktor.server.plugins.compression.Compression
 import io.ktor.server.plugins.compression.gzip
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
-import io.ktor.server.request.httpMethod
 import io.ktor.server.request.receive
-import io.ktor.server.request.receiveText
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.util.logging.KtorSimpleLogger
-import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
 import network.AnythingItemDTO
 import org.litote.kmongo.eq
 import org.litote.kmongo.setValue
@@ -229,6 +226,21 @@ fun Application.module() {
                         if(resInsertCaracs.wasAcknowledged() && resInsertDetails.wasAcknowledged() && resInsertEquipped.wasAcknowledged() && resInsertUtilisations.wasAcknowledged()){
                             call.respond(HttpStatusCode.OK)
                         }else if (resInsertCaracs.wasAcknowledged() || resInsertDetails.wasAcknowledged() || resInsertEquipped.wasAcknowledged() || resInsertUtilisations.wasAcknowledged()){
+                            //dans le cas où seulement une des deux données a correctement etait mise à jour
+                            call.respond(HttpStatusCode.PartialContent)
+                        }
+                        else{
+                            call.respond(HttpStatusCode.ExpectationFailed)
+                        }
+                    }
+                    post("/$ENDPOINT_MAJ_NOTES_JOUEUR"){
+                        val joueurToUpdateNotes:Joueur = getApiableElementAccordingToType(call, itapiable) as Joueur
+
+                        val resInsertUtilisations = collectionsApiableItem[itapiable.nameForApi]!!.updateOne(filter = Joueur::_id eq joueurToUpdateNotes._id, update = setValue(Joueur::notesPnj, joueurToUpdateNotes.notesPnj))
+
+                        if(resInsertUtilisations.wasAcknowledged()){
+                            call.respond(HttpStatusCode.OK)
+                        }else if (resInsertUtilisations.wasAcknowledged()){
                             //dans le cas où seulement une des deux données a correctement etait mise à jour
                             call.respond(HttpStatusCode.PartialContent)
                         }

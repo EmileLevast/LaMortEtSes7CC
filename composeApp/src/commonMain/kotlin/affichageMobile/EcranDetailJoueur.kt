@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -36,54 +37,56 @@ import configuration.GraphicConstantsFullGrid
 import org.koin.compose.koinInject
 
 @Composable
-fun layoutDetailJoueur(actuelJoueur: Joueur, onSave: () -> Unit) {
+fun layoutDetailJoueur(infoToShow : String, onSave: (String) -> Unit) {
 
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     var isShowingAddDetailPopup by remember { mutableStateOf(false) }
 
-    var detailsActuel by remember(actuelJoueur.details) { mutableStateOf(actuelJoueur.details) }
+    var detailsActuel by remember { mutableStateOf(infoToShow) }
 
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            actuelJoueur.details += "\n" + it;
-            onSave()
+            onSave(infoToShow+"\n" + it)
         }, { isShowingAddDetailPopup = false })
     }
 
-
-    Column(Modifier.fillMaxWidth()) {
+    LazyColumn(Modifier.fillMaxWidth()) {
 
         detailsActuel.split("\n").forEach {
             if (it.isNotBlank()) {
-                Row(Modifier.fillMaxWidth()) {
-                    Card(Modifier.weight(1f)){
-                        Text(it,Modifier.align(Alignment.CenterHorizontally).background(MaterialTheme.colorScheme.secondary).fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary)
+                item{
+                    Row(Modifier.fillMaxWidth()) {
+                        Card(Modifier.weight(1f).padding(5.dp)){
+                            Text(it,Modifier.align(Alignment.CenterHorizontally).background(MaterialTheme.colorScheme.secondary).fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary)
+                        }
+                        IconButton(onClick = {
+                            detailsActuel = detailsActuel.replace(it, "")
+                                .replace("\n\n", "\n")//on supprime l'ancien detail
+                            onSave(detailsActuel)
+                        })
+                        {
+                            Icon(Icons.Rounded.Delete, "supprimer detail")
+                        }
                     }
+                }
+            }
+            item {
+                Card(
+                    modifier = Modifier.padding(3.dp),
+                    border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
+                    shape = RoundedCornerShape(50)
+                ) {
                     IconButton(onClick = {
-                        actuelJoueur.details = actuelJoueur.details.replace(it, "")
-                            .replace("\n\n", "\n")//on supprime l'ancien detail
-                        detailsActuel=actuelJoueur.details //pour afficher le changement
-                        onSave()
+                        isShowingAddDetailPopup = true
                     })
                     {
-                        Icon(Icons.Rounded.Delete, "supprimer detail")
+                        Icon(Icons.Rounded.Add, "ajouter detail")
                     }
                 }
             }
         }
-        Card(
-            modifier = Modifier.align(Alignment.CenterHorizontally).padding(3.dp),
-            border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
-            shape = RoundedCornerShape(50)
-        ) {
-            IconButton(onClick = {
-                isShowingAddDetailPopup = true
-            })
-            {
-                Icon(Icons.Rounded.Add, "ajouter detail")
-            }
-        }
+
     }
 
 }

@@ -5,6 +5,7 @@ import Arme
 import Armure
 import Bouclier
 import ENDPOINT_MAJ_CARACS_JOUEUR
+import ENDPOINT_MAJ_NOTES_JOUEUR
 import ENDPOINT_RECHERCHE_STRICTE
 import ENDPOINT_RECHERCHE_TOUT
 import ERROR_NETWORK_MESSAGE
@@ -178,6 +179,19 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
     /**
      * pour mettre à jour les stats d'un joueur
      */
+    //Ne mets à jour que les notes du joueurs
+    suspend fun updateNotesPnjJoueur(joueurToUpdate: Joueur): Boolean {
+        return catchNetworkError(defaultReturnValue = false) {
+            jsonClient.post(endpoint + "/" + joueurToUpdate.nameForApi + "/${ENDPOINT_MAJ_NOTES_JOUEUR}") {
+                contentType(ContentType.Application.Json)
+                setBody(joueurToUpdate)
+            }.let {
+                it.status == HttpStatusCode.OK
+            }
+        }
+    }
+
+    //Mets à jour les stats du joueurs
     suspend fun updateJoueur(joueurToUpdate: Joueur): Boolean {
         return catchNetworkError(defaultReturnValue = false) {
             jsonClient.post(endpoint + "/" + joueurToUpdate.nameForApi + "/$ENDPOINT_MAJ_CARACS_JOUEUR") {
