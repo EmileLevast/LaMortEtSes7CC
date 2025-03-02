@@ -47,7 +47,7 @@ fun layoutDetailJoueur(infoToShow : String, onSave: (String) -> Unit) {
 
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            onSave(infoToShow+"\n" + it)
+            onSave(detailsActuel+"\n" + it)
         }, { isShowingAddDetailPopup = false })
     }
 

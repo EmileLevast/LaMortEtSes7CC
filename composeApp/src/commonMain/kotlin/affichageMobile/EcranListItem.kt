@@ -1,6 +1,7 @@
 package affichageMobile
 
 import IListItem
+import Joueur
 import affichage.drawImageWithNetwork
 import affichage.layoutBigImage
 import androidx.compose.foundation.BorderStroke
@@ -45,6 +46,7 @@ fun EcranListItem(
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
     itemsUtilisations: Map<String, Int>? = null,
     onUtilisationItem: ((IListItem, Int) -> Unit)? = null,
+    joueur: Joueur? = null
 ) {
     val colorBackground =
         MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
@@ -164,7 +166,8 @@ fun EcranListItem(
                 }
                 equipementToShow = null },//TODO appeler sauvegarde des utilsiations
             isShowingStats,
-            itemsUtilisations?.get(equipementToShow?.nom)
+            itemsUtilisations?.get(equipementToShow?.nom),
+            joueur
         )
         handleBackButton { equipementToShow = null }
     }

@@ -109,7 +109,7 @@ fun EcranJoueur(
     //si la selection c'est tout les equipements
     when (filterUiState.filterUser) {
         FilterUser.DECOUVERTES -> {
-            EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur)
+            EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur, selectedJoueur)
         }//si la selection c'est l'affichage des statistiques
         FilterUser.STATISTIQUES -> {
             EcranStatistiques(selectedJoueur) {

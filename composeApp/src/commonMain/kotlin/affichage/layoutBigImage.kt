@@ -1,6 +1,8 @@
 package affichage
 
 import IListItem
+import Joueur
+import affichageMobile.layoutDetailJoueur
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,12 +30,20 @@ import org.koin.compose.koinInject
 @Composable
 fun layoutBigImage(
     equipement: IListItem,
-    onClick: (IListItem,Int) -> Unit,
+    onClick: (IListItem, Int) -> Unit,
     isShowingStats: Boolean,
     itemUtilisation: Int?,
-    ) {
+    joueur: Joueur? = null
+) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
-    var nbrUtilisationItem by remember { mutableStateOf(getNbrUtilisationAccordingItem(equipement,itemUtilisation).toInt()) }
+    var nbrUtilisationItem by remember {
+        mutableStateOf(
+            getNbrUtilisationAccordingItem(
+                equipement,
+                itemUtilisation
+            ).toInt()
+        )
+    }
 
     Column(
         Modifier.fillMaxSize().padding(20.dp),
@@ -48,26 +58,27 @@ fun layoutBigImage(
             Column {
 
 
-                LazyColumn(
-                    modifier = Modifier.clickable { onClick(equipement,nbrUtilisationItem) }.padding(10.dp).weight(1f,false),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
+                if (isShowingStats) {
+                    LazyColumn(
+                        modifier = Modifier.clickable { onClick(equipement, nbrUtilisationItem) }
+                            .padding(10.dp).weight(1f, false),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
 
-                    item {
-                        Text(
-                            text = equipement.nomComplet.ifBlank { equipement.nom },
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.tertiary
-                        )
-                    }
+                        item {
+                            Text(
+                                text = equipement.nomComplet.ifBlank { equipement.nom },
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                        }
 
-                    item {
-                        drawImageWithNetwork(equipement)
-                    }
+                        item {
+                            drawImageWithNetwork(equipement)
+                        }
 
-                    if (isShowingStats) {
                         item {
                             Text(
                                 modifier = Modifier.padding(graphicsConsts.statsBigImagePadding),
@@ -78,9 +89,26 @@ fun layoutBigImage(
                             )
                         }
                     }
+                }else{
+                    Text(
+                        text = equipement.nomComplet.ifBlank { equipement.nom },
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                    drawImageWithNetwork(equipement)
+
+                    if(joueur!=null){
+                        layoutDetailJoueur(joueur.notesPnj[equipement.nom] ?: ""){ nouvelleNote ->
+                            joueur.notesPnj[equipement.nom] = nouvelleNote
+                        }
+                    }
                 }
-                val colorBackground = MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
-                val colorFront = MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
+
+                val colorBackground =
+                    MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
+                val colorFront =
+                    MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
 
                 Row(
                     Modifier.fillMaxWidth(0.5f).align(Alignment.CenterHorizontally),

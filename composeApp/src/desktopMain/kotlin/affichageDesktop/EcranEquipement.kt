@@ -1,6 +1,7 @@
 package affichageDesktop
 
 import IListItem
+import Joueur
 import Special
 import affichage.CustomPainterCard
 import affichage.layoutBigImage

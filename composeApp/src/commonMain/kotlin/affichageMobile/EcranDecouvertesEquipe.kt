@@ -2,6 +2,7 @@ package affichageMobile
 
 import Equipe
 import IListItem
+import Joueur
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,7 +16,7 @@ import org.koin.compose.koinInject
 
 
 @Composable
-fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean){
+fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean, joueur: Joueur){
     val (decouvertesEquipe, setDecouvertesEquipe) = remember { mutableStateOf<List<IListItem>>(
         emptyList()
     ) }
@@ -41,6 +42,7 @@ fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean){
         decouvertesEquipe,
         scrollListState,
         false,
+        joueur = joueur
     )
 
 }
