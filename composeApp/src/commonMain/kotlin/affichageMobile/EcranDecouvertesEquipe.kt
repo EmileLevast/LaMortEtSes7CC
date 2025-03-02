@@ -16,7 +16,7 @@ import org.koin.compose.koinInject
 
 
 @Composable
-fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean, joueur: Joueur){
+fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean, joueur: Joueur, onSave:()->Unit){
     val (decouvertesEquipe, setDecouvertesEquipe) = remember { mutableStateOf<List<IListItem>>(
         emptyList()
     ) }

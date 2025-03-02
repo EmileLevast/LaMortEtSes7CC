@@ -25,6 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import configuration.GraphicConstantsFullGrid
 import getNbrUtilisationAccordingItem
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 
 @Composable
@@ -33,9 +35,11 @@ fun layoutBigImage(
     onClick: (IListItem, Int) -> Unit,
     isShowingStats: Boolean,
     itemUtilisation: Int?,
-    joueur: Joueur? = null
+    joueur: Joueur? = null,
 ) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+    var notesJoueur by remember { mutableStateOf("") }
+
     var nbrUtilisationItem by remember {
         mutableStateOf(
             getNbrUtilisationAccordingItem(
@@ -57,9 +61,10 @@ fun layoutBigImage(
 
             Column {
 
-
                 LazyColumn(
-                    modifier = Modifier.clickable { onClick(equipement,nbrUtilisationItem) }.padding(10.dp).weight(1f,false),
+                    modifier = Modifier.clickable {
+                        onClick(equipement,nbrUtilisationItem)
+                    }.padding(10.dp).weight(1f,false),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -89,8 +94,10 @@ fun layoutBigImage(
                         }
                     }else if (joueur!=null){
                         item {
-                            layoutDetailJoueur(joueur.notesPnj[equipement.nom] ?: ""){ nouvelleNote ->
-                                joueur.notesPnj[equipement.nom] = nouvelleNote
+                            notesJoueur = joueur.notesPnj[equipement.nom] ?: ""
+                            layoutDetailJoueur(notesJoueur){ nouvelleNote ->
+                                joueur.notesPnj[equipement.nom] = nouvelleNote //pour stocker ce qu'il faut mettre à jour
+                                notesJoueur = nouvelleNote //pour faire le chgt d'affichage directement
                             }
                         }
                     }

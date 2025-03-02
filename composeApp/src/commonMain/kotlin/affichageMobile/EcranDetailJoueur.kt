@@ -43,17 +43,15 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
     var isShowingAddDetailPopup by remember { mutableStateOf(false) }
 
-    var detailsActuel by remember { mutableStateOf(infoToShow) }
-
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            onSave(detailsActuel + "\n" + it)
+            onSave(infoToShow + "\n" + it)
         }, { isShowingAddDetailPopup = false })
     }
 
     Column(Modifier.fillMaxWidth()) {
 
-        detailsActuel.split("\n").forEach {
+        infoToShow.split("\n").forEach {
             if (it.isNotBlank()) {
                 Row(Modifier.fillMaxWidth()) {
                     Card(Modifier.weight(1f).padding(5.dp)) {
@@ -66,26 +64,26 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
                         )
                     }
                     IconButton(onClick = {
-                        detailsActuel = detailsActuel.replace(it, "")
+                        val newInfosWithDeleted = infoToShow.replace(it, "")
                             .replace("\n\n", "\n")//on supprime l'ancien detail
-                        onSave(detailsActuel)
+                        onSave(newInfosWithDeleted)
                     })
                     {
                         Icon(Icons.Rounded.Delete, "supprimer detail")
                     }
                 }
             }
-            Card(
-                modifier = Modifier.padding(3.dp),
-                border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
-                shape = RoundedCornerShape(50)
-            ) {
-                IconButton(onClick = {
-                    isShowingAddDetailPopup = true
-                })
-                {
-                    Icon(Icons.Rounded.Add, "ajouter detail")
-                }
+        }
+        Card(
+            modifier = Modifier.align(Alignment.CenterHorizontally).padding(3.dp),
+            border = BorderStroke(graphicsConsts.widthBorder, Color.LightGray),
+            shape = RoundedCornerShape(50)
+        ) {
+            IconButton(onClick = {
+                isShowingAddDetailPopup = true
+            })
+            {
+                Icon(Icons.Rounded.Add, "ajouter detail")
             }
         }
 

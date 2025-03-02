@@ -82,6 +82,10 @@ fun EcranJoueur(
         coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
     }
 
+    val onSave:()->Unit = {
+        coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
+    }
+
     val useItem:(IListItem,Int) -> Unit = { equipement, nbrUtilisationRestantes ->
         if (selectedJoueur.setUtilisationsItem(equipement,nbrUtilisationRestantes)) {
             coroutineScope.launch(Dispatchers.Default) {
@@ -109,11 +113,11 @@ fun EcranJoueur(
     //si la selection c'est tout les equipements
     when (filterUiState.filterUser) {
         FilterUser.DECOUVERTES -> {
-            EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur, selectedJoueur)
+            EcranDecouverteEquipe(selectedEquipe, isRefreshedJoueur, selectedJoueur, onSave)
         }//si la selection c'est l'affichage des statistiques
         FilterUser.STATISTIQUES -> {
             EcranStatistiques(selectedJoueur) {
-                coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
+                onSave()
             }
         }
         //sinon on considere que c'est l'affichage de tout l'equipement
@@ -124,7 +128,8 @@ fun EcranJoueur(
                 filterUser = filterUiState.filterUser,
                 togglePinItem = togglePinnedItem,
                 itemsUtilisations = mapUtilisationItems,
-                onUtilisationItem = useItem
+                onUtilisationItem = useItem,
+                onSave
             )
         }
     }
@@ -141,7 +146,8 @@ fun FilterListItem(
     filterUser: FilterUser,
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
     itemsUtilisations: Map<String, Int>? = null,
-    onUtilisationItem: (IListItem, Int) -> Unit
+    onUtilisationItem: (IListItem, Int) -> Unit,
+    onSave:()->Unit
 ) {
 
     EcranListItem(
@@ -151,7 +157,8 @@ fun FilterListItem(
         listPinnedItems = listPinnedItems,
         togglePinItem = togglePinItem,
         itemsUtilisations = itemsUtilisations,
-        onUtilisationItem = onUtilisationItem
+        onUtilisationItem = onUtilisationItem,
+        onSave = onSave
     )
 }
 

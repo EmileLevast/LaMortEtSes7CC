@@ -46,7 +46,8 @@ fun EcranListItem(
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
     itemsUtilisations: Map<String, Int>? = null,
     onUtilisationItem: ((IListItem, Int) -> Unit)? = null,
-    joueur: Joueur? = null
+    joueur: Joueur? = null,
+    onSave: ()->Unit
 ) {
     val colorBackground =
         MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
@@ -161,13 +162,16 @@ fun EcranListItem(
         layoutBigImage(
             equipementToShow!!,
             {itemUsed, nbrUtilisationRestantes->
+                if(!isShowingStats){ // si on est sur les decouvertes
+                    onSave()
+                }
                 if(onUtilisationItem != null ){
                     onUtilisationItem(itemUsed,nbrUtilisationRestantes)
                 }
                 equipementToShow = null },//TODO appeler sauvegarde des utilsiations
             isShowingStats,
             itemsUtilisations?.get(equipementToShow?.nom),
-            joueur
+            joueur,
         )
         handleBackButton { equipementToShow = null }
     }

@@ -60,6 +60,8 @@ fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
     val scrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 
+    val detailsActuel by remember { mutableStateOf(actuelJoueur.details) }
+
     val onSaveDetailsJoueur : (String)->Unit = {
         actuelJoueur.details = it
         onSave()
@@ -126,7 +128,7 @@ fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
         }
 
         item {
-            layoutDetailJoueur(actuelJoueur.details, onSaveDetailsJoueur)
+            layoutDetailJoueur(detailsActuel, onSaveDetailsJoueur)
         }
     }
 
