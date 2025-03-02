@@ -60,6 +60,11 @@ fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
     val scrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 
+    val onSaveDetailsJoueur : (String)->Unit = {
+        actuelJoueur.details = it
+        onSave()
+    }
+
     LazyColumn(
         Modifier.draggable(
             orientation = Orientation.Vertical,
@@ -121,7 +126,7 @@ fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
         }
 
         item {
-            layoutDetailJoueur(actuelJoueur, onSave)
+            layoutDetailJoueur(actuelJoueur.details, onSaveDetailsJoueur)
         }
     }
 
