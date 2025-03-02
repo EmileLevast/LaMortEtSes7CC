@@ -54,16 +54,17 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
         infoToShow.split("\n").forEach {
             if (it.isNotBlank()) {
                 Row(Modifier.fillMaxWidth()) {
-                    Card(Modifier.weight(1f).padding(5.dp)) {
+                    Card(Modifier.weight(1f).padding(2.dp)) {
                         Text(
                             it,
                             Modifier.align(Alignment.CenterHorizontally)
                                 .background(MaterialTheme.colorScheme.secondary).fillMaxWidth(),
                             textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onSecondary
+                            color = MaterialTheme.colorScheme.onSecondary,
+                            style = MaterialTheme.typography.bodySmall,
                         )
                     }
-                    IconButton(onClick = {
+                    IconButton(modifier = Modifier.padding(0.dp),onClick = {
                         val newInfosWithDeleted = infoToShow.replace(it, "")
                             .replace("\n\n", "\n")//on supprime l'ancien detail
                         onSave(newInfosWithDeleted)
@@ -98,7 +99,7 @@ fun AlertDialogAjoutDetail(
     onDismissRequest: () -> Unit
 ) {
 
-    var detailActuel by remember { mutableStateOf("detail actuel") }
+    var detailActuel by remember { mutableStateOf("") }
 
     AlertDialog(
         title = {

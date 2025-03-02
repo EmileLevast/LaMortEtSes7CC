@@ -103,45 +103,48 @@ fun layoutBigImage(
                     }
                 }
 
-                val colorBackground =
-                    MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
-                val colorFront =
-                    MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
+                if(isShowingStats){
+                    val colorBackground =
+                        MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
+                    val colorFront =
+                        MaterialTheme.colorScheme.tertiary //necessaire pour l utiliser dans la fonction de drawBehind
 
-                Row(
-                    Modifier.fillMaxWidth(0.5f).align(Alignment.CenterHorizontally),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
+                    Row(
+                        Modifier.fillMaxWidth(0.5f).align(Alignment.CenterHorizontally),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
 
-                    OutlinedButton({
-                        nbrUtilisationItem--
-                    }) {
-                        Text("-")
-                    }
+                        OutlinedButton({
+                            nbrUtilisationItem--
+                        }) {
+                            Text("-")
+                        }
 
-                    Text(
-                        modifier = Modifier.drawBehind {
-                            drawCircle(
-                                color = colorFront,
-                                radius = this.size.height / 2.2f
-                            )
-                            drawCircle(
-                                color = colorBackground,
-                                radius = this.size.height / 2.5f
-                            )
-                        },
-                        text = nbrUtilisationItem.toString(),
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.tertiary,
-                    )
+                        Text(
+                            modifier = Modifier.drawBehind {
+                                drawCircle(
+                                    color = colorFront,
+                                    radius = this.size.height / 2.2f
+                                )
+                                drawCircle(
+                                    color = colorBackground,
+                                    radius = this.size.height / 2.5f
+                                )
+                            },
+                            text = nbrUtilisationItem.toString(),
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.tertiary,
+                        )
 
-                    OutlinedButton({
-                        nbrUtilisationItem++
-                    }) {
-                        Text("+")
+                        OutlinedButton({
+                            nbrUtilisationItem++
+                        }) {
+                            Text("+")
+                        }
                     }
                 }
+
             }
         }
     }
