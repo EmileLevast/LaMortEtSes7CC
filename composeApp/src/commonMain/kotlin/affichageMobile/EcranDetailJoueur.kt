@@ -61,7 +61,7 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
         infoToShow.split(CHAR_SEP_EQUIPEMENT).forEach {
             if (it.isNotBlank()) {
-                Row(Modifier.fillMaxWidth()) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Card(Modifier.weight(1f).padding(2.dp)) {
                         Text(
                             it,
