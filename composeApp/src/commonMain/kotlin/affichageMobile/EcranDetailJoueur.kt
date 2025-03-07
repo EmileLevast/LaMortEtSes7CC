@@ -1,5 +1,6 @@
 package affichageMobile
 
+import CHAR_SEP_EQUIPEMENT
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -22,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,16 +44,22 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
 
     var isShowingAddDetailPopup by remember { mutableStateOf(false) }
+    var isShowingModifyDetailPopup by remember { mutableStateOf<String?>(null) }
 
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            onSave(infoToShow + "\n" + it)
+            onSave(infoToShow + CHAR_SEP_EQUIPEMENT + it)
         }, { isShowingAddDetailPopup = false })
+    }else if(isShowingModifyDetailPopup != null){
+        val strToModify = isShowingModifyDetailPopup.toString()
+        AlertDialogAjoutDetail( {
+            infoToShow.replace(strToModify,it)
+        }, { isShowingModifyDetailPopup = null }, strToModify)
     }
 
     Column(Modifier.fillMaxWidth()) {
 
-        infoToShow.split("\n").forEach {
+        infoToShow.split(CHAR_SEP_EQUIPEMENT).forEach {
             if (it.isNotBlank()) {
                 Row(Modifier.fillMaxWidth()) {
                     Card(Modifier.weight(1f).padding(2.dp)) {
@@ -64,13 +72,22 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }
-                    IconButton(modifier = Modifier.padding(0.dp),onClick = {
+                    IconButton(onClick = {
                         val newInfosWithDeleted = infoToShow.replace(it, "")
-                            .replace("\n\n", "\n")//on supprime l'ancien detail
+                            .replace("$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}",
+                                CHAR_SEP_EQUIPEMENT
+                            )//on supprime l'ancien detail
                         onSave(newInfosWithDeleted)
                     })
                     {
                         Icon(Icons.Rounded.Delete, "supprimer detail")
+                    }
+                    IconButton(onClick = {
+                        //on ouvre la pop de modication
+                        isShowingModifyDetailPopup = it
+                    })
+                    {
+                        Icon(Icons.Rounded.Edit, "editer detail")
                     }
                 }
             }
@@ -96,10 +113,11 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 @Composable
 fun AlertDialogAjoutDetail(
     onAddingDetail: (String) -> Unit,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    initialContent:String? = null
 ) {
 
-    var detailActuel by remember { mutableStateOf("") }
+    var detailActuel by remember { mutableStateOf(initialContent ?: "") }
 
     AlertDialog(
         title = {
