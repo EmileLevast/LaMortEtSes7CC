@@ -53,7 +53,7 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
     }else if(isShowingModifyDetailPopup != null){
         val strToModify = isShowingModifyDetailPopup.toString()
         AlertDialogAjoutDetail( {
-            infoToShow.replace(strToModify,it)
+            onSave(infoToShow.replace(strToModify,it))
         }, { isShowingModifyDetailPopup = null }, strToModify)
     }
 
