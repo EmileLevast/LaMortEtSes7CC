@@ -12,12 +12,17 @@ import androidx.compose.material3.TextField
 import Joueur
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -33,6 +38,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import configuration.GraphicConstantsFullGrid
@@ -48,12 +55,12 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
     if (isShowingAddDetailPopup) {
         AlertDialogAjoutDetail({
-            onSave(infoToShow + CHAR_SEP_EQUIPEMENT + it)
+            onSave((infoToShow + CHAR_SEP_EQUIPEMENT + it).removeSurrounding(CHAR_SEP_EQUIPEMENT))
         }, { isShowingAddDetailPopup = false })
     }else if(isShowingModifyDetailPopup != null){
         val strToModify = isShowingModifyDetailPopup.toString()
         AlertDialogAjoutDetail( {
-            onSave(infoToShow.replace(strToModify,it))
+            onSave(infoToShow.replace(strToModify,it).removeSurrounding(CHAR_SEP_EQUIPEMENT))
         }, { isShowingModifyDetailPopup = null }, strToModify)
     }
 
@@ -61,23 +68,24 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
         infoToShow.split(CHAR_SEP_EQUIPEMENT).forEach {
             if (it.isNotBlank()) {
-                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                    Card(Modifier.weight(1f).padding(2.dp)) {
-                        Text(
-                            it,
-                            Modifier.align(Alignment.CenterHorizontally)
-                                .background(MaterialTheme.colorScheme.secondary).fillMaxWidth(),
-                            textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onSecondary,
-                            style = MaterialTheme.typography.bodySmall,
-                        )
+                Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
+                    Card(Modifier.weight(1f).fillMaxHeight().padding(2.dp)) {
+                        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.secondary)){
+                            Text(
+                                it,
+                                textAlign = TextAlign.Center,
+                                color = MaterialTheme.colorScheme.onSecondary,
+                                style = TextStyle( fontFamily = FontFamily.Default),
+                            )
+                        }
+
                     }
                     IconButton(onClick = {
                         val newInfosWithDeleted = infoToShow.replace(it, "")
                             .replace("$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}",
                                 CHAR_SEP_EQUIPEMENT
                             )//on supprime l'ancien detail
-                        onSave(newInfosWithDeleted)
+                        onSave(newInfosWithDeleted.removeSurrounding(CHAR_SEP_EQUIPEMENT))
                     })
                     {
                         Icon(Icons.Rounded.Delete, "supprimer detail")
@@ -127,7 +135,8 @@ fun AlertDialogAjoutDetail(
             TextField(
                 value = detailActuel,
                 onValueChange = { detailActuel = it },
-                label = { Text("nouveau detail") }
+                label = { Text("nouveau detail") },
+                textStyle = TextStyle( fontFamily = FontFamily.Default)
             )
         },
         onDismissRequest = {
