@@ -33,7 +33,6 @@ import io.ktor.server.engine.*
 import io.ktor.server.http.content.resources
 import io.ktor.server.http.content.static
 import io.ktor.server.netty.*
-import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.compression.Compression
 import io.ktor.server.plugins.compression.gzip
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
@@ -69,10 +68,7 @@ fun Application.module() {
     install(ContentNegotiation) {
         json()
     }
-    install(CallLogging) {
-        level = org.slf4j.event.Level.WARN
 
-    }
     install(CORS) {
         allowMethod(HttpMethod.Get)
         allowMethod(HttpMethod.Post)

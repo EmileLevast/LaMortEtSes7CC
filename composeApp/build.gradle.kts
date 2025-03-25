@@ -56,6 +56,11 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            //shared preferences
+            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.datastore.preferences.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -73,24 +78,25 @@ kotlin {
             //Library to make call to the api DarkSoul
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.client.okhttp)
 
             //dependency injection
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
+
             implementation(libs.lifecycle.viewmodel.compose)
 
-            //shared preferences
-            implementation(libs.androidx.datastore.preferences)
-            implementation(libs.androidx.datastore.preferences.core)
+
 
             //Coil pour les images
             implementation(libs.coil.compose)
-            implementation(libs.coil.network.ktor2)
+            implementation(libs.coil.network.ktor3)
 
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            //shared preferences
+            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.datastore.preferences.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
         }
     }
 }

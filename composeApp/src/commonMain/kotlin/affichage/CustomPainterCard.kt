@@ -20,30 +20,30 @@ class CustomPainterCard constructor(
 
     private val size: IntSize = validateSize(srcOffset, srcSize)
     override fun DrawScope.onDraw() {
-        // draw the first image without any blend mode
-        drawImage(
-            image,
-            srcOffset,
-            srcSize,
-            dstSize = IntSize(
-                this@onDraw.size.width.roundToInt(),
-                this@onDraw.size.height.roundToInt()
-            )
-        )
-
-        // draw the second image with an Overlay blend mode to blend the two together
-        val translate = this@onDraw.size.width/6f
-        translate (translate,translate){
-            drawImage(
-                imageOverlay,
-                srcOffset,
-                overlaySize,
-                dstSize = IntSize(
-                    (2*this@onDraw.size.width/3).roundToInt(),
-                    (2*this@onDraw.size.width/3).roundToInt()
-                )
-            )
-        }
+//        // draw the first image without any blend mode
+//        drawImage(
+//            image,
+//            srcOffset,
+//            srcSize,
+//            dstSize = IntSize(
+//                this@onDraw.size.width.roundToInt(),
+//                this@onDraw.size.height.roundToInt()
+//            )
+//        )
+//
+//        // draw the second image with an Overlay blend mode to blend the two together
+//        val translate = this@onDraw.size.width/6f
+//        translate (translate,translate){
+//            drawImage(
+//                imageOverlay,
+//                srcOffset,
+//                overlaySize,
+//                dstSize = IntSize(
+//                    (2*this@onDraw.size.width/3).roundToInt(),
+//                    (2*this@onDraw.size.width/3).roundToInt()
+//                )
+//            )
+//        }
 
     }
 

@@ -1,3 +1,5 @@
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import com.example.compose.AppTheme
@@ -9,7 +11,9 @@ fun main() {
 
         AppTheme {
             //Redirige vers le code de commonMain
-            AppMobile()
+            Text(
+                "hey ça marche"
+            )
         }
 
     }
