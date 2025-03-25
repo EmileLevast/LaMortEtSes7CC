@@ -28,6 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import configuration.GraphicConstantsFullGrid
+import configuration.getApiApp
+import configuration.getGraphicConstants
 import getNbrUtilisationAccordingItem
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
@@ -43,9 +45,9 @@ fun layoutBigImage(
     itemUtilisation: Int?,
     joueur: Joueur? = null,
 ) {
-    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+    val graphicsConsts = getGraphicConstants()
     var notesJoueur by remember { mutableStateOf("") }
-    val apiApp = koinInject<ApiApp>()
+    val apiApp = getApiApp()
 
 
     var nbrUtilisationItem by remember {

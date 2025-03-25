@@ -49,6 +49,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import configuration.IConfiguration
+import configuration.getApiApp
+import configuration.getConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -66,8 +68,8 @@ import viewModel.stateviewmodel.FilterUser
 fun EcranPrincipal(
     filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
 ) {
-    val apiApp = koinInject<ApiApp>()
-    val config = koinInject<IConfiguration>()
+    val apiApp = getApiApp()
+    val config = getConfiguration()
 
     val coroutineScope = rememberCoroutineScope()
     val (equipes, setEquipes) = remember { mutableStateOf<List<Equipe>>(emptyList()) }
@@ -128,7 +130,7 @@ fun EcranPrincipal(
                 selectedJoueur = it
                 config.setUserName(it.nom)
                 nameSavedUser = it.nom
-            }, bitmapBackground)
+            })
         }
     }, {
 

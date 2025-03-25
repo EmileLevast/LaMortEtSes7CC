@@ -38,12 +38,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import configuration.GraphicConstantsFullGrid
+import configuration.getGraphicConstants
 import org.koin.compose.koinInject
 
 @Composable
 fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
-    val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
+    val graphicsConsts = getGraphicConstants()
 
     var isShowingAddDetailPopup by remember { mutableStateOf(false) }
     var isShowingModifyDetailPopup by remember { mutableStateOf<String?>(null) }

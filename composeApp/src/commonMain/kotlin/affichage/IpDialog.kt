@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import configuration.IConfiguration
+import configuration.getConfiguration
 import org.koin.compose.koinInject
 
 
@@ -17,7 +18,7 @@ import org.koin.compose.koinInject
 fun AlertDialogChangeIp(
     onDismissRequest: ()->Unit
 ) {
-    val config = koinInject<IConfiguration>()
+    val config = getConfiguration()
 
     var ipAdressInput by remember { mutableStateOf(config.getIpAdressTargetServer()) }
 

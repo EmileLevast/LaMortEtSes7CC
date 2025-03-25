@@ -9,6 +9,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import configuration.getApiApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import network.ApiApp
@@ -28,7 +29,7 @@ fun EcranDecouverteEquipe(
         )
     }
 
-    val apiApp = koinInject<ApiApp>()
+    val apiApp = getApiApp()
     val scrollListState by remember { mutableStateOf(LazyGridState()) }
 
 

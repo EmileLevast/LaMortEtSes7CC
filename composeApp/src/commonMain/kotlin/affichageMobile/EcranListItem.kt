@@ -29,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import configuration.getApiApp
 import getNbrUtilisationAccordingItem
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.UnknownImage
@@ -57,7 +58,7 @@ fun EcranListItem(
 
     //pour savoir quel élément à afficher en gros
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
-    val apiApp = koinInject<ApiApp>()
+    val apiApp = getApiApp()
 
 
     LazyVerticalGrid(

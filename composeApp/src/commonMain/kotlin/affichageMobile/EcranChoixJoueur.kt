@@ -12,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.ImageBitmap
 import configuration.IConfiguration
 import configuration.getApiApp
+import configuration.getConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,7 +26,7 @@ fun EcranChoixJoueur(
     onSelectedJoueurChange: (Joueur) -> Unit,
 ) {
     val apiApp = getApiApp()
-    val config = koinInject<IConfiguration>()
+    val config = getConfiguration()
     var refreshData by remember { mutableStateOf(true) } //à utiliser pour rafraichir tous les launchedEffect
     var isLoadingJoueur by remember { mutableStateOf(false) }
 

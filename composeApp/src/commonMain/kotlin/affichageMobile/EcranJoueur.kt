@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
+import configuration.getApiApp
 import getListItemFiltered
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,7 +58,7 @@ fun EcranJoueur(
     filterViewModel: FilterViewModel = viewModel { FilterViewModel() }
 ) {
 
-    val apiApp = koinInject<ApiApp>()
+    val apiApp = getApiApp()
     val coroutineScope = rememberCoroutineScope()
 
 
@@ -193,7 +194,7 @@ fun IconProfilRefreshable(
     refreshJoueur: () -> Unit
 ) {
 
-    val apiApp = koinInject<ApiApp>()
+    val apiApp = getApiApp()
 
 
     Box(modifier.height(IntrinsicSize.Min)) {
