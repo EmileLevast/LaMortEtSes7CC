@@ -83,16 +83,17 @@ fun EcranJoueur(
         coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
     }
 
-    val onSave:()->Unit = {
+    val onSave: () -> Unit = {
         coroutineScope.launch(Dispatchers.Default) { apiApp.updateJoueur(selectedJoueur) }
     }
 
-    val useItem:(IListItem,Int) -> Unit = { equipement, nbrUtilisationRestantes ->
-        if (selectedJoueur.setUtilisationsItem(equipement,nbrUtilisationRestantes)) {
+    val useItem: (IListItem, Int) -> Unit = { equipement, nbrUtilisationRestantes ->
+        if (selectedJoueur.setUtilisationsItem(equipement, nbrUtilisationRestantes)) {
             coroutineScope.launch(Dispatchers.Default) {
                 apiApp.updateJoueur(selectedJoueur)
             }
-            mapUtilisationItems = selectedJoueur.utilisationsRestantesItem.toMap() //TODO c'est censé relancer le changement des utilisations
+            mapUtilisationItems =
+                selectedJoueur.utilisationsRestantesItem.toMap() //TODO c'est censé relancer le changement des utilisations
         }
     }
 
@@ -123,7 +124,8 @@ fun EcranJoueur(
         }
         //sinon on considere que c'est l'affichage de tout l'equipement
         else -> {
-            FilterListItem(equipements,
+            FilterListItem(
+                equipements,
                 scrollListState,
                 listPinnedItems,
                 filterUser = filterUiState.filterUser,
@@ -148,11 +150,11 @@ fun FilterListItem(
     togglePinItem: (String, Boolean) -> Unit = { _: String, _: Boolean -> },
     itemsUtilisations: Map<String, Int>? = null,
     onUtilisationItem: (IListItem, Int) -> Unit,
-    onSave:()->Unit
+    onSave: () -> Unit
 ) {
 
     EcranListItem(
-        getListItemFiltered(items,filterUser,listPinnedItems),
+        getListItemFiltered(items, filterUser, listPinnedItems),
         scrollListState,
         true,
         listPinnedItems = listPinnedItems,
@@ -175,10 +177,11 @@ fun ProfileImage(selectedJoueur: Joueur, isLoadingJoueur: Boolean, refreshJoueur
 
     //Affichage de l'image et du nom de profil
     Box(Modifier.fillMaxSize()) {
-        IconProfilRefreshable(selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd)
-            .graphicsLayer {
-                rotationZ = rotation
-            }, refreshJoueur
+        IconProfilRefreshable(
+            selectedJoueur, Modifier.fillMaxWidth(0.2f).align(Alignment.TopEnd)
+                .graphicsLayer {
+                    rotationZ = rotation
+                }, refreshJoueur
         )
     }
 }
@@ -199,7 +202,7 @@ fun IconProfilRefreshable(
                 model = apiApp.createUrlImageFromItem(selectedJoueur),
                 modifier = Modifier.clip(CircleShape).align(Alignment.Center),
                 placeholder = painterResource(Res.drawable.UnknownImage),
- error = painterResource(Res.drawable.UnknownImage),
+                error = painterResource(Res.drawable.UnknownImage),
                 contentDescription = null
             )
         }

@@ -16,10 +16,17 @@ import org.koin.compose.koinInject
 
 
 @Composable
-fun EcranDecouverteEquipe(selectedEquipe: Equipe, refreshDecouvertes:Boolean, joueur: Joueur, onSave:()->Unit){
-    val (decouvertesEquipe, setDecouvertesEquipe) = remember { mutableStateOf<List<IListItem>>(
-        emptyList()
-    ) }
+fun EcranDecouverteEquipe(
+    selectedEquipe: Equipe,
+    refreshDecouvertes: Boolean,
+    joueur: Joueur,
+    onSave: () -> Unit
+) {
+    val (decouvertesEquipe, setDecouvertesEquipe) = remember {
+        mutableStateOf<List<IListItem>>(
+            emptyList()
+        )
+    }
 
     val apiApp = koinInject<ApiApp>()
     val scrollListState by remember { mutableStateOf(LazyGridState()) }

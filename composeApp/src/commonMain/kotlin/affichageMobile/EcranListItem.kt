@@ -50,7 +50,7 @@ fun EcranListItem(
     itemsUtilisations: Map<String, Int>? = null,
     onUtilisationItem: ((IListItem, Int) -> Unit)? = null,
     joueur: Joueur? = null,
-    onSave: ()->Unit
+    onSave: () -> Unit
 ) {
     val colorBackground =
         MaterialTheme.colorScheme.tertiaryContainer //necessaire pour l utiliser dans la fonction de drawBehind
@@ -106,12 +106,13 @@ fun EcranListItem(
 
                             AsyncImage(
                                 model = apiApp.createUrlImageFromItem(equipement),
-                                modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp),
+                                modifier = Modifier.align(Alignment.CenterHorizontally)
+                                    .padding(bottom = 10.dp),
                                 contentDescription = null,
                                 placeholder = painterResource(Res.drawable.UnknownImage),
- error = painterResource(Res.drawable.UnknownImage),
+                                error = painterResource(Res.drawable.UnknownImage),
 
-                            )
+                                )
                         }
 
                     }
@@ -148,16 +149,19 @@ fun EcranListItem(
                         modifier = Modifier.align(Alignment.BottomStart).padding(bottom = 15.dp)
                             .fillMaxWidth(0.3f)
                             .clickable {
-                                if(onUtilisationItem != null ){
-                                    onUtilisationItem(equipement,(nbrUtilisationsRestantes.toInt()-1))
+                                if (onUtilisationItem != null) {
+                                    onUtilisationItem(
+                                        equipement,
+                                        (nbrUtilisationsRestantes.toInt() - 1)
+                                    )
                                 }
                             }
                             .drawBehind {
-                            drawCircle(
-                                color = colorBackground,
-                                radius = this.size.height / 2
-                            )
-                        },
+                                drawCircle(
+                                    color = colorBackground,
+                                    radius = this.size.height / 2
+                                )
+                            },
                         text = nbrUtilisationsRestantes,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.tertiary,
@@ -170,14 +174,15 @@ fun EcranListItem(
     if (equipementToShow != null && !isDetailedModeOn) {
         layoutBigImage(
             equipementToShow!!,
-            {itemUsed, nbrUtilisationRestantes->
-                if(!isShowingStats){ // si on est sur les decouvertes
+            { itemUsed, nbrUtilisationRestantes ->
+                if (!isShowingStats) { // si on est sur les decouvertes
                     onSave()
                 }
-                if(onUtilisationItem != null ){
-                    onUtilisationItem(itemUsed,nbrUtilisationRestantes)
+                if (onUtilisationItem != null) {
+                    onUtilisationItem(itemUsed, nbrUtilisationRestantes)
                 }
-                equipementToShow = null },//TODO appeler sauvegarde des utilsiations
+                equipementToShow = null
+            },//TODO appeler sauvegarde des utilsiations
             isShowingStats,
             itemsUtilisations?.get(equipementToShow?.nom),
             joueur,

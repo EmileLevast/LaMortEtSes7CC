@@ -52,10 +52,10 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
         AlertDialogAjoutDetail({
             onSave((infoToShow + CHAR_SEP_EQUIPEMENT + it).removeSurrounding(CHAR_SEP_EQUIPEMENT))
         }, { isShowingAddDetailPopup = false })
-    }else if(isShowingModifyDetailPopup != null){
+    } else if (isShowingModifyDetailPopup != null) {
         val strToModify = isShowingModifyDetailPopup.toString()
-        AlertDialogAjoutDetail( {
-            onSave(infoToShow.replace(strToModify,it).removeSurrounding(CHAR_SEP_EQUIPEMENT))
+        AlertDialogAjoutDetail({
+            onSave(infoToShow.replace(strToModify, it).removeSurrounding(CHAR_SEP_EQUIPEMENT))
         }, { isShowingModifyDetailPopup = null }, strToModify)
     }
 
@@ -63,21 +63,29 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 
         infoToShow.split(CHAR_SEP_EQUIPEMENT).forEach {
             if (it.isNotBlank()) {
-                Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    Modifier.fillMaxWidth().height(IntrinsicSize.Min),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Card(Modifier.weight(1f).fillMaxHeight().padding(2.dp)) {
-                        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.secondary)){
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize()
+                                .background(MaterialTheme.colorScheme.secondary)
+                        ) {
                             Text(
                                 it,
                                 textAlign = TextAlign.Center,
                                 color = MaterialTheme.colorScheme.onSecondary,
-                                style = TextStyle( fontFamily = FontFamily.Default),
+                                style = TextStyle(fontFamily = FontFamily.Default),
                             )
                         }
 
                     }
                     IconButton(onClick = {
                         val newInfosWithDeleted = infoToShow.replace(it, "")
-                            .replace("$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}",
+                            .replace(
+                                "$CHAR_SEP_EQUIPEMENT${CHAR_SEP_EQUIPEMENT}",
                                 CHAR_SEP_EQUIPEMENT
                             )//on supprime l'ancien detail
                         onSave(newInfosWithDeleted.removeSurrounding(CHAR_SEP_EQUIPEMENT))
@@ -117,7 +125,7 @@ fun layoutDetailJoueur(infoToShow: String, onSave: (String) -> Unit) {
 fun AlertDialogAjoutDetail(
     onAddingDetail: (String) -> Unit,
     onDismissRequest: () -> Unit,
-    initialContent:String? = null
+    initialContent: String? = null
 ) {
 
     var detailActuel by remember { mutableStateOf(initialContent ?: "") }
@@ -131,7 +139,7 @@ fun AlertDialogAjoutDetail(
                 value = detailActuel,
                 onValueChange = { detailActuel = it },
                 label = { Text("nouveau detail") },
-                textStyle = TextStyle( fontFamily = FontFamily.Default)
+                textStyle = TextStyle(fontFamily = FontFamily.Default)
             )
         },
         onDismissRequest = {

@@ -39,7 +39,7 @@ fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
 
     var detailsActuel by remember { mutableStateOf(actuelJoueur.details) }
 
-    val onSaveDetailsJoueur : (String)->Unit = {
+    val onSaveDetailsJoueur: (String) -> Unit = {
         actuelJoueur.details = it
         detailsActuel = it
         onSave()
@@ -101,7 +101,7 @@ fun EcranStatistiques(actuelJoueur: Joueur, onSave: () -> Unit) {
             }
         }
 
-        item{
+        item {
             HorizontalDivider(Modifier.padding(10.dp))
         }
 
@@ -161,31 +161,31 @@ fun LayoutUneCarac(
             textAlign = TextAlign.Center,
         )
 
-            TextField(
-                modifier = Modifier.weight(2f),
-                value = actuelCarac,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                onValueChange = { onTextChange(actuelCarac, it) }
-            )
-            FloatingActionButton(
-                modifier = Modifier.weight(1f),
-                onClick = {
-                    onTextChange(actuelCarac, (actuelCarac.toInt() + 1).toString())
+        TextField(
+            modifier = Modifier.weight(2f),
+            value = actuelCarac,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            onValueChange = { onTextChange(actuelCarac, it) }
+        )
+        FloatingActionButton(
+            modifier = Modifier.weight(1f),
+            onClick = {
+                onTextChange(actuelCarac, (actuelCarac.toInt() + 1).toString())
 
-                }) {
-                Text(
-                    "+",
-                )
-            }
-            FloatingActionButton(
-                modifier = Modifier.weight(1f),
-                onClick = {
-                    onTextChange(actuelCarac, (actuelCarac.toInt() - 1).toString())
-                }) {
-                Text(
-                    "-",
-                )
-            }
+            }) {
+            Text(
+                "+",
+            )
+        }
+        FloatingActionButton(
+            modifier = Modifier.weight(1f),
+            onClick = {
+                onTextChange(actuelCarac, (actuelCarac.toInt() - 1).toString())
+            }) {
+            Text(
+                "-",
+            )
+        }
 
     }
 }
