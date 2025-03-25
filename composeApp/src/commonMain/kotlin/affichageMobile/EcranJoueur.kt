@@ -39,6 +39,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import lamortetses7cc.composeapp.generated.resources.refreshSymbol
 import network.ApiApp
 import org.jetbrains.compose.resources.painterResource
@@ -198,6 +199,7 @@ fun IconProfilRefreshable(
             AsyncImage(
                 model = apiApp.createUrlImageFromItem(selectedJoueur),
                 modifier = Modifier.clip(CircleShape).align(Alignment.Center),
+                placeholder = painterResource(Res.drawable.UnknownImage),
                 contentDescription = null
             )
         }

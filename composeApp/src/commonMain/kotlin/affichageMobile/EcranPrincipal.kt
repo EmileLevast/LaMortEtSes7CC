@@ -53,8 +53,11 @@ import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import model.HeadBodyShowable
 import network.ApiApp
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import viewModel.FilterViewModel
 import viewModel.stateviewmodel.FilterModelState
@@ -146,6 +149,7 @@ fun EcranPrincipal(
                                 BorderStroke(2.dp, MaterialTheme.colorScheme.secondary), CircleShape
                             ),
                         contentDescription = null,
+                        placeholder = painterResource(Res.drawable.UnknownImage),
 
                         )
 

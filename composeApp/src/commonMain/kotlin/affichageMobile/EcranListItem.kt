@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import getNbrUtilisationAccordingItem
 import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import lamortetses7cc.composeapp.generated.resources.mainFermee
 import lamortetses7cc.composeapp.generated.resources.mainOuverte
 import network.ApiApp
@@ -108,6 +109,8 @@ fun EcranListItem(
                                 model = apiApp.createUrlImageFromItem(equipement),
                                 modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp),
                                 contentDescription = null,
+                                placeholder = painterResource(Res.drawable.UnknownImage),
+
                             )
                         }
 

@@ -28,7 +28,10 @@ import configuration.GraphicConstantsFullGrid
 import getNbrUtilisationAccordingItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import lamortetses7cc.composeapp.generated.resources.Res
+import lamortetses7cc.composeapp.generated.resources.UnknownImage
 import network.ApiApp
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 
 @Composable
@@ -86,6 +89,8 @@ fun layoutBigImage(
                         AsyncImage(
                             model = apiApp.createUrlImageFromItem(equipement),
                             contentDescription = null,
+                            placeholder = painterResource(Res.drawable.UnknownImage),
+
                         )
                     }
 
