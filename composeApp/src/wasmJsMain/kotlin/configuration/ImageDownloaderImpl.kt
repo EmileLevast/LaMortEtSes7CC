@@ -12,13 +12,7 @@ class ImageDownloaderImpl(val config: IConfiguration) : IImageDownloader{
     val endpoint get() = config.getEndpointServer()
 
     private fun loadNetworkImage(link: String, format: String): ImageBitmap {
-        val url = URL(link)
-        try {
-            return BitmapFactory.decodeStream(url.openConnection().getInputStream()).asImageBitmap()
-        } catch (e: IOException) {
-            println(e.stackTraceToString())
-            return imageBackground!!
-        }
+        return imageBackground!! //TODO volontairement en erreur mais n'est pas censé etre appele par wasm
 
     }
 

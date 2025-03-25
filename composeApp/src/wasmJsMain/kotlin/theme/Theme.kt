@@ -1,25 +1,19 @@
 package com.example.compose
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.LineBreak
 import configuration.ConfigurationImpl
 import configuration.IConfiguration
 import lamortetses7cc.composeapp.generated.resources.Aniron_7BaP
-import lamortetses7cc.composeapp.generated.resources.Anironc_d9DK
 import lamortetses7cc.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
-import org.koin.compose.koinInject
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -268,12 +262,6 @@ fun AppTheme(
     dynamicColor: Boolean = false,
     content: @Composable() () -> Unit
 ) {
-
-    //Init le contexte android pour les preferences
-    val config = koinInject<IConfiguration>()
-
-    (config as? ConfigurationImpl)?.setupContextForPreferences(LocalContext.current)
-
 
     val colorScheme = when {
 
