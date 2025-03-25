@@ -23,10 +23,12 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import configuration.GraphicConstantsFullGrid
 import getNbrUtilisationAccordingItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import network.ApiApp
 import org.koin.compose.koinInject
 
 @Composable
@@ -39,6 +41,8 @@ fun layoutBigImage(
 ) {
     val graphicsConsts = koinInject<GraphicConstantsFullGrid>()
     var notesJoueur by remember { mutableStateOf("") }
+    val apiApp = koinInject<ApiApp>()
+
 
     var nbrUtilisationItem by remember {
         mutableStateOf(
@@ -79,7 +83,10 @@ fun layoutBigImage(
                     }
 
                     item {
-                        drawImageWithNetwork(equipement)
+                        AsyncImage(
+                            model = apiApp.createUrlImageFromItem(equipement),
+                            contentDescription = null,
+                        )
                     }
 
                     if (isShowingStats) {

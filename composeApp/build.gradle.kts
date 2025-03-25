@@ -84,6 +84,9 @@ kotlin {
             implementation(libs.androidx.datastore.preferences)
             implementation(libs.androidx.datastore.preferences.core)
 
+            //Coil pour les images
+            implementation(libs.coil.compose)
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

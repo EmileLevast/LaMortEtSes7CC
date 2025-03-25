@@ -33,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil3.compose.AsyncImage
 import getListItemFiltered
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -188,11 +189,16 @@ fun IconProfilRefreshable(
     modifier: Modifier = Modifier,
     refreshJoueur: () -> Unit
 ) {
+
+    val apiApp = koinInject<ApiApp>()
+
+
     Box(modifier.height(IntrinsicSize.Min)) {
         Box(Modifier.fillMaxSize(0.55f).align(Alignment.Center).clickable { refreshJoueur() }) {
-            drawImageWithNetwork(
-                selectedJoueur,
-                Modifier.clip(CircleShape).align(Alignment.Center)
+            AsyncImage(
+                model = apiApp.createUrlImageFromItem(selectedJoueur),
+                modifier = Modifier.clip(CircleShape).align(Alignment.Center),
+                contentDescription = null
             )
         }
 

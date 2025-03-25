@@ -48,6 +48,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil3.compose.AsyncImage
 import configuration.IConfiguration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -136,14 +137,17 @@ fun EcranPrincipal(
 
             selectedJoueur?.let {
                 Row {
-                    drawImageWithNetwork(
-                        it,
-                        Modifier.padding(4.dp).clip(CircleShape).wrapContentWidth(Alignment.End)
+                    AsyncImage(
+                        model = apiApp.createUrlImageFromItem(it),
+                        modifier = Modifier.padding(4.dp).clip(CircleShape)
+                            .wrapContentWidth(Alignment.End)
                             .fillMaxWidth(0.2f)
                             .border(
                                 BorderStroke(2.dp, MaterialTheme.colorScheme.secondary), CircleShape
-                            )
-                    )
+                            ),
+                        contentDescription = null,
+
+                        )
 
                     Text(
                         it.nomComplet.ifBlank { it.nom },
@@ -299,16 +303,16 @@ fun ItemSimpleMenuButton(
 ) {
     val scope = rememberCoroutineScope()
 
-    if(filterUiState.filterUser == filter){
+    if (filterUiState.filterUser == filter) {
         OutlinedButton({
             filterViewModel.changeFilterUser(filter)
             scope.launch {
                 drawerState.close()
             }
-        }){
+        }) {
             Text(text)
         }
-    }else{
+    } else {
         TextButton({
             filterViewModel.changeFilterUser(filter)
             scope.launch {

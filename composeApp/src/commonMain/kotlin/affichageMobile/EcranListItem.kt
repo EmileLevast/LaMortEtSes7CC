@@ -29,11 +29,14 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import getNbrUtilisationAccordingItem
 import lamortetses7cc.composeapp.generated.resources.Res
 import lamortetses7cc.composeapp.generated.resources.mainFermee
 import lamortetses7cc.composeapp.generated.resources.mainOuverte
+import network.ApiApp
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.koinInject
 
 
 @Composable
@@ -54,6 +57,8 @@ fun EcranListItem(
 
     //pour savoir quel élément à afficher en gros
     var equipementToShow by remember { mutableStateOf<IListItem?>(null) }
+    val apiApp = koinInject<ApiApp>()
+
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -99,9 +104,10 @@ fun EcranListItem(
                                 color = if (isItemPinned == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.scrim
                             )
 
-                            drawImageWithNetwork(
-                                equipement,
-                                Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp)
+                            AsyncImage(
+                                model = apiApp.createUrlImageFromItem(equipement),
+                                modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 10.dp),
+                                contentDescription = null,
                             )
                         }
 

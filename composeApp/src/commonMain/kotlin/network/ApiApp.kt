@@ -282,6 +282,8 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
             return defaultReturnValue
         }
     }
+
+    fun createUrlImageFromItem(item : IListItem) = endpoint + "/" + item.nom + ".jpg"
 }
 
 
