@@ -148,7 +148,6 @@ fun EcranPrincipal(
                                 BorderStroke(2.dp, MaterialTheme.colorScheme.secondary), CircleShape
                             ),
                         contentDescription = null,
-                        placeholder = painterResource(Res.drawable.UnknownImage),
                         error = painterResource(Res.drawable.UnknownImage),
 
                         )

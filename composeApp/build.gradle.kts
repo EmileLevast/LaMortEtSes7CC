@@ -86,6 +86,7 @@ kotlin {
 
             //Coil pour les images
             implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor2)
 
         }
         desktopMain.dependencies {

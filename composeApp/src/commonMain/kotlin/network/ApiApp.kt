@@ -17,6 +17,7 @@ import QUERY_PARAMETER_NOM
 import Sort
 import Special
 import androidx.compose.ui.graphics.ImageBitmap
+import cleanupForDB
 import configuration.IConfiguration
 import extractDecouvertesListFromEquipe
 import extractEquipementsListFromJoueur
@@ -287,7 +288,7 @@ class ApiApp(val config: IConfiguration, val imageDownloader: IImageDownloader) 
         }
     }
 
-    fun createUrlImageFromItem(item : IListItem) = endpoint + "/images/" + item.nom + ".jpg"
+    fun createUrlImageFromItem(item : IListItem) = endpoint + "/images/" + "${item.nom.cleanupForDB().replace(" ","")}" + ".jpg"
 }
 
 

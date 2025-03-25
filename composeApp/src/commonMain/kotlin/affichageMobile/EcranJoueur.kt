@@ -201,7 +201,6 @@ fun IconProfilRefreshable(
             AsyncImage(
                 model = apiApp.createUrlImageFromItem(selectedJoueur),
                 modifier = Modifier.clip(CircleShape).align(Alignment.Center),
-                placeholder = painterResource(Res.drawable.UnknownImage),
                 error = painterResource(Res.drawable.UnknownImage),
                 contentDescription = null
             )

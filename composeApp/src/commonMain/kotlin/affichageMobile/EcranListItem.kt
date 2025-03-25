@@ -109,7 +109,6 @@ fun EcranListItem(
                                 modifier = Modifier.align(Alignment.CenterHorizontally)
                                     .padding(bottom = 10.dp),
                                 contentDescription = null,
-                                placeholder = painterResource(Res.drawable.UnknownImage),
                                 error = painterResource(Res.drawable.UnknownImage),
 
                                 )

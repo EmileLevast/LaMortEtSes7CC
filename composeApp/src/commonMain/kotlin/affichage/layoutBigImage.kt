@@ -90,7 +90,6 @@ fun layoutBigImage(
                         AsyncImage(
                             model = apiApp.createUrlImageFromItem(equipement),
                             contentDescription = null,
-                            placeholder = painterResource(Res.drawable.UnknownImage),
                             error = painterResource(Res.drawable.UnknownImage),
                         )
                     }
