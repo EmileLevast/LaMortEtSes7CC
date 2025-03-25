@@ -3,7 +3,6 @@ package affichageMobile
 import Equipe
 import IListItem
 import Joueur
-import affichage.drawImageWithNetwork
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import viewModel.stateviewmodel.FilterUser
 import viewModel.stateviewmodel.FilterModelState
+import viewModel.stateviewmodel.FilterUser
 
 class FilterViewModel: ViewModel() {
     // Filter UI state

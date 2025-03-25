@@ -2,7 +2,6 @@ package affichageMobile
 
 import IListItem
 import Joueur
-import affichage.drawImageWithNetwork
 import affichage.layoutBigImage
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

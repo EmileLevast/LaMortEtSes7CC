@@ -6,7 +6,6 @@ import Joueur
 import affichage.AlertDialogChangeIp
 import affichage.LayoutDrawerMenu
 import affichage.buttonDarkStyled
-import affichage.drawImageWithNetwork
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
