@@ -74,11 +74,15 @@ fun Application.module() {
 
     }
     install(CORS) {
-        allowMethod(HttpMethod.Get)
-        allowMethod(HttpMethod.Post)
-        allowMethod(HttpMethod.Delete)
-        allowMethod(HttpMethod.Put)
         anyHost()
+        allowHeader(HttpHeaders.ContentType)
+        allowHeader(HttpHeaders.AccessControlAllowOrigin)
+        allowMethod(HttpMethod.Delete)
+        allowMethod(HttpMethod.Get)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Post)
+        allowMethod(HttpMethod.Options)
+        allowSameOrigin
     }
     install(Compression) {
         gzip()
